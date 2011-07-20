@@ -1,3 +1,4 @@
+
 // Write a function reverse(s) that reverses the charcater
 // string s. Use it to write  a program that reverses its input  a line at a time.
 
@@ -27,7 +28,7 @@ int  main () {
   while((getLine(line, MAXLINE,  fr)) > 0) {
     if (atReverse(line) > 0) {
       fputs(line, fw);
-      printf ("\nLine = %s\n", line);
+      printf ("\nLine = %s  ", line);
     }
   }
   // close file 
@@ -52,10 +53,25 @@ int getLine(char s[], int lim, FILE *fr) {
 
 /* atReverse : that reverses the charcater string s */
 int atReverse (char s[]) {
-  int i;
+  int i, j;
+  char temp;
   i = 0;
-  printf ("\nAT>>>>>>>>>>>> Line = %s", s);
-  return i;
+  while (s[i] != '\0') /* Find the end of string   */ 
+    ++i;
+  --i;                 /* Back of from '\0'        */
+  if (s[i] == '\n')
+    --i;               /* Leave newline in place   */
+  j = 0;               /* Begining of new string s */
+  if (j < i) {
+    temp = s[j];
+    s[j] = s[i];       /* Swap the characters      */
+    s[i] = temp;
+    --i;
+    ++j;
+  }
+  //s[j] = '\0';
+  printf ("\nAT>>>>>>>>>>>> New Copy = %s, J=%d", s, j);
+  return j;
 }
 
 
