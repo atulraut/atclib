@@ -2,9 +2,9 @@
 *
 * Find pattern in string.
 * Date : Sunday, September 11 2011 11:02 AM
-* Finish : Nov 27-11-2011
+* End  : Nov 27-11-2011
 * By : Atul R. Raut
-* A
+* 
 ***/
 
 #include <stdio.h>
@@ -36,11 +36,10 @@ int main () {
   //   if (the line contains the pattern)
   //        print it
   while ( iLine = getLine (line, MAXLINE, fr) > 0 ) {
-    //printf ("\niLine = %d", iLine);
-    //    printf ("\nline = %s", line);
-    if (strIndex (line, pattern) >= 0)
-      printf ("\n\t Found Line is = %s\n", line);
-    found++;
+    if (strIndex (line, pattern) >= 0) {
+	  printf ("\n\t Found Line is = %s\n", line);
+	found++;
+    }
   }
 
    // close file 
