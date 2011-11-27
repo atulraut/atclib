@@ -1,8 +1,8 @@
 /*
 *
 * Find pattern in string.
-* Data : Sunday, September 11 2011 11:02 AM
-* Restarted on Nov 26th-11-2011
+* Date : Sunday, September 11 2011 11:02 AM
+* Finish : Nov 27-11-2011
 * By : Atul R. Raut
 * A
 ***/
