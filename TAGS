@@ -1,0 +1,145 @@
+
+r-sol/ch-01/01-08/ans1-8.c,15
+int main 5,71
+
+r-sol/ch-01/01-08/pr1.c,21
+Hi,1,0
+Thanks,8,76
+
+r-sol/ch-01/1-12/12.c,52
+#define IN 5,80
+#define OUT 6,111
+int main 8,144
+
+r-sol/ch-01/1-18/main.c,101
+#define MAXLINE 6,126
+int main 12,238
+int getLine(41,858
+int atRemove 55,1142
+void copy 76,1621
+
+r-sol/ch-01/1-17/main.c,78
+#define MAXLINE 6,93
+int main 11,181
+int getLine(40,817
+void copy 54,1069
+
+r-sol/ch-01/1-20/main.c,40
+#define TABINC 12,318
+int main 16,414
+
+r-sol/ch-01/1-10/fr.c,8
+Hi,1,0
+
+r-sol/ch-01/1-10/10.c,16
+int main 6,170
+
+r-sol/ch-01/1-10/fw.c,8
+Hi,1,0
+
+r-sol/ch-01/1-22/main.c,165
+#define MAXCOL 11,336
+#define TABINC 12,393
+char line 14,446
+int main 22,639
+void printL(57,1440
+int expTab 67,1610
+int findBlank(80,1998
+int newPos(90,2325
+
+r-sol/ch-01/1-19/main.c,84
+#define MAXLINE 7,164
+int  main 12,248
+int getLine(41,870
+int atReverse 55,1137
+
+r-sol/ch-01/1-21/main.c,40
+#define TABINC 12,377
+int main 15,481
+
+r-sol/ch-01/01-09/fr.c,8
+Hi,1,0
+
+r-sol/ch-01/01-09/fw.c,8
+Hi,1,0
+
+r-sol/ch-01/01-09/ans1-9.c,39
+#define NONBLANK 5,96
+int main 7,118
+
+r-sol/ch-04/4.1/main.c,105
+#define MAXLINE 11,247
+char pattern 16,396
+int main 18,453
+int getLine 51,1125
+int strIndex 68,1437
+
+r-sol/ch-03/3-04/main.c,58
+#define abs(11,245
+int main 15,314
+void my_itoa 22,391
+
+r-sol/ch-02/2-04/main.c,36
+int main 12,215
+int sqeeze 22,361
+
+r-sol/ch-02/2-05/main.c,34
+int main 14,373
+char any 24,511
+
+r-sol/ch-02/2-03/main.c,73
+#define YES 10,283
+#define NO 11,297
+int main 15,333
+int htoi 26,495
+
+r-book/ch-01/17.c,15
+int main 5,45
+
+r-book/ch-01/1.6.c,16
+int main 8,216
+
+r-book/ch-01/1.9.c,79
+#define MAXLINE 6,118
+int main 11,236
+int getLine(40,894
+void copy 54,1165
+
+r-book/ch-04/4.1/main.c,105
+#define MAXLINE 11,147
+char pattern 16,296
+int main 18,353
+int getLine 52,1037
+int strIndex 69,1349
+
+r-book/ch-03/3.5/main.c,36
+int main 9,70
+char* revStr 18,204
+
+r-book/ch-03/3.3/main.c,41
+int main 10,95
+int binarySearch 25,384
+
+r-book/ch-03/3.6/main.c,36
+int main 8,97
+void my_itoa 20,282
+
+r-book/ch-05/5.5/main.c,80
+ int main 2,20
+ void aStrcpy 17,325
+ void pStrcpy 28,524
+int aStrcmp 44,953
+
+r-book/ch-02/2.7.c,32
+int main 9,88
+int atoi 19,227
+
+r-book/ch-01/fw.c,0
+
+r-book/ch-01/file1-9.c,0
+
+r-book/ch-01/fr.c,0
+
+r-sol/ch-01/1-12/fw.c,0
+
+r-sol/ch-01/1-12/fr.c,0
