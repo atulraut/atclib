@@ -19,6 +19,7 @@ int  main () {
 
    memset(src, '\0', sizeof( src ));
    buf = aStrncpy (src, "Raut", 2);
+   //   buf = aStrncat ("Atul ", "Raut", 2);
    printf ("\n Res = %s\n", buf);
  }
 
@@ -35,8 +36,25 @@ char* aStrncpy (char *s, char *ct, int i) {
   return s;
 }
 
-char*  aStrncat (char *s, char *t, int n) {
-
+char*  aStrncat (char *s, char *t, int i) {
+  printf ("\nc=%s, t =%s, i=%d \n", s, t, i);
+  int n = i;
+  while (*s != '\0')
+    s++;
+  s++;
+  s = '\0';
+  s++;
+  while (*t && n-- > 0) {
+    *s = *t;
+    s++;
+    t++;
+  }
+  n = i; // Reset n;
+  while (n-- > 0) {
+    *s++ = '\0';
+  }
+  printf ("\[AT] %s \n", s);
+  return s;
 }
 
 int aStrncmp (char *s, char *t, int n) {
