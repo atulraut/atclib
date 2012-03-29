@@ -1,8 +1,9 @@
- #include <stdio.h>
+#include <stdio.h>
+
  int main () {
    int res;
    char src [] = "Atul";
-   char tar [] = "Atul";
+   char tar [] = "AtulR";
 
    // call to array version :
    //  aStrcpy (src, tar);
@@ -40,7 +41,7 @@
    ///  Printf ("\n ATUL >>> aStrcpy s: %s: \n\n", s);
  }
 
-/* aStrcmp : return <0 if s<t, 0 if s==t, >0 if s>t */
+/* aStrncmp : return <0 if s<t, 0 if s==t, >0 if s>t */
 int aStrcmp (char *s, char *t) {
 
   printf ("\n*s = %s *t = %s\n", s, t);

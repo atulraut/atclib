@@ -13,50 +13,43 @@ char* aStrncat (char *s, char *t, int n);
 int aStrncmp (char *s, char *t, int n);
 
 int  main () {
-   char src[] = " ";
+   char src[] = "  ";
    char tar[] = "Raut";
-   char *buf = NULL;
-
-   memset(src, '\0', sizeof( src ));
-   buf = aStrncpy (src, "Raut", 2);
-   //   buf = aStrncat ("Atul ", "Raut", 2);
-   printf ("\n Res = %s\n", buf);
+   char *output_str = NULL;
+   //   memset(src, '\0', sizeof( src ));
+   output_str = aStrncpy (src, "Raut", 2);
+   printf ("\n Res = %s\n", output_str);
+   memset(output_str, '\0', sizeof( output_str ));
+   output_str = aStrncat ("Atul ", "Raut", 2);
+   printf ("\n Res = %s\n", output_str);
  }
 
- // The version of strcpy with pointers :
+/* aStrncpy : The version of aStrcpy with pointers */
 char* aStrncpy (char *s, char *ct, int i) {
+  printf ("\n[AT-aStrncpy] s= %s, ct=%s \n", s, ct);
   int n = i;
-   while (*ct && n-- > 0) {
-     *s++ = *ct++;
-   }
-   n = i; // Reset n
-   while (n-- > 0) {
+  while (*ct && n-- > 0) {
+    *s++ = *ct++;
+  }
+  n = i;    // Reset n
+  while (n-- >= 0) {
      *s++ = '\0';
-   }
+  }
+  printf ("[AT-aStrncpy] = %s", s);
   return s;
 }
 
+/* aStrnccat : Concate n characters of t to the end of s */
 char*  aStrncat (char *s, char *t, int i) {
-  printf ("\nc=%s, t =%s, i=%d \n", s, t, i);
-  int n = i;
-  while (*s != '\0')
-    s++;
-  s++;
-  s = '\0';
-  s++;
-  while (*t && n-- > 0) {
-    *s = *t;
-    s++;
-    t++;
-  }
-  n = i; // Reset n;
-  while (n-- > 0) {
-    *s++ = '\0';
-  }
-  printf ("\[AT] %s \n", s);
-  return s;
+  char *buf = NULL;
+  printf ("\n[AT-aStrncat] = s=%s t=%s, i=%d\n", s, t, i);
+  char* aStrncpy (char *s, char *t, int i);
+  int strlen (char *);
+   buf = aStrncpy (s+strlen(s), t, i);
+  printf ("\n[AT] = %s \n", buf);
+  return buf;
 }
 
 int aStrncmp (char *s, char *t, int n) {
-
+  
 }
