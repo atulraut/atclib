@@ -95,10 +95,76 @@ void m_Insert(int pos, int data){
 	}
 }
 
-void m_delfirst() {}
+void m_Delfirst() {
+	if (head == NULL)
+		printf ("\n Empty Link List.");
+	else {
+		NODE *temp = NULL;
+		if (head->next == NULL) {
+			free (head);
+			head = NULL;
+		}
+		else {
+			temp = head;			
+			head = head->next;		
+			free (temp);
+			temp = NULL;
+		}				
+	}
+}
 
-void m_Deletenode(int data) {}
+void m_Dellast() {
+	if (head == NULL)
+		printf ("\n Empty Link List.");
+	else {
+		NODE *temp = NULL;
+		NODE *tmp  = NULL;
+		if (head->next == NULL) {
+			free (head);
+			head = NULL;
+		}
+		else {
+			temp = head;			
+			while (temp->next->next != NULL) {
+				temp = temp->next;			
+			}
+			tmp = temp->next;
+			temp->next = NULL;
+			free (tmp);
+			tmp = NULL;
+		}
+	}
+}
 
-void m_Dellast(){}
+void m_Deletenode(int data) {
+	
+}
 
-void m_Freelist() {}
+void m_Printrev (NODE *node) {
+	if (head == NULL) {
+		printf ("\nEmpty link list.\n");
+	} else {
+		// Logic to reverse link list.
+	}
+}
+
+void m_Freelist() {
+	if (head == NULL)
+		printf ("\n Empty Link List.");
+	else {
+		NODE *temp = NULL;
+		NODE *tmp  = NULL;
+		if (head->next == NULL)
+			free (head);
+		else {
+			temp = head;			
+			while (temp != NULL) {
+				tmp = temp;
+				tmp->next == NULL;
+				temp = temp->next;					       
+				free (tmp);
+			} // while end
+			free (head);
+		} // second if end
+	} // first if end
+}
