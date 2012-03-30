@@ -24,6 +24,8 @@ int main()
 		printf ("\n\t\t Welcome to World of LinkList :: \n");
 		printf ("\t\t <====> :: ");
 		scanf("%d", &ch);
+		if (ch < 0 || ch > 10)
+			return EXIT_SUCCESS ;
 		switch(ch)
 		{
 			case 0:
@@ -46,24 +48,24 @@ int main()
 				printf ("\n ---------------- ");
 				break;
 			case 4:
-			//	delfirst();
+				m_Delfirst();
 				break;
 			case 5:
 				printf("\nEnter the position :");
 				scanf("%d",&pos);
-			//	deletenode(pos);
+				m_Deletenode(pos);
 				break;
 			case 6:
-			//	dellast();
+				m_Dellast();
 				break;
 			case 7:
 				m_Display();
 				break;
 			case 9:
-			//	printrev(head);
+				m_Printrev();
 				break;
 			case 10:
-			//	freelist();
+				m_Freelist();
 				break;
 		        default : {
 				printf("\nEnter the correct choice ");
