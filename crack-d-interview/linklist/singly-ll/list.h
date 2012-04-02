@@ -16,7 +16,7 @@ void m_Insert(int,int);
 void m_Delfirst();
 void m_Deletenode(int);
 void m_Dellast();
-void m_Printrev (NODE *);
+void m_Printrev ();
 void m_Freelist();
 
 #endif

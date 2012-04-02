@@ -137,14 +137,45 @@ void m_Dellast() {
 }
 
 void m_Deletenode(int data) {
-	
+	NODE *temp = NULL;
+	NODE *tmp  = NULL;
+	temp = head;
+	while (temp != NULL) {
+		if (temp->next != NULL) {
+			if (temp->next->data == data) {
+			  printf ("\n Data found deleting Node !\n");
+			  tmp = temp->next;
+			  if (temp->next->next != NULL)
+			 	temp->next = temp->next->next;
+			   else
+			 	temp->next = NULL;
+			   free (tmp);
+			   tmp = NULL;
+			}
+		} else {
+			m_Delfirst ();
+		}
+		if (temp != NULL)
+			temp = temp->next;
+	}
 }
 
-void m_Printrev (NODE *node) {
+void m_Printrev () {
+	NODE *trav = NULL;
+	NODE *temp = NULL;
 	if (head == NULL) {
 		printf ("\nEmpty link list.\n");
 	} else {
+		printf ("\n Inside Reverse Link List\n");
 		// Logic to reverse link list.
+		temp = head;
+		head = NULL;
+		while (temp != NULL) {
+			trav = temp->next;
+			temp->next = head; // attach NODE
+			head = temp;     // L1 Make NULL, L2 Attach Node
+			temp = trav;
+		}
 	}
 }
 
