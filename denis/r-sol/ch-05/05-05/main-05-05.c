@@ -43,10 +43,11 @@ char* aStrncpy (char *s, char *ct, int i) {
 char*  aStrncat (char *s, char *t, int i) {
   char *buf = NULL;
   printf ("\n[AT-aStrncat] = s=%s t=%s, i=%d\n", s, t, i);
-  char* aStrncpy (char *s, char *t, int i);
-  int strlen (char *);
-   buf = aStrncpy (s+strlen(s), t, i);
-  printf ("\n[AT] = %s \n", buf);
+  // char* aStrncpy (char *s, char *t, int i);
+  //int strlen (char *);
+  //buf = aStrncpy (s+strlen(s), t, i);
+  
+  printf ("\n[AT] buf = %s \n", buf);
   return buf;
 }
 
