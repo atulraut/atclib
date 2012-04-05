@@ -194,8 +194,10 @@ void m_Freelist() {
 				tmp->next == NULL;
 				temp = temp->next;					       
 				free (tmp);
+				tmp = NULL;
 			} // while end
 			free (head);
+			head = NULL;
 		} // second if end
 	} // first if end
 }
