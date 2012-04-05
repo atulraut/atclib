@@ -185,8 +185,10 @@ void m_Freelist() {
 	else {
 		NODE *temp = NULL;
 		NODE *tmp  = NULL;
-		if (head->next == NULL)
+		if (head->next == NULL) {
 			free (head);
+			head = NULL;
+		}
 		else {
 			temp = head;			
 			while (temp != NULL) {
