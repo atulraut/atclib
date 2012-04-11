@@ -1,7 +1,8 @@
 /*
-* Aim :  Create Singly Circular Link List
-* Date : 25-03-2010
-*
+* Aim 	 : Singaly Circular Link List.
+* Author : Atul Ramesh Raut
+* Date   : Wednesday April 11, 2012. 02:30PM
+* File   : circular-singly.c
 ***/
 
 #include <stdio.h>
@@ -13,11 +14,9 @@ NODE *head = NULL;
 void m_Init (NODE *list) {
     list->data = 0;
     list->next = NULL;
-    counter = 0;
 }
 
 NODE* m_CreateNodeL (int data) {
-    counter++;
     NODE *nn = (NODE *)NULL;
     nn = (NODE *)malloc(sizeof(NODE));
     if (nn == NULL) {
@@ -98,7 +97,7 @@ void m_Insert(int data, int pos) {
     }
 }
 
-void m_delfirst() {
+void m_Delfirst() {
 
 }
 
