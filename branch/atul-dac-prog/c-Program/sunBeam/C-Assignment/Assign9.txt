@@ -1,0 +1,39 @@
+1)	Write a program to accept employee name, employee no  & basic sal from the user.  			
+	Calculate salary of an employee.by considering hra=10% of basic  salary, 
+	da as 20 % of	basic	salary and 2% deduction of basic salary for canteen
+	 facility. ( Note : Use	structure., define function as AcceptEmpDetails(),
+	 CalculateSal() and DisplayEmpDetails()
+
+2)	Write the above program for accepting information for 10 employees.
+
+3)	Modify the above the program which will accept the attendance of the employee
+
+4)	Define a structure called cricket that will describe the following information 
+   	Player name
+	Team name
+	Batting average
+	Using cricket, declare an array player with 10 elements and write a program to read 
+	information about all 10 players and print a team wise list containing names of players 		with their batting average.
+
+5)	 Define a structure to represent time in hours (0-23), minutes (0-59), and seconds 			(0-59), and then write a function that accepts as an argument a time represented by this 		structure and updates it by one second & 30 seconds.
+
+6)  	There are 10 records present in a file with the following structure :
+	struct 
+	{	
+		char itemcode[6];
+		char itemname [20];
+		int qty;
+	};
+	Write a program to read these records and display them in ascending order on the 
+	field itemname and write them into a text file in ascending order.
+
+7)	write a program that constructs a structure address that consists of four address fields 
+	of width 20 each. Also write a structure employee consisting of name,sal,da,hra,pf and 	struct address .
+	Accept 10 values for above structure employee and displey them.
+
+8)	Write the struct branch consisting of income,exp,margin and name write a function
+	void accept(struct branch *) to accept record for branch and void show(struct branch *)
+	to display the record.
+
+9)	Write a program to create a database of students use structures and files.
+

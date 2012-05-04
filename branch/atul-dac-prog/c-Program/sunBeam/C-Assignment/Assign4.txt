@@ -1,0 +1,59 @@
+/*Loops*/
+
+1. Print all primes in range 1 to 100.
+
+2. Print first 20 primes after a given number.
+
+3. Input a number and print its factorial value.
+
+4. Input values of base and index and calculate power.
+
+5. Print all factors of given number.
+Example:- If number is 24, output must be
+24 = 2 * 2 * 2 * 3  
+
+
+
+6. Input a +ve number from user and print whether it is prime. If user enter non-positive number then ask user to re-enter the numer.
+
+7. Write a menu driven program to facilitate user to calculate area and/or perimeter of a figure. Figure may be Triangle, Circle, Rectangle, Square.
+
+8. Write a program to print a given number of terms of fibbonacci series. Fibbonacci series is given as
+1, 1, 2, 3, 5, 8, 13, 21, ...
+
+9. Print the following structure.
+                      1 1
+                    2 1 1 2
+                  3 2 1 1 2 3
+                4 3 2 1 1 2 3 4
+
+10. Print the Floyed's Triangle.
+	1
+	2 3
+	4 5 6
+	7 8 9 10
+
+11. Print the following structure.
+	A B C D C B A
+	A B C   C B A
+	A B       B A
+	A           A
+
+12. Print all Pythgorian triplets in range 1 to 50. Triplets sholud not be repeated.
+example:- 6, 8, 10 is Pythagorian triplet as 6*6 + 8*8 = 10*10
+
+13. Print the ascii table. Pause after every 10 characters.
+
+14.Output a design pattern.
+Example:- If entered charcter.. F
+Ouput must be
+ABCDEFFEDCBA
+ABCDE  EDCBA
+ABCD    DCBA
+ABC      CBA
+AB        BA
+A          A
+
+15. Print all leap years between year 1900 to year 2000.
+
+ 
