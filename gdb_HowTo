@@ -1,0 +1,22 @@
+GDB How :
+
+ni -- Step one instruction
+rc -- Continue program being debugged but run it in reverse
+rni -- Step backward one instruction
+rsi -- Step backward exactly one instruction
+si -- Step one instruction exactly
+stepping -- Specify single-stepping behavior at a tracepoint
+tp -- Set a tracepoint at specified line or function
+tty -- Set terminal for future runs of program being debugged
+where -- Print backtrace of all stack frames
+ws -- Specify single-stepping behavior at a tracepoint
+
+Command class: breakpoints
+
+awatch -- Set a watchpoint for an expression
+break -- Set breakpoint at specified line or function
+break-range -- Set a breakpoint for an address range
+catch -- Set catchpoints to catch events
+catch assert -- Catch failed Ada assertions
+
+ k
