@@ -1,0 +1,43 @@
+/*Switch case - Selection contol statements*/
+
+1. Print the number of days in a given month. 
+For example :- If user enter month = 3, message should be
+"March" has 31 days.
+
+2. Print a given two digit number in words.
+
+3.See the following table and give result.
+___________________________________________________
+Deptno  Dept Name		|	Code	Designation
+			|
+10	Marketing	|	'M'	manager	
+20	Management	|	'S'	Supervisor
+30	Sales		|	's'	Security Officer
+40	Designing	|		'C'	Clerk
+________________________|___________________________ 
+Example:- If input given is 
+Employee Id = 101
+Dept No = 30
+Designation Code = M
+Then output must be:-
+Employee with employee id 101 is working in "Sales" department as "Manager".
+
+4. Create a "Four function Calculator". Four functions are +, - , *, /
+
+5. Write a program to print all "twin prime numbers" in range 1 to 100. Twin prime numbers are the prime numbers having difference two. e.g. 3-5, 5-7, 11-13, 17-19, 29-31, etc
+
+
+6. Write a program to print table of given number.
+
+7. Write a program to find sum of digits of integer. Number can have any number of digits.
+
+8. Write a program to reverse a given number. Number can have any number of digits.
+For example :- 
+If input number is '1234', then output must be '4321'
+
+9. Check if given number is "Armstrong" or not. A number is said to be armstrong if sum of cubes of its digits is same as that number.
+e.g. 153 = 1*1*1 + 5*5*5 + 3*3*3
+
+10. Print all armstrong numbers in the range 1 to 500.
+ 
+11. Check if given number is prime or not.

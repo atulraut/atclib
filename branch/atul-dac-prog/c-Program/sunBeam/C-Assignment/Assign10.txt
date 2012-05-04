@@ -1,0 +1,31 @@
+/*File Handling*/
+1. Write a program to accept characters from user & write it to text file. Program should continue till user do not enter end of file character.
+
+2. Read characters from a text file one by one and print it to screen.
+
+3. Write a program to accept "source" & "target" file names and  copy "source" file to "target" file. Open files in binary mode.
+
+4. Write a program to accept "source" & "target" file names and append "source" file to "target" file.
+
+5. Write a program to calculate number of characters, spaces, tabs, lines & words in given file.
+
+6. Write a program to reverse each line in the program.
+
+7. Write a program to reverse each word of file.
+
+8. Write a program to reverse entire contents file,so that last character must be first one.
+
+9. Write a program to reverse the sequence of lines,so that last line must be first one.
+
+-----------------------------OPTIONAL ASSIGNMENTS--------------------------------------
+
+10. Write a program to remove all "C" comments from a C source file.
+
+11. Write a program to write a two dimensional array to file & retrive it back. Use text file. 
+
+12. Write a program to write information of 10 students to file & retrive it back. Use binary files. Allow user to update any record. Don't use arrays.
+
+13. Write a Menu Driven program to create a telephone directory. Provide menus of Add Record, Search Record, Edit Record, Delete Record, Search all records. Don't use any data structure. 
+
+
+

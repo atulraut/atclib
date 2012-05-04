@@ -1,0 +1,20 @@
+/*Arrays 2-D & Array of pointers*/
+
+1. Write a menu driven program for matrix addition, subtraction, multiplication. Dimension of matrix are 4x4.
+
+2. Sum all elements of 2-d array.
+
+3. Find maximum and minimum element of a 3x3 matrix.
+
+4. Input marks of 6 subjects & find the average. Print the marks as well as average of 5 students.
+
+5. Write a menu driven program for matrix addition, subtraction, multiplication. Dimension of matrix will be entered by user.
+
+6. Write a program to print transpose of a matrix.
+
+ 
+
+
+
+ 
+ 

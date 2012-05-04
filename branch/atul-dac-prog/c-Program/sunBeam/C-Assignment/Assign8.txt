@@ -1,0 +1,56 @@
+/*Strings*/
+
+1. Input two strings from user and perform the operations on it using following library functions. Program must be menu driven.
+	i. strlen
+	ii. strcpy
+	iii. strcat
+	iv. strcmp
+	v. strrev
+	vi. strcmpi
+	vii. strchr
+	viii. strstr
+	ix. strupr
+	x. strlwr
+
+2. Implement your own functions to simulate library functions given above.
+
+3. Implement your own functions using pointers to simulate library functions given above.
+
+4. Write a function to find a substring in the original string and replace it by another string given by user.
+Prototype:- void findreplace(char *string, char *find, char *replace);
+Example:- If user input is
+string = This is Test time. 
+find = Test
+replace = Examination
+Then output must be
+This is Examination time.
+
+5. Write a function to delete a given character from string without leaving any hole.
+
+6. Write a program to display calender of a given month in given year.
+
+7. Sort a given set of strings using any sort alogorithm. Use 2-d arrays.
+
+8. Sort a given set of strings using any sort alogorithm. Don't consider case. Use array of pointers.
+
+9. Input a string from user and output a design pattern.
+Example:- If entered string.. ABCDEF
+Ouput must be
+ABCDEFFEDCBA
+ABCDE  EDCBA
+ABCD    DCBA
+ABC      CBA
+AB        BA
+A          A
+
+10. Write a function to determine whether given string is palindrome or not. Palindrome string is the string which remains unchanged after reversing it. example:- saras . Do not include "string.h"
+
+11. Write a program to create acromatic string. Example :- Entered String :- Government of India
+Acromatic string is :- GoI
+
+12. Write a function to print a given number in words. Number will be in range of long. Make proper user of user defined and library functions.
+
+13. Count number of words in a string. Also find words of highest and lowest lengths.
+
+ 
+  

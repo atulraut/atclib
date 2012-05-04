@@ -1,0 +1,14 @@
+For Inernet 
+
+1.Right Click on Inernet Explorer
+2.Click on proprties
+3.then click on connections
+4.Click on LAN Settings
+5.In LAN setting set check mark on Use a proxy server for your LAn
+6.Set address 200.0.1.230 & port 80
+7.then set check mark on  Bypass proxy server for local address
+8.Finally click on OK button, then apply & ok 
+
+         Your Internet will be working
+
+  Inernet Timing For WIMC batch: 4PM to 6PM
