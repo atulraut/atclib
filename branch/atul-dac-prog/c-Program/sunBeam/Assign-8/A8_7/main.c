@@ -1,3 +1,9 @@
+/*
+* Aim : Sorting Array of Strings.
+* I/P : Rajesh Veeraj Atul
+* O/P : Atul Rajesh Veeraj
+***/
+
 #include<stdio.h>
 #include<string.h>
 int main()
