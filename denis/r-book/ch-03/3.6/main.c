@@ -1,6 +1,7 @@
 /*
 * my_itoa :Convert n to characters in s
-*
+* I/P : -1234
+* O/P : 1234-
 * Date : Wed Sep 7, 7:14PM
 ***/
 #include <stdio.h>
