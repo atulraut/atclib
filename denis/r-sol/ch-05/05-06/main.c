@@ -1,3 +1,11 @@
+/*
+* Code for Pointers to Array
+* Aim : Sort Input line
+* Logic : 
+*         read all the lines of input
+*         sort them
+*         print them in order
+***/
 #include <stdio.h>
 
 #define MAXLINES 1000 /* lines to be sorted */
@@ -8,10 +16,12 @@ int readlines (char *lineptr[], int nlines);
 void writelines (char *lineptr[], int nlines);
 
 void qsort (char *lineptr[], int left, int right);
+int getLine (char line[], int max, FILE *fr);
 
 /* sort input lines*/
 int main () {
   int nlines; /* number of input lines read*/
+ 
   if ( (nlines = readlines (lineptr, MAXLINES)) >= 0) {
     qsort (lineptr, 0, nlines-1);
     writelines (lineptr, nlines);
