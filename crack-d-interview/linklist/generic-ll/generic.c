@@ -1,6 +1,7 @@
 /*
 * Aim  : WAP to implement Generic Linked list.
 * Date : Monday, April 16 2012 06:45 PM
+       : Thursday, July 26 2012 08:45 AM
 * By   : Atul R. Raut
 * File : generic-ll.c contents function definations.
 *
@@ -16,7 +17,7 @@ void m_Init (NODE *node){
 	node->next = NULL;
 }
 
-NODE* m_CreateNodeL (void data){
+NODE* m_CreateNodeL (void *data){
 	NODE *nn = NULL;
 	nn = (NODE*)malloc(sizeof (NODE *));
 	if (nn == NULL)
@@ -37,7 +38,7 @@ void m_Display(){
 	printf ("\n----------:: End ::-----------\n");
 }
 
-void m_Addfirst(void data) {
+void m_Addfirst(void *data) {
 	NODE *nn = NULL;
 	nn = m_CreateNodeL (data);
 
@@ -50,7 +51,7 @@ void m_Addfirst(void data) {
 	}
 }
 
-void m_Addlast(void data) {
+void m_Addlast(void *data) {
 	NODE *nn = NULL;
 	nn = m_CreateNodeL (data);
 
