@@ -14,7 +14,7 @@ int main()
 {
     int  ch, val,pos;
     printf ("---------------------------------------------------");    
-    printf("\nEnter to the world of Atul Raut's Programing:\n");
+    printf("\nEnter to the world of Atul Raut's 'C' Programing:\n");
     printf ("---------------------------------------------------");
     while(1) {
 //		system("clear");
