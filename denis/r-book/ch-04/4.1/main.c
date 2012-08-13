@@ -4,7 +4,10 @@
 * Date : Sunday, September 11 2011 11:02 AM
 * End  : Nov 27-11-2011
 * By : Atul R. Raut
-* 
+* Logic :
+*         read all the lines of Input, at.txt
+*         match the pattern
+*         print then in order
 ***/
 
 #include <stdio.h>
@@ -29,8 +32,8 @@ int main () {
     printf ("\n File can't open !");
     exit (0);
   }
-  /* 
-   * Program Logic based on : 
+  /*
+   * Program Logic based on :
    **/
   // while (there's another line)
   //   if (the line contains the pattern)
@@ -42,7 +45,7 @@ int main () {
     }
   }
 
-   // close file 
+  // close file
   fclose (fr);
   fclose (fw);
   return 0;
@@ -52,7 +55,7 @@ int main () {
 int getLine (char s[], int lim, FILE *fr) {
   int c, i;
   i = 0;
-    
+
   while (--lim>0 && (c=getc(fr)) != EOF && c !='\n') {
     //    printf ("\n c >>>>> %c\n", c);
     s[i] = c;
@@ -62,7 +65,7 @@ int getLine (char s[], int lim, FILE *fr) {
     s[i] = '\0';
     i++;
   }
-    return i; 
+    return i;
 }
 
 /* strIndex : return Index of t in s, -1 if none */
@@ -70,7 +73,7 @@ int strIndex (char source[], char searchFor[]) {
   int i, j, k, found;
   found = -1;
 
-  for (i=0; source[i] != '\0'; i++) {   
+  for (i=0; source[i] != '\0'; i++) {
     for (k=0, j=i; searchFor[k] != '\0' && source[j] == searchFor[k]; j++, k++)
       ;
     if (k >=0 && searchFor[k] == '\0')
