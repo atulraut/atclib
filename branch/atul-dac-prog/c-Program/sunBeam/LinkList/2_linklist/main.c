@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include<conio.h>
+//#include<conio.h>
 
 struct linklist
 {
@@ -41,10 +41,10 @@ int main()
 	init(&l1);
 	init(&l2);
 	printf("\nEnter to the world of Link List:");
-	getch();
+	//getch();
 	while(1)
 	{
-		system("cls");
+		system("clear");
 		printf("\n0 >Eixt\n1 >AddFirst \n2 >Insert \n3 >AddLast \n4 >DeleteFirst \n5 >DeleteNode \n6 >DeleteLast\n7 >Display \n8 >Reverse \n9 >Print Reversly \n10 >Freelist \n");
 		scanf("%d", &ch);
 		switch(ch)
@@ -92,7 +92,7 @@ int main()
 			default :
 					printf("\nEnter the correct choice ");
 		}
-		getch();
+		//getch();
 	}
 	return 0;
 }
