@@ -10,6 +10,7 @@ typedef struct node {
   struct node *_next;
 
   void *(*data) (void *obj);
+  void *(*get) (void *obj);
   void *(*next) (void *obj);
   void *(*set) (void *obj, void *data);
 } lnode;
