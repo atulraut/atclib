@@ -5,11 +5,13 @@
 #define STR "now is the time for all good men to come to the aid of their party"
 #define MAXWORD 100
 
-struct tnode *addtree (struct tnode *, char *);
+typedef struct tnode_t tnode;
+
+struct tnode *addtree (struct tnode *root, char *word);
 void treeprint (struct tnode *);
 int getword (char *, int);
-struct tnode talloc (void);
-char *my_strdup (chat *s);
+struct tnode *talloc (void);
+char *my_strdup (char *s);
 void my_free (char *strdup);
 
 typedef struct tnode_t {        /* the tree node:   */ 
@@ -33,15 +35,33 @@ int main() {
 }
 
 struct tnode *addtree (struct tnode *root, char *word) {
-
+  int cond;
+  if (root == NULL) { /* a new word has arrived */ 
+    root = talloc (); /* make a new node */
+    root->word = my_strdup (word);
+    root->count = 1;
+    root->left = root->right = NULL;
+  } else if (cond = strcmp (word, root->word)) == 0)
+      root->count++; /* repeated word */
+    else if (cond < 0) /* less than into left subtree */
+	root->left = addtree (root->left, word);
+    else
+      root->right = addtree (root->right, w);
+  return root;
 }
 
 void treeprint (struct tnode *root) {
-
+  if (root != NULL) {
+    treeprint (root->left);
+    printf ("4%d %s\n", root->count, root->word);
+    treeprint (root->right);
+  }
 }
 
 /* getword: get next word or character from input */
 int getword (char *word, int lim) {
+  int nlines;
+  char *lineptr [MAXLINES]; /*pointers to next line*/
   FILE *fr = NULL;
   FILE *fw = NULL;
   fr = fopen ("at.txt", "r");
@@ -63,11 +83,11 @@ int getword (char *word, int lim) {
 }
 
 /* talloc: make a tnode */
-struct tnode talloc (void) {
+struct tnode *talloc (void) {
   return (struct tnode *) malloc (sizeof(struct tnode));
 }
 
-char *my_strdup (chat *s) { /* make a duplicate of s */
+char *my_strdup (char *s) { /* make a duplicate of s */
   char *p = NULL;
   p = (char *) malloc (strlen (s)+1);  /* +1 for '\0'*/
   if (p != NULL) 
@@ -76,7 +96,7 @@ char *my_strdup (chat *s) { /* make a duplicate of s */
 }
 
 void my_free (char *strdup) {
-  free (strdup);
+   free (strdup);
 }
 
 
