@@ -5,10 +5,10 @@
 */
 
 #ifndef PLUG_02_H_
-#define PLUG_02_H_ 
+#define PLUG_02_H_
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "public_defs.h"
+#include "public.h"
 
 #endif

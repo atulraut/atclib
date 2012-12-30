@@ -9,11 +9,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "public_defs.h"
+#include "public.h"
 #include "plug-01.h"
-
-//ats_poll_table_type ats_poll_list[1] = {&plug_1_handle};
-
 
 #endif
 

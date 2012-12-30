@@ -1,10 +1,10 @@
 /***
 * Aim : Implement Polymorphism using C.
 * Date : Thursday, December 20 2012, 11:50 PM
-* File : public_defs.h
+* File : public.h
 */
-#ifndef PUBLIC_DEFS_H_
-#define PUBLIC_DEFS_H_
+#ifndef PUBLIC_H_
+#define PUBLIC_H_
 
 #include <stdio.h>
 #include <stdlib.h>
