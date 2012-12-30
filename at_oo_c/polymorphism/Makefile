@@ -1,8 +1,8 @@
 CC=gcc
 CFLAGS=-Wall
-main: main.o base.o services.o plug-01.o plug-02.o
+main: main.o base.o plug-01.o plug-02.o
 
-clean : 
+clean :
 	rm -rf *.o *~ *.swp  main
 
 

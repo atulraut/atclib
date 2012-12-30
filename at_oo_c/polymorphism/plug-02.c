@@ -11,11 +11,11 @@ int plug_2_close ();
 
 at_base_type plug_2_handle = {
   plug_2_init,
-  plug_2_close, 
+  plug_2_close,
 };
 
 int plug_2_init () {
-  printf ("\nHi plug_2_init\n"); 
+  printf ("\nHi plug_2_init\n");
   return 0;
 }
 
