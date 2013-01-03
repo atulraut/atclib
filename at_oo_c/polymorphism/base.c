@@ -14,9 +14,9 @@ int base_init(int v) {
     &plug_1_handle,
     &plug_2_handle
   };
- 
+
   for (i=0; i<LAST; i++) {
-    at_list[i].handle->init ();
+    at_list[i].handle->init ();1
   }
   return 0;
 }

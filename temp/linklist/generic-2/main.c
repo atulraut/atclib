@@ -6,7 +6,7 @@ Reference : http://hg.ohnopub.net/hg/liblist/file/0b24e078e22e
 
 int main () {
   /**/
-  list_t *list;
+  list_t list;
   /* Allocate new list */
   list = list_init ();
   m_Add (list, 10, 2);
