@@ -2,5 +2,5 @@ CC=gcc
 CFLAGS=-Wall
 main: main.o list.o
 
-clean : 
+clean :
 	rm -f main main.o list.o

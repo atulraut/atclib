@@ -1,0 +1,12 @@
+
+Link List : 
+	How do you reverse a singly linkedlist ? How do you reverse a doubly linked list, Write a C Prog to do same.
+-->
+	/atclib/crack-d-interview/linklist/singly-ll
+	/atclib/crack-d-interview/linklist/circular-ll
+        Given only a pointer to a node to be deleted in a singly linked list, ho w do you delete it ?
+-->
+        How do you sort a linked list ?, WAP to sort a linked list ?
+-->
+	Write a C prog to implement a Generic link list ?
+-->     /atclib/crack-d-interview/linklist/generic-ll

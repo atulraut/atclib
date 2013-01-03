@@ -3,12 +3,11 @@
 
 /* Function declaration */
 list_t list_init () {
-  list_t atclib_list;
 
   /* Allocate, initialize & return a new list */
   atclib_list = (list_t) malloc (sizeof (struct list));
-  if (atclib_list == NULL)
-    return;
+  //  if (atclib_list == NULL)
+  //  return;
   atclib_list->size = 0;
   atclib_list->pFirst = NULL;
   atclib_list->pLast = NULL;
@@ -24,7 +23,7 @@ list_element_t create_Element (void *_data, size_t len)
     return (NULL);
 
   /* Allocate storage for the data only if requested; i.e. if len > 0.
-  * Then either copy the data or just the reference into the node.*/ 
+  * Then either copy the data or just the reference into the node.*/
   if (len > 0) {
       new->data = (char *) malloc (len);
       if (new->data == NULL)
@@ -63,7 +62,23 @@ int m_Add (list_t list, void *data, int len) {
 }
 
 void m_Display () {
-
+   print_list (atclib_list);
+   int rc;
+   rc = list_traverse(atclib_list, (char *) 0, print_element, LIST_SAVE);
+   switch (rc) {
+      case LIST_EMPTY:
+         printf("(empty).\n");
+         break;
+      case LIST_OK:
+         printf(".\n");
+         break;
+      case LIST_EXTENT:
+         printf(". (extent reached)\n");
+         break;
+      default:
+         printf("%c not recognized.  Returning to main menu.\n");
+  }
+	
 }
 
 int print_element (char *input, char *curr) {
@@ -76,7 +91,7 @@ int print_element (char *input, char *curr) {
 	In this example, we send NULL for the second parameter, which might be
 * used to specify an element to search for.
 */
-  print_list (list) {
+print_list (list) {
   list * list;
   printf ("List:");
   if (list_empty (list))
@@ -100,23 +115,23 @@ list_status_t list_traverse (list_t list, void *data,
      * list, and 1 otherwise.  We may or may not affect the current element
      * pointer.
      */
-    if (list->front == NULL)
+    if (list->pFirst == NULL)
       return (LIST_EMPTY);
 
     /* Decide where to start. */
     if ((opts & LIST_CURR) == LIST_CURR) {
-      lp = list->curr;
+      lp = list->pCurr;
     }
 
   else if ((opts & LIST_REAR) == LIST_REAR) {
-      lp = list->rear;
+      lp = list->pLast;
   } else {
-      lp = list->front;
+      lp = list->pFirst;
     }
 
     /* Now decide if to update the current element pointer. */
     if ((opts & LIST_ALTR) == LIST_ALTR)
-    list->curr = lp;
+    list->pCurr = lp;
 
     /* Now go until 0 is returned or we hit the extent of the list. */
     rc = LIST_OK;
@@ -125,29 +140,25 @@ list_status_t list_traverse (list_t list, void *data,
     {
      status = (*func) (data, lp->data);
      if (status) {
-  if ((((opts & LIST_BACK) ==
- LIST_BACK) ? (lp->prev) : (lp->next)) == NULL)
-    {
-
-/* Tried to go beyond extent of list. */
-status = FALSE;
-      rc = LIST_EXTENT;
-    }
-
-  else
-    {
-
-/* Decide where to go next. */
-lp =
-(((opts & LIST_BACK) == LIST_BACK) ? (lp->prev) : (lp->next));
-
-/* Now decide if to update the current element pointer. */
-if ((opts & LIST_ALTR) == LIST_ALTR)
-list->curr = lp;
-   }
-}
-    }
+  	if ((((opts & LIST_BACK) == LIST_BACK) ? (lp->prev) : (lp->next)) == NULL) {
+		/* Tried to go beyond extent of list. */
+		status = FALSE;
+  	    	rc = LIST_EXTENT;
+  	} else {
+		/* Decide where to go next. */
+		lp = (((opts & LIST_BACK) == LIST_BACK) ? (lp->prev) : (lp->next));
+		/* Now decide if to update the current element pointer. */
+		if ((opts & LIST_ALTR) == LIST_ALTR)
+		list->pCurr = lp;
+   	} // 2nd if end
+     } // 1st if end
+  } // while loop end
   return (rc);
+}
+
+int list_empty(list_t list) {
+/* Return 1 if the list is empty.  0 otherwise. */
+   return((list->pFirst == NULL) ? TRUE : FALSE);
 }
 
 void m_Free_List () {
