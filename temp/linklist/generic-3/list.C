@@ -25,7 +25,7 @@ void   list_init( list_t  * p_list, ptr_compare_func  p_cmp_func )
     memset( p_list, 0, sizeof( list_t ) );
 
     p_list->p_cmp_func = p_cmp_func;
-    p_list->head = NULL;  // not necessary here    
+    p_list->head = NULL;  // not necessary here
 }
 
 void   list_term( list_t  * p_list )
@@ -51,7 +51,7 @@ void   list_insert( list_t  * p_list, void  * data )
     assert( p_list != NULL );
 
     p_cmp_func = p_list->p_cmp_func;
- 
+
     p_tmp = (list_cell_ptr)malloc( sizeof( list_cell_t ) );
     assert( p_tmp != NULL );
     memset( p_tmp, 0, sizeof( list_cell_t ) );
@@ -67,7 +67,7 @@ void   list_insert( list_t  * p_list, void  * data )
         p_curr_ptr = &((*p_curr_ptr)->next);
     }
 
-    *p_curr_ptr = p_tmp; 
+    *p_curr_ptr = p_tmp;
     p_tmp->next = NULL;  // not necessary - we know it is null...
 }
 
@@ -79,7 +79,7 @@ bool   list_delete( list_t  * p_list, void  * data )
     assert( p_list != NULL );
 
     p_cmp_func = p_list->p_cmp_func;
- 
+
     p_curr_ptr = &(p_list->head);
     while  ( *p_curr_ptr != NULL ) {
         if  ( (*p_cmp_func)( (*p_curr_ptr)->data, data ) == 0 ) {
@@ -97,7 +97,7 @@ bool   list_delete( list_t  * p_list, void  * data )
 void  list_iterator_init( list_iterator  * p_iter, list_t  * lst )
 {
     assert( ( p_iter != NULL )  &&  ( lst != NULL ) );
-    
+
     *p_iter = lst->head;
 }
 

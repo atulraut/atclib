@@ -1,22 +1,30 @@
-#ifndef ADD_H_LIST
-#define ADD_H_LIST
+#include <stdio.h>
+#include <stdlib.h>
 
-typedef struct list_t {
-    void *data;
-    struct list_t *next;
-} NODE;
+typedef struct list_node_t list_node;
+typedef struct list_t list; 
 
-int counter;
-void m_Init (NODE *);
-NODE* m_CreateNodeL (void*);
-void m_Display();
-void m_Addfirst(void*);
-void m_Addlast(void*);
-void m_Insert(int,int);
-void m_Delfirst();
-void m_Deletenode(int);
-void m_Dellast();
-void m_Printrev ();
-void m_Freelist();
+struct list_node_t {
+	list_node *prev;
+	list_node *next;
+	void *data;
+};
 
-#endif
+struct list_t {
+	list_node *pFirst;
+	list_node *pLast;
+	list_node *pCurr;
+	int NumEl;
+};
+
+
+enum list_status {
+	OK = 0,
+	EMPTY,
+	EXTEND
+} LIST_STATUS;
+
+list * list_init (list *);
+list_node * create_node (void *, size_t);
+void list_add (list *, void *, size_t len);
+void list_print (list *);

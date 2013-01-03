@@ -1,7 +1,7 @@
 /*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
  * list.h -
- *     This is the interface to the generic sorted list. A 
- * generic data structure is a structure that can handle various 
+ *     This is the interface to the generic sorted list. A
+ * generic data structure is a structure that can handle various
  * types by using pointers to voids, and pointers to functions
  * to resolve decisions about objects (i.e. ordering of objects).
 \*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*/
@@ -14,7 +14,7 @@
    package can NOT access the list directly... Which guarentees that
    we can change the implementation without causing any damage to
    other parts of our "project", because they use the list through our
-   functions. 
+   functions.
 
    This idea of hiding implementation details is one of the
    fandamental ideas behind object oriented programming and ADT

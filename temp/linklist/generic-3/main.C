@@ -1,9 +1,9 @@
 /*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
  * main.C -
- *     Demonstrate the using of a generic sorted list. This 
+ *     Demonstrate the using of a generic sorted list. This
  * is done using pointers to functions (to compare the elements
  * of the lists). Note that the code here is completely
- * indepenedent of the way the list package is being 
+ * indepenedent of the way the list package is being
  * implemented.
 \*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*/
 
@@ -81,7 +81,7 @@ static void   list_int_fill_random( list_t  * p_list, int  size )
     for  ( ind = 0; ind < size; ind++ ) {
         num = rand() / 10000;
         list_insert( p_list, (void *)num );
-    }        
+    }
 }
 
 static void  list_str_fill( list_t  * p_list )
@@ -103,7 +103,7 @@ int  main()
 
     // Our code assumes that...
     assert( sizeof( int ) <= sizeof( void * ) );
-    assert( sizeof( void * ) == sizeof( char * ) ); 
+    assert( sizeof( void * ) == sizeof( char * ) );
             // this is guarenteed by the standard...
 
     // Using the list for strings
@@ -119,8 +119,8 @@ int  main()
 
     list_int_fill_random( &list_int, 100 );
     list_int_print( &list_int );
-    
-    list_term( &list_int ); 
+
+    list_term( &list_int );
 
     return  0;
 }
