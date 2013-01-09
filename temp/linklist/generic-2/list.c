@@ -3,7 +3,6 @@
 
 /* Function declaration */
 list_t list_init () {
-
   /* Allocate, initialize & return a new list */
   atclib_list = (list_t) malloc (sizeof (struct list));
   //  if (atclib_list == NULL)
