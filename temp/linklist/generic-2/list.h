@@ -21,9 +21,9 @@
 #endif
 
 
-typedef enum list_status {
-	LIST_EMPTY = 0,
-	LIST_OK = 1,
+typedef enum list_status { 
+	LIST_EMPTY = 0, 
+	LIST_OK = 1, 
 	LIST_EXTENT = 2,
 } list_status_t;
 
