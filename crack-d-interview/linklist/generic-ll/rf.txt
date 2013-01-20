@@ -1,6 +1,5 @@
-10
 Atul
-11.10
 Ramesh
-50
 Raut
+10
+How old are you ?
