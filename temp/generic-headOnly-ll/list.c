@@ -43,8 +43,10 @@ void addfirst (node *_list, void *_data, int len) {
 		} else { 		
 			node *trav = NULL;
 			trav = _list;
-			while (_list->next != NULL){
+			while (trav->next != NULL){
+				printf ("\n$$$$$\n");
 				trav = trav->next;
+				printf ("\n@@@@@@\n");
 			}
 			trav->next = newNode;
 			trav = newNode;
@@ -69,7 +71,6 @@ void list_print (node *_list) {
 			fputs((char *)trav->data, fw);
 			fputc('\n', fw);
 		} else 
-*/		printf ("\n ATUL !");
-		trav = trav->next;
+*/		trav = trav->next;
 	}
 }

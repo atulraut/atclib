@@ -16,7 +16,7 @@ int base_init(int v) {
   };
 
   for (i=0; i<LAST; i++) {
-    at_list[i].handle->init ();1
+    at_list[i].handle->init ();
   }
   return 0;
 }
