@@ -1,7 +1,6 @@
 /*
 * Aim  : WAP to implement Generic Linked list.
-* Date : Monday, April 16 2012 06:45 PM
-       : Saturday, January 5th 6th 2013 12:00 PM
+* Date : Monday, Jan 23 2013 10:41 PM
 * By   : Atul R. Raut, Hyderabad
 * File : main.c contents UI to linked list.
 *
@@ -29,10 +28,6 @@ int main() {
         printf ("\n File can't open !\n");
         exit (0);
     }
-//    printf ("\nlist size = %d, list_node size = %d\n", sizeof(list), sizeof(list_node));
-
-    atclib_list = list_init (atclib_list);
-    printf ("\nNext to list_init\n");
     fr = fopen ("rf.txt", "r");
     if (fr == NULL) {
        printf ("\n File can't open !");
@@ -82,10 +77,7 @@ int main() {
                  //m_Dellast();
                  break;
               case 7:
-  		      printf ("\n\?&&&&&&&&& list empty %s", (char *) atclib_list->data);
-		      if (atclib_list == NULL)
-			      printf ("\n\^^^^ list empty %s", (char *) atclib_list->data);
-                 list_print(atclib_list);
+	 	list_print();
                  break;
               case 9:
                  //m_Printrev();
@@ -152,7 +144,6 @@ void add_to_list () {
     maxline = readlines (lineptr, MAXLINES, fr);
     printf ("\nmaxlines = %d\n", maxline);
     for(i=0; i<maxline; i++) {
-	    addfirst (atclib_list, lineptr[i], strlen(lineptr[i]));
+	    addfirst (lineptr[i], strlen(lineptr[i]));
     }
-    printf ("ATUL-->[%s], numEl = %d\n\n", (char *)atclib_list->data, numEl);
 }
