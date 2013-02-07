@@ -77,7 +77,7 @@ int main() {
                  //m_Dellast();
                  break;
               case 7:
-	 	list_print();
+                 list_print();
                  break;
               case 9:
                  //m_Printrev();
@@ -130,8 +130,8 @@ int getLine (char s[], int maxline, FILE *fr) {
     }
     if (c == '\n') {
        s[i] = '\0';
-       i++;
     }
+    printf ("\n[getLine]:: B4 It Return i = %d \n", i);
     return i;
 }
 

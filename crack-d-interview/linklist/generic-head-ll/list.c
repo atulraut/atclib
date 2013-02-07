@@ -29,7 +29,6 @@ node * createnode (void *_data, int len) {
 void addfirst (void *_data, int len) {
 	node *newNode = NULL;
 	newNode = createnode (_data, len);
-	printf ("\nstr = %s, len = %d\n", (char *)_data, len);
 	if (NULL == newNode)
 		printf ("\nFailed to allocate Memory !\n");
 	else {
@@ -61,7 +60,7 @@ void list_print (node *_list) {
         temp = atclib_head;
         while (temp != NULL) {
                 printf ("->[%s]", (char *)temp->data);
-		fputs((char *)temp->data, fw);
+		fputs((char *)temp->data, fw); // saving to file
 		fputc('\n', fw);
                 temp = temp->next;
         }
