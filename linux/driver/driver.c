@@ -11,7 +11,7 @@
 
 /* Constructor : */
 static int __init ofd_init (void) {
-	printk (KERN_INFO "Ram Ram : Ofd registered. !");
+	printk (KERN_INFO "Rem Ram : Ofd registered. !");
 }
 
 /* Destructor : */
