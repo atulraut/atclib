@@ -1,10 +1,16 @@
+/*
+* Aim : Sunbeam assignment for string operation.
+* Date : Thurday, 07/02/2013 09:23:37PM
+*
+***/
 #include<stdio.h>
+
 void upper(char *);
 char * mystrstr(char *,char *);
 void lower(char *);
 int mystrcmp(char *, char *);
-int main()
-{
+
+int main() {
 	char str[30],find[20];
 	int temp;
 //	char *ptr;
