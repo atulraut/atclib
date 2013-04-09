@@ -1,25 +1,25 @@
 /*
-* Aim  : WAP to implement Generic Linked list.
-* Date : Saturday, Feb 2nd & 3rd 2013 12:00 AM
-* By   : Atul R. Raut
-* File : list.c method defination generic linked list.
-*
-***/
+ * Aim  : WAP to implement Generic Linked list.
+ * Date : Saturday, Feb 2nd & 3rd 2013 12:00 AM
+ * By   : Atul R. Raut
+ * File : list.c method defination generic linked list.
+ *
+ ***/
 
 #include <stdio.h>
 #include <stdlib.h>
 
 #include "list.h"
 
-node * init_list (node *list) {
-  list = (node *)malloc(sizeof (node));
-  if (NULL != list) {
-    list->prev = NULL;
-    list->next = NULL;
-    list->data = NULL;
-    list->numEl = 0;
+list * init_list (list *_list_atclib) {
+  _list_atclib = (list *)malloc(sizeof (list));
+  if (NULL != list_atclib) {
+    _list_atclib->pFirst = NULL;
+    _list_atclib->pLast  = NULL;
+    _list_atclib->pCurr  = NULL; 
+    _list_atclib->numEl  = 0;
   }
-  return (list);
+  return (_list_atclib);
 }
 
 node * create_list (void *_data, size_t _len) {
@@ -39,24 +39,24 @@ node * create_list (void *_data, size_t _len) {
   return (new);
 }
 
-int add_list (node *_list, void *_data, size_t _len) {
+int add_list (list *_list_atclib, void *_data, size_t _len) {
   node *new = NULL;
+  node *trav=  NULL;
   new = create_list (_data, _len);
   if (NULL != new) {
-    _list->numEl++;
-    if (_list->numEl == 1) {
+    _list_atclib->numEl++;
+    printf ("\n numEl = %d, address head=%p, address_new=%p\n", _list_atclib->numEl, _list_atclib, new);
+    if ( _list_atclib->numEl == 1) {
       printf ("Generic Link List \n");
-      head = new;
-      head->next = NULL;
+      _list_atclib->pFirst = new;
+      new->next = new->prev; 
     } else {
-      node *trav = NULL;
-      trav = head;
-      while (trav->next != NULL)
-      trav = trav->next;
+      trav = _list_atclib->pFirst;
+      while (_list_atclib->pLast != trav)
+	trav = trav->next;
       trav->next = new;
-      trav = new;
-      trav->next = NULL;			
     }
+    _list_atclib->pLast = new;
   }
   return 1;
 }
@@ -66,16 +66,42 @@ int m_Addfirst (node *_list, void *_data, size_t _len) {
   printf ("\nm_Addfirst = %s\n", (char *)_data);
 }
 
-/*< print_list: print and write to file the linkl list >*/
-void print_list () {
+/*< reverse_list: reverse the link list>*/
+void reverse_list(list *_list) { // Fix Me
+  printf ("\nReverse link list\n");
   node *trav = NULL;
-  trav = head;
-  printf ("\n");
-  while (trav != NULL) {
+  node *temp = NULL;
+  /*  trav = _list->pFirst;
+  while (trav != _list->pLast->next)
+    trav = trav->next;
+*/
+  temp = _list->pLast;
+  _list->pLast = _list->pFirst;
+  _list->pFirst = temp;
+  trav = _list->pFirst;
+  while (trav != temp) {
     printf ("-->[%s]", (char*)trav->data);
     fputs((char*)trav->data, fw);
     fputc ('\n', fw);
     trav = trav->next;
   }
+}
+
+/*< print_list: print and write to file the linkl list >*/
+void print_list (list *_list) {
+  node *trav = NULL;
+  trav = _list->pFirst;
+  
+  if ( _list->numEl == 0) {
+    printf ("\nlist empty = %d, address=%p\n",  _list->numEl, _list);
+    return;
+   }
+  
+  while (trav != _list->pLast->next) {
+    printf ("-->[%s]", (char*)trav->data);
+    fputs((char*)trav->data, fw);
+    fputc ('\n', fw);
+    trav = trav->next;
+    }
   printf ("\n\n");
 }

@@ -150,6 +150,6 @@ void add_to_list () {
     maxline = readlines (lineptr, MAXLINES, fr);
     printf ("\nmaxlines = %d\n", maxline);
     for(i=0; i<maxline; i++) {
-    list_add (atclib_list, lineptr[i], strlen(lineptr[i]));
+      list_add (atclib_list, lineptr[i], strlen(lineptr[i]));
     }
 }
