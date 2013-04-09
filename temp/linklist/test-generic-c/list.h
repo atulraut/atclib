@@ -11,14 +11,32 @@
 #include <string.h>
 
 FILE *fr, *fw;
-typedef struct node_ node;
+typedef struct node_t node;
+typedef struct node_list_t list;
 
-typedef struct node_ {
+typedef struct node_t {
     node *prev;
     node *next;
     void *data;
-    int numEl;
 } node;
+
+typedef struct node_list_t {
+  node *pFirst;
+  node *pLast;
+  node *pCurr;
+  int numEl;
+} list;
+
+node *list_atclib;
+
+list * init_list (list *);
+node * create_list (void *, size_t);
+
+int add_list (list *, void *, size_t);
+//int m_Addfirst (node *, void *, size_t);
+void reverse_list(list *);
+
+void print_list (list *);
 
 typedef enum list_type {
     LIST_EXIT = 0,
@@ -37,13 +55,3 @@ typedef enum input_type {
     ONE_STRING = 0,
     TWO_INT
 } input_type;
-
-node *head;
-
-node * init_list (node *);
-node * create_list (void *, size_t);
-
-int add_list (node *, void *, size_t);
-int m_Addfirst (node *, void *, size_t);
-
-void print_list ();

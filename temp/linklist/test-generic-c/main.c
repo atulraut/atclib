@@ -14,8 +14,8 @@
 #define MAXLINE 1000
 int *linePtr[MAXLINE];
 
-void list_menu ();
-void list_add  (node *_list);
+void list_menu (list *);
+void list_add  (list *_list_atclib);
 int readLine (int, FILE*);
 int getLine (char s[], int, FILE*);
 void init_file ();
@@ -27,9 +27,9 @@ int main () {
   init_file ();
 
   /*< Initialise the link list>*/
-  head = init_list (head);
+  list_atclib = init_list (list_atclib);
   /*< Show link list menu >*/
-  list_menu ();
+  list_menu (list_atclib);
 
   /*< file close >*/
   close_file ();
@@ -37,7 +37,7 @@ int main () {
 }
 
 /*< Show link list menu >*/
-void list_menu () {
+void list_menu (list *_list_atclib) {
   int ch, val, pos;
   char *str;
   list_action action;
@@ -49,7 +49,8 @@ void list_menu () {
                 \n");
     printf ("------------------------------------------------");
     printf ("\n\t\t Welcome to World of LinkList :: \n");
-    printf ("\t\t <====> :: ");
+    printf ("------------------------------------------------\n");
+    printf ("\t <====> :: ");
     scanf("%d", &ch);
     action = ch;
     if (ch < 0 || ch > 10)
@@ -58,13 +59,11 @@ void list_menu () {
     case LIST_EXIT:
       exit(0);
     case LIST_ADD:
-      if (NULL != head) {
-	list_add  (head);
-      } else
-	printf ("\nList is Empty !\n");
+      if (NULL != _list_atclib) 
+	list_add  (_list_atclib);
       break;
     case LIST_ADD_FIRST:
-        m_Addfirst (head, val, sizeof(val));
+      //m_Addfirst (head, val, sizeof(val));
       break;
     case 3:
       printf("\nEnter the number and position :");
@@ -85,8 +84,11 @@ void list_menu () {
       //m_Dellast();
       break;
     case 7:
-      print_list();
+	print_list(_list_atclib);
       break;
+    case LIST_REVERSE:
+      printf ("\nReversing link list.\n");
+      reverse_list (_list_atclib);
     case 9:
       //print_list();
       break;
@@ -115,11 +117,11 @@ void close_file () {
   fclose (fw);
 }
 
-void list_add  (node *_list) {
+void list_add  (list *_list_atclib) {
   int numline, i;
   numline = readLine (MAXLINE, fr);
   for (i=0; i<numline; i++)
-    add_list (_list, linePtr[i], sizeof (linePtr[i]));
+    add_list (_list_atclib, linePtr[i], sizeof (linePtr[i]));
 }
 
 int readLine (int maxline, FILE *fr) {

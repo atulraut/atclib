@@ -26,17 +26,6 @@ NODE* m_CreateNodeL (int data){
 	return nn;
 }
 
-void m_Display(){
-	printf ("\n----------:: Output ::-----------\n");
-	NODE *temp = NULL;
-	temp = head;
-	while (temp != NULL) {
-		printf ("->[%d]", temp->data);
-		temp = temp->next;
-	}
-	printf ("\n----------:: End ::-----------\n");
-}
-
 void m_Addfirst(int data) {
 	NODE *nn = NULL;
 	nn = m_CreateNodeL (data);
@@ -171,10 +160,12 @@ void m_Printrev () {
 		temp = head;
 		head = NULL;
 		while (temp != NULL) {
+		        printf ("temp=[%p][%d]\n", temp,temp->data);
 			trav = temp->next;
 			temp->next = head; // attach NODE
 			head = temp;     // L1 Make NULL, L2 Attach Node
 			temp = trav;
+			printf ("temp=[%p][%d]\n", temp,temp->data);
 		}
 	}
 }
@@ -203,3 +194,15 @@ void m_Freelist() {
 		} // second if end
 	} // first if end
 }
+
+void m_Display(){
+	printf ("\n----------:: Output ::-----------\n");
+	NODE *temp = NULL;
+	temp = head;
+	while (temp != NULL) {
+	  printf ("->[%d][%p]", temp->data, temp);
+		temp = temp->next;
+	}
+	printf ("\n----------:: End ::-----------\n");
+}
+
