@@ -60,7 +60,7 @@ int main () {
   char dest[15] = " Raj ";
   /*< at_strcpy >*/
   out = at_strncpy (dest, src, 4);
-  printf ("\n at_strncpy = %s\n", out);
+  printf ("at_strncpy = %s\n", out);
 
   /*< at_strcat: >*/
   //out = at_strcat (dest, src); 
@@ -81,15 +81,17 @@ size_t at_strlen(const char *_str) {
 
 char * at_strncpy(char *dest, const char *src, size_t _len) {
   int i = 0;
-  dest = (char*)malloc(sizeof(_len));
-  while (*src != '\0') {
-    printf ("\ > = %c\n", *src);
-    *dest++ = *src++;
-    i++;
-    printf ("\ <><> = %c\n", *dest);
-  }
-  printf ("\n at_strncpy = %s\n", dest);
-   return dest;
+  char c;
+  printf ("[strncpy] dest->%s src->%s\n", dest, src);
+  while (*dest != '\0')
+    *dest++;
+  do {
+    c = *src++;
+    *dest++ = c;
+    printf (":: = %c\n", *dest);
+  } while (c != '\0');
+  printf ("[at_strncpy] = %s\n", dest);
+  return dest;
 }
 
 char *at_strcat(char *dest, const char *src) {
@@ -98,7 +100,7 @@ char *at_strcat(char *dest, const char *src) {
   do {
     *dest++ = *src++;
   } while (*src != '\0');
-  printf ("<> = %s", dest);
+  printf ("[at_strcat] = %s", dest);
   return dest;
 }
 /*
