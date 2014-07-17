@@ -8,36 +8,43 @@
 
 char* at_strstr(const char *str, const char *substr);
 
-int main () {
+/* strstr example */
+#include <stdio.h>
+#include <string.h>
 
-  char *ptr;
-  char *gtr;
-  ptr = strstr("This is Great", "Great");
-  printf ("ptr = %s\n", ptr);
-  gtr = at_strstr("This is Great", "Grea");
-  printf ("gtr = %s\n", gtr);
+char* my_strstr (const char *src, const char *loc);
+
+int main ()
+{
+  //char str[] ="This is a simple string";
+  char str[] = "Atul is string";
+  char *pch, *kch;
+  pch = strstr (str,"string");
+  printf ("o/p pch -> %s \n", pch);
+  kch = my_strstr(str, "string");
+  printf ("o/p kch -> %s \n", kch);
+
   return 0;
 }
 
-/*
-* Discription : Implement the at_strstr() function in C. 
-***/
-char * at_strstr (const char *str, const char *substr) {
-  char *tempstr;
-  char *tempsubstr = (char*)substr;
-  
-  for (; str != '\0'; str=str+1) {
-    if (*str != *tempsubstr)
-      continue;
-    tempstr = str;
-    while (1) {
-      if (*tempsubstr == '\0')
-        return str;
-      if (*tempstr != *tempsubstr)
-        break;
-      tempstr++;
-      tempsubstr++;
-    }  
-    tempsubstr = substr;
-  } //end for
+char* my_strstr (const char *string, const char *substring){
+  char *a = NULL;
+  char *b = (char*)substring;
+  if (*string == 0)     // if string is null return
+         return (char *)string;
+  for (; *string != '\0'; string = string+1) {
+        if (*string != *b) 
+          continue;
+        a = ((char *)string);
+        while(1) {
+          if (*b == '\0') 
+            return ((char *)string);
+          if (*a != *b)
+            break;
+          a++;
+          b++;
+        } // end while
+        b = (char *)substring;
+  } // end for
+  return (char *) 0;
 }
