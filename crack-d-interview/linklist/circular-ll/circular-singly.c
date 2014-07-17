@@ -126,7 +126,7 @@ void m_Display() {
     }
 }
 /*< Check linklist is Circular or not >*/
-int findCircular()
+int m_FindCircular()
 {
    Node *slower, * faster;
    slower = head;
