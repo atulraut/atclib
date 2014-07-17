@@ -69,6 +69,9 @@ int main()
 			case 10:
 				m_Freelist();
 				break;
+      case 11:      
+        m_FindCircular();
+        break;
 		        default : {
 				printf("\nEnter the correct choice ");
 				exit(0);
