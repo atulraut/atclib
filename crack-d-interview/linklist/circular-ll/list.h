@@ -16,5 +16,5 @@ void m_Delfirst();
 void m_Deletenode(int);
 void m_Dellast();
 void m_Freelist();
-
+int m_FindCircular();
 #endif
