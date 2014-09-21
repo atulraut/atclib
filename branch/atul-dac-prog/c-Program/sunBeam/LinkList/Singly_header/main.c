@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include <assert.h>
 #include<conio.h>
 
 void display();
@@ -22,6 +23,7 @@ typedef struct linklist NODE;
 NODE * head;
 
 NODE * create(int);
+int GetNth(NODE *, int) ; 
 
 int main()
 {
@@ -32,7 +34,7 @@ int main()
 	while(1)
 	{
 		system("cls");
-		printf("\n0 >Eixt\n1 >AddFirst \n2 >Insert \n3 >AddLast \n4 >DeleteFirst \n5 >DeleteNode \n6 >DeleteLast\n7 >Display :\n");
+		printf("\n0 >Eixt\n1 >AddFirst \n2 >Insert \n3 >AddLast \n4 >DeleteFirst \n5 >DeleteNode \n6 >DeleteLast\n7 >Display \n8 >getNTH :\n");
 		scanf("%d", &ch);
 		switch(ch)
 		{
@@ -67,6 +69,11 @@ int main()
 			case 7:
 					display();
 					break;
+       case 8:
+					printf("\nEnter the position :");
+          scanf("%d", &pos);
+					printf ("Pos[%d] = [%d]\n", pos, GetNth(head, pos));
+					break;         
 			default :
 					printf("\nEnter the correct choice ");
 		}
@@ -170,3 +177,17 @@ void display()
 	}
 	printf("\nTotal Number of nodes are : %d \n",head->data);
 }
+
+int GetNth(NODE* thisNodePtr, int index) {
+  NODE* current = thisNodePtr;
+  int count = 0; // the index of the node we're currently looking at
+  while (current != NULL) {
+    if (count == index) 
+      return(current->data);
+    count++;
+    current = current->next;
+  }
+  assert(0); // if we get to this line, the caller was asking
+  // for a non-existent element so we assert fail.
+}
+
