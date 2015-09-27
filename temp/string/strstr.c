@@ -27,12 +27,12 @@ int main () {
 * in the string string2 and returns a pointer to the beginning 
 * of the first occurrence.
 ***/
-char *at_strstr (const char *string2, const char *string1) {
-   while (*string1 != '\0') {
-    if (*string2 == *string1) { 
+char *at_strstr (const char *origin, const char *key) {
+   while (*key != '\0') {
+    if (*origin == *key) { 
       break;
     }
-    string2++;
+    origin++; // Increment only origin, & compare with key if found break it & return
   }
-  return string2;
+  return origin;
 }
