@@ -28,11 +28,17 @@ int main () {
 * of the first occurrence.
 ***/
 char *at_strstr (const char *origin, const char *key) {
-   while (*key != '\0') {
-    if (*origin == *key) { 
-      break;
+    int flag = 0;
+    char *temp = origin;
+    while (*temp != '\0') {
+        if (*key == *temp) {
+            flag = 1;
+            break;
+        }
+        temp++;  // Increment only temp, & compare with key if found break it & return
     }
-    origin++; // Increment only origin, & compare with key if found break it & return
-  }
-  return origin;
+    if (1 == flag)
+        return temp;
+    else
+       return origin; 
 }
