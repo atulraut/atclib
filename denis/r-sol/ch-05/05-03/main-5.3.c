@@ -11,10 +11,12 @@ char* aStrcat (char *src, char *target);
 
 int main () {
   char dest[10] = "Atul";  // As changing the content it must be array & not pointer. String pointer content we cant change.
-  char *src = "Raut";
+  char *src = "|Raut|";
   char *ret = NULL;
   ret = aStrcat (dest, src);
   printf ("\nr == %s \n", ret);
+	ret = mstrncat (dst, src, 1);
+	printf ("\nr == %s \n", ret);
   return 0;
 }
 
@@ -27,4 +29,17 @@ char* aStrcat (char *dest, const char *src) {
     *d++ = *src++;
   *d = '\0';  
  return dest;
+}
+
+/* Append n characters from dst to src. */
+char *aStrncat(char *dst, char *src, size_t n) {
+	char *d = NULL;
+	d = dst;
+	while (*d != '\0') 
+		d++;
+	while (n--) 
+		if(!(*d++ = *src++)) 
+		   return dst;
+	*d = '\0';
+	return dst;
 }
