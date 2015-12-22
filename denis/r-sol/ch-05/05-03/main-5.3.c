@@ -10,22 +10,21 @@
 char* aStrcat (char *src, char *target);
 
 int main () {
-  char *s = "Atul";
-  char *t = "Raut";
-  char *r = NULL;
-  r = aStrcat (s, t);
-  printf ("\n111");
-  *r = '\0';  
-  printf ("\nr == %c\n", *r);
+  char dest[10] = "Atul";  // As changing the content it must be array & not pointer. String pointer content we cant change.
+  char *src = "Raut";
+  char *ret = NULL;
+  ret = aStrcat (dest, src);
+  printf ("\nr == %s \n", ret);
+  return 0;
 }
 
-char* aStrcat (char *s, char *t) {
-  printf ("\ns = %s, t= %s \n", s, t);
-  while (*s != '\0')
-    s++;
-  printf ("\n000111");
-  while (*s++ = *t++)
-    ;
-  printf ("\n000");
- return s;
+char* aStrcat (char *dest, const char *src) {
+  char *d = NULL;
+  d = dest;
+  while (*d != '\0')
+    d++;
+  while (*src != '\0')
+    *d++ = *src++;
+  *d = '\0';  
+ return dest;
 }
