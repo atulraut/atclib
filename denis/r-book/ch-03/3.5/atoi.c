@@ -1,3 +1,9 @@
+*
+* Aim : Implement itoa & atoi 
+* Author : Atul Ramesh Raut
+* Date   : Jan 06, 2016 11:15PM
+*
+***/
 #include <stdio.h>
 
 int myatoi (const char *string);
