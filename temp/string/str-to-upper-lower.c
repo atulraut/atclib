@@ -1,6 +1,8 @@
 /*
 * WAP :  to make string to upper case & lower case.
 * Author : Atul Raut
+* Date : Jan-17-2016 1PM
+* Location : San Diego, CA, USA
 * A-Z - 65-91
 * a-z - 97-122
 */
