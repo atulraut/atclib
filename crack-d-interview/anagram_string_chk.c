@@ -5,10 +5,8 @@ int verify_String (char *str1, char *str2);
 
 int main () {
   int ret;
-  //  char str1[] = "geeksforgeeks";
-  //  char str2[] = "forgeeksgeeks";
-    char str1[] = "ABCD";
-    char str2[] = "DCAB";
+  char str1[] = "ABCD";
+  char str2[] = "DCAB";
   if( verify_String (str1, str2))
     printf("The two strings are anagram of each other \n");
   else
