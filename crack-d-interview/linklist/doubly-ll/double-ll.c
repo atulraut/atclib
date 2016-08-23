@@ -85,7 +85,7 @@ void m_Printrev(void *_list) {
     trav = temp->next;
     temp->next = list->head;
     list->head = temp;
-    temp->prev - list->head;
+    temp->prev = list->head;
     temp = trav;
   }
   temp->next = list->head;
