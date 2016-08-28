@@ -1,6 +1,6 @@
 CC=gcc 
 CFLAGS=-Wall
-main: main.o double-ll.o
+main: main.o double-cc.o
 
 clean:
-	rm -f main main.o double-ll.o
+	rm -f main main.o double-cc.o
