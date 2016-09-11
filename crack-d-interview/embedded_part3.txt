@@ -1,0 +1,17 @@
+Create a loadable kernel module that initializes a work queue every 500ms.
+
+When the work executes, print a value to dmesg with constantly increments:
+[ 8600.899135] code_test_workqueue: counter: 18
+[ 8601.399947] code_test_workqueue: counter: 19
+[ 8601.900777] code_test_workqueue: counter: 20
+[ 8602.401366] code_test_workqueue: counter: 21
+[ 8602.901998] code_test_workqueue: counter: 22
+[ 8603.402582] code_test_workqueue: counter: 23
+[ 8603.903203] code_test_workqueue: counter: 24
+
+Create a sysfs node to stop and start the workqueue.
+
+1. Module cannot exceed 200 lines.
+2. Must pass 'checkpatch.pl -f'
+3. Must not have global variables
+4. Must initialize and exit cleanly (No oops)
