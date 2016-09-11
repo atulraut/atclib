@@ -1,0 +1,73 @@
+Assignments for the basic data structures (should be done in a group):
+
+1. Stack:
+-	Try to think about the positive and negative sides of a stack, meaning 
+	when does it work well and when it doesn't?
+	
+-	Try calculating ((2+5) * 3) + 21 using only a stack for saving the states.
+	(tip: 	The numbers can be written down in postfix notation with the advantage 
+		that no parentheses or precedence rules are needed. Basicly what's done 
+		is that the operations are pushed to the "other side" (of the number or parentheses)
+
+		"((2+5) * 3) + 21" is
+		
+		"2 5 + 3 * 21 +" in postfix notation
+		
+		Going from left to right;
+		- Push when you encounter an operand
+		- Pop two operands and calculate the value when you encounter an operation
+		- Push the result
+	)
+
+	
+2. Queue:
+-	One ice-cream shop has a problem. It has only one counter for selling ice-cream, but 
+	their boss wants to add priorities to the incoming customers. The highest priority 
+	should always go to the boss and his family, second priority goes to the salesperson 
+	and his/her friends and other customers get the third priority.
+	How would you implement this type of waiting system?
+	
+-	What if the amount of different priorityclasses would be unknown?
+	
+3. Array:
+-	Since reading of one element from an array can be made in constant time, how much
+	time does it take to read all the elements in some array that has size of x?
+	
+-	How much time would it take to search for an element in the array?
+	
+-	What would be the negativa and positive sides of implementing an queue that uses
+	array to store the elements?
+	
+-	What sort of data structure could you use to implement the tic-tac-toe game?
+
+4. Linked list:
+-	Add numbers 3, 4, 5, 6, 7, 8, 9 and 10 in a linked list.
+-	What would happen if you would like to remove the number 4 from the linked list?
+-	Search for 10 in the list, how many steps do you need to take?
+-	Search for 3 in the list, how many steps do you need to take?
+
+
+5. Binary search tree:
+-	Try simulating a binary tree by adding the numbers 6, 4, 8, 3, 5, 7, 8, 1, 11 to an initially
+	empty tree.
+-	Search for the number 1, how many steps do you need to take?
+-	Search for the number 42, how many steps do you need to take?
+-	From that tree, remove the nodes that have numbers 1 and 11 with it. 
+	
+-	What could you do if you need to remove a node that has 2 children?
+	(tip; there are actually 2 options and one quite good strategy)
+	
+-	Try to remove the node 4 from the tree that you have now.
+
+-	Create a new binary tree by adding the numbers 1, 2, 3, 4, 5. 
+	What would be the problem?
+
+6. Hash:
+-	Assume that your table size is 6, try hashing with a hash function 
+		hash(key, table) = key mod table.size;
+	using the numbers 18, 6, 24, 600;
+	What is the problem you are noticing?
+	
+-	What are the bad sides of the hashing and why? 
+-	How would you combine hashing with binary trees?
+		When would combining hashing with binary trees be a good idea?
