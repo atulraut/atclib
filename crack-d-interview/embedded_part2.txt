@@ -1,0 +1,45 @@
+You are given an array of n integer numbers.( 0 < n < 2147483647)
+Each entry in the array is between 1 to 32,000.
+The array may contain duplicate entries.
+
+Your function has only 4KB memory to its disposal!
+(in addition to the size of the array passed into the function)
+
+Write a function that would print all duplicate elements in the array?
+
+For example given the array [1,3,4,2,3,4], n =6. The output would be 3,4 or 4,3. 
+[Atul] [Answer] ->
+#include<stdio.h>
+
+int print_duplicates(int numbers[],int n);
+int ar[] = {1,2,3,4,2,2,32,2,23,4,55,66,77,88,99,11,2,21,98,76,65,43,32,21,1123,34,45,56}; 
+int main() {
+  int i, j, k, size;
+  
+  size = sizeof(ar) / sizeof(ar[0]);
+  printf("\nArray with Unique list  : %d \n", size);
+  size = print_duplicates (ar, size);
+  for (i = 0; i < size; i++) {
+  //   printf("Refine Array no duplicates [%d]->[%d] \n",i, ar[i]);
+  }
+   return (0);
+}
+
+int print_duplicates(int arr[],int n) {
+  int i, j, k;
+  for (i = 0; i < n; i++) {
+    for (j = i + 1; j < n;) {
+        if (arr[j] == arr[i]) {
+          printf ("Only Duplicate = %d \n", arr[j]);
+          for (k =j; k<n; k++) {
+            if ((n-1) == k)
+              arr[k+1] = 0;          
+              arr[k] = arr[k + 1];
+            }
+            n--;
+        } else
+        j++;
+    }
+  } 
+  return n;
+}
