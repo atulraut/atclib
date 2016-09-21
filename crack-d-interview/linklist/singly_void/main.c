@@ -21,13 +21,13 @@ int main()
 		printf("\n 0>Exit         \n 1>Add First      \n 2>Add Last     \n 3>Insert     \
                 \n 4>Delete First \n 5>Delete Node    \n 6>Delete Last                  \
                 \n 7>Display      \n 9>Print Reversly \n 10>Free list                   \
-                \n 11>Reverse ll        \
+                \n 11>Reverse ll  \n 12>Sort List      \
                 \n");
 		printf ("------------------------------------------------");
 		printf ("\n\t\t Welcome to World of LinkList :: \n");
 		printf ("\t\t <====> :: ");
 		scanf("%d", &ch);
-		if (ch < 0 || ch > 11)
+		if (ch < 0 || ch > 12)
 			return EXIT_SUCCESS ;
 		switch(ch)
 		{
@@ -77,6 +77,9 @@ int main()
 			case 11:
 			        m_Revlist(l);
 				break;
+			 case 12:
+			 	m_Sortlist(l);
+			 	break;
 		        default : {
 				printf("\nEnter the correct choice ");
 				exit(0);
