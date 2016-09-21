@@ -115,6 +115,34 @@ void m_RevRec(NODE **head_ref) {
     
 }
 */
+
+void m_Sortlist(void *_list) {
+  LIST *list = (LIST*)_list;
+  LIST_NODE *head = (LIST_NODE*)list->head;
+  LIST_NODE *start = head;
+  LIST_NODE *trav, *min;
+  while (start->next) {
+    min = start;
+    trav = start->next;
+    while (trav) {
+       if (min->data > trav->data) {
+         min = trav;
+       }
+       trav = trav->next;
+    }
+    swap (start, min);
+    start = start->next;
+  }
+  m_Display(_list);
+}
+
+void swap (LIST_NODE *s, LIST_NODE *m) {
+  LIST_NODE *temp;
+  temp = s->data;
+  s->data = m->data;
+  m->data = temp;
+}
+
 void m_Display(void *ptr){
 	LIST *ll = (LIST *)ptr;
 	printf ("\n----------:: Output ::-----------\n");
