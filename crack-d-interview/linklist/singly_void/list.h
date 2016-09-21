@@ -20,6 +20,8 @@ void m_Display(void *);
 void m_Dellast(void *);
 void m_Freelist(void *);
 void m_Revlist(void *); 
+void swap (LIST_NODE *s, LIST_NODE *m);
+void m_Sortlist(void *);
 /*
 void m_Insert(int,int);
 void m_Deletenode(int);
