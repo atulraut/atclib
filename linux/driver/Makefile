@@ -4,7 +4,7 @@
 # kernel build system and can used its language.
 
 ifneq (${KERNELRELEASE},)
-	obj-m := ofd.o
+	obj-m := atclib_scull.o
 # Otherwise we were called directly from the command line.
 # Invoke the kernel build system.
 else 
