@@ -18,8 +18,7 @@
 #include <linux/uaccess.h>  /* copy_to_user() */
 #include <linux/module.h>   /* version info, MODULE_AUTHOR, printk() */
 #include <linux/device.h>   /* class_create */
-#include "atclib_scull.h"
- 
+
 #define ATCLIB_VERSION "1.0"
 #define CLASS_NAME     "at_cman"
 #define DEVICE_NAME    "at_cman"
