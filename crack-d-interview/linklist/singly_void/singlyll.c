@@ -143,6 +143,16 @@ void swap (LIST_NODE *s, LIST_NODE *m) {
   m->data = temp;
 }
 
+/* Given only a pointer to a node to be deleted */
+void m_DelNode(void *_list, LIST_NODE *_node) {
+  LIST_NODE *node_ptr = (LIST_NODE*)_node;
+  LIST_NODE *temp = node_ptr->next;
+  node_ptr->data = temp->data;
+  node_ptr->next = temp->next;
+  free (temp);
+  m_Display(_list);
+}
+
 void m_Display(void *ptr){
 	LIST *ll = (LIST *)ptr;
 	printf ("\n----------:: Output ::-----------\n");
