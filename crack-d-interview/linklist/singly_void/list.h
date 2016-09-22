@@ -22,6 +22,7 @@ void m_Freelist(void *);
 void m_Revlist(void *); 
 void swap (LIST_NODE *s, LIST_NODE *m);
 void m_Sortlist(void *);
+void m_DelNode(void *, LIST_NODE *);
 /*
 void m_Insert(int,int);
 void m_Deletenode(int);
