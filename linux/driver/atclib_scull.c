@@ -114,4 +114,4 @@ module_init(atclib_driver_init);
 module_exit(atclib_driver_exit);
  
 MODULE_LICENSE("GPL v2");
-MODULE_AUTHOR("Atul Ruat");
+MODULE_AUTHOR("Atul Raut");
