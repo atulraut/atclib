@@ -1,4 +1,7 @@
-/* Copyright (c) 2016, The Linux Foundation. All rights reserved.
+/* 
+* Copyright (C) 2001 Alessandro Rubini and Jonathan Corbet
+* Copyright (C) 2001 O'Reilly & Associates
+* Copyright (c) 2016, The Linux Foundation. All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License version 2 and
