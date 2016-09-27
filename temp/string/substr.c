@@ -49,23 +49,24 @@ char* my_strstr (const char *string, const char *substring){
   return (char *) 0;
 }
 
-char *t_strstr(const char *origin, const char *key) {
-    char c;
-    size_t len;
-    printf ("1. origin = %s key =%s \n", origin, key);
-    c = *key++;
-    if (!c)
-        return (char *) origin;	// Trivial empty string case
+char *m_strstr(const char *string, const char *substring) {
+  char sbc;
+  size_t len;
+  printf ("1. origin = %s key =%s \n", string, substring);
+  sbc = *substring++;
+  if (!sbc)
+    return (char *) string;// Trivial empty string case
 
-    len = strlen(key);
+  len = strlen(substring);
+  do {
+    char sc;
     do {
-        char sc;
-        do {
-            sc = *origin++;
-            printf ("2. sc = %c & c = %c \n", sc, c);
-            if (!sc)
-                return (char *) 0;
-        } while (sc != c);
-    } while (strncmp(origin, key, len) != 0);
-    return (char *) (origin - 1);
+      sc = *string++;
+      printf ("2. sc = %c & sbc = %c \n", sc, sbc);
+      if (!sc)
+        return (char *) 0;
+    } while (sc != sbc);
+  } while (strncmp(string, substring, len) != 0);
+  return (char *) (string - 1);
 }
+
