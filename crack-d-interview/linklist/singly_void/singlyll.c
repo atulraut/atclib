@@ -153,6 +153,28 @@ void m_DelNode(void *_list, LIST_NODE *_node) {
   m_Display(_list);
 }
 
+/* Middle Most Node of a Linked List */
+void m_Middlenode(void *ptr) {
+  LIST *ll = (LIST *)ptr;
+  LIST_NODE *p = NULL;
+  LIST_NODE *q = NULL;
+  int flag = 0;
+  q = p = (LIST_NODE *)ll->head;
+  /*for every two hops of q, one hop for p*/
+  while (q->next != NULL) {
+    q = q->next;
+    if (flag) {
+      p = p->next;
+    }
+    flag = !flag;
+  }
+  if (flag) {
+    printf("List contains even number of nodes.\n The middle two node's values are: %d  %d\n", p->next->data, p->data);
+  } else {
+    printf("The middle node of the list is: %d\n", p->data);
+  }
+}
+
 void m_Display(void *ptr){
 	LIST *ll = (LIST *)ptr;
 	printf ("\n----------:: Output ::-----------\n");
@@ -168,5 +190,6 @@ void m_Display(void *ptr){
 		}
 	}
 	printf ("\n----------:: End ::-----------\n");
+	 m_Middlenode(ptr);
 }
 
