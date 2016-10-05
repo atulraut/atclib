@@ -6,6 +6,8 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <ctype.h>
 
 char *get_country (char *countries[], int *population, int size);
@@ -14,7 +16,7 @@ int main () {
   int i, size;
   char *ret;
   char *countries[] = {"Taiwan", "Koria", "Mexico", "india", "USA", "China"};
-  int population[] = {2, 3, 4, 10, 11, 20/*90, 95, 20*/};
+  int population[] = {2, 3, 4, 10, 11, 20};
   size = sizeof(countries)/sizeof (countries[0]);
   for (i=0; i<6; i++) {
     ret = get_country (countries, population, size);
@@ -25,7 +27,8 @@ int main () {
 
 char *get_country (char *countries[], int *population, int sz) {
   int i, fst, mid, key, end;
-  int *count = (int *)malloc (sizeof(sz));
+  int *count;
+  count = (int *)malloc (sizeof(sz));
   count[0] = population[0];
   for(i=1; i<sz; i++)
     count[i] = count[i-1] + population[i];
@@ -40,5 +43,6 @@ char *get_country (char *countries[], int *population, int sz) {
     else
       end = mid - 1;
   } // end while
+  free(count);
   return countries[fst];
 }
