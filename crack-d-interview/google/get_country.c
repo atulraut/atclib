@@ -2,6 +2,7 @@
  * Q1: How would you select a country where the probability of being selected was
  * proportional to its population?
  * by Google
+ * Author - https://www.careercup.com/question?id=14582824
  * Oct 3, 2016
  */
 
