@@ -1,3 +1,7 @@
+/*
+*  Date - Oct-12, 2016
+*  San Diego, CA
+*/
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -34,8 +38,8 @@ int main() {
       nullifyRow(arr, i);
   }
   for (j=0; j<row; j++) {
-    //    if(cll[j] == 1)
-      //      nullifyCol(arr, j);
+    if(cll[j] == 1)
+      nullifyCol(arr, j);
   }
   m_Display(arr);
   return 0;
