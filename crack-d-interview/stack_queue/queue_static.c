@@ -1,3 +1,9 @@
+/*
+* Aim : Simple Queue
+* Date : Friday, Oct 21 2016 
+* San Diego, CA
+* By : Atul R. Raut
+***/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -88,12 +94,5 @@ int m_display (void *_ptr) {
   }
   for (i=q->front; i<q->rear+1; i++) {
     printf ("[m_display] q->buf[%d] = %d \n",i, q->buf[i]);
-  }/*
-  printf ("q->rear = %d  q->front =%d\n", q->rear, q->front);
-  while (q->front != q->rear) {
-    printf ("q->buf[%d] = %d \n",q->front, q->buf[q->front]);
-    q->front++;
   }
-  q->front = 0;
-   */
 }
