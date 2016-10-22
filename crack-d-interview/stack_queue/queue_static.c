@@ -3,6 +3,7 @@
 * Date : Friday, Oct 21 2016 
 * San Diego, CA
 * By : Atul R. Raut
+* Q->[FIFO] : First In First Out
 ***/
 #include <stdio.h>
 #include <stdlib.h>
