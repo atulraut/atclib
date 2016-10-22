@@ -1,3 +1,10 @@
+/***
+* Aim : Implementstack using static array.
+* Date : Wednesday, Oct 19 2016, 08:00 AM
+* File : main.c
+* S->[LIFO] : Last In First Out
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
