@@ -1,6 +1,6 @@
 /*
 * Author  : Atul Raut
-* Date    : 21 September 2015
+* Date    : 21 September 2015,2017
 * Place   : San Diego
 */
 #include <stdio.h>
@@ -22,18 +22,21 @@ int main() {
     return 0;
 }
 
+/* This will set k'th bit in n */
 int setBit (int n, int k) {
     if (k<=0)
         return 0;
     return (n | (1<<(k-1)));
 }
 
+/* This will clear k'th bit in n */
 int clearBit (int n, int k) {
     if (k<=0)
         return 0;
     return (n & ~(1<<(k-1)));
 }
-// Recheck it 
+
+/* This will toggle k'th bit in n */
 int toggleBit (int n, int k) {
     if (k<=0)
         return 0;
