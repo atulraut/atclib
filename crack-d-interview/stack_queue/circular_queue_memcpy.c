@@ -84,7 +84,8 @@ int Q_Insert(void *_ptr, unsigned char *pNew) {
   } else {
     Q->Tail += 1;
   } 
-  printf ("[insert]p=%d [%lu]->[%d]\n", *pNew, Q->Tail, Q->pBuf[Q->Tail*Q->DataTypeSz]);  memcpy (Q->pBuf + (Q->Tail * Q->DataTypeSz), pNew, Q->DataTypeSz);                    
+  printf ("[insert]p=%d [%lu]->[%d]\n", *pNew, Q->Tail, Q->pBuf[Q->Tail*Q->DataTypeSz]);  
+  memcpy (Q->pBuf + (Q->Tail * Q->DataTypeSz), pNew, Q->DataTypeSz);                    
   return QUEUE_OK;
 }
 
