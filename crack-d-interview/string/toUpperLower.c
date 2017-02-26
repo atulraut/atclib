@@ -1,5 +1,12 @@
 /*
 * Program : routine to convert given word to Upper case or Lower
+* Date : 25th Feb 2017
+* A --> 65 
+* Z --> 90
+* . --> 96
+* a --> 97
+* z --> 122
+* 65 + 32 = 97
 */
 #include <stdio.h>
 #include <ctype.h>
