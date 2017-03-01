@@ -27,5 +27,5 @@ void revNo () {
   n = n%100;    // n = 34;
   c = n /10;    // c = 3;
   d = n%10;     // d = 4;
-  printf ("o/p => %d, %d, %d, %d, %d\n", temp, (a*1000), (b*100), (c*10), d);
+  printf ("I/P => %d, O/P => %d\n", temp, (d*1000)+(c*100)+(b*10)+ a);
 }
