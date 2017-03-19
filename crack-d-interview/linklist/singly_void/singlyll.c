@@ -137,7 +137,7 @@ void m_Sortlist(void *_list) {
 }
 
 void swap (LIST_NODE *s, LIST_NODE *m) {
-  LIST_NODE *temp;
+  int temp;
   temp = s->data;
   s->data = m->data;
   m->data = temp;
