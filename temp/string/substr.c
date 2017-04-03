@@ -6,28 +6,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char* at_strstr(const char *str, const char *substr);
-
-/* strstr example */
-#include <stdio.h>
-#include <string.h>
-
 char* my_strstr (const char *src, const char *loc);
+char *m_strstr(const char *string, const char *substring);
 
-int main ()
-{
-  //char str[] ="This is a simple string";
-  char str[] = "Atul is string";
-  char *pch, *kch;
-  pch = strstr (str,"string");
-  printf ("o/p pch -> %s \n", pch);
-  kch = my_strstr(str, "string");
-  printf ("o/p kch -> %s \n", kch);
+int main () {
+  char s1 [] = "My House is small";
+  char s2 [] = "My Car is green";
 
+  printf ("Returned String 1: %s\n", m_strstr (s1, "House"));
+  printf ("Returned String 2: %s\n", m_strstr (s2, "Car"));
   return 0;
 }
 
-char* my_strstr (const char *string, const char *substring){
+char* my_strstr (const char *string, const char *substring) {
   char *a = NULL;
   char *b = (char*)substring;
   if (*string == 0)     // if string is null return
@@ -49,24 +40,20 @@ char* my_strstr (const char *string, const char *substring){
   return (char *) 0;
 }
 
-char *m_strstr(const char *string, const char *substring) {
-  char sbc;
+char *m_strstr(const char *origin, const char *key) {
+  char k;
   size_t len;
-  printf ("1. origin = %s key =%s \n", string, substring);
-  sbc = *substring++;
-  if (!sbc)
-    return (char *) string;// Trivial empty string case
-
-  len = strlen(substring);
+  k = *key++;
+  if (!k)
+    return (char *) origin;// Trivial empty string case
+  len = strlen(key);
   do {
-    char sc;
+    char o;
     do {
-      sc = *string++;
-      printf ("2. sc = %c & sbc = %c \n", sc, sbc);
-      if (!sc)
+      o = *origin++;
+      if (!o)
         return (char *) 0;
-    } while (sc != sbc);
-  } while (strncmp(string, substring, len) != 0);
-  return (char *) (string - 1);
+    } while (o != k);
+  } while (strncmp(origin, key, len) != 0);
+  return (char *) (origin - 1);
 }
-
