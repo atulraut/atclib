@@ -1,6 +1,12 @@
 /*
 Problem : Create a loadable kernel module that initializes a work queue every 500ms.
 
+$ To Compile : Just run make file on any linux box.
+$ To Test Driver
+$ sudo insmod test_workq.ko
+$ cat /proc/sched_work 
+$ sudo rmmod test_workq.ko
+
 When the work executes, print a value to dmesg with constantly increments:
 [ 8600.899135] atclib_test_workqueue: counter: 18
 [ 8601.399947] atclib_test_workqueue: counter: 19
