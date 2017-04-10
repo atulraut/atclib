@@ -30,6 +30,8 @@ void testhotplug_free_bootmem(phys_addr_t mem_addr, unsigned long size)
 	unsigned long pfn_start, pfn_end, pfn_idx;
 	pfn_start = mem_addr >> PAGE_SHIFT;
 	pfn_end = (mem_addr + size) >> PAGE_SHIFT;
+	
+	/* Free the reserved page into the buddy system, so it gets managed. */
 	for (pfn_idx = pfn_start; pfn_idx < pfn_end; pfn_idx++)
 		free_reserved_page(pfn_to_page(pfn_idx));
 }
