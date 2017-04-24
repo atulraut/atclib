@@ -17,6 +17,7 @@ When the work executes, print a value to dmesg with constantly increments:
 [ 8603.903203] atclib_test_workqueue: counter: 24
 
 Create a sysfs node to stop and start the workqueue.
+Ref: https://people.cs.clemson.edu/~westall/853/notes/timer.pdf
 */
 
 /* Copyright (c) 2016, The Linux Foundation. All rights reserved.
@@ -60,9 +61,10 @@ static void start_timer(void)
 static void stop_timer(void)
 {
 	if (delay_interval != 0)
-		del_timer(&exp_timer);  // del_timer_sync - to avoid race condition occur when del_timer returns it only guarantees that timer is no longer active (
-//	means it will no b executed in feature. on smp system timer handler might already be executing on another processor.
-//		to deactivate the timer & wait until a potentially executing hander for timer exists use)
+		del_timer(&exp_timer);  /* del_timer_sync - to avoid race condition occur when del_timer returns 
+	        it only guarantees that timer is no longer active (/	means it will no b executed in feature. 
+		on smp system timer handler might already be executing on another processor.
+		to deactivate the timer & wait until a potentially executing hander for timer exists use) */
 }
 
 static void print_message(unsigned long data)
