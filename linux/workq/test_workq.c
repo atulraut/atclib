@@ -18,6 +18,8 @@ When the work executes, print a value to dmesg with constantly increments:
 
 Create a sysfs node to stop and start the workqueue.
 Ref: https://people.cs.clemson.edu/~westall/853/notes/timer.pdf
+Note that if there are multiple unserialized concurrent users of the same timer, 
+then mod_timer is the only safe way to modify the timeout, since add_timer cannot modify an already running timer.
 */
 
 /* Copyright (c) 2016, The Linux Foundation. All rights reserved.
