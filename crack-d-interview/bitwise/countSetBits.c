@@ -11,6 +11,22 @@ Implementation of Brian Kernighan’s Algorithm:
  */
 #include<stdio.h>
 
+/*
+ Ref: http://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetKernighan
+ Brian Kernighan's method goes through as many iterations as there are set bits. 
+ So if we have a 32-bit word with only the high bit set, then it will only go once through the loop.
+ if v = 5 - 4 2 1
+            1 0 1 - 2 bits are set
+*/
+int getcnt () {
+    unsigned int v = 5; // count the number of bits set in v
+    unsigned int c = 0; // c accumulates the total bits set in v
+    for (c = 0; v; c++) {
+      v = v & (v - 1); // clear the least significant bit set
+    }
+    printf ("\n cnt v= %d c = %d \n", v, c);
+}
+
 /* Function to get no of set bits in binary
    representation of passed binary no. */
 int countSetBits(int n)
