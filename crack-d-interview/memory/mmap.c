@@ -3,6 +3,7 @@ Ref : https://en.wikipedia.org/wiki/Mmap (copy paste from wiki)
 https://en.wikipedia.org/wiki/Demand_paging
 https://www.quora.com/How-are-mmap-ioremap-and-kmap-different
 https://stackoverflow.com/questions/1739296/malloc-vs-mmap-in-c
+g++ mmap.c  -o main.out -pthread -std=c++11
 */
 #include <sys/types.h>
 #include <sys/mman.h>
