@@ -7,7 +7,7 @@
   * Q --> IR++ RF++ {Insert --> Rear++, Remove --> Front++}
  * Insert --> if (read == MAX-1) --> Overflow
  * Remove --> if (front > rear)  --> Underflow
- * rear -> front = -1
+ * Diagram Ref: http://www.studytonight.com/data-structures/queue-data-structure
 */
 #include <stdio.h>
 #include <stdlib.h>
