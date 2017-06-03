@@ -32,11 +32,10 @@ int pwr(num, power) {
     return( num * raise(num, power-1) ); 
 }
 
-void rotateArray(int *in, int arrsz, int rotate){ 
-    int i =0, j = arrsz-1;; 
-    reverseArr(in, i, j); 
+void rotateArray(int *in, int arrsz, int rotate) {     
+    reverseArr(in, 0, arrsz-1); 
     reverseArr(in, 0, rotate-1); 
-    reverseArr(in, rotate, j); 
+    reverseArr(in, rotate, arrsz-1); 
 } 
 
 void reverseArr(int *in, int arrsz, int rotate) { 
