@@ -47,3 +47,15 @@ void reverseArr(int *in, int arrsz, int rotate) {
         i++; j--; 
     } 
 }
+
+/* using recursion */
+void reverseArray (int *arr, int fst, int sz) {
+    int temp = 0;
+    printf ("arr[%d], arr[%d] \n", arr[fst], arr[sz]);
+    if (fst > sz)
+       return;
+    temp = arr[fst];
+    arr[fst] = arr[sz-1];
+    arr[sz-1] = temp;
+    reverseArray (arr, ++fst, --sz);
+ }
