@@ -13,16 +13,20 @@
 
 char* toUpper(char *string);
 char* toLower(char *string);
+char at_tolower(const char c);
 
 int main() {
+   
    int i = 0;
    char c;
    char *ret;
+   char test = 'A';
    char str[] = "Tutorials Point";
    ret = toUpper (str);
    printf ("ret = %s\n", ret);
    ret = toLower (str);
    printf ("ret = %s\n", ret);
+   printf (" Linux Way--> [%c] \n", at_tolower(test));
 return(0);
 }
 
@@ -44,3 +48,13 @@ char* toLower(char *string) {
     }
     return string;
 }
+/* Linux implementation */
+char at_tolower(const char c) {
+	return c | 0x20;
+}
+/*
+0100 0001 : 65 - A
+0010 0000 : 0x20(HX) - 32 (DECIBLE)
+------------
+0110 0001 : 97 : OROperation -
+*/
