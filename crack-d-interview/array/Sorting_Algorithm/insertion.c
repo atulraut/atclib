@@ -27,12 +27,12 @@ void insertionSort(int list[], int n) {
 	// sort list[0] to list[n-1] in ascedning order
 	for(int h=1; h<n; h++) {
 		int key = list[h];
-		int k=h-1; // start comparing with previous item
-		while(k>=0 && key < list[k]) {
-			list[k+1] = list[k];
-			--k;
+		int j=h-1; // start comparing with previous item
+		while(j>=0 && key < list[j]) {
+			list[j+1] = list[j];
+			--j;
 		}
-		list[k+1] = key;
+		list[j+1] = key;
 	}//end for 
 }//end insertionSort
 
