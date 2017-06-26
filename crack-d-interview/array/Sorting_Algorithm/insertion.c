@@ -22,7 +22,10 @@ int main() {
     return 0;
 }
 
-
+/*
+1. During each iteration first element inthe unsorted set is picked up
+& inserted into the correct position int the sorted set.
+*/
 void insertionSort(int list[], int n) {
 	// sort list[0] to list[n-1] in ascedning order
 	for(int h=1; h<n; h++) {
