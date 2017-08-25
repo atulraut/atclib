@@ -1,0 +1,1 @@
+cmd_/home/atul/dev/c/atclib/linux/driver/scull_bus/atclib_scull.ko := ld -r -m elf_x86_64 -T /usr/src/linux-headers-3.2.0-123-generic/scripts/module-common.lds --build-id  -o /home/atul/dev/c/atclib/linux/driver/scull_bus/atclib_scull.ko /home/atul/dev/c/atclib/linux/driver/scull_bus/atclib_scull.o /home/atul/dev/c/atclib/linux/driver/scull_bus/atclib_scull.mod.o

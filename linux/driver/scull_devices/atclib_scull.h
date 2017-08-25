@@ -47,8 +47,8 @@ struct atclib_dev {
 	int qset;                 /* the current array size */
 	unsigned long size;       /* amount of data stored here */
 	unsigned int access_key;  /* used by sculluid and scullpriv */
-	struct mutex mutex;     /* mutual exclusion semaphore     */
-	struct cdev cdev; /* Char device structure*/
+	struct mutex mutex;       /* mutual exclusion semaphore */
+	struct cdev cdev;         /* Char device structure */
 };
 
 #endif /* _ATCLIB_SCULL_H_ */

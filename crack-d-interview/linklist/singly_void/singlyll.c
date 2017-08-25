@@ -175,6 +175,27 @@ void m_Middlenode(void *ptr) {
   }
 }
 
+void m_ReturnNthNode_From_End(void *ptr, int NthNode) {
+	LIST *ll = (LIST *)ptr;
+	LIST_NODE *trav = NULL;
+	int len = 0;
+	int i = 0;
+	trav = (LIST_NODE*)ll->head;
+	if (NthNode < 0)
+		return;
+	while (trav != NULL) {
+		trav = trav->next;
+		len++;
+	}
+	printf ("NthNode = %d \n", (len-NthNode+1));
+	if (NthNode < len) {
+		trav = (LIST_NODE*)ll->head;
+		for(i=1; i<len-NthNode+1; i++)
+			trav = trav->next;
+	}
+	printf ("trav->data = %d \n", trav->data);
+}
+
 void m_Display(void *ptr){
 	LIST *ll = (LIST *)ptr;
 	printf ("\n----------:: Output ::-----------\n");

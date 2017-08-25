@@ -40,9 +40,9 @@
 /*
  * The pipe device is a simple circular buffer. Here its default size
  */
-//#ifndef SCULL_P_BUFFER
+#ifndef SCULL_P_BUFFER
 #define SCULL_P_BUFFER 4000
-//#endif
+#endif
 
 /*
  * Representation of scull quantum sets.

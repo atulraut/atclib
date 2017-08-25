@@ -5,11 +5,11 @@ copyrights : http://www.geeksforgeeks.org
 ----------------------
 0 | 0 | 0  | 0 | 0   |
 ----------------------
-0 | 0 | 1  | 0 | 1   |
+0 | 1 | 1  | 0 | 1   |
 ----------------------
-0 | 0 | 1  | 0 | 1   |
+1 | 0 | 1  | 0 | 1   |
 ----------------------
-0 | 0 | 1  | 1 | 0   |
+1 | 1 | 1  | 1 | 0   |
 ----------------------
 The idea is to keep putting set bits of the num in reverse_num until 
 num becomes zero. After num becomes zero, shift the remaining bits of reverse_num.
