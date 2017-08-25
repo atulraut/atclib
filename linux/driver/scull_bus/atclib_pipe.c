@@ -39,7 +39,7 @@
 #define DEVICE_NAME    "atclibp"
 
 struct scull_pipe {
-wait_queue_head_t inq, outq;       /* read and write queues */
+	wait_queue_head_t inq, outq;       /* read and write queues */
 	char *buffer, *end;                /* begin of buf, end of buf */
 	int buffersize;                    /* used in pointer arithmetic */
 	char *rp, *wp;                     /* where to read, where to write */
@@ -326,7 +326,7 @@ const struct file_operations scull_pipe_fops = {
 	.read =		scull_p_read,
 	.write =	scull_p_write,
 	.poll =		scull_p_poll,
-/*	.unlocked_ioctl = atclib_ioctl, */
+	.unlocked_ioctl = atclib_ioctl,
 	.open =		scull_p_open,
 	.release =	scull_p_release,
 	.fasync =	scull_p_fasync,
@@ -372,7 +372,6 @@ int scull_p_init(dev_t firstdev)
 {
 	int i, result;
 
-	pr_err ("scull init call \n");
 	result = alloc_chrdev_region(&firstdev,
 				0, scull_p_nr_devs, DEVICE_NAME);
 	firstdev = MAJOR(firstdev);
@@ -400,9 +399,6 @@ int scull_p_init(dev_t firstdev)
 		mutex_init(&scull_p_devices[i].mutex);
 		scull_p_setup_cdev(&scull_p_devices[i], i, atclibp_class);
 	}
-
-	pr_err ("scull init call end \n");
-
 #ifdef SCULL_DEBUG
 	proc_create("scullpipe", 0, NULL, &scull_read_p_mem_proc_fops);
 #endif
@@ -432,6 +428,3 @@ void scull_p_cleanup(void)
 	unregister_chrdev_region(scull_p_devno, scull_p_nr_devs);
 	scull_p_devices = NULL; /* pedantic */
 }
-
-MODULE_LICENSE("GPL v2");
-MODULE_AUTHOR("Atul Raut");

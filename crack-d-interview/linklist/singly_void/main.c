@@ -20,7 +20,7 @@ int main()
 //		system("clear");
 		printf("\n 0>Exit         \n 1>Add First      \n 2>Add Last     \n 3>Insert     \
                 \n 4>Delete First \n 5>Delete Node    \n 6>Delete Last                  \
-                \n 7>Display      \n 9>Print Reversly \n 10>Free list                   \
+                \n 7>Display      \n 9>Print Reversly/m_ReturnNthNode_From_End \n 10>Free list                   \
                 \n 11>Reverse ll  \n 12>Sort List      \
                 \n");
 		printf ("------------------------------------------------");
@@ -66,11 +66,12 @@ int main()
 */			case 7:
 				m_Display(l);
 				break;
-/*
+
 			case 9:
-				m_Printrev();
+//				m_Printrev();
+				m_ReturnNthNode_From_End(l, 3);
 				break;
-*/
+
 			case 10:
 				m_Freelist(l);
 				break;

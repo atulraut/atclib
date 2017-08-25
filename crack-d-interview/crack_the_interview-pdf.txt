@@ -1,0 +1,104 @@
+
+http://vijayinterviewquestions.blogspot.com/2007/05/how-would-you-find-out-if-one-of.html
+
+Q] Can we do a Binary search on a linked list?
+A] https://www.quora.com/Can-binary-search-algorithms-be-applied-on-sorted-linked-lists/answer/Vinay-Patil-3?share=0652cfb4&srid=OEEZ
+No.
+Reason : Binary search algorithm is based on the logic of reducing your input size by half in every step until your search succeeds or input  gets exhausted. Important point here is "the step to reduce input size should take constant time". In case of an array, it's always a simple comparison based on array indexes that takes O(1) time.
+But in case of Linked list you don't have indexes to access items. To perform any operation on a list item, you first have to reach it by traversing all items before it. So to divide list by half you first have to reach middle of the list then perform a comparison. Getting to middle of list takes 
+O(n/2)[you have to traverse half of the list items] and comparison takes O(1).
+Total = O(n/2) + O(1) = O(n/2)
+So the input reduction step does not take constant time. It depends on list size. hence violates the essential requirement of Binary search.
+
+Q] Write a C program to return the nth node from the end of a linked list. New!
+A] Check 9th routine - ~/dev/c/atclib/crack-d-interview/linklist/singly_void:
+len = 4 [Total 4 node in list]
+NthNode=3 [Find 3rd element from last]  
+->[1]->[2]->[3]->[4]
+  1    2    3    4
+       | ANS  	
+Trav = len-NthNode+1 = 4-3+1 = 1+1=2
+i=1; i<len-NthNode+1
+
+Q] How would you find out if one of the pointers in a linked list is corrupted or not? New!
+A] Introduce a magic value in your node structures. Initialize it upon new node allocation. Before every access, check if the node structure that the pointer points to contains the valid magic. If the pointer points at an unreadable data block, your program will crash. For that, on Windows there's API VirtualQuery() - call that before reading, and make sure the pointer points at readable data.
+Ref : 
+https://stackoverflow.com/questions/4079099/corrupt-pointer-in-a-linked-list 
+http://vijayinterviewquestions.blogspot.com/2007/05/how-would-you-find-out-if-one-of.html
+
+Q] Write a C program to insert nodes into a linked list in a sorted fashion
+A] http://www.geeksforgeeks.org/given-a-linked-list-which-is-sorted-how-will-you-insert-in-sorted-way/
+
+Q] Write a C program to remove duplicates from a sorted linked list New!
+A] http://www.geeksforgeeks.org/remove-duplicates-from-a-sorted-linked-list/
+
+Q] How to read a singly linked list backwards? (AKA reverse linked list)
+A]
+
+Q] How can I search for data in a linked list?
+A]
+
+Q] Write your own C program to implement the atoi() function Updated!
+A] 
+//Checks whether the value x is present in linked list
+int search(Node head, int x) {
+    Node current = head;    //Initialize current
+    while (current != null) {
+       if (current.data == x)
+            return true;    //data found
+            current = current.next;
+       }
+       return false;   //data not found
+   }
+
+Q] Implement the memmove() function. What is the difference between the memmove() and memcpy() function?
+A] 
+
+Q] Write C code to implement the strstr() (search for a substring) function.
+A] 
+
+Q] Write your own printf() function in C ?
+A]
+
+Q] Implement the strcpy() function. Updated!
+
+Q] Implement the strcmp(str1, str2) function. Updated!
+
+Q] Implement the substr() function in C.
+
+Q] Write your own copy() function
+
+Q] Write C programs to implement the toupper() and the isupper() functions Updated!
+
+Q] Write a C program to implement your own strdup() function.
+A] https://github.com/atulraut/atclib/blob/14e7eb1d0dd1842573b71a027ef716547ae3664f/denis/r-book/ch-06/main.c
+
+Q] Write a C program to implement the strlen(
+A] 
+
+Q] Write a C program to swap two variables without using a temporary variable
+A]
+
+Q] What is the 8 queens problem? Write a C program to solve it.
+A] 
+
+Q] Write C program to print a matrix helically. Printing a matrix helically means printing it in this spiral fashion
+A] matrix_helically.c	
+
+Q] Write a C program to reverse a string Updated!
+A] 
+
+Q] Write a C program to reverse the words in a sentence in place. Updated!
+A]
+
+Q] Write a C program generate permutations.
+A] 
+
+Q] Write a C program for calculating the factorial of a number
+A]
+
+Q] Write a C program to calculate pow(x,n)?
+A] 
+
+Q]
+A]

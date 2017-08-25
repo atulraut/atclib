@@ -41,7 +41,7 @@ static const ssize_t g_s_Test_size = sizeof(g_s_Test_string);
 static ssize_t atclib_read(struct file *file_ptr, char __user *user_buffer,
                                 size_t count, loff_t *possition)
 {
-        pr_debug("atclib-driver: Device file is read at offset = %i,
+        pr_err("atclib-driver: Device file is read at offset = %i, \
                 read bytes count = %u\n", (int)*possition,
                 (unsigned int)count);
  
@@ -72,8 +72,8 @@ static int atclib_driver_init(void)
 {
         int result = 0;
  
-        pr_debug("atclib-driver: Initialization started");
-        pr_debug("%s: %s version %s\n", __func__, DEVICE_NAME, ATCLIB_VERSION);
+        pr_err("atclib-driver: Initialization started");
+        pr_err("%s: %s version %s\n", __func__, DEVICE_NAME, ATCLIB_VERSION);
  
         atclib_ctl.dev_num = register_chrdev(0, DEVICE_NAME,
                 &atclib_driver_fops);
@@ -94,7 +94,7 @@ static int atclib_driver_init(void)
                 pr_err("%s: device_create failed\n", __func__);
                 goto device_create_err;
         }
-        pr_debug("atclib-driver: Initialization completed");
+        pr_err("atclib-driver: Initialization completed");
         return result;
  
 device_create_err:
@@ -107,7 +107,7 @@ register_chrdev_err:
 
 static void atclib_driver_exit(void)
 {
-        pr_debug("%s: Exiting\n", __func__);
+        pr_err("%s: Exiting\n", __func__);
         device_unregister(atclib_ctl.dev);
         device_destroy(atclib_ctl.dev_class, MKDEV(atclib_ctl.dev_num, 0));
         class_destroy(atclib_ctl.dev_class);
