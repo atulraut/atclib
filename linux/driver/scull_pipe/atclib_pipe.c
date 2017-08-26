@@ -35,8 +35,8 @@
 
 #include "atclib_scull.h"		/* local definitions */
 
-#define CLASS_NAME     "atclibp_class"
-#define DEVICE_NAME    "atclibp"
+#define CLASS_NAME     "atclibpU_class"
+#define DEVICE_NAME    "atclibpT"
 
 struct scull_pipe {
 wait_queue_head_t inq, outq;       /* read and write queues */
@@ -429,9 +429,12 @@ void scull_p_cleanup(void)
 		kfree(scull_p_devices[i].buffer);
 	}
 	kfree(scull_p_devices);
+	if (atclibp_class)
+		class_destroy(atclibp_class);	
 	unregister_chrdev_region(scull_p_devno, scull_p_nr_devs);
 	scull_p_devices = NULL; /* pedantic */
+	pr_err("atclib: atclib_pipe resources cleanup !");
 }
 
-MODULE_LICENSE("GPL v2");
-MODULE_AUTHOR("Atul Raut");
+//MODULE_LICENSE("GPL v2");
+//MODULE_AUTHOR("Atul Raut");
