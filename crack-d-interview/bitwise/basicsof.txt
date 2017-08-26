@@ -1,0 +1,18 @@
+What is difference between & and && operator :
+--> Ref : http://www.geeksforgeeks.org/what-are-the-differences-between-bitwise-and-logical-and-operators-in-cc/
+a) The logical and operator ‘&&’ expects its operands to be boolean expressions (either 1 or 0) and returns a boolean value.
+The bitwise and operator ‘&’ works on Integral (short, int, unsigned, char, bool, unsigned char, long) values and return Integral value.
+
+int main() {
+    int x = 3;  //...0011
+    int y = 7;  //...0111
+    // A typical use of '&&'
+    if (y > 1 && y > x)
+      printf("y is greater than 1 AND y\n");
+    // A typical use of '&'
+    int z = x & y;   // 0011
+    printf ("z = %d", z);
+
+    return 0;
+}
+

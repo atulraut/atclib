@@ -35,8 +35,8 @@
 
 #include "atclib_scull.h"		/* local definitions */
 
-#define CLASS_NAME     "atclibpU_class"
-#define DEVICE_NAME    "atclibpT"
+#define CLASS_NAME     "atclibp_class"
+#define DEVICE_NAME    "atclibp"
 
 struct scull_pipe {
 wait_queue_head_t inq, outq;       /* read and write queues */
@@ -45,7 +45,7 @@ wait_queue_head_t inq, outq;       /* read and write queues */
 	char *rp, *wp;                     /* where to read, where to write */
 	int nreaders, nwriters;            /* number of openings for r/w */
 	struct fasync_struct *async_queue; /* asynchronous readers */
-		struct mutex mutex;
+	struct mutex mutex;
 	struct cdev cdev;                  /* Char device structure */
 };
 

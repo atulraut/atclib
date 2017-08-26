@@ -10,10 +10,9 @@
 #include <stdlib.h>
 #include "list.h"
 
-tree_node *root = NULL;
-
 int main() {
     int ch, val;
+    tree_node *root = NULL;
     root = create_node(45);
     printf ("---------------------------------------------------");    
     printf("\nEnter to the world of Atul Raut's Programing:\n");
@@ -76,6 +75,7 @@ int main() {
 			case 7:
 //				m_display(nw_list);
 				m_preorder(root);
+				printf("\nAT--> %dn", tree_height(root));
 				break;
 /*
 			case 9:
@@ -99,5 +99,3 @@ int main() {
 	}
 	return 0;
 }
-
-

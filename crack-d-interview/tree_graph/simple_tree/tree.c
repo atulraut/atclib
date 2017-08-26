@@ -1,4 +1,7 @@
+#include <math.h>
 #include "list.h"
+
+#define max(X,Y) ((X) > (Y) ? (X) : (Y))
 
 tree_node *create_node(int val) {
 	tree_node *node = (tree_node *)malloc(sizeof(tree_node));
@@ -15,7 +18,7 @@ void m_insert (void *_root, int val) {
 	tree_node *nn = NULL;	
 	tree_node *trav=NULL;
 	tree_node *parent_trav=NULL;
-
+	printf ("at max = %d \n", max (14,5));
 	nn = create_node (val);
 	nn->data = val;
 	nn->left = NULL;
@@ -36,7 +39,7 @@ void m_insert (void *_root, int val) {
 			} else {
 				printf ("trav->data=%d\n", trav->data);
 				trav = trav->right;
-			} 
+			}
 		}
 		if (val < parent_trav->data) {
 			parent_trav->left = nn;
@@ -91,7 +94,7 @@ void m_search(void *_root, int val) {
 	else {
 		trav = trav->right;
 		m_search(trav, val);
-	} 
+	}
 }
 
 void m_delete_tree(void *_root) {
@@ -104,3 +107,19 @@ void m_delete_tree(void *_root) {
 	        trav = NULL;
 	}
 }
+
+static int h1,h2;
+int tree_height(void *_root) {
+	  tree_node *p = (tree_node *)_root;
+          if(p==NULL)
+	           return(0);
+          if(p->left) {
+                          h1=tree_height(p->left);
+                          h1++;
+          }
+          if(p->right) {
+                      h2=tree_height(p->right);
+                      h2++;
+          }
+          return(max(h1,h2)+1);
+ }
