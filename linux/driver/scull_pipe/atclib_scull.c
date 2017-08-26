@@ -391,7 +391,6 @@ const struct file_operations atclib_driver_fops = {
 static void atclib_exit_module(int devices_to_destroy)
 {
 	int i;
-
 	if (atclib_devices) {
 		for (i = 0; i < devices_to_destroy; ++i) {
 			BUG_ON(NULL == &atclib_devices[i] ||
@@ -406,6 +405,7 @@ static void atclib_exit_module(int devices_to_destroy)
 	if (atclib_class)
 		class_destroy(atclib_class);
 	unregister_chrdev_region(MKDEV(scull_major, 0), scull_nr_devs);
+	pr_err ("atclib: atclib_scull resources got clean up!");
 }
 
 /* Initialize each device. */
@@ -519,6 +519,7 @@ fail:
 static void atclib_driver_exit(void)
 {
 	atclib_exit_module(scull_nr_devs);
+	scull_p_cleanup ();
 }
 
 module_init(atclib_driver_init);
