@@ -14,7 +14,6 @@ extern struct bus_type ldd_bus_type;
 
 struct ldd_driver {
 	char *version;
-	struct module *module;
 	struct device_driver driver;
 	struct driver_attribute version_attr;
 };

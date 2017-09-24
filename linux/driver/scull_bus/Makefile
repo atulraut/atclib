@@ -1,6 +1,10 @@
-#CFLAGS_atclib_task_5.o = -DDEBUG
 
-obj-m += atclib_scull.o
+obj-m	+= lddbus.o 
+obj-m   += atclib_scull_devices.o
+
+#scullbus-objs := lddbus.o
+#sculldrv-objs := ldddrv.o 
+
 KDIR := /lib/modules/$(shell uname -r)/build
 
 PWD := $(shell pwd)

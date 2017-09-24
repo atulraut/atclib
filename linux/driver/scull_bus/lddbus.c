@@ -12,9 +12,12 @@
  * Drivers" by Alessandro Rubini and Jonathan Corbet, published
  * by O'Reilly & Associates.   No warranty is attached;
  * we cannot take responsibility for errors or fitness for use.
- *
+ * ls -la /sys/devices/ldd0/
+ * ls -la /sys/bus/ldd/
  */
-/* $Id: lddbus.c,v 1.9 2004/09/26 08:12:27 gregkh Exp $ */
+/* $Id: lddbus.c,v 1.9 2004/09/26 08:12:27 gregkh Exp $ 
+   Modify this driver to work with 3.* kernel.
+*/
 
 #include <linux/device.h>
 #include <linux/module.h>
@@ -25,7 +28,7 @@
 
 MODULE_AUTHOR("Jonathan Corbet");
 MODULE_LICENSE("Dual BSD/GPL");
-static char *Version = "$Revision: 1.9 $";
+static char *Version = "atclib-0.1";
 
 /*
  * Respond to hotplug events.
@@ -46,7 +49,8 @@ static int ldd_hotplug(struct device *dev, char **envp, int num_envp,
  */
 static int ldd_match(struct device *dev, struct device_driver *driver)
 {
-	return !strncmp(dev->bus_id, driver->name, strlen(driver->name));
+	return !strncmp(dev_name(dev), driver->name, strlen(driver->name));
+
 }
 
 
@@ -59,7 +63,7 @@ static void ldd_bus_release(struct device *dev)
 }
 	
 struct device ldd_bus = {
-	.bus_id   = "ldd0",
+	.init_name   = "ldd0",
 	.release  = ldd_bus_release
 };
 
@@ -70,7 +74,7 @@ struct device ldd_bus = {
 struct bus_type ldd_bus_type = {
 	.name = "ldd",
 	.match = ldd_match,
-	.hotplug  = ldd_hotplug,
+	.uevent  = ldd_hotplug,
 };
 
 /*
@@ -102,7 +106,7 @@ int register_ldd_device(struct ldd_device *ldddev)
 	ldddev->dev.bus = &ldd_bus_type;
 	ldddev->dev.parent = &ldd_bus;
 	ldddev->dev.release = ldd_dev_release;
-	strncpy(ldddev->dev.bus_id, ldddev->name, BUS_ID_SIZE);
+	dev_set_name(&ldddev->dev, "%s", ldddev->name);
 	return device_register(&ldddev->dev);
 }
 EXPORT_SYMBOL(register_ldd_device);
@@ -136,7 +140,6 @@ int register_ldd_driver(struct ldd_driver *driver)
 	if (ret)
 		return ret;
 	driver->version_attr.attr.name = "version";
-	driver->version_attr.attr.owner = driver->module;
 	driver->version_attr.attr.mode = S_IRUGO;
 	driver->version_attr.show = show_version;
 	driver->version_attr.store = NULL;
@@ -164,6 +167,7 @@ static int __init ldd_bus_init(void)
 	ret = device_register(&ldd_bus);
 	if (ret)
 		printk(KERN_NOTICE "Unable to register ldd0\n");
+	pr_err ("ATUL start ldd_bus_init !");
 	return ret;
 }
 
@@ -171,6 +175,7 @@ static void ldd_bus_exit(void)
 {
 	device_unregister(&ldd_bus);
 	bus_unregister(&ldd_bus_type);
+	pr_err ("ATUL ldd_bus_exit !");
 }
 
 module_init(ldd_bus_init);
