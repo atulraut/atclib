@@ -1,6 +1,7 @@
 /*
  * Implement a function rotateArray(vector<int> arr, int r) which rotates the array by r places. 
  *  Eg 1 2 3 4 5 on being rotated by 2 gives 4 5 1 2 3.
+ * Program of square root sqrt or power of two.
  * San Diego
  * Date : 11 March 2017
 */
@@ -17,7 +18,8 @@ int main() {
     /*O/P: 4 5 1 2 3. */
     int ret;
     rotateArray(arr, sz, 3);
-//    int ret = pwr(2, 2);
+    ret = atclib_sqrt(2, 2);
+    printf("ret = %d !\n", ret);
     printf("ANS = %d !\n", sz);
     for (i=0; i<5; i++) {
         printf ("-->[%d]\t", arr[i]);
@@ -26,10 +28,11 @@ int main() {
     return 0;
 }
 
-int pwr(num, power) { 
+int atclib_sqrt(num, power) { 
+  printf ("ATUL = %d, pwr = %d\n",num, power);
     if(power==0) return 1; 
     if(power==1) return num; 
-    return( num * raise(num, power-1) ); 
+    return( num * atclib_sqrt(num, power-1) ); 
 }
 
 void rotateArray(int *in, int arrsz, int rotate) {     

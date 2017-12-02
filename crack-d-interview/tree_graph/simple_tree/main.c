@@ -38,11 +38,11 @@ int main() {
 //				m_add (nw_list, val);
 				m_insert(root, 39);
 				m_insert(root, 56);
-/*				m_insert(root, 12);
+				m_insert(root, 12);
 				m_insert(root, 10);
 				m_insert(root, 34);
 				m_insert(root, 54);
-*/				printf ("root       =%p \n", root);
+				printf ("root       =%p \n", root);
 				printf ("root->left =%p \n", root->left);
 				printf ("root->right=%p \n", root->right);
 				break;
@@ -75,7 +75,18 @@ int main() {
 			case 7:
 //				m_display(nw_list);
 				m_preorder(root);
-				printf("\nAT--> %dn", tree_height(root));
+			printf("\nTree_height--> %dn",tree_height(root));
+			printf("\nminValue--> %dn", minValue(root));
+		        tree_node *root_new = NULL;
+			root_new = create_node(5);
+			root_new = mirror_copy(root);
+			printf ("\n mirror_copy --> \n");
+			m_preorder(root_new);
+			tree_node *newCopy = NULL;
+			newCopy = copy (root);
+			printf ("\nNew Copy Tree -->");
+			m_preorder(root_new);
+			printf ("\n isThisABST = %d\n", isThisABST(root_new));
 				break;
 /*
 			case 9:
