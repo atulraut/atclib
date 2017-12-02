@@ -1,7 +1,12 @@
+/*
+  Given two strings A and B, how would you find out if the characters
+  in B were a subset of the characters in A?
+*/
 #include <stdio.h>
 #include <string.h>
 
 int verify_String (char *str1, char *str2);
+int isSubset(char *a, char *b);
 
 int main () {
   int ret;
@@ -11,7 +16,12 @@ int main () {
     printf("The two strings are anagram of each other \n");
   else
     printf("The two strings are not anagram of each other \n");
- 
+  
+  if (isSubset(str1, str2)) 
+    printf("The two strings are anagram of each other \n");
+  else
+    printf("The two strings are not anagram of each other \n");
+
 }
 
 int verify_String (char *s1, char *s2) {
@@ -38,5 +48,19 @@ int verify_String (char *s1, char *s2) {
     if (isPresent1[i] != isPresent2[i]) 
       return 0;
   
+  return 1;
+}
+
+int isSubset(char *a, char *b) {
+  int i = 0;
+  int isPresent[256] = {0};
+  for (i=0; a[i] != '\0'; i++) {
+    isPresent[a[i]]++;
+  }
+
+  for (i=0; b[i] != '\0'; i++) {
+    if(!isPresent[b[i]]++)
+      return 0;
+  }
   return 1;
 }

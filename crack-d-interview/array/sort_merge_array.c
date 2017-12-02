@@ -1,12 +1,61 @@
 /*
 * Merge two array into one
+* Write a program to merge two arrays in sorted order, so that 
+* if an integer is in both the arrays, it gets added into the 
+* final array only once.
+http://www.programmingsimplified.com/c/source-code/c-program-merge-two-arrays
 */
 #include<stdio.h>
  
+void merge_2_array_sorted_Order (int a[], int b[]) {
+  int i = 0, j = 0;
+  int aSz = sizeof(a)/a[0];
+  int bSz = sizeof(b)/b[0];
+  int c = aSz+bSz;
+  int final[c];
+  // print union
+  while (i<aSz && j<bSz) {
+      if (a[i] > b[j]) {
+	final[i] = a[i];
+	printf ("final[%d] = %d\n", i, a[i]);
+	i++;
+      } else if (a[i] == b[j]) {
+	  final[j] = b[j];
+	  printf ("final[%d] = %d\n", j, b[j]);
+	  j++;
+	} else { 
+	  final[j] = b[j];
+	  printf ("final[%d] = %d\n", j, b[j]);
+	  j++;
+        }
+    }
+  i=0; j=0;
+  // print intersection
+  while (i<aSz && j<bSz) {
+      if (a[i] > b[j]) {
+	final[i] = a[i];
+	printf ("final[%d] = %d\n", i, a[i]);
+	i++;
+      } else if (a[i] == b[j]) {
+	  final[j] = b[j];
+	  printf ("final[%d] = %d\n", j, b[j]);
+	  j++;
+	} else { 
+	  final[j] = b[j];
+	  printf ("final[%d] = %d\n", j, b[j]);
+	  j++;
+        }
+    }
+}
+
 int main() {
   int arr1[30], arr2[30], res[60];
   int i, j, k, n1, n2;
- 
+  int a[4] = {1,2,3,4};
+  int b[4] = {3,2,7,8};
+  merge_2_array_sorted_Order (a, b);
+  return 1;
+
   printf("\nEnter no of elements in 1st array :");
   scanf("%d", &n1);
   for (i = 0; i < n1; i++) {

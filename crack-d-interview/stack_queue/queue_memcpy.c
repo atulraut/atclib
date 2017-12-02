@@ -17,14 +17,15 @@
 #define QUEUE_EMPTY -1
 #define QUEUE_OK 0
   
-typedef struct _Q {
+struct _Q {
   unsigned long Head; /* FRONT */
   unsigned long Tail; /* REAR  */
   unsigned char *pBuf;  
   unsigned long DataTypeSz;
   unsigned long QSize; 
-} Queue_Desc;
+};
 
+typedef struct _Q Queue_Desc;
 //  Function prototypes
 Queue_Desc *Q_Init(void *_ptr, int QSize, int bitSize);
 int Q_Insert(void *_ptrQ, unsigned char *pNew);
@@ -63,7 +64,7 @@ Queue_Desc *Q_Init(void *_ptr, int QSz, int bitSize) {
   Q->Head = Q->Tail = 0;
   Q->DataTypeSz = bitSize;
   Q->QSize = QSz;
-  if(NULL == (Q->pBuf = (unsigned char *)calloc(Q->QSize, Q->DataTypeSz) ))
+  if(NULL == (Q->pBuf = (unsigned char *)calloc(Q->QSize, Q->DataTypeSz)))
     return;
   else {
     printf ("Q = %p pBuf = %p \n", Q, Q->pBuf);
@@ -78,7 +79,7 @@ int Q_Insert(void *_ptr, unsigned char *pNew) {
     return QUEUE_FULL;
     Q->Tail += 1;
   }
-  printf ("[insert]p=%d [%lu]->[%d]\n", *pNew, Q->Tail, Q->pBuf[Q->Tail*Q->DataTypeSz]);                                                                                          Q->Tail += 1;
+  printf ("[insert]p=%d [%lu]->[%d]\n", *pNew, Q->Tail, Q->pBuf[Q->Tail*Q->DataTypeSz]);                   Q->Tail += 1;
   return QUEUE_OK;
 }
 
