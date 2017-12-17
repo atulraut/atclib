@@ -18,7 +18,7 @@ void m_Init (NODE *node){
 
 NODE* m_CreateNodeL (int data){
 	NODE *nn = NULL;
-	nn = (NODE*)malloc(sizeof (NODE *));
+	nn = (NODE*)malloc(sizeof (NODE));
 	if (nn == NULL)
 		return;
 	nn->data  = data;
