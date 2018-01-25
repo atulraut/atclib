@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include <pthread.h>
 
-#define MAX 10i             /* FIFO buffer size, Numbers to produce */
+#define MAX 10              /* FIFO buffer size, Numbers to produce */
 pthread_mutex_t the_mutex;  /* init the_mutext to resource size to manage resource, we have 0*/
 pthread_cond_t condc;       /* stall current process if (the_mutex <=0 else the_mutex -=1) */
 pthread_cond_t condp;       /* the+mutex +=1 let other process to proceed */
