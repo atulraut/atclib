@@ -22,7 +22,7 @@ void bubble_sort (int arr[], int sz) {
     if (0 == flag)
       break;
   }
-  for (i=0; i<n; i++) {
+  for (i=0; i<sz; i++) {
       printf ("-->[%d]", arr[i]);
   }
   printf ("\n");
