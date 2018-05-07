@@ -196,6 +196,32 @@ void m_ReturnNthNode_From_End(void *ptr, int NthNode) {
 	printf ("trav->data = %d \n", trav->data);
 }
 
+/* Middle Most Node of a Linked List */
+void m_RemoveDuplicesNodes(void *ptr) {
+  LIST *ll = (LIST *)ptr;
+  LIST_NODE *prev = NULL;
+  LIST_NODE *current = NULL;
+  int flag = 0;
+  prev = (LIST_NODE *)ll->head;
+  current = prev->next;
+  while (current != NULL) {
+    LIST_NODE *runner = ll->head;
+    while (runner != current) {
+      if(runner->data == current->data) {
+	LIST *temp = current->next; // remove current
+	prev->next = temp;
+	current = temp; // update current to next node
+	break; // all other dups have removed
+      }
+      runner = runner->next;
+    }
+    if (runner == current) { // current not update, update now
+      prev = current;
+      current = current->next;
+    }
+  }
+}
+
 void m_Display(void *ptr){
 	LIST *ll = (LIST *)ptr;
 	printf ("\n----------:: Output ::-----------\n");
