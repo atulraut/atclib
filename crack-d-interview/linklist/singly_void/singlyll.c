@@ -176,24 +176,26 @@ void m_Middlenode(void *ptr) {
 }
 
 void m_ReturnNthNode_From_End(void *ptr, int NthNode) {
-	LIST *ll = (LIST *)ptr;
-	LIST_NODE *trav = NULL;
-	int len = 0;
-	int i = 0;
-	trav = (LIST_NODE*)ll->head;
-	if (NthNode < 0)
-		return;
-	while (trav != NULL) {
-		trav = trav->next;
-		len++;
-	}
-	printf ("NthNode = %d \n", (len-NthNode+1));
-	if (NthNode < len) {
-		trav = (LIST_NODE*)ll->head;
-		for(i=1; i<len-NthNode+1; i++)
-			trav = trav->next;
-	}
-	printf ("trav->data = %d \n", trav->data);
+  LIST *ll = (LIST *)ptr;
+  LIST_NODE *p1 = NULL;
+  LIST_NODE *p2 = NULL;
+  p1 = p2 = (LIST_NODE *)ll->head;
+  
+  if (ll->head == NULL || NthNode < 1) {		
+      return;	
+  }	
+  for (int j = 0; j<(NthNode-1); ++j) { // skip n-1 steps ahead		
+      if (p2 == NULL) {			
+	return;// not found since list size < n		
+      }		
+      p2 = p2->next;	
+  }
+
+  while (p2->next != NULL) {		
+      p1 = p1->next;		
+      p2 = p2->next;
+  }
+  printf ("\nval--> %d\n", p1->data);
 }
 
 /* Middle Most Node of a Linked List */
