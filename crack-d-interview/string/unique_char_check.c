@@ -18,6 +18,23 @@ int check_unique_character(char *str) {
   return 0;
 }
 
+/* without using extra buffer */
+int check_unique_character2(char *str) { 
+  int checker = 0;
+  int i, val;
+  int len = strlen (str);	
+  for (i=0; i<len; ++i) {		
+    val = (str[i] - 'a');
+    printf ("->str[i]=%c val=%d <<=%d\n", str[i], val, (1<<val));
+    printf ("Ret = %d \n", (checker & (1 << val)));  
+    if ((checker & (1 << val)) > 0)
+      return 1;		
+    checker |= (1 << val); // set bit val
+    printf ("check-%d\n", checker);
+  }
+  return 0;
+}
+
 int main () {
   char a[] = "atull";
   int c = check_unique_character(a);
