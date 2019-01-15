@@ -1,6 +1,6 @@
 /*
 * Aim : Singly Linked List.
-* Date : Monday, July 29 2016 
+* Date : Monday, July 29 2016
 * San Diego, CA
 * By : Atul R. Raut
 * valgrind -v --leak-check=full --show-reachable=yes ./main
@@ -95,7 +95,7 @@ void m_Revlist(void *ptr) {
     ll->head = (LIST *)head;
     temp = trav;
   }
-} 
+}
 /*
 void m_RevRec(NODE **head_ref) {
   NODE *first;
@@ -112,25 +112,29 @@ void m_RevRec(NODE **head_ref) {
   first->next->next = first;
   first->next = NULL;
   *head_ref = rest;
-    
+
 }
 */
 
 void m_Sortlist(void *_list) {
+  int flag = 0;
   LIST *list = (LIST*)_list;
   LIST_NODE *head = (LIST_NODE*)list->head;
   LIST_NODE *start = head;
   LIST_NODE *trav, *min;
+
   while (start->next) {
     min = start;
     trav = start->next;
     while (trav) {
        if (min->data > trav->data) {
          min = trav;
+	 flag = 1; // to check we really needs to swap data
        }
        trav = trav->next;
     }
-    swap (start, min);
+    if(flag)
+      swap (start, min);
     start = start->next;
   }
   m_Display(_list);
@@ -180,7 +184,7 @@ void m_ReturnNthNode_From_End(void *ptr, int NthNode) {
   LIST_NODE *p1 = NULL;
   LIST_NODE *p2 = NULL;
   p1 = p2 = (LIST_NODE *)ll->head;
-  
+
   if (ll->head == NULL || NthNode < 1) {		
       return;	
   }	
@@ -203,14 +207,14 @@ void m_RemoveDuplicesNodes(void *ptr) {
   LIST *ll = (LIST *)ptr;
   LIST_NODE *prev = NULL;
   LIST_NODE *current = NULL;
-  int flag = 0;
+
   prev = (LIST_NODE *)ll->head;
   current = prev->next;
   while (current != NULL) {
-    LIST_NODE *runner = ll->head;
+    LIST_NODE *runner = (LIST_NODE *)ll->head;
     while (runner != current) {
       if(runner->data == current->data) {
-	LIST *temp = current->next; // remove current
+	LIST_NODE *temp = current->next; // remove current
 	prev->next = temp;
 	current = temp; // update current to next node
 	break; // all other dups have removed
