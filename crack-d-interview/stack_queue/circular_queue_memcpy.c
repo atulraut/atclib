@@ -1,6 +1,6 @@
 /*
  * Aim : Queue
- * Date : Saturday, Oct 23 2016 
+ * Date : Saturday, Oct 23 2016
  * San Diego, CA
  * By : Atul R. Raut
  * Q->[FIFO] : First In First Out
@@ -16,11 +16,11 @@
 #define QUEUE_FULL 1
 #define QUEUE_EMPTY -1
 #define QUEUE_OK 0
-  
+
 typedef struct _Q {
   unsigned long Head; /* FRONT */
   unsigned long Tail; /* REAR  */
-  unsigned char *pBuf;  
+  unsigned char *pBuf;
   unsigned long DataTypeSz; /* Data Type Size, that we are adding to Ring buffer */
   unsigned long QSize; /* Ring Buffer Size*/
 } Queue_Desc;
@@ -39,16 +39,16 @@ int main () {
   if(qptr == NULL)
     return;
   for (i = 0; i < MAX+1; i++) {
-      data = i * i;     
-      if(QUEUE_FULL == Q_Insert(qptr, (unsigned char *)&data)) {          
+      data = i * i;
+      if(QUEUE_FULL == Q_Insert(qptr, (unsigned char *)&data)) {
 	printf("[m_main] Crap. Queue became full at %i.\n", i);
 	break;
       }
   }
   Q_Display (qptr);
   for (i = 0; i < MAX+1; i++) {
-    int dummy = i * i;     
-    if(QUEUE_EMPTY == Q_Remove(qptr, (unsigned char *)&dummy)) {          
+    int dummy = i * i;
+    if(QUEUE_EMPTY == Q_Remove(qptr, (unsigned char *)&dummy)) {
       printf("[m_main] Crap. Queue became Empty at %i.\n", i);
       break;
     }
@@ -59,6 +59,10 @@ int main () {
 
 Queue_Desc *Q_Init(void *_ptr, int QSz, int DatabitSz) {
   Queue_Desc *Q = (Queue_Desc *)_ptr;
+  if(NULL == Q) {
+	printf ("memset needs valid pointer \n");
+	exit(1);
+  }
   memset((void *)Q, 0, sizeof(Queue_Desc));
   Q->Head = Q->Tail = -1;
   Q->DataTypeSz = DatabitSz;
@@ -67,7 +71,7 @@ Queue_Desc *Q_Init(void *_ptr, int QSz, int DatabitSz) {
     return;
   else {
     printf ("Q = %p pBuf = %p \n", Q, Q->pBuf);
-    return Q;  
+    return Q;
   }
 }
 
@@ -75,7 +79,7 @@ int Q_Insert(void *_ptr, unsigned char *pNew) {
   Queue_Desc *Q = (Queue_Desc *)_ptr;
 
   if (Q->Tail == (Q->Head + Q->QSize) && Q->Head == 0) { // Reset Q Tail H| | |T|
-    printf ("[m_Insert] Reset Q =0 "); 
+    printf ("[m_Insert] Reset Q =0 ");
     Q->Tail = 0;
   } else if (Q->Tail == -1 && Q->Head == -1) { // Reset Q HT| | | | 
     Q->Tail = Q->Head = 0;
@@ -83,9 +87,9 @@ int Q_Insert(void *_ptr, unsigned char *pNew) {
     Q->Tail = 0;
   } else {
     Q->Tail += 1;
-  } 
-  printf ("[insert]p=%d [%lu]->[%d]\n", *pNew, Q->Tail, Q->pBuf[Q->Tail*Q->DataTypeSz]);  
-  memcpy (Q->pBuf + (Q->Tail * Q->DataTypeSz), pNew, Q->DataTypeSz);                    
+  }
+  printf ("[insert]p=%d [%lu]->[%d]\n", *pNew, Q->Tail, Q->pBuf[Q->Tail*Q->DataTypeSz]);
+  memcpy (Q->pBuf + (Q->Tail * Q->DataTypeSz), pNew, Q->DataTypeSz);
   return QUEUE_OK;
 }
 

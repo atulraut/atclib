@@ -1,6 +1,6 @@
 /*
 * Aim : Simple Queue
-* Date : Friday, Oct 21 2016 
+* Date : Friday, Oct 21 2016
 * San Diego, CA
 * By : Atul R. Raut
 * Q->[FIFO] : First In First Out
@@ -47,6 +47,10 @@ int main () {
 
 queue *m_init (void *_ptr, int size) {
   queue *q = (queue *)_ptr;
+  if(NULL == q) {
+	printf ("memset needs valid pointer \n");
+	exit(1);
+  }
   memset((void *)q, 0, sizeof(queue));
   q->rear = -1;
   q->front= -1;
@@ -66,7 +70,7 @@ int m_insert (void *_ptr, int val) {
   if (q->front == -1 && q->rear == -1) {
     q->front = q->rear = 0;
   } else {
-    q->rear = q->rear + 1; 
+    q->rear = q->rear + 1;
   }
   printf ("[m_insert] val=%d added at q->rear=%d \n", val, q->rear);
   q->buf[q->rear] = val;
