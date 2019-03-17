@@ -2,6 +2,7 @@
 #include <stdlib.h>
 /*
 * Ref/Credit - http://www.careercup.com/question?id=2777 
+* https://github.com/dhara04/cracking-the-coding-interview-c--/blob/master/aligned-malloc.cpp
 */
 
 void *_aligned_malloc(size_t bytes, size_t alignment);
