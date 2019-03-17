@@ -67,5 +67,5 @@ int m_isEmpty() {
   if(top < 0)
     printf ("[isEmpty] Empty S - top=%d", top);
   else
-    printf ("[isEmpty] Not - top=%d", top);  
+    printf ("[isEmpty] Not - top=%d", top);
 }

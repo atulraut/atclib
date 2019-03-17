@@ -10,7 +10,7 @@
 #include <string.h>
 
 #define STACK_SZ 5
-typedef struct _stack {  
+typedef struct _stack {
   int top;
   int *buf;
 } stack;
@@ -48,11 +48,15 @@ int main () {
 
 stack *m_init(void  *_ptr, int sz) {
   stack *s = (stack *)_ptr;
+  if(NULL == s) {
+	printf ("memset needs valid pointer \n");
+	exit(1);
+  }
   memset((void *)s, 0, sizeof(stack));
   s->top = -1;
   s->buf = (int *)malloc(sz * sizeof(int));
   if(NULL == s->buf)
-    return;
+    return NULL;
   else
     return s;
 }
@@ -88,5 +92,5 @@ int isEmpty(void *_ptr) {
   if(s->top < 0)
     printf ("[isEmpty] Empty S - top=%d", s->top);
   else
-    printf ("[isEmpty] Not - top=%d", s->top);  
+    printf ("[isEmpty] Not - top=%d", s->top);
 }
