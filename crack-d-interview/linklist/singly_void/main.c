@@ -13,7 +13,7 @@ int main()
     int  ch, val;
     LIST *l;
     l = m_Init();
-    printf ("---------------------------------------------------");    
+    printf ("---------------------------------------------------");
     printf("\nEnter to the world of Atul Raut's Programing:\n");
     printf ("---------------------------------------------------");
     while(1) {
@@ -21,7 +21,7 @@ int main()
 		printf("\n 0>Exit         \n 1>Add First      \n 2>Add Last     \n 3>Insert     \
                 \n 4>Delete First \n 5>Delete Node    \n 6>Delete Last                  \
                 \n 7>Display      \n 9>Print Reversly/m_ReturnNthNode_From_End \n 10>Free list                   \
-                \n 11>Reverse ll  \n 12>Sort List      \
+                \n 11>Reverse ll \n 12>Reverse kth ll  \n 13>Sort List      \
                 \n");
 		printf ("------------------------------------------------");
 		printf ("\n\t\t Welcome to World of LinkList :: \n");
@@ -78,9 +78,14 @@ int main()
 			case 11:
 			        m_Revlist(l);
 				break;
-			 case 12:
-			 	m_Sortlist(l);
-			 	break;
+			case 12:
+				printf("\nEnter the kth node to reverse \n");
+				scanf("%d", &val);
+				m_RevlistKthNode(l, val);
+					break;
+			case 13:
+				m_Sortlist(l);
+				break;
 		        default : {
 				printf("\nEnter the correct choice ");
 				exit(0);

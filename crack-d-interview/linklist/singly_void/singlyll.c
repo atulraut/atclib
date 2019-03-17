@@ -45,7 +45,7 @@ void m_Addfirst(int data, void *ptr) {
 }
 
 void m_Delfirst(void *ptr) {
-  LIST *ll = (LIST *)ptr; 
+  LIST *ll = (LIST *)ptr;
 	if (ll == NULL)
 		printf ("\n Empty Link List.");
 	else {
@@ -96,6 +96,33 @@ void m_Revlist(void *ptr) {
     temp = trav;
   }
 }
+
+void m_RevlistKthNode(void *ptr, int k) {
+  LIST *ll = ptr;
+  LIST_NODE *head = (LIST_NODE *)ll->head;
+  LIST_NODE *trav;
+  LIST_NODE *temp = head;
+  LIST_NODE *start= head;
+  head = NULL;
+  int cnt = 0;
+  if(k<1) {
+    printf ("Cant reverse the list! \n");
+    return;
+  }
+  if(k==1)  /* if just 2 element in list we need this condition. */
+    k=2;
+  while (temp != NULL && cnt < k) {
+    trav = temp->next;
+    temp->next = head;
+    head = temp;
+    ll->head = (LIST *)head;
+    temp = trav;
+    cnt++;
+  }
+  start->next = trav;
+  printf ("Reverse the kth Node! k = %d cnt =%d \n", k, cnt);
+}
+
 /*
 void m_RevRec(NODE **head_ref) {
   NODE *first;
