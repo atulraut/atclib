@@ -3,10 +3,15 @@
 */
 #include <stdio.h>
 
+/* Extra check with && is to validate condition for 0.
+   Else if user enter 0 it will return true for powerofTwo
+*/
 unsigned int powerOfTwo(unsigned int num) {
   unsigned int pos = 0;
+
   printf ("1. --> %d \n", (num & (num - 1)));
   printf ("2. --> %d \n", !(num & (num - 1)));
+
   return (num && !(num & (num - 1)));
 }
 
