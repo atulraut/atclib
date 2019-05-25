@@ -7,8 +7,27 @@
 #include <stdlib.h>
 #include <string.h>
 
+/*
+  memcmp -- compare two memory regions.
+  Credit -- linux.org
+*/
+int memcmp(const void *cs, const void *ct, size_t count) {
+  const unsigned char *su1 = cs;
+  const unsigned char *su2 = ct;
+  const unsigned char *end = su1 + count;
+  int res = 0;
+
+  while (su1 < end) {
+    res = *su1++ - *su2++;
+    printf ("res = %d\n", res);
+    if (res)
+      break;
+  }
+  return res;
+}
+
 /* Linux kernel Implementation : lib/string.c
- * strstr - Find the first substring in a %NUL terminated string
+ * strstr - Find the first substring in a NUUL terminated string
  * @s1: The string to be searched
  * @s2: The string to search for
  */
