@@ -1,57 +1,41 @@
+/*
+	Sort Two array & merge.
+*/
 #include <stdio.h>
 #include <stdlib.h>
 
-int printIntersection(int arr1[], int arr2[], int m, int n)
+void merge(int ar1[], int ar2[], int m, int n)
 {
-  int i = 0, j = 0;
-	printf ("Intersection \n");
-  while (i < m && j < n)
-  {
-    if (arr1[i] < arr2[j])
-      i++;
-    else if (arr2[j] < arr1[i])
-      j++;
-    else /* if arr1[i] == arr2[j] */
-    {
-      printf(" %d ", arr2[j++]);
-      i++;
-    }
-  }
-  printf ("\n");
+// Iterate through all elements of ar2[] starting from
+// the last element
+	for (int i=n-1; i>=0; i--) {
+/* Find the smallest element greater than ar2[i]. Move all
+elements one position ahead till the smallest greater
+element is not found */
+	int j, last = ar1[m-1];
+	for (j=m-2; j >= 0 && ar1[j] > ar2[i]; j--)
+		ar1[j+1] = ar1[j];
+	// If there was a greater element
+		if (j != m-2 || last > ar2[i]) {
+			ar1[j+1] = ar2[i];
+			ar2[i] = last;
+		}
+	}
 }
-
-int printUnion(int arr1[], int arr2[], int m, int n)
-    {
-      int i = 0, j = 0;
-	printf ("Print Union \n");
-      while (i < m && j < n)
-      {
-        if (arr1[i] < arr2[j])
-          printf("--> %d ", arr1[i++]);
-        else if (arr2[j] < arr1[i])
-          printf("--> %d ", arr2[j++]);
-        else
-        {
-          printf("--> %d ", arr2[j++]);
-          i++;
-        }
-      }
-      printf ("\n");
-      /* Print remaining elements of 
-         the larger array */
-      while(i < m)
-       printf("--> %d ", arr1[i++]);
-      while(j < n)
-       printf("--> %d ", arr2[j++]);
-      printf ("\n");  
-      return 0;   
-}
-
 int main () {
+	int i;
 	int arr1[] = {1, 2, 4, 5, 6};
-        int arr2[] = {2, 3, 5, 7};
-        int m = sizeof(arr1)/arr1[0];
-        int n = sizeof(arr2)/arr2[0];
-	//        printUnion(arr1, arr2, m, n);
-	//	printIntersection(arr1, arr2, m, n);
+	int arr2[] = {2, 3, 5, 7};
+	int m = sizeof(arr1)/sizeof(arr1[0]);
+	int n = sizeof(arr2)/sizeof(arr2[0]);
+	merge(arr1, arr2, m, n);
+	
+	printf("After Merging First Array: \n");
+	for (int i=0; i<m; i++)
+		printf("--> %d \t", arr1[i]);
+	
+	printf("\nSecond Array: \n");
+	for (int i=0; i<n; i++)
+		printf("--> %d \t", arr2[i]);
+	printf ("\n\n");
 }

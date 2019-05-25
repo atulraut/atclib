@@ -37,7 +37,7 @@ int check_unique_character2(char *str) {
 
 int main () {
   char a[] = "atull";
-  int c = check_unique_character(a);
+  int c = check_unique_character2(a);
   if (c) {
     printf ("Not all Unique \n");
   } else

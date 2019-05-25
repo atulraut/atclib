@@ -8,6 +8,26 @@
 #include <stdlib.h>
 #include <string.h>
 
+/*
+  In Place String Reverse 
+*/
+void reverse(char *str) {
+	char * end = str;
+	char tmp;
+
+	if (str) {
+		while (*end) {
+			++end;
+		}
+		--end;
+		while (str < end) {
+			tmp = *str;
+			*str++ = *end;
+			*end-- = tmp;
+		}
+	}
+}
+
 char* string_reverse(char *str) {
   int i, j;
   char temp;
@@ -20,6 +40,9 @@ char* string_reverse(char *str) {
   return str;
 }
 
+/*
+  Recursive String Reverse
+*/
 void str_rev(char *str, int index, int last) {
   int temp;
 

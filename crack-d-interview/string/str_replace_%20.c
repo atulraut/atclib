@@ -11,7 +11,12 @@ void replace_str_with_20 (char str[], int len) {
     if (str[i] == ' ')
       spacecnt++;
   }
-  newlen = len + spacecnt * 2;
+
+	/* spacecnt*3 is giving us required ammount of space for replacement,
+	hence len-spacecnt is here.
+	*/
+  newlen = (len-spacecnt) + spacecnt * 3;
+  
   str[newlen] = '\0';
   for(i = len-1; i >=0; i--) {
     if (str[i] == ' ') {
