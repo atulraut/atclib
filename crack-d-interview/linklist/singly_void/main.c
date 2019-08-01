@@ -6,18 +6,19 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 #include "list.h"
 
 int main()
 {
-    int  ch, val;
+    int ch;
+    int  val;
     LIST *l;
     l = m_Init();
     printf ("---------------------------------------------------");
     printf("\nEnter to the world of Atul Raut's Programing:\n");
     printf ("---------------------------------------------------");
     while(1) {
-//		system("clear");
 		printf("\n 0>Exit         \n 1>Add First      \n 2>Add Last     \n 3>Insert     \
                 \n 4>Delete First \n 5>Delete Node    \n 6>Delete Last                  \
                 \n 7>Display      \n 9>Print Reversly/m_ReturnNthNode_From_End \n 10>Free list                   \
@@ -27,11 +28,14 @@ int main()
 		printf ("\n\t\t Welcome to World of LinkList :: \n");
 		printf ("\t\t <====> :: ");
 		scanf("%d", &ch);
-		if (ch < 0 || ch > 12)
-			return EXIT_SUCCESS ;
-		switch(ch)
-		{
+		if(isalpha(ch) != 0) {
+		  printf("%d is not a digit.",ch);
+		  return EXIT_SUCCESS ;
+		} else
+		    printf("%d is a digit.",ch);
+		switch(ch) {
 			case 0:
+			  printf("Exiting \n");
 				exit(0);
 			case 1:
 				printf("\nEnter the number : ");
@@ -87,11 +91,10 @@ int main()
 				m_Sortlist(l);
 				break;
 		        default : {
-				printf("\nEnter the correct choice ");
+				printf("\nEnter the correct choice \n\n");
 				exit(0);
 			}
 		}
-		//getch();
 	}
 	return 0;
 }
