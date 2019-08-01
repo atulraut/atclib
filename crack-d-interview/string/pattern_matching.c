@@ -10,7 +10,7 @@ void search_pattern(char* pat, char* txt) {
     int N = strlen(txt); 
   
     /* A loop to slide pat[] one by one */
-    for (int i = 0; i <= N - M; i++) { 
+    for (int i = 0; i <= (N - M); i++) { 
         int j; 
   
         /* For current index i, check for pattern match */
