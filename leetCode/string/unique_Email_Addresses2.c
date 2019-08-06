@@ -58,7 +58,7 @@ int validateUniqueEmails(char* str) {
   } else {
     flag = 1;
     printf("Cant send email to this address\n");
-    return 1; 
+    return 1;
   }
 
   i = k;
