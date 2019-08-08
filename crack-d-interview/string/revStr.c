@@ -15,14 +15,6 @@ void  otherWay();
 void rev(char *l,char *r);
 void reverseRecursive(char str1[], int index, int size);
 
-int main () {
-  printf ("\nHello world .. !! \n");
-  char arr[10] = "Atul";
-  revStr (arr);
-  otherWay();
-  return EXIT_SUCCESS; 
-}
-
 void reverseString(char s[]) {
     int length = strlen(s) ;
     int c, i, j;
@@ -76,6 +68,9 @@ void rev(char *l,char *r) {
   }
 }
 
+/*
+ * Write a C program to reverse the words in a sentence in place.
+ **/
 void otherWay () {
   char buf[] = "Atul R Raut";
   char *end, *x, *y;
@@ -94,4 +89,12 @@ void otherWay () {
   printf("Output = %s\n",buf);
   reverseRecursive(buf, 0, (strlen(buf)-1));
   printf("Output = %s\n",buf);
+}
+
+int main () {
+  printf ("\nHello world .. !! \n");
+  char arr[10] = "Atul";
+  revStr (arr);
+  otherWay();
+  return EXIT_SUCCESS; 
 }
