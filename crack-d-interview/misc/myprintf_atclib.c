@@ -1,4 +1,9 @@
-/* Example using va_start */
+/* Example using va_start : Remember LSAE - Leela-Shakuntala-Atul-End
+   va_list : It is a Data Type for accessing data from variable argument list.
+   va_start: It is a micro that initialize the variable arg. list to the 1st argument.
+   va_arg  : Fetching 'int' Data Type that's why here int, if ur data type change mention here
+   va_end  : End variable arg list.
+ **/
 
 #include <stdio.h>
 #include <stdarg.h>
