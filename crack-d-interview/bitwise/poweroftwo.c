@@ -3,7 +3,10 @@
 */
 #include <stdio.h>
 
-/* Extra check with && is to validate condition for 0.
+/* Trick: Any power of 2 variable, only 1 bit is set,
+   hence & with -1 number always turns 0 & !num will
+   return 1, so if 1, is power of 2.
+   Extra check with && is to validate condition for 0.
    Else if user enter 0 it will return true for powerofTwo
 */
 unsigned int powerOfTwo(unsigned int num) {
