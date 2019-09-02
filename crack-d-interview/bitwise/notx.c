@@ -1,5 +1,7 @@
 /*
- Problem : Write a program to convert 3 binary variables (takes either 0 or 1 value), X, Y and Z and gives NOT(X), NOT(Y) and NOT(Z). Note that NOT(X) = 1 if X=0  and NOT(X) = 0 if X=1. Inside the program you can only use two NOT operations but can use any number of AND and OR operations.
+ Problem : Write a program to convert 3 binary variables (takes either 0 or 1 value), X, Y and Z
+ and gives NOT(X), NOT(Y) and NOT(Z). Note that NOT(X) = 1 if X=0  and NOT(X) = 0 if X=1.
+ Inside the program you can only use two NOT operations but can use any number of AND and OR operations.
 */
 
 #include <stdio.h>
