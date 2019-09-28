@@ -11,20 +11,21 @@ typedef struct list_t {
 } LIST;
 
 int counter;
-LIST * m_Init ();
-LIST_NODE* m_CreateNodeL (int);
-void m_Addfirst(int, void*);
-void m_Addlast(int, void *);
-void m_Delfirst();
+LIST * m_Init (LIST *);
+void m_Addfirst(void*);
+void m_Addlast(void *);
+void m_Delfirst(void *);
 void m_Display(void *);
 void m_Dellast(void *);
 void m_Freelist(void *);
 void m_Revlist(void *);
-void m_RevlistKthNode(void *, int);
-void swap (LIST_NODE *s, LIST_NODE *m);
+void m_RevlistKthNode(void *);
 void m_Sortlist(void *);
 void m_DelNode(void *, LIST_NODE *);
-void m_ReturnNthNode_From_End(void *, int);
+void m_ReturnNthNode_From_End(void *);
+void m_RemoveDuplicateNodes(void *ptr);
+void m_SearchData(void *ptr);
+void quit(void *);
 /*
 void m_Insert(int,int);
 void m_Deletenode(int);

@@ -7,96 +7,117 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <math.h>
+#include <string.h>
 #include "list.h"
 
-int main()
-{
-    int ch;
-    int  val;
-    LIST *l;
-    l = m_Init();
-    printf ("---------------------------------------------------");
-    printf("\nEnter to the world of Atul Raut's Programing:\n");
-    printf ("---------------------------------------------------");
-    while(1) {
-		printf("\n 0>Exit         \n 1>Add First      \n 2>Add Last     \n 3>Insert     \
-                \n 4>Delete First \n 5>Delete Node    \n 6>Delete Last                  \
-                \n 7>Display      \n 9>Print Reversly/m_ReturnNthNode_From_End \n 10>Free list                   \
-                \n 11>Reverse ll \n 12>Reverse kth ll  \n 13>Sort List      \
-                \n");
-		printf ("------------------------------------------------");
-		printf ("\n\t\t Welcome to World of LinkList :: \n");
-		printf ("\t\t <====> :: ");
-		scanf("%d", &ch);
-		if(isalpha(ch) != 0) {
-		  printf("%d is not a digit.",ch);
-		  return EXIT_SUCCESS ;
-		} else
-		    printf("%d is a digit.",ch);
-		switch(ch) {
-			case 0:
-			  printf("Exiting \n");
-				exit(0);
-			case 1:
-				printf("\nEnter the number : ");
-				scanf("%d", &val);
-				m_Addfirst (val, l);
-				break;
-/*			case 2:
-				printf("\nEnter the number : ");
-				scanf("%d", &val);
-				m_Addlast(val);
-				break;
-			case 3:
-				printf("\nEnter the number and position :");
-				scanf("%d%d", &val,&pos);
-				printf ("\n ---------------- ");
-				m_Insert (val, pos);
-				printf ("\n ---------------- ");
-				break;
-*/
-			case 4:
-				m_Delfirst(l);
-				break;
-/*
-			case 5:
-				printf("\nEnter the position :");
-				scanf("%d",&pos);
-				m_Deletenode(pos);
-				break;
-			case 6:
-				m_Dellast();
-				break;
-*/			case 7:
-				m_Display(l);
-				break;
+struct ll_func {
+  void (*compute) (void *_ptr);
+  char key;
+  char *name;
+};
 
-			case 9:
-//				m_Printrev();
-				m_ReturnNthNode_From_End(l, 3);
-				break;
+static void print_all_functions();
 
-			case 10:
-				m_Freelist(l);
-				break;
-			case 11:
-			        m_Revlist(l);
-				break;
-			case 12:
-				printf("\nEnter the kth node to reverse \n");
-				scanf("%d", &val);
-				m_RevlistKthNode(l, val);
-					break;
-			case 13:
-				m_Sortlist(l);
-				break;
-		        default : {
-				printf("\nEnter the correct choice \n\n");
-				exit(0);
-			}
-		}
-	}
-	return 0;
+struct ll_func function_table[] = {
+  {
+    .compute = print_all_functions,
+    .key = '0',
+    .name = "Print Functions",
+  },
+  {
+    .compute = m_Addfirst,
+    .key = '1',
+    .name = "Add First",
+  },
+    {
+    .compute = m_Addlast,
+    .key = '2',
+    .name = "Add Last",
+  },
+  {
+    .compute = m_Delfirst,
+    .key = '3',
+    .name = "Delete First",
+  },
+  {
+    .compute = m_Freelist,
+    .key = '4',
+    .name = "Free List",
+  },
+  {
+    .compute = m_Revlist,
+    .key = '5',
+    .name = "Reverse Link List",
+  },
+  {
+    .compute = m_Display,
+    .key = '7',
+    .name = "Show"
+  },
+  {
+    .compute = m_RevlistKthNode,
+    .key = '8',
+    .name = "Reverse K'th Node Link List",
+  },
+  {
+    .compute = m_Sortlist,
+    .key = '9',
+    .name = "Sort Link List",
+  },
+  {
+    .compute = m_ReturnNthNode_From_End,
+    .key = 'a',
+    .name = "Return Nth Node From End",
+  },
+  {
+    .compute = m_RemoveDuplicateNodes,
+    .key = 'b',
+    .name = "Remove Duplicate Nodes",
+  },
+  {
+    .compute = m_SearchData,
+    .key = 'c',
+    .name = "Search Data in Link List",
+  },
+  {
+    .compute = quit,
+    .key = 'q',
+    .name = "Quit",
+  },
+};
+
+#define NUM_FUNCS (sizeof(function_table)/sizeof(struct ll_func))
+
+static void print_all_functions() {
+  int i;
+  for(i=0; i<NUM_FUNCS; i++) {
+    printf ("--> Press key %c for %s\n", function_table[i].key, function_table[i].name);
+  }
 }
 
+int main () {
+  int i = 0;
+  char cmd[20];
+  LIST *l, ll;
 
+  l = m_Init(&ll);
+
+  printf ("Welcome to simple LinkList 2.0 \n");
+  printf ("===================================\n");
+  print_all_functions();
+  printf ("===================================\n");
+
+  while(1) {
+    printf("Enter a command \n");
+    fgets(cmd, 20, stdin);
+
+    for(i=0; i<NUM_FUNCS; i++) {
+      if(function_table[i].key == cmd[0]) {
+	printf ("Calling command: %s \n", function_table[i].name);
+	function_table[i].compute(l);
+	break;
+      }
+    }
+  } // while Ends
+}

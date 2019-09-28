@@ -7,16 +7,31 @@
 ***/
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "list.h"
 
-LIST * m_Init (){
-  LIST *list;
+
+static int get_input(char *cmd) {
+  int res = 1;
+
+  printf ("Enter number! \n");
+
+  while(fgets (cmd, 20, stdin) && cmd[0] != '\n') {
+    res = atoi(cmd);
+    //    printf ("atoi=%d, cmd=%s \n", res, cmd);
+  }
+  return res;
+}
+
+LIST * m_Init (LIST *ll){
+  LIST *list = NULL;
+  memset((void *)ll, 0, sizeof(struct list_t));
   list = malloc (sizeof (LIST));
   list->head = NULL;
   return list;
 }
 
-LIST_NODE* m_CreateNodeL (int data){
+static LIST_NODE* m_CreateNodeL (int data){
         LIST_NODE *nn = NULL;
 	nn = (LIST_NODE*)malloc(sizeof (LIST_NODE *));
 	if (nn == NULL)
@@ -26,22 +41,46 @@ LIST_NODE* m_CreateNodeL (int data){
 	return nn;
 }
 
-void m_Addfirst(int data, void *ptr) {
+void m_Addfirst(void *ptr) {
   LIST *list = (LIST *)ptr;
-	LIST_NODE *nn = NULL;
-	nn = m_CreateNodeL (data);
-	nn->data = data;
-	if (NULL == list->head) {
- 	  list->head = (LIST *)nn;
-	  nn->next = NULL;
-	} else {
-	  LIST_NODE *trav;
-	  trav = (LIST_NODE *)list->head;
-	  while (trav->next != NULL)
-	    trav = trav->next;
-	  trav->next = nn;
-	  nn->next = NULL;
-	}
+  LIST_NODE *nn = NULL;
+  char cmd[20] = {0};
+  int data;
+
+  data = get_input(cmd);
+  nn = m_CreateNodeL (data);
+  nn->data = data;
+  if (NULL == list->head) {
+    list->head = (LIST *)nn;
+    nn->next = NULL;
+  } else {
+    LIST_NODE *trav;
+    trav = (LIST_NODE *)list->head;
+    nn->next = trav;
+    list->head = (LIST *)nn;
+  }
+}
+
+void m_Addlast(void *ptr) {
+  LIST *list = (LIST *)ptr;
+  LIST_NODE *nn = NULL;
+  char cmd[20] = {0};
+  int data;
+
+  data = get_input(cmd);
+  nn = m_CreateNodeL (data);
+  nn->data = data;
+  if (NULL == list->head) {
+    list->head = (LIST *)nn;
+    nn->next = NULL;
+  } else {
+    LIST_NODE *trav;
+    trav = (LIST_NODE *)list->head;
+    while (trav->next != NULL)
+      trav = trav->next;
+    trav->next = nn;
+    nn->next = NULL;
+  }
 }
 
 void m_Delfirst(void *ptr) {
@@ -97,7 +136,7 @@ void m_Revlist(void *ptr) {
   }
 }
 
-void m_RevlistKthNode(void *ptr, int k) {
+void m_RevlistKthNode(void *ptr) {
   LIST *ll = ptr;
   LIST_NODE *head = (LIST_NODE *)ll->head;
   LIST_NODE *trav;
@@ -105,6 +144,11 @@ void m_RevlistKthNode(void *ptr, int k) {
   LIST_NODE *start= head;
   head = NULL;
   int cnt = 0;
+  char cmd[20] = {0};
+  int k = 0;
+
+  k = get_input(cmd);
+
   if(k<1) {
     printf ("Cant reverse the list! \n");
     return;
@@ -143,6 +187,13 @@ void m_RevRec(NODE **head_ref) {
 }
 */
 
+static void swap (LIST_NODE *s, LIST_NODE *m) {
+  int temp;
+  temp = s->data;
+  s->data = m->data;
+  m->data = temp;
+}
+
 void m_Sortlist(void *_list) {
   int flag = 0;
   LIST *list = (LIST*)_list;
@@ -165,13 +216,6 @@ void m_Sortlist(void *_list) {
     start = start->next;
   }
   m_Display(_list);
-}
-
-void swap (LIST_NODE *s, LIST_NODE *m) {
-  int temp;
-  temp = s->data;
-  s->data = m->data;
-  m->data = temp;
 }
 
 /* Given only a pointer to a node to be deleted */
@@ -206,10 +250,15 @@ void m_Middlenode(void *ptr) {
   }
 }
 
-void m_ReturnNthNode_From_End(void *ptr, int NthNode) {
+void m_ReturnNthNode_From_End(void *ptr) {
   LIST *ll = (LIST *)ptr;
   LIST_NODE *p1 = NULL;
   LIST_NODE *p2 = NULL;
+  char cmd[20] = {0};
+  int NthNode = 0;
+
+  NthNode = get_input(cmd);
+
   p1 = p2 = (LIST_NODE *)ll->head;
 
   if (ll->head == NULL || NthNode < 1) {		
@@ -230,7 +279,7 @@ void m_ReturnNthNode_From_End(void *ptr, int NthNode) {
 }
 
 /* Middle Most Node of a Linked List */
-void m_RemoveDuplicesNodes(void *ptr) {
+void m_RemoveDuplicateNodes(void *ptr) {
   LIST *ll = (LIST *)ptr;
   LIST_NODE *prev = NULL;
   LIST_NODE *current = NULL;
@@ -255,6 +304,23 @@ void m_RemoveDuplicesNodes(void *ptr) {
   }
 }
 
+/* Our search should be able to tell us that 52 is
+ *  in the list. On the other hand, if we searched for 25, our search
+ *  should report that 25 is not in the list.
+ */
+void m_SearchData(void *ptr) {
+  LIST *ll = (LIST *)ptr;
+  LIST_NODE *current = (LIST_NODE *)ll->head;
+  char cmd[20] = {0};
+  int key = 0;
+
+  key = get_input(cmd);
+  while (current != NULL && current->data != key) {
+    printf ("Found Key = %d \n",current->data);
+  }
+  printf ("Key Not Found! \n");
+}
+
 void m_Display(void *ptr){
 	LIST *ll = (LIST *)ptr;
 	printf ("\n----------:: Output ::-----------\n");
@@ -270,6 +336,10 @@ void m_Display(void *ptr){
 		}
 	}
 	printf ("\n----------:: End ::-----------\n");
-	 m_Middlenode(ptr);
+	m_Middlenode(ptr);
 }
 
+void quit(void *_ptr) {
+  printf ("Good Bye! \n");
+  exit(0);
+}
