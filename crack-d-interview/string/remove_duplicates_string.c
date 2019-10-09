@@ -139,6 +139,10 @@ int main() {
 
 /*
  * removeDuplicates : Explaination
+=================================================================================
+ * 1. For each character, check if it is a duplicate of already found characters.
+ * 2. Skip duplicate characters and update the non duplicate characters.
+=================================================================================
 0  1  2  3  4  5
 [A][T][T][U][L][0]
 
