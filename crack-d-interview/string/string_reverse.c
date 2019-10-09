@@ -12,20 +12,20 @@
   In Place String Reverse 
 */
 void reverse(char *str) {
-	char * end = str;
-	char tmp;
+  char * end = str;
+  char tmp;
 
-	if (str) {
-		while (*end) {
-			++end;
-		}
-		--end;
-		while (str < end) {
-			tmp = *str;
-			*str++ = *end;
-			*end-- = tmp;
-		}
-	}
+  if (str) {
+    while (*end) {
+      ++end;
+    }
+    --end;
+    while (str < end) {
+      tmp = *str;
+      *str++ = *end;
+      *end-- = tmp;
+    }
+  }
 }
 
 char* string_reverse(char *str) {
