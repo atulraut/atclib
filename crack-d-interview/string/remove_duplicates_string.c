@@ -12,27 +12,27 @@
   From CrackCodingInterview :
 */
 char* removeDuplicates(char *str) {
-	int len, j, i, tail;
-	if (str == NULL)
-		return;
-	len = strlen(str);
-	if (len < 2)
-		return;
-	tail = 1;
-	for (i = 1; i < len; ++i) {
-		for (j = 0; j < tail; ++j) {
-			if (str[i] == str[j])
-			  break;
-		}
-		printf("--> i=%d j=%d tail=%d \n", i, j, tail);
-		if (j == tail) {
-			str[tail] = str[i];
-			++tail;
-		}
-	}
-	str[tail] = '\0';
-	printf ("--> o/p = %s \n", str);
-	return str;
+  int len, j, i, tail;
+  if (str == NULL)
+    return;
+  len = strlen(str);
+  if (len < 2)
+    return;
+  tail = 1;
+  for (i = 1; i < len; ++i) {
+    for (j = 0; j < tail; ++j) {
+      if (str[i] == str[j])
+	break;
+    }
+    printf("--> i=%d j=%d tail=%d \n", i, j, tail);
+    if (j == tail) {
+      str[tail] = str[i];
+      ++tail;
+    }
+  }
+  str[tail] = '\0';
+  printf ("--> o/p = %s \n", str);
+  return str;
 }
 
 char *removeDuplicateString(char *str) {
@@ -66,39 +66,39 @@ void sort_String_array (char *start, char *endstr) {
 	start[j+1] = temp;
       }
     }
-   }
+  }
   printf ("sort String = [%s] \n", start);
 }
 
 
 /* Function to remove duplicates in a sorted array */
 char *removeDupsSorted(char *str) {
-    int res_ind = 1, ip_ind = 1;
+  int res_ind = 1, ip_ind = 1;
 
-    /* In place removal of duplicate characters*/
-    while (*(str + ip_ind)) {
-      printf ("->%c \n", *(str + ip_ind));
-        if (*(str + ip_ind) != *(str + ip_ind - 1)) {
-            *(str + res_ind) = *(str + ip_ind);
-            res_ind++;
-        }
-        ip_ind++;
+  /* In place removal of duplicate characters*/
+  while (*(str + ip_ind)) {
+    printf ("->%c \n", *(str + ip_ind));
+    if (*(str + ip_ind) != *(str + ip_ind - 1)) {
+      *(str + res_ind) = *(str + ip_ind);
+      res_ind++;
     }
-    /* After above step string is efgkorskkorss.
-       Removing extra kkorss after string*/
-    *(str + res_ind) = '\0';
-    return str;
+    ip_ind++;
+  }
+  /* After above step string is efgkorskkorss.
+     Removing extra kkorss after string*/
+  *(str + res_ind) = '\0';
+  return str;
 }
 
 /* Function removes duplicate characters from the string
    This function work in-place and fills null characters
    in the extra space left */
 char *removeDups(char *str) {
-   int n = strlen(str);
-   // Sort the character array
-   sort_String_array(str, str+n);
-   // Remove duplicates from sorted
-   return removeDupsSorted(str);
+  int n = strlen(str);
+  // Sort the character array
+  sort_String_array(str, str+n);
+  // Remove duplicates from sorted
+  return removeDupsSorted(str);
 }
 
 /* Function removes duplicate characters from the string
@@ -113,9 +113,9 @@ char *removeDups2(char *str) {
   while (*(str + ip_ind)) {
     temp = *(str + ip_ind);
     if (bin_hash[temp] == 0) {
-        bin_hash[temp] = 1;
-        *(str + res_ind) = *(str + ip_ind);
-        res_ind++;
+      bin_hash[temp] = 1;
+      *(str + res_ind) = *(str + ip_ind);
+      res_ind++;
     }
     ip_ind++;
   }
@@ -138,9 +138,35 @@ int main() {
 }
 
 /*
-  0 1 2 3 4 5 6 7 8
-  a a t u l a t t t '\0'
-    r       r
-    i
-      i       i
+ * removeDuplicates : Explaination
+0  1  2  3  4  5
+[A][T][T][U][L][0]
+
+      i
+   j
+   T
+0  1  2  3  4  5
+[A][T][T][U][L][0]
+
+         i
+      j
+      T
+0  1  2  3  4  5
+[A][T][U][U][L][0]
+
+            i
+         j
+         T
+0  1  2  3  4  5
+[A][T][U][L][L][0]
+
+               i
+            j
+            T
+0  1  2  3  4  5
+[A][T][U][L][0][0]
+
+               i
+            j
+            T
 */
