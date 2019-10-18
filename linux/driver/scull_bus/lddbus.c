@@ -15,7 +15,7 @@
  * ls -la /sys/devices/ldd0/
  * ls -la /sys/bus/ldd/
  */
-/* $Id: lddbus.c,v 1.9 2004/09/26 08:12:27 gregkh Exp $ 
+/* $Id: lddbus.c,v 1.9 2004/09/26 08:12:27 gregkh Exp $
    Modify this driver to work with 3.* kernel.
 */
 
@@ -24,6 +24,7 @@
 #include <linux/kernel.h>
 #include <linux/init.h>
 #include <linux/string.h>
+#include <linux/fs.h>
 #include "lddbus.h"
 
 MODULE_AUTHOR("Jonathan Corbet");
@@ -36,6 +37,10 @@ static char *Version = "atclib-0.1";
 static int ldd_hotplug(struct device *dev, char **envp, int num_envp,
 		char *buffer, int buffer_size)
 {
+
+	if(!dev)
+		return -ENODEV;
+
 	envp[0] = buffer;
 	if (snprintf(buffer, buffer_size, "LDDBUS_VERSION=%s",
 			    Version) >= buffer_size)
