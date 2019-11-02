@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define HASH_MAP_SIZE 10
+
 typedef struct node {
         int data;
         struct node *next;
@@ -49,6 +50,7 @@ void print_all(int key) {
                 temp = temp->next;
         }
 }
+
 int get(int key) {
         is_valid_key_value(key);
         node *temp = hash_map[key];

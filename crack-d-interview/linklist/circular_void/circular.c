@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "list.h"
+#include "../lib/lib.h"
 
 LIST *init_list (void *_list) {
   _list = (LIST *) malloc (sizeof(LIST));
@@ -18,11 +19,16 @@ NODE *create_node (int _data) {
   nn->data = _data;
   nn->next = NULL;
   return nn;
-} 
+}
 
-void m_add (void *_list, int _data) {
+void m_Addfirst (void *_list) {
   LIST *list = (LIST *)_list;
   NODE *nn = NULL;
+  char cmd[20] = {0};
+  int _data;
+
+  _data = get_input(cmd);
+
   nn = create_node (_data);
   if (NULL == nn)
     return;
@@ -37,9 +43,9 @@ void m_add (void *_list, int _data) {
     trav->next = nn;
     nn->next = list->head;
   }
-} 
+}
 
-void m_display (void *_list) {
+void m_Display (void *_list) {
   LIST *list = (LIST *)_list;
   if (NULL == list->head) {
     printf ("List is Empty\n");
@@ -51,26 +57,26 @@ void m_display (void *_list) {
     trav = trav->next;
   }
   printf ("->[%d]\n", trav->data);
-  printf ("list->head = %p \n", list->head);  
+  printf ("list->head = %p \n", list->head);
 }
 
-void m_free (void *_list) {
+void m_Freelist (void *_list) {
   LIST *list = (LIST *)_list;
   NODE *temp = NULL;
   if (NULL == list->head) {
     printf ("Empty\n");
     return;
   }
-  printf ("list->head = %p \n", list->head);  
-  NODE *trav = list->head;  
+  printf ("list->head = %p \n", list->head);
+  NODE *trav = list->head;
   while (trav != NULL) {
     if (trav->next == list->head) { /*if only 1 node in list*/
       trav->next = NULL;
       free(trav);
       trav = NULL;
     } else {
-      printf ("list->head = %p \n", list->head);  
-      temp = trav; 
+      printf ("list->head = %p \n", list->head);
+      temp = trav;
       trav = trav->next;
       free(temp);
       temp = NULL;
@@ -79,7 +85,7 @@ void m_free (void *_list) {
   list->head = NULL;  /* make sure to clear head as it points to nothig here */
 }
 
-void m_Printrev(void *_list) {
+void m_Revlist(void *_list) {
   LIST *list = (LIST *)_list;
   NODE *temp = list->head;
   list->head = NULL;
@@ -94,3 +100,34 @@ void m_Printrev(void *_list) {
   temp->next = list->head;
 }
 
+void m_Addlast(void *_ptr) {
+  return;
+}
+
+void m_Delfirst(void *_ptr) {
+  return;
+}
+
+void m_Dellast(void *_ptr) {
+  return;
+}
+
+void m_RevlistKthNode(void *_ptr) {
+  return;
+}
+
+void m_Sortlist(void *_ptr) {
+  return;
+}
+//void m_DelNode(void *, LIST_NODE *);
+void m_ReturnNthNode_From_End(void *_ptr) {
+  return;
+}
+
+void m_RemoveDuplicateNodes(void *ptr) {
+  return;
+}
+
+void m_SearchData(void *ptr) {
+  return;
+}
