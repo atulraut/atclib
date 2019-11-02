@@ -14,9 +14,17 @@ typedef struct list_t {
 
 LIST *init_list (void *);
 NODE *create_node (int);
-void m_add (void *, int); 
-void m_display (void *);
-void m_free (void *);
-void m_Printrev(void *);
-
+void m_Addfirst (void *);
+void m_Display(void *);
+void m_Addlast(void *);
+void m_Delfirst(void *);
+void m_Dellast(void *);
+void m_Freelist(void *);
+void m_Revlist(void *);
+void m_RevlistKthNode(void *);
+void m_Sortlist(void *);
+//void m_DelNode(void *, LIST_NODE *);
+void m_ReturnNthNode_From_End(void *);
+void m_RemoveDuplicateNodes(void *ptr);
+void m_SearchData(void *ptr);
 #endif
