@@ -1,5 +1,6 @@
 /*
  * WAP for Insertion Sort
+ * Hanuman Ki Jai
  */
 #include <stdio.h>
 
@@ -25,7 +26,7 @@ int main() {
   printf("Insertion Sort!\n");
   int i, sz;
 
-  int list[] = {57, 48, 79, 65, 15, 33, 53};
+  int list[] = {7, 2, 4, 1, 5, 3};
   sz = sizeof(list)/sizeof(list[0]);
   printf("Original Array \n");
   for(i=0; i<sz; i++)
@@ -40,9 +41,23 @@ int main() {
 }
 
 /*
-  Insertion Sort!
-  Original Array
-  ->[57]->[48]->[79]->[65]->[15]->[33]->[53]
-  Sorted Array
-  ->[15]->[33]->[48]->[53]->[57]->[65]->[79]
+Divide Array into 2:
+--------------------
+Step 0:
+Sorted | Unsorted
+---------------------
+    |
+---------------------------
+  7 | 2 | 4 | 1 | 5 | 3 |
+---------------------------
+  0 | 1   2   3   4   5
+---------------------------
+Step 1: Pick 1st Element
+----------------------
+  1 | X | 5 | 2 | 9 |
+----------------------
+  0 | 1   2   3   4
+----------------------
+Value <-- 2
+-------------
 */

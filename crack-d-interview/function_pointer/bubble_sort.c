@@ -7,24 +7,24 @@
 #include <stdlib.h>
 #include <string.h>
 
-int (*cmpfunc)(int*, int, int); 
-void (*swapfunc)(int *, int, int); 
+int (*cmpfunc)(int*, int, int);
+void (*swapfunc)(int *, int, int);
 
-void bubblesort(void* A, int n, int (*cmpfunc)(int *a, int b, int c), void(*swapfunc)(int *a, int b, int c)) { 
-  int i, j; 
-  for (i=0; i<n-1;i++) 
-    for (j=0; j<n-i-1;j++) 
-      if ( (*cmpfunc)(A,j,j+1) > 0) 
-	(*swapfunc)(A,j,j+1); 
-} 
+void bubblesort(void* A, int n, int (*cmpfunc)(int *a, int b, int c), void(*swapfunc)(int *a, int b, int c)) {
+  int i, j;
+  for (i=0; i<n-1;i++)
+    for (j=0; j<n-i-1;j++)
+      if ( (*cmpfunc)(A,j,j+1) > 0)
+	(*swapfunc)(A,j,j+1);
+}
 
-int intcomp(int A[],int i, int j) { 
-  return (A[i]-A[j]); 
-} 
-void intswap(int A[], int i, int j) { 
-  int temp = A[i]; 
-  A[i] = A[j]; 
-  A[j] = temp; 
+int intcomp(int A[],int i, int j) {
+  return (A[i]-A[j]);
+}
+void intswap(int A[], int i, int j) {
+  int temp = A[i];
+  A[i] = A[j];
+  A[j] = temp;
 }
 
 int main () {
