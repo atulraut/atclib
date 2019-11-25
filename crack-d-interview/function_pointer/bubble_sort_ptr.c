@@ -7,24 +7,24 @@
 #include <stdlib.h>
 #include <string.h>
 
-int (*cmpfunc)(int *, int *); 
-void (*swapfunc)(int *, int *); 
+int (*cmpfunc)(int *, int *);
+void (*swapfunc)(int *, int *);
 
 void bubblesort(int* A, int n, int (*cmpfunc)(int *a, int *b), void(*swapfunc)(int *a, int *b)) {
-  int i, j; 
-  for (i=0; i<n-1;i++) 
-    for (j=0; j<n-i-1;j++) 
-      if ( (*cmpfunc)(&A[j],&A[j+1]) > 0) 
-	(*swapfunc)(&A[j],&A[j+1]); 
-} 
+  int i, j;
+  for (i=0; i<n-1;i++)
+    for (j=0; j<n-i-1;j++)
+      if ( (*cmpfunc)(&A[j],&A[j+1]) > 0)
+	(*swapfunc)(&A[j],&A[j+1]);
+}
 
-int intcomp(int *i, int *j) { 
-  return (*i-*j); 
-} 
-void intswap(int *i, int *j) { 
-  int temp = *i; 
-  *i = *j; 
-  *j = temp; 
+int intcomp(int *i, int *j) {
+  return (*i-*j);
+}
+void intswap(int *i, int *j) {
+  int temp = *i;
+  *i = *j;
+  *j = temp;
 }
 
 int main () {
