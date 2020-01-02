@@ -39,30 +39,10 @@ struct msg {
 static struct msg *ntb_lib_list_rm(/*spinlock_t *lock,*/
 				   struct msg *this_head)
 {
-  //  struct msg *ms = NULL;
-  //	struct ntb_queue_entry *entry;
-  //	unsigned long flags;
-  //  pr_debug("[%s]  called. L=%d !\n", __func__, __LINE__);
-  //	spin_lock_irqsave(lock, flags);
-  /*if (list_empty(&(this_head->m_list_head))) {
-    pr_err ("[%s] <ATUL CHECK> Empty List! L=%d \n", __func__, __LINE__);
-    this_head = NULL;
-    goto out;
-  } */
-  /*ms = list_first_entry(this_head, struct msg, m_list_head);
-  if (NULL != ms)
-      list_del(&ms->m_list_head);
- */
   if(this_head) {
     list_del(&this_head->m_list_head);
   }
   return this_head;
-  //out:
-  //	spin_unlock_irqrestore(lock, flags);
-
-  //  return ms;
-  // out:
-  //  return NULL; 
 }
 
 static struct msg* ntb_lib_deque(struct msg *msg_list)
@@ -101,39 +81,10 @@ static int ntb_lib_exch_send_sync(struct msg *start) {
     pr_err ("[%s] Dequeue Data is NULL Returning L=%d\n", __func__,  __LINE__);
     return -1;
   }
-  //  list_for_each_entry_safe(start, temp,  &msg_list.m_list_head, m_list_head) {
     for (i=0,j=0; i<MAX-1; i++, j+=4) {
       iptr = (start->data)+j;
       pr_err ("[%s] Dequeue Data = [%d] L=%d\n", __func__, *iptr, __LINE__);
     }
-    //  }
-	
-  /*
-    status = 0; 
-
-    cmd = spad_read(ntb, pidx, CMD_SPAD = 0); 
-
-    read_lock(cmd_lock); 
-
-    if (get_seq(cmd_cache) != get_ack(cmd)) 
-    status = -EAGAIN; 
-
-    read_unlock(cmd_lock); 
-
-    if (status) 
-    return status; 
-
-    peer_spad_write(ntb, pidx, 1, to_u32(msg->data[3])); 
-    peer_spad_write(ntb, pidx, 2, to_u32(msg->data[3 + 4])); 
-    ... 
-
-    write_lock(cmd_lock); 
-    cmd_cache = seq_invert_clear_data(cmd_cache) | three_bytes_to_u32(msg->data); 
-    peer_spad_write(ntb, pidx, CMD_SPAD, cmd_cache); 
-    write_unlock(cmd_lock); 
-
-    peer_db_set(CMD_DB); 
-  */
   return 0; 
 } 
 
@@ -161,26 +112,6 @@ static void at_deliver_work(void) {
       }
     }
   }
-  //  for_each_port_index(pidx) { 
-  //    for_each_msg_safe(ntb, pidx, msg) { 
-  //      spin_lock(queue(ntb, pidx).lock); 
-  //      dequeue(ntb, pidx, msg); 
-  //      spin_unlock(queue(ntb, pidx).lock); 
-
-  //  rc = ntb_lib_exch_send_sync(new_msg, data, len); 
-  //      if (!rc) //{ o
-  //	kfree(data); 
-  //    free(nn->head);
-  //      } else { 
-  //	spin_lock(queue(ntb, pidx).lock); 
-  //	enqueue(ntb, pidx, msg); 
-  //	spin_unlock(queue(ntb, pidx).lock); 
-  //      } 
-  //   } 
-  //  } 
-
-  //  if (queues aren't empty) 
-  //        schedule_delayed_work(deliver_work, CMD_DELAY); 
 }
 
 static struct msg* create_node(void *data, int len) {
