@@ -18,8 +18,8 @@
 #include <stdbool.h>
 
 struct stateType {
-  bool visit:1;
-  int freq:31;
+  bool visit:1;    /* visit has value between less than 10, so 1 bits is used to store value in memory */
+  int freq:31;     /* 2^31 - Holds value 2,147,483,648 so 31 bits is used to store value in memory */
 };
 
 bool uniqueOccurrences(int *arr, int arrSize) {
@@ -50,8 +50,8 @@ bool uniqueOccurrences(int *arr, int arrSize) {
       continue;
 
     for(j=i+1; ans && j<arrSize; ++j) {
+      printf ("i=%d j=%d i.f=%d j.f=%d diff=%d\n",i,j, (state[i].freq), (state[j].freq), (state[i].freq != state[j].freq));
       ans = (state[i].freq != state[j].freq);
-      printf ("ans = %d \n", ans);
     } // j for loop ends
   } // i for loop ends
 
@@ -63,7 +63,7 @@ int main () {
   int arr[] = {1,2,2,1,1,3};
   //int arr[] = {1,2};
   //int arr[] = {-3,0,1,-3,1,1,1,-3,10,0};
-  //int arr[] = {-4, 3, 3};
+  //int arr[] = {2, 2, 3};
   int sz = (sizeof(arr))/(sizeof(arr[0]));
   printf ("sz = %d \n", sz);
   bool ans = uniqueOccurrences(arr, sz);
