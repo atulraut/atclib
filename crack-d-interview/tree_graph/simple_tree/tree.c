@@ -75,6 +75,16 @@ void m_inorder(void *_root) {
 	m_inorder(nn->right);
 }
 
+struct tree_node* searchBST_LeetCode(struct tree_node* root, int val) {
+	if (!root || root->data == val)
+		return root;
+
+	if (root->data < val)
+		return searchBST_LeetCode(root->right, val);
+	else
+		return searchBST_LeetCode(root->left, val);
+}
+
 void m_search(void *_root, int val) {
 	tree_node *nn = (tree_node *)_root;
 	tree_node *trav = NULL;
@@ -180,7 +190,7 @@ int maxDepth(void* _root) {
 }
 
 /*
- * Write a C program to create a mirror copy of a tree 
+ * Write a C program to create a mirror copy of a tree
  * (left nodes become right and right nodes become left)!
  */
 
@@ -214,7 +224,7 @@ tree_node *copy(void *_root)
 }
 
 /*
- * Write C code to check if a given binary tree is a binary 
+ * Write C code to check if a given binary tree is a binary
  * search tree or not?
  */
 int isThisABST(void* _root)
