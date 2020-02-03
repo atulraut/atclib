@@ -51,13 +51,13 @@ void m_Addfirst(void *ptr) {
   nn = m_CreateNodeL (data);
   nn->data = data;
   if (NULL == list->head) {
-    list->head = (LIST *)nn;
+    list->head = (LIST_NODE *)nn;
     nn->next = NULL;
   } else {
     LIST_NODE *trav;
     trav = (LIST_NODE *)list->head;
     nn->next = trav;
-    list->head = (LIST *)nn;
+    list->head = (LIST_NODE *)nn;
   }
 }
 
@@ -71,7 +71,7 @@ void m_Addlast(void *ptr) {
   nn = m_CreateNodeL (data);
   nn->data = data;
   if (NULL == list->head) {
-    list->head = (LIST *)nn;
+    list->head = (LIST_NODE *)nn;
     nn->next = NULL;
   } else {
     LIST_NODE *trav;
@@ -95,8 +95,8 @@ void m_Delfirst(void *ptr) {
 			temp = NULL;
 		}
 		else {
-			temp = (LIST_NODE *)ll->head;			
-			ll->head = (LIST *)temp->next;		
+			temp = (LIST_NODE *)ll->head;
+			ll->head = (LIST_NODE *)temp->next;
 			free (temp);
 			temp = NULL;
 		}				
@@ -131,7 +131,7 @@ void m_Revlist(void *ptr) {
     trav = temp->next;
     temp->next = head;
     head = temp;
-    ll->head = (LIST *)head;
+    ll->head = (LIST_NODE *)head;
     temp = trav;
   }
 }
@@ -159,7 +159,7 @@ void m_RevlistKthNode(void *ptr) {
     trav = temp->next;
     temp->next = head;
     head = temp;
-    ll->head = (LIST *)head;
+    ll->head = (LIST_NODE *)head;
     temp = trav;
     cnt++;
   }
@@ -211,8 +211,10 @@ void m_Sortlist(void *_list) {
        }
        trav = trav->next;
     }
-    if(flag)
+    if(flag) {
       swap (start, min);
+      flag = 0; // Reset the flag
+    }
     start = start->next;
   }
   m_Display(_list);

@@ -7,7 +7,7 @@ typedef struct list_n {
 } LIST_NODE;
 
 typedef struct list_t {
-  struct list_t *head;
+  struct list_n *head;
 } LIST;
 
 int counter;
