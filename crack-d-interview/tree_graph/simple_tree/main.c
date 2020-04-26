@@ -1,6 +1,8 @@
 /*
+* Copyright (c) 2013-2020, The ReRam Foundation. All rights reserved.
+* GPL-2.0-only
 * Aim 	 : Simple tree implementation
-* Author : Atul Ramesh Raut
+* Author : Atul Raut
 * Date   : Thursday August 3, 2013. 12:31PM
 * File   : main.c
 *
@@ -13,7 +15,7 @@
 int main() {
     int ch, val;
     tree_node *root = NULL;
-    root = create_node(45);
+    root = create_node(1);
     printf ("---------------------------------------------------");    
     printf("\nEnter to the world of Atul Raut's Programing:\n");
     printf ("---------------------------------------------------");
@@ -33,18 +35,15 @@ int main() {
 			case 0:
 				exit(0);
 			case 1:
-				printf("\nJust Press Enter KEY : \n");
+			  //printf("\nJust Press Enter KEY : \n");
 				//scanf("%d", &val);
 //				m_add (nw_list, val);
-				m_insert(root, 39);
-				m_insert(root, 56);
-				m_insert(root, 12);
-				m_insert(root, 10);
-				m_insert(root, 34);
-				m_insert(root, 54);
-				printf ("root       =%p \n", root);
-				printf ("root->left =%p \n", root->left);
-				printf ("root->right=%p \n", root->right);
+				m_insert(root, 2);
+				m_insert(root, 3);
+				m_insert(root, 4);
+				m_insert(root, 5);
+				m_insert(root, 6);
+				m_insert(root, 7);
 				break;
 /*
 			case 2:
@@ -75,9 +74,10 @@ int main() {
 			case 7:
 //				m_display(nw_list);
 				m_preorder(root);
-			printf("\nTree_height--> %dn",tree_height(root));
-			printf("\nminValue--> %dn", minValue(root));
-		        tree_node *root_new = NULL;
+				//			printf("\nTree_height--> %dn",tree_height(root));
+				//			printf("\nminValue--> %dn", minValue(root));
+		tree_node *root_new = NULL;
+/*
 			root_new = create_node(5);
 			root_new = mirror_copy(root);
 			printf ("\n mirror_copy --> \n");
@@ -87,6 +87,7 @@ int main() {
 			printf ("\nNew Copy Tree -->");
 			m_preorder(root_new);
 			printf ("\n isThisABST = %d\n", isThisABST(root_new));
+*/
 				break;
 /*
 			case 9:

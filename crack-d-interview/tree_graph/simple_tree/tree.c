@@ -18,12 +18,10 @@ void m_insert (void *_root, int val) {
 	tree_node *nn = NULL;	
 	tree_node *trav=NULL;
 	tree_node *parent_trav=NULL;
-	printf ("at max = %d \n", max (14,5));
+	//printf ("at max = %d \n", max (14,5));
 	nn = create_node (val);
 	nn->data = val;
-	nn->left = NULL;
-	nn->right= NULL;
-	printf ("1. ATUL trav=%p, val=[%d] \n", nn, val);
+	printf ("ATUL trav=%p, val=[%d] \n", nn, val);
 	if (NULL == rt) {
 		rt = nn;
 		rt->left = NULL;
@@ -34,29 +32,29 @@ void m_insert (void *_root, int val) {
 		while (NULL != trav) {
 			parent_trav = trav;
 			if (val < trav->data) {
-			  //printf ("trav->data=%d\n", trav->data);
+			  printf ("L:: trav->data=%d\n", trav->data);
 				trav = trav->left;
 			} else {
-			  //printf ("trav->data=%d\n", trav->data);
+			  printf ("R:: trav->data=%d\n", trav->data);
 				trav = trav->right;
 			}
 		}
 		if (val < parent_trav->data) {
 			parent_trav->left = nn;
-			//printf ("parent_trav->left =%p \n", parent_trav->left);
+			printf ("parent_trav->left =%p \n", parent_trav->left);
 		}
 		else {
 			parent_trav->right= nn;
-			//printf ("parent_trav->right =%p \n", parent_trav->right);
+			printf ("parent_trav->right =%p \n", parent_trav->right);
 		}
 	}
-	printf ("root->left =%p \n", rt->left);
-	printf ("root->right=%p \n", rt->right);
+	//printf ("root->left =%p \n", rt->left);
+	//printf ("root->right=%p \n", rt->right);
 }
 
 void m_preorder(void *_root) {
 	tree_node *nn = (tree_node *)_root;
-	printf ("\n m_inoder-> \n");
+	printf ("\n m_inoder-> ");
 	printf ("->[%d]", nn->data);
 	if(nn == NULL)
 		return;
