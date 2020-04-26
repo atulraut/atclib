@@ -1,6 +1,7 @@
 /*
   Design an algorithm and write code to remove the duplicate characters
   in a string without using any additional buffer.
+  Date : 03/15/2020, Sunday, SD, CA, USA
 */
 #include<stdio.h>
 #include <string.h>
@@ -11,13 +12,13 @@
 /*
   From CrackCodingInterview :
 */
-char* removeDuplicates(char *str) {
+char* atclib_removeDuplicates(char *str) {
   int len, j, i, tail;
   if (str == NULL)
-    return;
+    return NULL;
   len = strlen(str);
   if (len < 2)
-    return;
+    return NULL;
   tail = 1;
   for (i = 1; i < len; ++i) {
     for (j = 0; j < tail; ++j) {
@@ -30,7 +31,9 @@ char* removeDuplicates(char *str) {
       ++tail;
     }
   }
-  str[tail] = '\0';
+  printf("--> i=%d j=%d tail=%d \n", i, j, tail);
+  while (tail < len)
+    str[tail++] = '\0';
   printf ("--> o/p = %s \n", str);
   return str;
 }
@@ -133,7 +136,7 @@ int main() {
   //printf("%s", removeDups2(str));
   //printf("--> %s \n", removeDupsSorted(str));
   //printf("-> %s \n", removeDuplicateString(str));
-  printf("-> %s \n", removeDuplicates(str));
+  printf("-> %s \n", atclib_removeDuplicates(str));
   return 0;
 }
 
