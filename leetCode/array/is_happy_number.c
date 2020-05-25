@@ -118,7 +118,7 @@ int isHappy(int n) {
     if(1 == val)
       return 1;
     else if ( (v=lookup(t, val)) != -1 || (v=lookup(t, val)) == val) {
-      printf ("[%s] --> OOPs Returning v=%d val=%d \n", __func__, v, val);
+      printf ("[%s] --> Detected Loop, Returning v=%d val=%d \n", __func__, v, val);
       return -1;
     }
     /* Push Element into HashMap, but we make sure before pushing any number

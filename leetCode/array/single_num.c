@@ -31,6 +31,7 @@ int singleNumber(int* nums, int numsSize){
 
         for(i=0; i<numsSize; i++) {
                 results ^=  nums[i];
+		printf ("[%s] --> i=%d results=%d \n",__func__, i, results);
         }
         return results;
 }
