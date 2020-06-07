@@ -1,6 +1,6 @@
 /*
-* Aim :  Create Singly Link List
-* Date : July-29-2016
+* Aim :  LeetCode: Min Stack
+* Date : June-03-2020 WednesDay
 *
 ***/
 
@@ -11,13 +11,13 @@
 #include <string.h>
 #include "list.h"
 
-truct ll_func {
-  void (*compute) (void *_ptr);
+struct ll_func {
+  int (*compute) (void *_ptr, int);
   char key;
   char *name;
 };
 
-static void print_all_functions();
+static int print_all_functions(void *_ptr);
 
 struct ll_func function_table[] = {
   {
@@ -26,59 +26,34 @@ struct ll_func function_table[] = {
     .name = "Print Functions",
   },
   {
-    .compute = m_Addfirst,
+    .compute = push,
     .key = '1',
-    .name = "Add First",
+    .name = "Push Element",
   },
     {
-    .compute = m_Addlast,
+    .compute = pop,
     .key = '2',
-    .name = "Add Last",
+    .name = "Pop Element",
   },
   {
-    .compute = m_Delfirst,
+    .compute = topElement,
     .key = '3',
-    .name = "Delete First",
+    .name = "Top Element",
   },
   {
-    .compute = m_Freelist,
+    .compute = isEmpty,
     .key = '4',
-    .name = "Free List",
+    .name = "Is Empty",
   },
   {
-    .compute = m_Revlist,
+    .compute = getMin,
     .key = '5',
-    .name = "Reverse Link List",
+    .name = "Get Min",
   },
   {
     .compute = m_Display,
     .key = '7',
     .name = "Show"
-  },
-  {
-    .compute = m_RevlistKthNode,
-    .key = '8',
-    .name = "Reverse K'th Node Link List",
-  },
-  {
-    .compute = m_Sortlist,
-    .key = '9',
-    .name = "Sort Link List",
-  },
-  {
-    .compute = m_ReturnNthNode_From_End,
-    .key = 'a',
-    .name = "Return Nth Node From End",
-  },
-  {
-    .compute = m_RemoveDuplicateNodes,
-    .key = 'b',
-    .name = "Remove Duplicate Nodes",
-  },
-  {
-    .compute = m_SearchData,
-    .key = 'c',
-    .name = "Search Data in Link List",
   },
   {
     .compute = quit,
@@ -89,33 +64,36 @@ struct ll_func function_table[] = {
 
 #define NUM_FUNCS (sizeof(function_table)/sizeof(struct ll_func))
 
-static void print_all_functions() {
+static int print_all_functions(void *_ptr) {
   int i;
   for(i=0; i<NUM_FUNCS; i++) {
     printf ("--> Press key %c for %s\n", function_table[i].key, function_table[i].name);
   }
+  return 0;
 }
 
 int main () {
+  stack *sptr = NULL;
+  stack s;
   int i = 0;
   char cmd[20];
-  LIST *l, ll;
+  static int j = 1;
 
-  l = m_Init(&ll);
+  sptr = m_init(&s, STACK_SZ);
 
   printf ("Welcome to simple LinkList 2.0 \n");
   printf ("===================================\n");
-  print_all_functions();
+  print_all_functions(sptr);
   printf ("===================================\n");
 
   while(1) {
-    printf("Enter a command \n");
+    printf("Enter a command to Choose Operation! \n");
     fgets(cmd, 20, stdin);
 
     for(i=0; i<NUM_FUNCS; i++) {
       if(function_table[i].key == cmd[0]) {
-	printf ("Calling command: %s \n", function_table[i].name);
-	function_table[i].compute(l);
+	printf ("Calling Function:-> %s \n", function_table[i].name);
+	function_table[i].compute(sptr, (j++ * 20));
 	break;
       }
     }

@@ -9,7 +9,23 @@
 #include <string.h>
 
 /*
-  In Place String Reverse 
+  Optimise 32ms
+*/
+void reverseString(char* s, int sSize){
+    int len = sSize/2;
+    char c;
+
+    for (int i=0; i<len; i++) {
+        c = s[sSize-1-i];
+        s[sSize-1-i] = s[i];
+        s[i] = c;
+    }
+
+    printf("\n Reverse String --> %s \n", s);
+}
+
+/*
+  In Place String Reverse
 */
 void reverse(char *str) {
   char * end = str;

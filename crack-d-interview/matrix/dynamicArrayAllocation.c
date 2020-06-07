@@ -5,28 +5,6 @@
 #define c 3
 #define DEBUG 0
 
-int **getDynamicArray(int, int);
-int getDy(int ***, int, int);
-void rotate90 ();
-
-int main () {
-  int row, col, i, j, ret;
-  int **arr;
-  row = r; col = c;
-  if(DEBUG)
-    arr = getDynamicArray(row, col);
-  else
-    ret = getDy(&arr, row, col);
-  for (i=0; i<row; i++) {
-    for (j=0; j<col; j++) {
-      arr[i][j] = i+j;
-      printf ("arr[%d][%d] = |%d| ",i,j, arr[i][j]);
-    }
-    printf ("\n");
-  }
-  return 0;
-}
-
 int **getDynamicArray(int row, int col) {
   int i, j;
   int **ar;
@@ -49,4 +27,22 @@ int getDy(int ***ar, int row, int col) {
     return 0;
   else
     return 1;
+}
+
+int main () {
+  int row, col, i, j, ret;
+  int **arr;
+  row = r; col = c;
+  if(DEBUG)
+    arr = getDynamicArray(row, col);
+  else
+    ret = getDy(&arr, row, col);
+  for (i=0; i<row; i++) {
+    for (j=0; j<col; j++) {
+      arr[i][j] = i+j;
+      printf ("arr[%d][%d] = |%d| ",i,j, arr[i][j]);
+    }
+    printf ("\n");
+  }
+  return 0;
 }
