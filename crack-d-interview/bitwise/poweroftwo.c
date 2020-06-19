@@ -15,7 +15,9 @@ unsigned int powerOfTwo(unsigned int num) {
   printf ("1. --> %d \n", (num & (num - 1)));
   printf ("2. --> %d \n", !(num & (num - 1)));
 
-  return (num && !(num & (num - 1)));
+  // return (num && !(num & (num - 1)));
+  return num > 0 && !(num & (num - 1));  /* Leet Code */
+
 }
 
 /* function to check if num is power of 2*/
