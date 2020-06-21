@@ -18,6 +18,7 @@ void m_preorder(void *);
 void m_insert(void *, int);
 void m_insert(void *, int);
 void m_search(void *, int);
+int diameterOfBinaryTree(struct tree_node* root);
 struct tree_node* searchBST_LeetCode(struct tree_node* root, int val);
 void m_delete_tree(void *);
 
