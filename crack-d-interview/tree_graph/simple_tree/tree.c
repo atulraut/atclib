@@ -73,14 +73,56 @@ void m_inorder(void *_root) {
 	m_inorder(nn->right);
 }
 
-struct tree_node* searchBST_LeetCode(struct tree_node* root, int val) {
-	if (!root || root->data == val)
-		return root;
+/***
+ * LeetCode : Diameter of Binary Tree
+ * https://leetcode.com/explore/featured/card/30-day-leetcoding-challenge/529/week-2/3293/
+ *        1
+         / \
+        2   3
+       / \
+      4   5
+ * Return 3, which is the length of the path [4,2,1,3] or [5,2,1,3].
+ */
+int max;
 
-	if (root->data < val)
-		return searchBST_LeetCode(root->right, val);
-	else
-		return searchBST_LeetCode(root->left, val);
+int preorder(struct tree_node *node) {
+    int ld, rd, dia;
+
+    if (!node)
+        return 0;
+    ld = preorder(node->left);
+    rd = preorder(node->right);
+
+    dia = ld + rd + 1;
+    if (dia > max)
+        max = dia;
+
+    return ((ld>rd) ? ld+1 : rd+1);
+}
+
+
+int diameterOfBinaryTree(struct tree_node* root) {
+    int x;
+
+    if (!root)
+        return 0;
+    max=0;
+    x= preorder(root);
+    return ((x>max) ? x-1 : max-1);
+}
+
+struct tree_node* searchBST_LeetCode(struct tree_node* root, int val){
+
+  if(root == NULL) {
+      return NULL;
+  }
+
+  if(val < root->data) {
+      return searchBST_LeetCode(root->left, val);
+  } else if(val > root->data) {
+      return searchBST_LeetCode(root->right, val);
+  }
+  return root;
 }
 
 void m_search(void *_root, int val) {
