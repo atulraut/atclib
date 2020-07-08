@@ -12,6 +12,7 @@
 
 #include<stdio.h>
 #include<stdlib.h>
+#include <string.h>
 #define bool int
 
 /* structure of a stack node */
@@ -35,6 +36,23 @@ bool isMatchingPair(char character1, char character2) {
      return 1;
    else if (character1 == '[' && character2 == ']')
      return 1;
+   if (character1 == '(' && character2 == '*') {
+     return 1;
+   }
+   else if (character1 == '{' && character2 == '*')
+     return 1;
+   else if (character1 == '[' && character2 == '*')
+     return 1;
+   if (character1 == '*' && character2 == ')') {
+     printf ("[%s] Enter L=%d \n", __func__, __LINE__);
+     return 1;
+   }
+   else if (character1 == '*' && character2 == '}')
+     return 1;
+   else if (character1 == '*' && character2 == ']')
+     return 1;
+   //else if (character1 == '*' && character2 == '*')
+   //  return 1;
    else
      return 0;
 }
@@ -49,7 +67,7 @@ bool areParenthesisBalanced(char exp[]) {
    /* Traverse the given expression to check matching parenthesis */
    while (exp[i])    {
       /*If the exp[i] is a starting parenthesis then push it*/
-      if (exp[i] == '{' || exp[i] == '(' || exp[i] == '[')
+      if (exp[i] == '{' || exp[i] == '(' || exp[i] == '[' || exp[i] == '*')
         push(&stack, exp[i]);
 
       /* If exp[i] is an ending parenthesis then pop from stack and
@@ -60,6 +78,8 @@ bool areParenthesisBalanced(char exp[]) {
          if (stack == NULL)
            return 0;
 
+	 else if(exp[i] == '*' && strlen(exp) % 2 != 0 )
+	   continue;
          /* Pop the top element from stack, if it is not a pair
             parenthesis of character then there is a mismatch.
             This happens for expressions like {(}) */
@@ -80,7 +100,9 @@ bool areParenthesisBalanced(char exp[]) {
 /* UTILITY FUNCTIONS */
 /*driver program to test above functions*/
 int main() {
-  char exp[100] = "{()}[]";
+  //char exp[] = "{(*)}[]";
+  char exp[] = "(*))";
+  //char exp[] = "(*)";
   if (areParenthesisBalanced(exp))
     printf("Balanced \n");
   else

@@ -49,7 +49,7 @@ void helper(int** result, int size, int* people) {
  * Note: Both returned array and *columnSizes array must be
  * malloced, assume caller calls free().
  */
-int** reconstructQueue(int** people, int peopleSize, int* peopleColSize,
+int** reconstructQueue(int (*people)[2], int peopleSize, int* peopleColSize,
 		       int* returnSize, int** returnColumnSizes) {
 
     int** result = (int**)malloc(peopleSize*sizeof(int*));
@@ -91,7 +91,7 @@ int **getDynamicArray(int row, int col) {
 }
 
 int main() {
-  int arr[6][2] = {
+  int people[6][2] = {
     {7,0},
     {4,4},
     {7,1},
@@ -106,11 +106,11 @@ int main() {
   int  returnSize;
   int** returnColumnSizes;
 
-  int **people = getDynamicArray(6, 2);
+  int **people2 = getDynamicArray(6, 2);
 
   for (i=0; i<row; i++) {
     for (j=0; j<col; j++) {
-      people[i][j] = rand() % 10;
+      people2[i][j] = rand() % 10;
       printf ("Input[%d][%d] = |%d| | \t",i,j, people[i][j]);
     }
     printf ("\n");
@@ -118,12 +118,12 @@ int main() {
   peopleSize = 6;
   peopleColSize = 2;
 
- people = reconstructQueue(people, peopleSize, &peopleColSize,
+ people2 = reconstructQueue(people, peopleSize, &peopleColSize,
 			 &returnSize, returnColumnSizes);
 
  for (i=0; i<row; i++) {
     for (j=0; j<col; j++) {
-      printf ("Output[%d][%d] = |%d| | \t",i,j, people[i][j]);
+      printf ("Output[%d][%d] = |%d| | \t",i,j, people2[i][j]);
     }
     printf ("\n");
   }

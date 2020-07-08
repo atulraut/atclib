@@ -48,7 +48,7 @@ struct person {
 };
 
 /*Approch I:  4ms Solution*/
-int twoCitySchedCost(int** costs, int costsSize, int* costsColSize) {
+int twoCitySchedCost(int (*costs)[2], int costsSize, int* costsColSize) {
   struct person* head;
   struct person* ptr;
   struct person* new_node;
@@ -139,20 +139,13 @@ int main () {
 
   for (i=0; i<row; i++) {
     for (j=0; j<col; j++) {
-      arr[i][j] = rand() % 50;//i + d  + j + c;
+      arr[i][j] = rand() % 50;
       printf ("arr[%d][%d] = |%d| | \t",i,j, arr[i][j]);
     }
     printf ("\n");
   }
-  /*
-  arr[4][2] = {
-		 {10,20},
-		 {30,200},
-		 {400,50},
-		 {30,20},
-  };
-  */
-  Output =  twoCitySchedCost(arr, costsSize, &costsColSize);
+
+  Output =  twoCitySchedCost(costs, costsSize, &costsColSize);
   printf ("Output --> %d \n", Output);
 
   return 0;
