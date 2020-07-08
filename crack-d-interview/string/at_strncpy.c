@@ -9,6 +9,27 @@
 
 /*< Atul Finish >*/
 
+/**
+ * strlcpy - Copy a C-string into a sized buffer
+ * @dest: Where to copy the string to
+ * @src: Where to copy the string from
+ * @size: size of destination buffer
+ *
+ * Compatible with ``*BSD``: the result is always a valid
+ * NUL-terminated string that fits in the buffer (unless,
+ * of course, the buffer size is zero). It does not pad
+ * out the result like strncpy() does.
+ */
+size_t strlcpy(char *dest, const char *src, size_t size) {
+        size_t ret = strlen(src);
+        if (size) {
+                size_t len = (ret >= size) ? size - 1 : ret;
+                memcpy(dest, src, len);
+                dest[len] = '\0';
+        }
+        return ret;
+}
+
 /*< 
  *   The `strncpy' function copies not more than `n' characters (characters
  *   that follow a null character are not copied) from the array pointed to
@@ -45,6 +66,27 @@ int at_strncmp(const char *s1, const char *s2, size_t n) {
       return *(unsigned char *)(save1-1) - *(unsigned char *)(save2-1);
   }
   return 0;
+}
+
+/**
+ * strlcat - Append a length-limited, C-string to another
+ * @dest: The string to be appended to
+ * @src: The string to append to it
+ * @count: The size of the destination buffer.
+ */
+size_t strlcat(char *dest, const char *src, size_t count) {
+        size_t dsize = strlen(dest);
+        size_t len = strlen(src);
+        size_t res = dsize + len;
+        /* This would be a bug */
+        BUG_ON(dsize >= count);
+        dest += dsize;
+        count -= dsize;
+        if (len >= count)
+                len = count-1;
+        memcpy(dest, src, len);
+        dest[len] = 0;
+        return res;
 }
 
 char* at_strncat(char *dest, char *src, size_t n) {
