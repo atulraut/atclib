@@ -4,6 +4,9 @@
  * In little endian machines, last byte of binary representation of the multibyte
  * data-type is stored first. On the other hand, in big endian machines,
  * first byte of binary representation of the multibyte data-type is stored first.
+ * Little endian: Lower byte is stored on lower address.
+ * Big endian: Lower byte is stored on higher address.
+
 */
 
 #include <stdio.h>

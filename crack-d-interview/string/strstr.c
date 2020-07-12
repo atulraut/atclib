@@ -18,7 +18,9 @@ int memcmp(const void *cs, const void *ct, size_t count) {
   int res = 0;
 
   while (su1 < end) {
+    printf ("s1 = %c s2 = *c \n", *su1, *su2);
     res = *su1++ - *su2++;
+    printf ("s1 = %c s2 = *c \n", *su1, *su2);
     printf ("res = %d\n", res);
     if (res)
       break;
@@ -92,8 +94,8 @@ char* my_strstr (const char *string, const char *substring) {
 }
 
 int main () {
-  char s1 [] = "My House is small";
-  char s2 [] = "My Car is green";
+  char s1 [] = "AtRAJ";
+  char s2 [] = "RAJ";
 
   printf ("Returned String 1: %s\n", m_strstr (s1, "House"));
   printf ("Returned String 2: %s\n", linux_strstr (s2, "Car"));
