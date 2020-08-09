@@ -16,6 +16,7 @@
     Output: 1
     Explanation:
     Only 1771 contains an even number of digits.
+    Logic : https://thecodingbot.com/leetcode-1295-find-numbers-with-even-number-of-digits/
 */
 #include <stdio.h>
 

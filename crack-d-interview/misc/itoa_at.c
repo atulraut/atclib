@@ -15,7 +15,7 @@ void my_itoa (int n, char s[]) {
   }
     i = 0;
   do {               /* Generate digits in reverse order */
-    printf ("\n (n%10)      >>>>> %ds and n = %d", (n % 10) , n);
+    printf ("\n (n%10)      >>>>> %ds and n = %d", (n % 10) , n);  
     k = n % 10 + '0';   /* get next digit */
     printf ("\n (n%10)+ '0' >>>>> %c", k);
     s[i++] = k;
@@ -37,4 +37,4 @@ int main () {
   printf ("\n >>>> i = %d", i);
   my_itoa (i, s);
   return 0;
-}
+}          
