@@ -17,7 +17,8 @@
  * 00100
  * 00011
  * Output: 3
- * Logic : https://www.youtube.com/watch?v=9ZyLjjk536U
+ https://leetcode.com/problems/number-of-islands/
+ https://www.youtube.com/watch?v=9ZyLjjk536U
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -39,7 +40,7 @@ void mark_current_island(int (*grid)[5], int x, int y, int row, int col) {
   /* Check bondry condition, such that we cant go beyond array bondry. */
   if (x < 0 || x >= row || y <= 0 || grid[x][y] != 1)
     return;
-  if ( (row == 0 && y == 0) || (row == 1 && y ==0))
+  if ( (row == 0 && y == 0) || (row == 1 && y ==0)) 
     printf ("row = %d \n", row);
   grid[x][y] = 2;
 
@@ -74,21 +75,12 @@ int numIslands(int (*grid)[5], int gridSize, int* gridColSize) {
   return no_of_islands;
 }
 
-int **getDynamicArray(int row, int col) {
-  int i, j;
-  int **ar;
-  ar = (int **)malloc(row * sizeof(int *));
-  for (i=0; i<row; i++)
-    ar[i] = (int *)malloc(col * sizeof(int));
-  printf ("In getDynamicArray Input \n");
-  return ar;
-}
-
 int main () {
   int i, j;
   int gridSize;
   int gridColSize;
-  int (*ptr)[5];
+  // int (*ptr)[5];
+
   int grid[4][5] =  {
     {1, 1, 1, 1, 0},
     {1, 1, 0, 1, 0},
@@ -99,22 +91,13 @@ int main () {
   gridSize = 4;
   gridColSize = 5;
 
-   int **arr = getDynamicArray(4, 2);
-   for (i=0; i<4; i++) {
-    for (j=0; j<5; j++) {
-      arr[i][j] = rand() % 2;
-      printf (" |%d| \t", arr[i][j]);
-      //printf ("arr[%d][%d] = |%d| | \t",i,j, arr[i][j]);
-    }
-    printf ("\n");
-  }
-   ptr=grid;
-   printf ("--> %d \n", sizeof(int));
+  //ptr=grid;
+  printf ("--> %ld \n", sizeof(int));
   int no_of_islands =  numIslands(grid, gridSize, &gridColSize);
   printf ("Output-> %d \n", no_of_islands);
   for (i=0; i<4; i++) {
     for (j=0; j<5; j++) {
-      printf (" |%d| \t", arr[i][j]);
+      printf (" |%d| \t", grid[i][j]);
     }
     printf ("\n");
   }

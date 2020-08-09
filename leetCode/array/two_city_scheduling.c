@@ -111,16 +111,6 @@ int twoCitySchedCost(int (*costs)[2], int costsSize, int* costsColSize) {
   return cost_total;
 }
 
-int **getDynamicArray(int row, int col) {
-  int i, j;
-  int **ar;
-  ar = (int **)malloc(row * sizeof(int *));
-  for (i=0; i<row; i++)
-    ar[i] = (int *)malloc(col * sizeof(int));
-  printf ("In getDynamicArray Input \n");
-  return ar;
-}
-
 int main () {
   int i, j, d=40, c=40, Output, row, col;
   int costsSize ;
@@ -134,16 +124,6 @@ int main () {
 		};
   row = costsSize = 4;
   col = costsColSize = 2;
-
-  int **arr = getDynamicArray(4, 2);
-
-  for (i=0; i<row; i++) {
-    for (j=0; j<col; j++) {
-      arr[i][j] = rand() % 50;
-      printf ("arr[%d][%d] = |%d| | \t",i,j, arr[i][j]);
-    }
-    printf ("\n");
-  }
 
   Output =  twoCitySchedCost(costs, costsSize, &costsColSize);
   printf ("Output --> %d \n", Output);

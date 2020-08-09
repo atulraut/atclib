@@ -74,16 +74,6 @@ int numIslands(int  (*grid)[5], int gridSize, int* gridColSize) {
   return no_of_islands;
 }
 
-int **getDynamicArray(int row, int col) {
-  int i, j;
-  int **ar;
-  ar = (int **)malloc(row * sizeof(int *));
-  for (i=0; i<row; i++)
-    ar[i] = (int *)malloc(col * sizeof(int));
-  printf ("In getDynamicArray Input \n");
-  return ar;
-}
-
 int main () {
   int i, j;
   int gridSize;
@@ -99,15 +89,6 @@ int main () {
   gridSize = 4;
   gridColSize = 5;
 
-   int **arr = getDynamicArray(4, 2);
-   for (i=0; i<4; i++) {
-    for (j=0; j<5; j++) {
-      arr[i][j] = rand() % 2;
-      printf (" |%d| \t", arr[i][j]);
-      //printf ("arr[%d][%d] = |%d| | \t",i,j, arr[i][j]);
-    }
-    printf ("\n");
-  }
   int no_of_islands =  numIslands(grid, gridSize, &gridColSize);
   printf ("Output-> %d \n", no_of_islands);
   for (i=0; i<4; i++) {

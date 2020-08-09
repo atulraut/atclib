@@ -1,13 +1,12 @@
-#ifndef LIB_H
-#define LIB_H
-/*
-* Aim 	 : Singaly Circular Link List.
-* Author : Atul Ramesh Raut
-* Date   : Saturday April 20, 2016. 10:30PM
-*        : Friday Nov 01, 2019, 9.27PM
-* File   : list.h
+#ifndef LL-LIB_H
+#define LL-LIB_H
+/***
+* Aim 	 : Link List Library
+* Author : Atul Raut
+* Date   : Saturday Augusts 03, 2010. 10:40AM
+* File   : ll-libt.h
 *
-***/
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
