@@ -12,29 +12,29 @@ Note:
     The length of the array is in range [1, 20,000].
     The range of numbers in the array is [-1000, 1000] and the range of the integer k is [-1e7, 1e7].
 
-Approach : Using Hashmap
+Approach : Using Hash map
 Algorithm:
-The idea behind this approach is as follows: If the cumulative sum(repreesnted by sum[i]sum[i]sum[i]
-for sum upto ithi^{th}ith index) upto two indices is the same, the sum of the elements lying in
+The idea behind this approach is as follows: If the cumulative sum(repreesnted by sum[i]
+for sum upto i (ith index) upto two indices is the same, the sum of the elements lying in
 between those indices is zero. Extending the same thought further, if the cumulative sum upto two
-indices, say iii and jjj is at a difference of k
-i.e. if sum[i]−sum[j]=ksum[i] - sum[j] = ksum[i]−sum[j]=k, the sum of elements lying between
+indices, say i and j is at a difference of k
+i.e. if sum[i] − sum[j] = k, the sum of elements lying between
 indices i and j is k.
 
-Based on these thoughts, we make use of a hashmap mapmapmap which is used to store the cumulative
+Based on these thoughts, we make use of a hashmap map which is used to store the cumulative
 sum upto all the indices possible along with the number of times the same sum occurs. We store the
 data in the form: (sum i, no.ofoccurences of sum i).
-We traverse over the array numsnumsnums and keep on finding the cumulative sum. Every time we
+We traverse over the array nums and keep on finding the cumulative sum. Every time we
 encounter a new sum, we make a new entry in the hashmap corresponding to that sum. If the same
 sum occurs again, we increment the count corresponding to that sum in the hashmap. Further, for
 every sum encountered, we also determine the number of times the sum sum−k has occured
 already, since it will determine the number of times a subarray with sum k has occured upto the
 current index. We increment the countcountcount by the same amount.
 
-After the complete array has been traversed, the countcountcount gives the required result.
+After the complete array has been traversed, the count gives the required result.
 
-Time complexity : O(n)O(n)O(n). The entire numsnumsnums array is traversed only once.
-Space complexity : O(n)O(n)O(n). Hashmap mapmapmap can contain upto nnn distinct entries in the worst case.
+Time complexity : O(n). The entire numsnumsnums array is traversed only once.
+Space complexity : O(n). Hashmap mapmapmap can contain upto nnn distinct entries in the worst case.
 
 Ref:
 https://leetcode.com/problems/subarray-sum-equals-k/solution/
@@ -100,9 +100,11 @@ int lookup(struct table *t, int key) {
     printf ("[%s] 1] pos=%d key=%d list = %p L=%d\n",__func__, pos, key, list, __LINE__);
     struct node *temp = list;
     while(temp) {
-        printf ("[%s] 2] temp->key = %d L=%d ",__func__, temp->key, __LINE__);
+        printf ("[%s] 2] temp->key = %d L=%d \n",__func__, temp->key, __LINE__);
         if(temp->key==key){
-           return temp->val++;;
+           temp->val++;
+	   printf ("[%s] 2.1] temp->key = %d val=%d L=%d \n",__func__, temp->key, temp->val, __LINE__);
+	   return (temp->val);
         }
         temp = temp->next;
     }
@@ -119,10 +121,10 @@ int subarraySum(int* nums, int numsSize, int k) {
     for(int i=0; i<numsSize; i++) {
         sum+=nums[i];
 
-    printf ("[%s] i = %d sum=%d (sum-k)=%d L=%d\n",__func__, i, sum, (sum-k), __LINE__);
+	printf ("[%s] i = %d sum=%d (sum-k)=%d L=%d\n",__func__, i, sum, (sum-k), __LINE__);
         if((n=lookup(t, sum-k))!=-1) {
-  //printf ("[%s] i = %d L=%d\n",__func__, i, __LINE__);
-  count++;//=n;
+           count++;
+           printf ("[%s] i = %d cnt=%d L=%d\n",__func__, i, count, __LINE__);
         }
         insert(t,sum);
     }
