@@ -57,6 +57,8 @@ struct table *createTable(int size) {
 }
 
 void freeTable (struct table *obj) {
+  free(obj->list);
+  obj->list = NULL;
   free(obj);
   obj = NULL;
 }

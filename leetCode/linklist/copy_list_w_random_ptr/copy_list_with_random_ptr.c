@@ -1,7 +1,7 @@
 /**
  * https://leetcode.com/problems/copy-list-with-random-pointer/
  * Program : 138. Copy List with Random Pointer Using C
- * A linked list is given such that each node contains an additional random pointer 
+ * A linked list is given such that each node contains an additional random pointer
  * which could point to any node in the list or null.
  * Return a deep copy of the list.
  * The Linked List is represented in the input/output as a list of n nodes. Each node
@@ -100,7 +100,7 @@ struct node* m_copyRandomList(void* ptr) {
     return head;
 
   /***
-   * Traverse entire list and make copies of each node, and make each 
+   * Traverse entire list and make copies of each node, and make each
    * copy at the next node of original one.
    */
   for(p = head; p != NULL; p = p->next->next) {
@@ -109,16 +109,19 @@ struct node* m_copyRandomList(void* ptr) {
     nn->next = p->next;
     p->next  = nn;
   }
-    
+
   /***
-   * Traverse entire list again. If there is an original node whose random 
-   * pointer has value, set its copy node which is in the next field to be 
-   * its random pointer’s next field, which is 
+   * Traverse entire list again. If there is an original node whose random
+   * pointer has value, set its copy node which is in the next field to be
+   * its random pointer’s next field, which is
    * node->next->random = node->random->next
-   */  
+   */
+  //  struct node *temp2;
   for(p = head; p != NULL; p = p->next->next) {
     nn = p->next;
-    nn->random = p->random != NULL ? p->random->next : NULL; 
+    //    temp2 = p->random;
+    //printf( "[%s] val = %d p->random->next = %pK Reached %d \n", __func__, p->val, temp2->next, __LINE__);
+    nn->random = p->random != NULL ? p->random->next : NULL;
   }
 
   /***
@@ -127,11 +130,11 @@ struct node* m_copyRandomList(void* ptr) {
    */
   struct node dummy;
   dummy.next = head;
-  struct node *temp = &dummy;    
-    
+  struct node *temp = &dummy;
+
   for(p = head; p != NULL; p = p->next) {
     nn = p->next;
-        
+
     temp->next = nn;
     p->next = nn->next;
     temp = nn;
@@ -146,20 +149,21 @@ struct node* m_copyRandomList(void* ptr) {
 /***
  * 328. Odd Even Linked List
  * https://leetcode.com/problems/odd-even-linked-list/
- * Given a singly linked list, group all odd nodes together followed by the even nodes. 
- * Please note here we are talking about the node number and not the value in the nodes.
- * You should try to do it in place. The program should run in O(1) space complexity 
+ * Given a singly linked list, group all odd nodes together followed by the even nodes.
+ * Please note here we are talking about the node number and not the value in the nodes
+ * You should try to do it in place. The program should run in O(1) space complexity
  * and O(nodes) time complexity.
  * Example 1:
  * Input: 1->2->3->4->5->NULL
  * Output: 1->3->5->2->4->NULL
- * 
+ *
  * Date : August 03, 2020 11AM
  * San Diego
  */
-struct ListNode* oddEvenList(struct ListNode* head){
-  if(head == NULL||0 || head -> next == NULL)return head;
-  struct ListNode *odd, *first_even , *last_even, *current, *next_current;
+struct node* oddEvenList(struct node* head){
+  if(head == NULL||0 || head->next == NULL)
+    return head;
+  struct node *odd, *first_even , *last_even, *current, *next_current;
   int i = 3;
   odd = head;
   first_even = last_even = odd -> next;
@@ -206,11 +210,11 @@ void m_Display(void *ptr){
 void quit(void *_ptr) {
   printf ("Farewell & Thank You! \n");
   exit(0);
-} 
+}
 
 /***
 ----------:: Output ::-----------
-cnt = 5 
+cnt = 5
 [i=1 :- val->[10] temp=0x1884830K, temp->next=0x1884850K, temp->random=(nil)K]
 [i=2 :- val->[20] temp=0x1884850K, temp->next=0x1884870K, temp->random=(nil)K]
 [i=3 :- val->[30] temp=0x1884870K, temp->next=0x1884890K, temp->random=(nil)K]
@@ -218,23 +222,23 @@ cnt = 5
 [i=5 :- val->[50] temp=0x18848b0K, temp->next=(nil)K, temp->random=(nil)K]
 
 ----------:: End ::-----------
-Enter a command 
+Enter a command
 2
-Calling command: Set Random 
+Calling command: Set Random
 [index=1 :- val->[10] ]
 [index=2 :- val->[20] ]
 [index=3 :- val->[30] ]
 [index=4 :- val->[40] ]
 [index=5 :- val->[50] ]
-Enter a command 
+Enter a command
 
-Enter a command 
+Enter a command
 3
-Calling command: Copy List with Random Pointer 
-[m_copyRandomList] Done Deep Copy! 141 
+Calling command: Copy List with Random Pointer
+[m_copyRandomList] Done Deep Copy! 141
 
 ----------:: Output ::-----------
-cnt = 5 
+cnt = 5
 [i=0 :- val->[10] temp=0x18848d0K, temp->next=0x18848f0K, temp->random=(nil)K]
 [i=0 :- val->[20] temp=0x18848f0K, temp->next=0x1884910K, temp->random=0x18848f0K]
 [i=0 :- val->[30] temp=0x1884910K, temp->next=0x1884930K, temp->random=0x1884910K]

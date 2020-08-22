@@ -1,4 +1,5 @@
 /*
+  Ref: https://leetcode.com/problems/happy-number/
   Write an algorithm to determine if a number n is "happy".
 
   A happy number is a number defined by the following process:
@@ -11,11 +12,11 @@
   Example:
   Input: 19
   Output: true
-  Explanation:
-    12 + 92 = 82
-    82 + 22 = 68
-    62 + 82 = 100
-    12 + 02 + 02 = 1
+  Explanation: xy = x^2 + y^2 = ?
+    1^2 + 9^2 = 1 + 81  = 82
+    8^2 + 2^2 = 64 + 4  = 68
+    6^2 + 8^2 = 36 + 64 = 100
+    1^2 + 0^2 + 1 + 0   = 1
 
   Take a note of endless loop: e.g.29 - @A=29 - B - C - D - @A=29 or @C=29 Again Found means Endless Loop.
   (4)  A (1)
@@ -134,6 +135,7 @@ int isHappy(int n) {
 
 int main () {
   int num = 19;
+  //int num = 2;
 
   if(isHappy(num) > 0)
     printf ("[%s] Is Happye Number --> %d \n", __func__, num);

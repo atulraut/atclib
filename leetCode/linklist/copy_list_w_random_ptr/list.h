@@ -1,15 +1,5 @@
 #ifndef ADD_H_LIST
 #define ADD_H_LIST
-/*
-typedef struct list_n {
-    int data;
-    struct list_n *next;
-} LIST_NODE;
-
-typedef struct list_t {
-  struct list_n *head;
-} LIST;
-*/
 
 struct node {
   int val;
