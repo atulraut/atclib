@@ -100,7 +100,7 @@ int lookup(struct table *t, int key) {
 }
 
 int isHappy(int n) {
-  int v, val;
+  int v, val;x
   int index;
 
   struct table *t = createTable(sz);

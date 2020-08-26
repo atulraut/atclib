@@ -1,7 +1,11 @@
-/*
-  WAP : Power of Two using Bitwise and Normal way.
+/***
+    WAP : Power of Two using Bitwise and Normal way.
+    To Compile :
+    gcc poweroftwo.c -o aout -lm
 */
 #include <stdio.h>
+#include <stdbool.h>
+#include <math.h>
 
 /* Trick: Any power of 2 variable, only 1 bit is set,
    hence & with -1 number always turns 0 & !num will
@@ -20,18 +24,34 @@ unsigned int powerOfTwo(unsigned int num) {
 
 }
 
-/* function to check if num is power of 2*/
-unsigned int isPowerOfTwo(int num)
-{
-  if (num == 0)
+/***
+    August 2020 Challenge:
+    https://leetcode.com/problems/power-of-four/
+    Given an integer (signed 32 bits), write a function to check whether it is a power of 4.
+    Example 1:
+    Input: 16
+    Output: true
+    Example 2:
+    Input: 5
+    Output: false
+    Follow up: Could you solve it without loops/recursion?
+    To Compile : gcc poweroftwo.c -o aout -lm
+*/
+bool isPowerOfFour(int num) {
+   if (num == 1)
+    return 1;
+    if (num < 4)
+        return 0;
+    if ((num & (num-1)) ==0)  {
+        printf("\n -> num = %d \n", num);
+        int a = sqrt(num);
+        printf("-> a  = %d \n", a);
+        if (a * a != num)
+            return 0;
+        if ((a & (a -1))==0)
+            return 1;
+    }
     return 0;
-  while (num != 1)
-  {
-      if (num%2 != 0)
-         return 0;
-      num = num/2;
-  }
-  return 1;
 }
 
 int findPositionOfBit(unsigned int num) {
@@ -49,25 +69,28 @@ int findPositionOfBit(unsigned int num) {
 /*
   You are Given Int, print its 4th LSB
 */
-int bitAtPosition(int num)
-{
+int bitAtPosition(int num) {
   return (num & (1 << 4)); //as needed 4 th LSB
 }
 
 int main(void) {
   int num = 4;
   if(powerOfTwo(num))
-    printf("\n The num = %d is Power Of Two! \n", num);
+    printf("The num = %d is Power Of Two! \n", num);
   else
-    printf("\n The numb = %d is Not Power Of Two! \n", num);
+    printf("The numb = %d is Not Power Of Two! \n", num);
 
   num = 8;
   printf("\n Find Position of num = %d & its = %d  \n", num, findPositionOfBit(num));
   num = 5;
-  printf("\n Find Position of num = %d & its = %d  \n\n", num, findPositionOfBit(num));
+  printf("Find Position of num = %d & its = %d  \n\n", num, findPositionOfBit(num));
 
   num = 24;
   printf("\n The num = %d & bit at position = %d \n", num, bitAtPosition(num));
+
+  printf ("Is Power if Four = %d \n", isPowerOfFour(16));
+  printf ("Is Power if Four = %d \n ", isPowerOfFour(5));
+
   return 0;
 }
 
