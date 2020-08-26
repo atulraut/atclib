@@ -9,6 +9,8 @@
  * For example if the list of values is [11,12,13,14,15] it will be stored
  * at positions {1,2,3,4,5} in the array or Hash table respectively.
  * Ref : https://www.geeksforgeeks.org/hashing-data-structure/
+ * Ref : http://www.martinbroadhurst.com/hash-table.html
+ * https://www.youtube.com/watch?v=KyUTuwz_b7Q&t=255s
  * Main Logic : Key == array element % array size (1024)
 */
 
