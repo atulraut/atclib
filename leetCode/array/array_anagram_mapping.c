@@ -41,8 +41,7 @@ int* anagramMappings(int* A, int ASize, int* B, int BSize, int* returnSize) {
 }
 
 int main() {
-  int i, j, ASize, BSize;
-  int sz = 4;
+  int i, ASize, BSize;
 
   int A[] = {12, 28, 46, 32, 50};
   int B[] = {50, 12, 32, 46, 28};
