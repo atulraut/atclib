@@ -30,6 +30,7 @@ void foo () {
   int i, j;
   i = j = 0;
 }
+
 int main () {
   int x = 10;
   int *p = &x;
