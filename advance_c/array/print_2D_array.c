@@ -1,6 +1,5 @@
 /***
  * Print 2D array using, given just pointer of 1st element of array.
- * Interview Question, little tricky.
 */
 
 #include <stdio.h>
