@@ -1,7 +1,7 @@
 /***
     https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/lib/string.c?h=v4.4.217
+    http://c-faq.com/lib/strtok.html
  */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
