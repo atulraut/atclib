@@ -15,13 +15,13 @@
 void insertionSort(int list[], int n) {
   // sort list[0] to list[n-1] in ascedning order
   for(int h=1; h<n; h++) {
-    int key = list[h];
+    int key = list[h];		/* I */
     int j=h-1; /* start comparing with previous item */
     while(j>=0 && key < list[j]) { /*Copy Elememnt from Unsorted(list[j]) to Sorted Array (list[j+1])*/
-      list[j+1] = list[j];
+      list[j+1] = list[j];	/* II */
       --j;
     }
-    list[j+1] = key; /* key will create hole, copy that at last*/
+    list[j+1] = key; /* III - key will create hole, copy that at last*/
   }//end for
 }//end insertionSort
 
