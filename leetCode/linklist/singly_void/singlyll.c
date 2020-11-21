@@ -23,17 +23,17 @@ static int get_input(char *cmd) {
   return res;
 }
 
-LIST * m_Init (LIST *ll){
-  LIST *list = NULL;
-  memset((void *)ll, 0, sizeof(struct list_t));
-  list = malloc (sizeof (LIST));
+struct list* m_Init (struct list *ll){
+  struct list *list = NULL;
+  memset((void *)ll, 0, sizeof(struct list));
+  list = malloc (sizeof (struct list));
   list->head = NULL;
   return list;
 }
 
-static LIST_NODE* m_CreateNodeL (int data){
-        LIST_NODE *nn = NULL;
-	nn = (LIST_NODE*)malloc(sizeof (LIST_NODE *));
+static struct list_node* m_CreateNodeL (int data){
+        struct list_node *nn = NULL;
+	nn = (struct list_node*)malloc(sizeof (struct list_node *));
 	if (nn == NULL)
 		return NULL;
 	nn->data  = data;
@@ -42,8 +42,8 @@ static LIST_NODE* m_CreateNodeL (int data){
 }
 
 void m_Addfirst(void *ptr) {
-  LIST *list = (LIST *)ptr;
-  LIST_NODE *nn = NULL;
+  struct list *list = (struct list *)ptr;
+  struct list_node *nn = NULL;
   char cmd[20] = {0};
   int data;
 
@@ -51,19 +51,19 @@ void m_Addfirst(void *ptr) {
   nn = m_CreateNodeL (data);
   nn->data = data;
   if (NULL == list->head) {
-    list->head = (LIST_NODE *)nn;
+    list->head = (struct list_node *)nn;
     nn->next = NULL;
   } else {
-    LIST_NODE *trav;
-    trav = (LIST_NODE *)list->head;
+    struct list_node *trav;
+    trav = (struct list_node *)list->head;
     nn->next = trav;
-    list->head = (LIST_NODE *)nn;
+    list->head = (struct list_node *)nn;
   }
 }
 
 void m_Addlast(void *ptr) {
-  LIST *list = (LIST *)ptr;
-  LIST_NODE *nn = NULL;
+  struct list *list = (struct list *)ptr;
+  struct list_node *nn = NULL;
   char cmd[20] = {0};
   int data;
 
@@ -71,11 +71,11 @@ void m_Addlast(void *ptr) {
   nn = m_CreateNodeL (data);
   nn->data = data;
   if (NULL == list->head) {
-    list->head = (LIST_NODE *)nn;
+    list->head = (struct list_node *)nn;
     nn->next = NULL;
   } else {
-    LIST_NODE *trav;
-    trav = (LIST_NODE *)list->head;
+    struct list_node *trav;
+    trav = (struct list_node *)list->head;
     while (trav->next != NULL)
       trav = trav->next;
     trav->next = nn;
@@ -84,19 +84,19 @@ void m_Addlast(void *ptr) {
 }
 
 void m_Delfirst(void *ptr) {
-  LIST *ll = (LIST *)ptr;
+  struct list *ll = (struct list *)ptr;
 	if (ll == NULL)
 		printf ("\n Empty Link List.");
 	else {
-		LIST_NODE *temp = NULL;
-		temp = (LIST_NODE *)ll->head;
+		struct list_node *temp = NULL;
+		temp = (struct list_node *)ll->head;
 		if (temp->next == NULL) {
 			free (temp);
 			temp = NULL;
 		}
 		else {
-			temp = (LIST_NODE *)ll->head;
-			ll->head = (LIST_NODE *)temp->next;
+			temp = (struct list_node *)ll->head;
+			ll->head = (struct list_node *)temp->next;
 			free (temp);
 			temp = NULL;
 		}
@@ -104,13 +104,13 @@ void m_Delfirst(void *ptr) {
 }
 
 void m_Freelist(void *ptr) {
-	LIST *ll = (LIST *)ptr;
+	struct list *ll = (struct list *)ptr;
 	if (ll->head == NULL)
 		printf ("\n Empty Link List.");
 	else {
-	  LIST_NODE *temp = NULL;
-	  LIST_NODE *trav = NULL;
-	  temp = (LIST_NODE *)ll->head;
+	  struct list_node *temp = NULL;
+	  struct list_node *trav = NULL;
+	  temp = (struct list_node *)ll->head;
 	  while (temp != NULL) {
 		  trav = temp->next;
 		  free(temp);
@@ -122,26 +122,26 @@ void m_Freelist(void *ptr) {
 }
 
 void m_Revlist(void *ptr) {
-  LIST *ll = ptr;
-  LIST_NODE *head = (LIST_NODE *)ll->head;
-  LIST_NODE *trav;
-  LIST_NODE *temp = head;
+  struct list *ll = ptr;
+  struct list_node *head = (struct list_node *)ll->head;
+  struct list_node *trav;
+  struct list_node *temp = head;
   head = NULL;
   while (temp != NULL) {
     trav = temp->next;
     temp->next = head;
     head = temp;
-    ll->head = (LIST_NODE *)head;
+    ll->head = (struct list_node *)head;
     temp = trav;
   }
 }
 
 void m_RevlistKthNode(void *ptr) {
-  LIST *ll = ptr;
-  LIST_NODE *head = (LIST_NODE *)ll->head;
-  LIST_NODE *trav;
-  LIST_NODE *temp = head;
-  LIST_NODE *start= head;
+  struct list *ll = ptr;
+  struct list_node *head = (struct list_node *)ll->head;
+  struct list_node *trav;
+  struct list_node *temp = head;
+  struct list_node *start= head;
   head = NULL;
   int cnt = 0;
   char cmd[20] = {0};
@@ -159,7 +159,7 @@ void m_RevlistKthNode(void *ptr) {
     trav = temp->next;
     temp->next = head;
     head = temp;
-    ll->head = (LIST_NODE *)head;
+    ll->head = (struct list_node *)head;
     temp = trav;
     cnt++;
   }
@@ -187,7 +187,7 @@ void m_RevRec(NODE **head_ref) {
 }
 */
 
-static void swap (LIST_NODE *s, LIST_NODE *m) {
+static void swap (struct list_node *s, struct list_node *m) {
   int temp;
   temp = s->data;
   s->data = m->data;
@@ -196,10 +196,10 @@ static void swap (LIST_NODE *s, LIST_NODE *m) {
 
 void m_Sortlist(void *_list) {
   int flag = 0;
-  LIST *list = (LIST*)_list;
-  LIST_NODE *head = (LIST_NODE*)list->head;
-  LIST_NODE *start = head;
-  LIST_NODE *trav, *min;
+  struct list *list = (struct list*)_list;
+  struct list_node *head = (struct list_node*)list->head;
+  struct list_node *start = head;
+  struct list_node *trav, *min;
 
   while (start->next) {
     min = start;
@@ -221,9 +221,9 @@ void m_Sortlist(void *_list) {
 }
 
 /* Given only a pointer to a node to be deleted */
-void m_DelNode(void *_list, LIST_NODE *_node) {
-  LIST_NODE *node_ptr = (LIST_NODE*)_node;
-  LIST_NODE *temp = node_ptr->next;
+void m_DelNode(void *_list, struct list_node *_node) {
+  struct list_node *node_ptr = (struct list_node*)_node;
+  struct list_node *temp = node_ptr->next;
   node_ptr->data = temp->data;
   node_ptr->next = temp->next;
   free (temp);
@@ -232,11 +232,11 @@ void m_DelNode(void *_list, LIST_NODE *_node) {
 
 /* Middle Most Node of a Linked List */
 void m_Middlenode(void *ptr) {
-  LIST *ll = (LIST *)ptr;
-  LIST_NODE *p = NULL;
-  LIST_NODE *q = NULL;
+  struct list *ll = (struct list *)ptr;
+  struct list_node *p = NULL;
+  struct list_node *q = NULL;
   int flag = 0;
-  q = p = (LIST_NODE *)ll->head;
+  q = p = (struct list_node *)ll->head;
   /*for every two hops of q, one hop for p*/
   while (q->next != NULL) {
     q = q->next;
@@ -256,13 +256,13 @@ void m_Middlenode(void *ptr) {
   LeetCode:   Middle of the Linked List
 */
 void middleNode(void *ptr) {
-  LIST *ll = (LIST *)ptr;
-  LIST_NODE *temp = NULL;
-  LIST_NODE *hare, *tortoise;
-  temp = (LIST_NODE*)ll->head;
+  struct list *ll = (struct list *)ptr;
+  struct list_node *temp = NULL;
+  struct list_node *hare, *tortoise;
+  temp = (struct list_node*)ll->head;
   if (NULL == ll->head) {
     printf ("Empty link list \n");
-    return NULL;
+    return;
   } else {
     hare = tortoise = temp;
     while (hare && hare->next) {
@@ -276,15 +276,15 @@ void middleNode(void *ptr) {
 }
 
 void m_ReturnNthNode_From_End(void *ptr) {
-  LIST *ll = (LIST *)ptr;
-  LIST_NODE *p1 = NULL;
-  LIST_NODE *p2 = NULL;
+  struct list *ll = (struct list *)ptr;
+  struct list_node *p1 = NULL;
+  struct list_node *p2 = NULL;
   char cmd[20] = {0};
   int NthNode = 0;
 
   NthNode = get_input(cmd);
 
-  p1 = p2 = (LIST_NODE *)ll->head;
+  p1 = p2 = (struct list_node *)ll->head;
 
   if (ll->head == NULL || NthNode < 1) {
       return;
@@ -305,17 +305,17 @@ void m_ReturnNthNode_From_End(void *ptr) {
 
 /* Middle Most Node of a Linked List */
 void m_RemoveDuplicateNodes(void *ptr) {
-  LIST *ll = (LIST *)ptr;
-  LIST_NODE *prev = NULL;
-  LIST_NODE *current = NULL;
+  struct list*ll = (struct list *)ptr;
+  struct list_node *prev = NULL;
+  struct list_node *current = NULL;
 
-  prev = (LIST_NODE *)ll->head;
+  prev = (struct list_node *)ll->head;
   current = prev->next;
   while (current != NULL) {
-    LIST_NODE *runner = (LIST_NODE *)ll->head;
+    struct list_node *runner = (struct list_node *)ll->head;
     while (runner != current) {
       if(runner->data == current->data) {
-	LIST_NODE *temp = current->next; // remove current
+	struct list_node *temp = current->next; // remove current
 	prev->next = temp;
 	current = temp; // update current to next node
 	break; // all other dups have removed
@@ -334,8 +334,8 @@ void m_RemoveDuplicateNodes(void *ptr) {
  *  should report that 25 is not in the list.
  */
 void m_SearchData(void *ptr) {
-  LIST *ll = (LIST *)ptr;
-  LIST_NODE *current = (LIST_NODE *)ll->head;
+  struct list *ll = (struct list *)ptr;
+  struct list_node *current = (struct list_node *)ll->head;
   char cmd[20] = {0};
   int key = 0;
 
@@ -346,22 +346,87 @@ void m_SearchData(void *ptr) {
   printf ("Key Not Found! \n");
 }
 
+/*
+ * LeetCode : https://leetcode.com/explore/challenge/card/november-leetcoding-challenge/564/week-1-november-1st-november-7th/3516/
+ *  Convert Binary Number in a Linked List to Integer
+ * Given head which is a reference node to a singly-linked list. The value of each node in the linked list is either 0 or 1.
+ * The linked list holds the binary representation of a number.
+ * Return the decimal value of the number in the linked list.
+
+ Example 1:
+ Input: head = [1,0,1]
+ Output: 5
+ Explanation: (101) in base 2 = (5) in base 10
+
+ Example 2:
+ Input: head = [0]
+ Output: 0
+
+ Example 3:
+ Input: head = [1]
+ Output: 1
+
+ Example 4:
+ Input: head = [1,0,0,1,0,0,1,1,1,0,0,0,0,0,0]
+ Output: 18880
+
+ Example 5:
+ Input: head = [0,0]
+ Output: 0
+
+ Constraints:
+ The Linked List is not empty.
+ Number of nodes will not exceed 30.
+ Each node's value is either 0 or 1.
+***/
+void getDecimalValue(void *ptr) {
+  int i = 0, op = 0;
+  struct list_node* trav = NULL;
+  struct list *ll = (struct list *)ptr;
+
+  struct list_node *head = (struct list_node *)ll->head;
+  struct list_node *temp = (struct list_node*)ll->head;
+
+  if (NULL == ll->head) {
+    printf ("Empty link list \n");
+    return;
+  } else {
+    /* Reverse the link list */
+    head = NULL;
+    while (temp != NULL) {
+      trav = temp->next;
+      temp->next = head;
+      head = temp;
+      ll->head = (struct list_node *)head;
+      temp = trav;
+    }
+
+    temp = head;
+    while (temp != NULL) {
+      printf ("[%s] data-> %d op = %d \n",__func__, temp->data, (temp->data << i));
+      op += temp->data << i++;// multiply by 2 power of i, which converts binary to decimal
+      printf ("[%s] data-> %d op = %d \n",__func__, temp->data, op);
+      temp = temp->next;
+    }
+  }
+}
+
 void m_Display(void *ptr){
-	LIST *ll = (LIST *)ptr;
-	printf ("\n----------:: Output ::-----------\n");
-	LIST_NODE *temp = NULL;
-	temp = (LIST_NODE*)ll->head;
-	if (NULL == ll->head) {
-		printf ("Empty link list \n");
-		return;
-	} else {
-		while (temp != NULL) {
-			printf ("->[%d]", temp->data);
-			temp = temp->next;
-		}
-	}
-	printf ("\n----------:: End ::-----------\n");
-	//	m_Middlenode(ptr);
+  struct list *ll = (struct list *)ptr;
+  printf ("\n----------:: Output ::-----------\n");
+  struct list_node *temp = NULL;
+  temp = (struct list_node*)ll->head;
+  if (NULL == ll->head) {
+    printf ("Empty link list \n");
+    return;
+  } else {
+    while (temp != NULL) {
+      printf ("->[%d]", temp->data);
+      temp = temp->next;
+    }
+  }
+  printf ("\n----------:: End ::-----------\n");
+  //	m_Middlenode(ptr);
 }
 
 void quit(void *_ptr) {
