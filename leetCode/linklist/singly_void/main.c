@@ -84,6 +84,11 @@ struct ll_func function_table[] = {
     .compute = m_SearchData,
     .key = 'c',
     .name = "Search Data in Link List",
+  } ,
+  {
+    .compute = getDecimalValue,
+    .key = 'd',
+    .name = "Convert Binary Number in a Linked List to Integer",
   },
   {
     .compute = quit,
@@ -104,7 +109,8 @@ static void print_all_functions() {
 int main () {
   int i = 0;
   char cmd[20];
-  LIST *l, ll;
+  struct list *l;
+  struct list ll;
 
   l = m_Init(&ll);
 

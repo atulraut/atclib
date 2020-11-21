@@ -8,17 +8,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char* remove_duplicate_string (char *iStr, char *iMask);
-
-int main() {
-  //char *iStr = "geeksforgeeks";
-  char *iStr = "test string";
-  char *iMask= "mask";
-  char *ret  = remove_duplicate_string (iStr, iMask);
-  printf ("\narr = %s\n", ret);
-  return 0;
-}
-
 char* remove_duplicate_string (char *iStr, char *iMask) {
   int i = 0, m = 0, j = 0;
   int flag = 0;
@@ -47,3 +36,11 @@ char* remove_duplicate_string (char *iStr, char *iMask) {
   return arr;
 }
 
+int main() {
+  //char *iStr = "geeksforgeeks";
+  char *iStr = "test string";
+  char *iMask= "mask";
+  char *ret  = remove_duplicate_string (iStr, iMask);
+  printf ("\narr = %s\n", ret);
+  return 0;
+}

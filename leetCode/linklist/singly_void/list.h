@@ -1,17 +1,17 @@
 #ifndef ADD_H_LIST
 #define ADD_H_LIST
 
-typedef struct list_n {
+struct list_node {
     int data;
-    struct list_n *next;
-} LIST_NODE;
+    struct list_node *next;
+} list_node;
 
-typedef struct list_t {
-  struct list_n *head;
-} LIST;
+struct list {
+  struct list_node *head;
+} list;
 
 int counter;
-LIST * m_Init (LIST *);
+struct list* m_Init (struct list *);
 void m_Addfirst(void*);
 void m_Addlast(void *);
 void m_Delfirst(void *);
@@ -22,15 +22,12 @@ void m_Freelist(void *);
 void m_Revlist(void *);
 void m_RevlistKthNode(void *);
 void m_Sortlist(void *);
-void m_DelNode(void *, LIST_NODE *);
+void m_DelNode(void *, struct list_node *);
 void m_ReturnNthNode_From_End(void *);
-void m_RemoveDuplicateNodes(void *ptr);
-void m_SearchData(void *ptr);
+void m_RemoveDuplicateNodes(void *);
+void m_SearchData(void *);
 void quit(void *);
-/*
-void m_Insert(int,int);
-void m_Deletenode(int);
-void m_Printrev ();
-void m_RevRec();
-*/
+
+void getDecimalValue(void *);
+
 #endif
