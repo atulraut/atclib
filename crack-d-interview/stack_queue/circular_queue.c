@@ -36,6 +36,23 @@ queue *m_init (void *_ptr, int sz) {
       return q;
 }
 
+int is_Empty(void *_ptr) {
+  queue *q = (queue *)_ptr;
+  if (q->front == -1) {
+    printf ("[m_remove] Empty \n");
+    return 1;
+  } else
+      return -1;
+}
+
+int is_Full(void *_ptr) {
+  queue *q = (queue *)_ptr;
+  if (q->rear == MAX-1)
+    return 1;
+  else
+    return -1;
+}
+
 int m_insert (void *_ptr, int data) {
   queue *q = (queue *)_ptr;
   if (q->rear == MAX-1 && q->front == 0) {

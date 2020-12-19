@@ -1,0 +1,20 @@
+
+Q->[FIFO] : First In First Out
+
+Q --> IR++ RF++ 
+	Insert --> Tail++ | Rear++  {Key:: ITR}
+	Remove --> Head++ | Front++
+
+Insert --> if (read == MAX-1) --> Overflow
+Remove --> if (front > rear)  --> Underflow
+
+ 
+      [Remove]
+       Head
+	-------------------------------------------------
+	|    2	|   3	|   5	|   6	|   7	|   8	|
+	-------------------------------------------------
+	0	1	2	3	4	5	
+							Tail[Insert] 
+
+Diagram Ref: http://www.studytonight.com/data-structures/queue-data-structure
