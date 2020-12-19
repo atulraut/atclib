@@ -12,32 +12,6 @@
 #define MAX 5
 int top = -1;
 int stack[MAX];
-int m_push(int val);
-int m_pop ();
-int m_topElement();
-int m_isEmpty();
-
-int main () {
-  int a;
-  m_push(10);
-  printf("\n[m_push] Value inserted = 10");
-  m_push(20);
-  printf("\n[m_push] Value inserted = 20");
-  m_push(30);
-  printf("\n[m_push] Value inserted = 30");
-  a = m_pop();
-  printf("\n[m_pop] The poped element is %d \n",a);
-  m_isEmpty();
-  a = m_pop();
-  printf("\n[m_pop] The poped element is %d \n",a);
-  a = m_topElement();
-  printf("\n[m_topElement] Top element is %d \n",a);
-  a = m_pop();
-  printf("\n[m_pop] The poped element is %d \n",a);
-  m_isEmpty();
-  a = m_pop();
-  printf("\n[m_pop] The poped element is %d \n",a);
-}
 
 int m_push(int val) {
   if (top == MAX-1)
@@ -68,4 +42,26 @@ int m_isEmpty() {
     printf ("[isEmpty] Empty S - top=%d", top);
   else
     printf ("[isEmpty] Not - top=%d", top);
+}
+
+int main () {
+  int a;
+  m_push(10);
+  printf("\n[m_push] Value inserted = 10");
+  m_push(20);
+  printf("\n[m_push] Value inserted = 20");
+  m_push(30);
+  printf("\n[m_push] Value inserted = 30");
+  a = m_pop();
+  printf("\n[m_pop] The poped element is %d \n",a);
+  m_isEmpty();
+  a = m_pop();
+  printf("\n[m_pop] The poped element is %d \n",a);
+  a = m_topElement();
+  printf("\n[m_topElement] Top element is %d \n",a);
+  a = m_pop();
+  printf("\n[m_pop] The poped element is %d \n",a);
+  m_isEmpty();
+  a = m_pop();
+  printf("\n[m_pop] The poped element is %d \n",a);
 }

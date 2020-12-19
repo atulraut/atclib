@@ -1,6 +1,6 @@
 
 /*
- * Aim : 1.Input two strings from user and perform the operations on it 
+ * Aim : 1.Input two strings from user and perform the operations on it
  using following library functions. Program must be menu driven.
  i. strlen
  ii. strcpy
@@ -36,7 +36,7 @@ int at_strncmp(const char *,const char *, size_t);
 int at_strnicmp(const char *, const char *, size_t);
 int at_strcasecmp(const char *s1, const char *s2);
 int at_strncasecmp(const char *s1, const char *s2, size_t n);
-char * at_strchr(const char *,int);
+
 char * at_strnchr(const char *, size_t, int);
 char * at_strrchr(const char *,int);
 char *at_strim(char *);
@@ -47,33 +47,12 @@ char * at_strsep(char **,const char *);
 size_t at_strspn(const char *,const char *);
 size_t at_strcspn(const char *,const char *);
 
-int main () {
-
-  /*< at_strlen: >*/
-  char *str = "Atul";
-  char *out = NULL;
-  size_t len;
-  len = at_strlen(str);
-  printf ("\n at_strlen = %zd\n", len);
-
-  char src[5]   = "Raut";
-  char dest[15] = " Raj ";
-  /*< at_strcpy >*/
-  out = at_strncpy (dest, src, 4);
-  printf ("at_strncpy = %s\n", out);
-
-  /*< at_strcat: >*/
-  //out = at_strcat (dest, src); 
-  ///printf ("\n at_strcat = %s\n", out);
-  
-  return 0;
-}
 
 size_t at_strlen(const char *_str) {
   size_t at_len = 0;
   while (*_str != '\0') {
     _str++;
-    at_len++; 
+    at_len++;
   }
   printf ("\nstrlen = %zd\n", at_len);
   return at_len;
@@ -109,10 +88,48 @@ char *at_strcat(char *dest, const char *src) {
   char *out = dest;
   size_t len = strlen (dest) + strlen (src);
   dest = (char*)malloc(sizeof(len));
-  for (i=0; i<strlen(src); i++) 
+  for (i=0; i<strlen(src); i++)
     *(dest+i) = *(src+i);
   for (j=0; j<strlen(out); j++, i++)
-    *(dest+i) = *(out+j); 
+    *(dest+i) = *(out+j);
   return dest;
 }
 */
+
+/**
+ * strchr - Find the first occurrence of a character in a string
+ * @s: The string to be searched
+ * @c: The character to search for
+ *
+ * Note that the %NUL-terminator is considered part of the string, and can
+ * be searched for.
+ * Ref: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/lib/string.c
+ */
+char *at_strchr(const char *s, int c) {
+	for (; *s != (char)c; ++s)
+		if (*s == '\0')
+			return NULL;
+	return (char *)s;
+}
+
+int main () {
+
+  /*< at_strlen: >*/
+  char *str = "Atul";
+  char *out = NULL;
+  size_t len;
+  len = at_strlen(str);
+  printf ("\n at_strlen = %zd\n", len);
+
+  char src[5]   = "Raut";
+  char dest[15] = " Raj ";
+  /*< at_strcpy >*/
+  out = at_strncpy (dest, src, 4);
+  printf ("at_strncpy = %s\n", out);
+
+  /*< at_strcat: >*/
+  //out = at_strcat (dest, src);
+  ///printf ("\n at_strcat = %s\n", out);
+
+  return 0;
+}
