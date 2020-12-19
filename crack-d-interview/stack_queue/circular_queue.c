@@ -21,33 +21,6 @@ typedef struct _q {
   int *buf;
 } queue;
 
-queue *m_init (void *_ptr, int sz);
-int m_insert (void *_ptr, int data);
-int m_remove (void *_ptr);
-void m_display (void *_ptr);
-
-int main () {
-  int i, j;
-  j = 0;
-  queue q, *qptr;
-  qptr = m_init(&q, MAX);
-  if (NULL == qptr)
-    return -1;
-  for (i=0; i<MAX; i++) {
-    j = i + 1;
-    m_insert(qptr, j);
-  }
-  m_display(qptr);
-  j =  m_remove(qptr);
-  printf ("[m_main] remove val = %d \n", j);
-  m_display(qptr);
-  m_remove(qptr); m_remove(qptr); m_remove(qptr); m_remove(qptr); m_remove(qptr);
-  printf ("[m_main] remove val = %d \n", j);
-  m_display(qptr);
-  m_insert(qptr, j);
-  m_display(qptr);
-}
-
 queue *m_init (void *_ptr, int sz) {
     queue *q = (queue *)_ptr;
     if(NULL == q) {
@@ -67,6 +40,7 @@ int m_insert (void *_ptr, int data) {
   queue *q = (queue *)_ptr;
   if (q->rear == MAX-1 && q->front == 0) {
     printf ("[m_insert] Queue is Full, reset Q\n");
+    q->rear = 0;
   } else if (q->rear == -1 || q->front == -1) {
     q->rear = q->front = 0;
   } else if (q->rear == MAX-1 && q->front != 0) {
@@ -107,3 +81,32 @@ void m_display (void *_ptr) {
   }
 }
 
+int main () {
+  int i, j;
+  j = 0;
+  queue q, *qptr;
+  qptr = m_init(&q, MAX);
+  if (NULL == qptr)
+    return -1;
+  for (i=0; i< MAX; i++) {
+    j = i + 1;
+    m_insert(qptr, j);
+  }
+  m_display(qptr);
+
+  printf ("[%s] Test2 QOverflow & Reset Usecase \n", __func__);
+  for (i=0; i< MAX; i++) {
+    j = i + 4;
+    m_insert(qptr, j);
+  }
+  m_display(qptr);
+
+  j =  m_remove(qptr);
+  printf ("[m_main] remove val = %d \n", j);
+  m_display(qptr);
+  m_remove(qptr); m_remove(qptr); m_remove(qptr); m_remove(qptr); m_remove(qptr);
+  printf ("[m_main] remove val = %d \n", j);
+  m_display(qptr);
+  m_insert(qptr, j);
+  m_display(qptr);
+}

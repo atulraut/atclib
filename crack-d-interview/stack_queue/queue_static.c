@@ -17,34 +17,6 @@ typedef struct _q {
   int *buf;
 } queue;
 
-queue *m_init (void *_ptr, int size);
-int m_insert (void *_ptr, int val);
-int m_remove (void *_ptr);
-int m_display (void *_ptr);
-
-int main () {
-  int i, j;
-  j = 0;
-  queue q, *qptr;
-  qptr  = m_init(&q, MAX);
-  if (NULL == qptr)
-    return -1;
-  printf ("[q_main] rear=%d, front=%d\n", qptr->rear, qptr->front);
-  for (i=0; i<MAX; i++) {
-    j = i + 1;
-    m_insert(qptr, j);
-  }
-  m_display(qptr);
-  j =  m_remove(qptr);
-  printf ("[m_main] remove val = %d \n", j);
-  m_display(qptr);
-  j =  m_remove(qptr);
-  printf ("[m_main] remove val = %d \n", j);
-  m_display(qptr);
-  m_insert(qptr, j);
-  m_display(qptr);
-}
-
 queue *m_init (void *_ptr, int size) {
   queue *q = (queue *)_ptr;
   if(NULL == q) {
@@ -100,4 +72,27 @@ int m_display (void *_ptr) {
   for (i=q->front; i<q->rear+1; i++) {
     printf ("[m_display] q->buf[%d] = %d \n",i, q->buf[i]);
   }
+}
+
+int main () {
+  int i, j;
+  j = 0;
+  queue q, *qptr;
+  qptr  = m_init(&q, MAX);
+  if (NULL == qptr)
+    return -1;
+  printf ("[q_main] rear=%d, front=%d\n", qptr->rear, qptr->front);
+  for (i=0; i<MAX; i++) {
+    j = i + 1;
+    m_insert(qptr, j);
+  }
+  m_display(qptr);
+  j =  m_remove(qptr);
+  printf ("[m_main] remove val = %d \n", j);
+  m_display(qptr);
+  j =  m_remove(qptr);
+  printf ("[m_main] remove val = %d \n", j);
+  m_display(qptr);
+  m_insert(qptr, j);
+  m_display(qptr);
 }

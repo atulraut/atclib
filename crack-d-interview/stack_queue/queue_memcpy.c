@@ -26,37 +26,6 @@ struct _Q {
 };
 
 typedef struct _Q Queue_Desc;
-//  Function prototypes
-Queue_Desc *Q_Init(void *_ptr, int QSize, int bitSize);
-int Q_Insert(void *_ptrQ, unsigned char *pNew);
-int Q_Remove(void *_ptr, unsigned char *pOld);
-void Q_Display (void *_ptr);
-void Q_Free (void *_ptr);
-
-int main () {
-  int i;
-  Queue_Desc q, *qptr;
-  qptr = Q_Init (&q, MAX, sizeof(int));
-  if(qptr == NULL)
-    return;
-  for (i = 0; i < MAX+1; i++) {
-      int dummy = i * i;
-      if(QUEUE_FULL == Q_Insert(qptr, (unsigned char *)&dummy)) {
-	printf("[m_main] Crap. Queue became full at %i.\n", i);
-	break;
-      }
-  }
-  Q_Display (qptr);
-  for (i = 0; i < MAX+1; i++) {
-    int dummy = i * i;
-    if(QUEUE_EMPTY == Q_Remove(qptr, (unsigned char *)&dummy)) {
-      printf("[m_main] Crap. Queue became Empty at %i.\n", i);
-      break;
-    }
-  }
-  Q_Display (qptr);
-  Q_Free (qptr);
-}
 
 Queue_Desc *Q_Init(void *_ptr, int QSz, int bitSize) {
   Queue_Desc *Q = (Queue_Desc *)_ptr;
@@ -112,4 +81,29 @@ void Q_Free (void *_ptr) {
   printf ("[Free] Q= %p pBuf = %p \n", Q, Q->pBuf);
   if(Q->pBuf)
     free((unsigned char *)Q->pBuf);
+}
+
+int main () {
+  int i;
+  Queue_Desc q, *qptr;
+  qptr = Q_Init (&q, MAX, sizeof(int));
+  if(qptr == NULL)
+    return;
+  for (i = 0; i < MAX+1; i++) {
+      int dummy = i * i;
+      if(QUEUE_FULL == Q_Insert(qptr, (unsigned char *)&dummy)) {
+	printf("[m_main] Crap. Queue became full at %i.\n", i);
+	break;
+      }
+  }
+  Q_Display (qptr);
+  for (i = 0; i < MAX+1; i++) {
+    int dummy = i * i;
+    if(QUEUE_EMPTY == Q_Remove(qptr, (unsigned char *)&dummy)) {
+      printf("[m_main] Crap. Queue became Empty at %i.\n", i);
+      break;
+    }
+  }
+  Q_Display (qptr);
+  Q_Free (qptr);
 }
