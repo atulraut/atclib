@@ -6,8 +6,11 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+#include <ctype.h>
 
-/*< Atul Finish >*/
+#define BUILD_BUG() (0)
+#define BUG_ON() __asm__ __volatile__("ud2\n")
 
 /**
  * strlcpy - Copy a C-string into a sized buffer
@@ -30,7 +33,7 @@ size_t strlcpy(char *dest, const char *src, size_t size) {
         return ret;
 }
 
-/*< 
+/*
  *   The `strncpy' function copies not more than `n' characters (characters
  *   that follow a null character are not copied) from the array pointed to
  *   by `s2' to the array pointed to by `s1'.  If copying takes place between
@@ -38,7 +41,7 @@ size_t strlcpy(char *dest, const char *src, size_t size) {
  *   If the array pointed to by `s2' is a string that is shorter than `n'
  *   characters, null characters are appended to the copy in the array
  *   pointed to by `s1', until `n' characters in all have been written.
- *   The `strncpy' function returns the value of `s1'.  
+ *   The `strncpy' function returns the value of `s1'.
 >*/
 
 /* http://www.opensource.apple.com/source/Libc/Libc-166/gen.subproj/ppc.subproj/strncpy.c */
@@ -74,14 +77,17 @@ int at_strncmp(const char *s1, const char *s2, size_t n) {
  * @src: The string to append to it
  * @count: The size of the destination buffer.
  */
-size_t strlcat(char *dest, const char *src, size_t count) {
+size_t my_strlcat(char *dest, const char *src, size_t count) {
         size_t dsize = strlen(dest);
         size_t len = strlen(src);
         size_t res = dsize + len;
+	printf ("[%s] src = %s dest = %s \n", __func__, src, dest);
         /* This would be a bug */
-        BUG_ON(dsize >= count);
+        //BUG_ON(dsize >= count);
+	printf ("cnt = %ld dsize = %ld \n", count, dsize);
         dest += dsize;
         count -= dsize;
+	printf ("cnt = %ld dsize = %ld \n", count, dsize);
         if (len >= count)
                 len = count-1;
         memcpy(dest, src, len);
@@ -108,17 +114,22 @@ char* at_strncat(char *dest, char *src, size_t n) {
 int main () {
 	char src[]  = "Atul";
 	char s[]   = "Atul ";
-	char dest[] = {'\0'};
+	char dest[] = "Raut";
 	char *s1 = "Ar";
 	char *s2 = "Ar";
 	char *output;
 	int ret;
+/*
 	output = at_strncpy(dest, src, 4);
 	printf ("output = %s \n", output);
 	ret = at_strncmp(s1, s2, 4);
 	printf ("ret = %d \n", ret);
-	output = at_strncat(s, "Raut", 4);
-	printf ("output = %s \n", output);
+	*/
+	//	output = at_strncat(dest, src, 4);
+	//	printf ("output = %s \n", output);
+
+	ret = my_strlcat(dest, src, 4);
+	printf ("output res = %d dest = %s \n", ret, dest);
 }
 
 
