@@ -31,7 +31,9 @@ int shortestDistance(char ** words, int wordsSize, char * word1, char * word2){
     }
 
     if (i1 != -1 && i2 != -1) {
+      printf ("[%s] i=[%d]:--> minDist=%d i1=%d i2=%d L=%d\n" ,__func__, i, minDistance, i1, i2, __LINE__);
       minDistance = min(minDistance, abs(i1 - i2));
+      printf ("[%s] i=[%d]:--> minDist=%d i1=%d i2=%d L=%d\n" ,__func__, i, minDistance, i1, i2, __LINE__);
     }
   }
   return minDistance;
@@ -46,3 +48,12 @@ int main() {
 
   return 1;
 }
+
+/*
+  => ./a.out
+  [shortestDistance] i=[3]:--> minDist=5 i1=3 i2=0 L=34
+  [shortestDistance] i=[3]:--> minDist=3 i1=3 i2=0 L=36
+  [shortestDistance] i=[4]:--> minDist=3 i1=3 i2=0 L=34
+  [shortestDistance] i=[4]:--> minDist=3 i1=3 i2=0 L=36
+  [main] Output = 3
+***/
