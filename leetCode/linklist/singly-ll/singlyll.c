@@ -213,6 +213,15 @@ struct list_t* m_plusOne(){
   printf ("[%s] sentinel->data=%d L=%d \n",__func__,  sentinel->data, __LINE__);
   return sentinel->data != 0 ? (head=sentinel) : (head=sentinel->next);
 }
+/***
+---------:: Input ::-----------
+->[1][0x241b890]->[9][0x241b870]->[8][0x241b850]->[9][0x241b830]
+----------:: End ::-----------
+----------:: Output ::-----------
+->[1][0x241b890]->[9][0x241b870]->[9][0x241b850]->[0][0x241b830]
+----------:: End ::-----------
+*/
+
 
 void m_Freelist() {
 	if (head == NULL)
