@@ -11,8 +11,8 @@ e.g.
 
 int removeEle (int **arr, int sz) {
   int i, j;
-  for (i=0; i<5; i++) {
-    for(j=0; j<5; j++) {
+  for (i=0; i<sz; i++) {
+    for(j=0; j<sz; j++) {
       if (*arr[i] == *arr[j])
 	continue;
       else
