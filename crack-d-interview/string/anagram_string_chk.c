@@ -1,6 +1,6 @@
-/*
-  Given two strings A and B, how would you find out if the characters
-  in B were a subset of the characters in A?
+/***
+    Given two strings A and B, how would you find out if the characters
+    in B were a subset of the characters in A?
 */
 #include <stdio.h>
 #include <string.h>
@@ -23,14 +23,15 @@ int main () {
   int ret;
   char str1[] = "ABCD";
   char str2[] = "DCAB";
-  if( verify_String (str1, str2))
-    printf("The two strings are anagram of each other \n");
-  else
-    printf("The two strings are not anagram of each other \n");
-  
-  if (isSubset(str1, str2)) 
+
+  if (isSubset(str1, str2))
     printf("The two strings are anagram of each other \n");
   else
     printf("The two strings are not anagram of each other \n");
 
 }
+
+/***
+    => ./a.out
+    The two strings are anagram of each other
+*/

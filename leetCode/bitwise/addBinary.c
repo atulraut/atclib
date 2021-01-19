@@ -29,10 +29,10 @@ char * addBinary(char * a, char * b){
 
   while(i || j){
     if(i)
-      carry += a[--i]-'0';
+      carry += a[--i] - '0';
     if(j)
-      carry += b[--j]-'0';
-    res[k--] = carry%2+'0';
+      carry += b[--j] - '0';
+    res[k--] = carry % 2 + '0';
     carry /= 2;
   }
   res[0] = carry+'0';
