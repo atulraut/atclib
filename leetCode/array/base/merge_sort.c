@@ -11,7 +11,7 @@
     nums2 = [2,5,6],       n = 3O
     Output: [1,2,2,3,5,6]
 */
-#include "../../at_lib.h"
+#include "../../../at_lib.h"
 
 
 void merge(int* nums1, int nums1Size, int m, int* nums2, int nums2Size, int n) {

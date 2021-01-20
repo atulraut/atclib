@@ -11,7 +11,7 @@
     Output: 5
 */
 
-#include "../at_lib.h"
+#include "../../at_lib.h"
 
 int lengthOfLastWord(char * s){
   int len = 0;

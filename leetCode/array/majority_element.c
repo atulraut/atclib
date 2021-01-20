@@ -13,7 +13,7 @@
     https://leetcode.com/problems/majority-element-ii/
     https://leetcode.com/explore/featured/card/september-leetcoding-challenge/557/week-4-september-22nd-september-28th/3469/
 */
-#include "../at_lib.h"
+#include "../../at_lib.h"
 
 /**
  * Note: The returned array must be malloced, assume caller calls free().

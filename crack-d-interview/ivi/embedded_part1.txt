@@ -1,5 +1,5 @@
 *********************************************************************************
-Question 1 : 
+Question 1 :
 ----------
 You are given the following method:
 
@@ -12,25 +12,25 @@ void func1(int n)
 	    ...
 	    for(int j=0;j<n/2;j++)
 	    {
-	    	...
+	    ...
 	        printf("*");
-	    
+
 	    }
-			
+
 	}
-	
+
 	delete [] x;
 
 }
 
 
-What is the running time complexity (Big O notation) of the 
+What is the running time complexity (Big O notation) of the
 above method as a function of n?
-[Atul] Answer : Time complexity Is:  Big O ( N * log ( N ) ). 
+[Atul] Answer : Time complexity Is:  Big O ( N * log ( N ) ).
 
-What is the space complexity (Big O notation) of the 
+What is the space complexity (Big O notation) of the
 above method as a function of n?
-[Atul] Answer : Space complexity Is: Big O ( N * log ( N ) ).  
+[Atul] Answer : Space complexity Is: Big O ( N * log ( N ) ).
 *********************************************************************************
 
 Question 2
@@ -46,9 +46,9 @@ int main()
 	printf("%d",x);
 	printf("%p",(void*)&x);
 	system("./modifier"); //launches modifier as a separate process.
-	sleep(10);	
+	sleep(10);
 	printf("%d",x);
-	return 0;	
+	return 0;
 }
 
 ///Second program  modifier
@@ -58,10 +58,10 @@ int main()
 	int *y = (int *) malloc(sizeof(int));
 	printf("%p",(void*)y);
 	*y=60;
-	return 0;		
+	return 0;
 }
 
-After placing launcher and modifier in the same directory we run 
+After placing launcher and modifier in the same directory we run
 >>./launcher
 >>running launcher
 >>50
@@ -71,7 +71,7 @@ After placing launcher and modifier in the same directory we run
 >>??
 
 What is the value of ??  (possible values of ??)?
-Please explain your answer in a few words. 
+Please explain your answer in a few words.
 If it's impossible to tell please explain why.
 [Atul] Answer - printf("%d",x); from launcher will print x = 50.
 
@@ -95,18 +95,18 @@ int main()
 {
 	int * buffer = allocate_address();
 	*buffer = 1;
-	
-	// Do stuff, call functions, print values, but do not modify buffer in anyway
-	
-	*buffer=~(*buffer);	
+
+// Do stuff, call functions, print values, but do not modify buffer in anyway
+
+	*buffer=~(*buffer);
 	*buffer=(*buffer)<<5;
 	printf("%d",*buffer);
-		
+
 }
 
 
 What is the output of the program / (possible outputs of the program)?
-Please explain your answer in a few words. 
+Please explain your answer in a few words.
 If it's impossible to tell please explain why.
 [Atul] Answer : will get some garbase value in printf. The reason is we are not calling
 new to allocate something, so it will have garbase in x & thats get return if we are lucky.
@@ -117,7 +117,7 @@ Then we are doing some operation on garbase & printing it.
 Question 4
 ----------
 You are given a program representing a bank account of an employee.
-The employee and the employer transactions run in two separate threads, and call 
+The employee and the employer transactions run in two separate threads, and call
 "customer_withdraw()" and "employer_deposit_salary()" respectively.
 "current_balance" is a variable accessible to both threads.
 
@@ -128,7 +128,7 @@ void customer_withdraw()
 	int x = current_balance;
 	x-=100;
     current_balance = x;
-}                       
+}
 
 
 void employer_deposit_salary()
@@ -136,18 +136,18 @@ void employer_deposit_salary()
    int y = current_balance;
    y+=250;
    current_balance = y;
-}                      
+}
 
 
 After both transactions are complete, what is the value of "current_balance"?
 [Atul] Answer : the current balance will depend on which routine get execute first.
 if withdraw get executed first, current_balance = $200
 if employer_deposit_salary get executed first, current_balance = $550
-If there are more than one option, please list all the possible values, 
+If there are more than one option, please list all the possible values,
 and explain how each result can be achieved.
 [Atul] Answer : if withdraw & deposit happens random the result will vary.
 
-Is it a safe way to make those transactions? 
+Is it a safe way to make those transactions?
 [Atul] Answer: No
 If the answer is no, please explain how to make them safer.
 [Atul] Answer: We need to have synchronise above two operation using synchronise technique. Mutex e.g.
@@ -165,8 +165,8 @@ The operations we are asked to support are:
 2) Delete person - Remove the person and his/her phone number from the book
 3) Get person's phone number - given a full name, return the person's phone number.
 
-What data structure(s) would you use for the task, to achieve the best run time performance for the phone book? 
-[Atul] Answer: Will user Self Referential Data Structure link list. 
+What data structure(s) would you use for the task, to achieve the best run time performance for the phone book?
+[Atul] Answer: Will user Self Referential Data Structure link list.
 
 What would be the time complexity ( Big O) for each operation, as a function of n - the number of the people in the book,
 assuming no duplicate full names?
@@ -174,36 +174,12 @@ assuming no duplicate full names?
 
 How would you change your answer if you were asked to support the following operations?
 4) Print phone book alphabetically - prints all the people's names and phone numbers in an alphabetical order.
-5) Given a name, return the next person's name, in alphabetical order. For Example, for John, Michael, Jack and Alex. 
+5) Given a name, return the next person's name, in alphabetical order. For Example, for John, Michael, Jack and Alex.
 Given the name Jack the next name alphabetically is John.
-[Atul] Answer: Will go with sorting algorithm. 
+[Atul] Answer: Will go with sorting algorithm.
 We can use both Merge sort and Insertion sort for sorting the linked lists,
-as the thing is that the slow random-access performance of a linked list makes 
-other algorithms (such as quicksort) perform poorly, and others (such as heapsort) 
+as the thing is that the slow random-access performance of a linked list makes
+other algorithms (such as quicksort) perform poorly, and others (such as heapsort)
 completely impossible and as worst case time complexity of Merge Sort is O(nLogn)
 What would be the time complexity of each of the 5 operations?
 [Atul] Answer: O(n*log(n))
-
-
-
- 
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-

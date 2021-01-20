@@ -18,7 +18,7 @@
     Use XOR 1 ^ 1 = 0 & 0 ^ 0 = 0 & rest all are 1, so easy to cancel same element.
 */
 
-#include "../at_lib.h"
+#include "../../at_lib.h"
 
 /* Optimal Solution */
 char findTheDifference(char * s, char * t) {
