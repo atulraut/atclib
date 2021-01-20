@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <ctype.h>
-
+#include "../../at_lib.h"
 /***
     LeetCode : https://leetcode.com/problems/valid-palindrome/
     isalphanum() : Function returns a non-zero integer if an argument (character)
@@ -60,7 +60,25 @@ int isStringPalindrome (char str[]) {
 
 int main () {
   char ar [] = "IT !I";
-  printf ("--> [%d] \n", isStringPalindrome(ar));
+  debug ("[%d]", isStringPalindrome(ar));
   char *str = "race a car";
-  printf ("--> [%d] \n", isPalindrome(str));
+  debug ("[%d]", isPalindrome(str));
 }
+
+/***
+    => ./a.out
+    [isStringPalindrome.c] [main()] L=63 :[1]
+
+    AR--> s=0x400b76 d=0x400b6d
+    AR--> s=r d=r *p=8 *s=8
+
+    AR--> s=0x400b75 d=0x400b6e
+    AR--> s=a d=a *p=8 *s=8
+
+    AR--> s=0x400b74 d=0x400b6f
+    AR--> s=c d=c *p=8 *s=8
+
+    AR--> s=0x400b72 d=0x400b70
+    AR--> s=a d=e *p=8 *s=8
+    [isStringPalindrome.c] [main()] L=65 :[0]
+*/

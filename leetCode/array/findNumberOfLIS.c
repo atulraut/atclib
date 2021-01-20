@@ -18,7 +18,7 @@
   Date : 12/28/2020 Monday, San Diego, CA
 ***/
 
-#include "../at_lib.h"
+#include "../../at_lib.h"
 
 int findNumberOfLIS(int* nums, int numsSize){
 

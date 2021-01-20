@@ -49,7 +49,7 @@
     where you start.
 */
 
-#include "../at_lib.h"
+#include "../../at_lib.h"
 
 int canCompleteCircuit(int* gas, int gasSize, int* cost, int costSize){
         int total_surplus = 0;

@@ -9,7 +9,7 @@
     Output:
     [2,3]
 */
-#include "../at_lib.h"
+#include "../../at_lib.h"
 
 int* findDuplicates(int* nums, int numsSize, int* returnSize) {
   int *arr=calloc(numsSize+1,sizeof(int));
