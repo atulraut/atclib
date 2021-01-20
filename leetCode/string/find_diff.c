@@ -60,4 +60,10 @@ int main () {
   char *s = "abcd";
   char *t = "abcde";
   printf ("[%s] output = %c \n", __func__, findTheDifference(s, t));
+  debug(" Enter ");
 }
+
+/***
+    [main] output = e
+    [string/find_diff.c] [main()] L=63 : Enter
+*/
