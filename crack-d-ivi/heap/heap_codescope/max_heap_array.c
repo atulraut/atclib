@@ -1,3 +1,9 @@
+/***
+	Ref: https://www.codesdope.com/blog/article/priority-queue-using-heap/
+	Heap Implementation Using C.
+	Date : 20 January 2021.
+	San Diego, CA.
+*/
 #include <stdio.h>
 
 #define debug(str,args...) printf("[%s] [%s()] L=%d :"str"\n",__FILE__, __func__, __LINE__, ##args)
