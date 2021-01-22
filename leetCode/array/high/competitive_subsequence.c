@@ -20,13 +20,39 @@
     Example 2:
     Input: nums = [2,4,3,3,5,4,9,6], k = 4
     Output: [2,3,3,4]
+    Logic : https://www.youtube.com/watch?v=oPT7zaOvPHs
 */
 
 #include <stdio.h>
-#include "../../at_lib.h"
+#include "../../../at_lib.h"
+
+int* mostCompetitive(int* nums, int numsSize, int k, int* returnSize){
+  int top = 0;
+  int *result;
+  int i=0;
+  result = (int *)malloc(sizeof(int) * k);
+
+  for (i=0; i<numsSize; i++) {
+    while (top>0 && nums[i] < result[top-1] && ((top + numsSize) - i) > k)
+      top--;
+    if (top < k)
+      result[top++] = nums[i];
+  }
+  *returnSize = top;
+  return result;
+}
 
 int main () {
+  int retSz;
+  int nums[] = {3,5,2,6};
+  int k = 2;
+  int *ret, i;
 
+  int numsSize = sizeof (nums) / sizeof (nums[0]);
+
+  ret = mostCompetitive(nums, numsSize, k, &retSz);
+  for (i=0; i<retSz; i++)
+    debug ("%d", ret[i]);
 }
 
 /***
