@@ -1,36 +1,37 @@
 /***
     LeetCode : Edit Distance
-    Given two strings s and t, return true if they are both one
-    edit distance apart, otherwise return false.
 
-    A string s is said to be one distance apart from a string t if you can:
+    Given two strings word1 and word2, return the minimum number of
+    operations required to convert word1 to word2.
 
-    Insert exactly one character into s to get t.
-    Delete exactly one character from s to get t.
-    Replace exactly one character of s with a different character to get t.
+    You have the following three operations permitted on a word:
+
+    Insert a character
+    Delete a character
+    Replace a character
 
     Example 1:
-    Input: s = "ab", t = "acb"
-    Output: true
-    Explanation: We can insert 'c' into s to get t.
+    Input: word1 = "horse", word2 = "ros"
+    Output: 3
+    Explanation:
+    horse -> rorse (replace 'h' with 'r')
+    rorse -> rose (remove 'r')
+    rose -> ros (remove 'e')
 
     Example 2:
-    Input: s = "", t = ""
-    Output: false
-    Explanation: We cannot get t from s by only one step.
-
-    Example 3:
-    Input: s = "a", t = ""
-    Output: true
-
-    Example 4:
-    Input: s = "", t = "A"
-    Output: true
+    Input: word1 = "intention", word2 = "execution"
+    Output: 5
+    Explanation:
+    intention -> inention (remove 't')
+    inention -> enention (replace 'i' with 'e')
+    enention -> exention (replace 'n' with 'x')
+    exention -> exection (replace 'n' with 'c')
+    exection -> execution (insert 'u')
 
     Constraints:
-    0 <= s.length <= 104
-    0 <= t.length <= 104
-    s and t consist of lower-case letters, upper-case letters and/or digits.
+
+    0 <= word1.length, word2.length <= 500
+    word1 and word2 consist of lowercase English letters.
 
     https://leetcode.com/problems/edit-distance/
     Date : 1-24-01 {Palindrome}
