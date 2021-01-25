@@ -58,6 +58,7 @@ int removeElement(int* nums, int numsSize, int val){
   int n = numsSize;
   while (i < n) {
     if (nums[i] == val) {
+      debug ("i = %d nums[%d] = %d", i, (n-1), nums[n-1]);
       nums[i] = nums[n - 1];
       debug ("nums[%d] = %d", i, nums[i]);
       // reduce array size by one
@@ -65,20 +66,44 @@ int removeElement(int* nums, int numsSize, int val){
     } else
       i++;
   }
+  debug ("n = %d", n);
   return n;
 }
 
 int main () {
-  int val = 3;
+  int val = 2;
   int nums[] = {3, 2, 2, 1};
+  int ret;
 
-  debug ("o/p = %d", removeElement(nums, 4, val));
+  ret = removeElement(nums, 4, val);
 
+  debug ("o/p = %d", ret);
+
+  for (int i=0; i<ret; i++)
+    debug("Post Deletion nums[%d] = %d", i, nums[i]);
   return 0;
 }
 
 /***
     => ./a.out
-    [removeElement] L=62 :nums[0] = 1
-    [main] L=75 :o/p = 3
+    [removeElement] L=61 :i = 1 nums[3] = 1
+    [removeElement] L=63 :nums[1] = 1
+    [removeElement] L=61 :i = 2 nums[2] = 2
+    [removeElement] L=63 :nums[2] = 2
+    [removeElement] L=69 :n = 2
+    [main] L=80 :o/p = 2
+    [main] L=83 :Post Deletion nums[0] = 3
+    [main] L=83 :Post Deletion nums[1] = 1
+*/
+
+/***
+    Algorithm:
+
+    When we encounter nums[i]=valnums[i] = valnums[i]=val, we can swap
+    the current element out with the last element and dispose the last one.
+    This essentially reduces the array's size by 1.
+
+    Note that the last element that was swapped in could be the value you
+    want to remove itself. But don't worry, in the next iteration
+    we will still check this element.
 */
