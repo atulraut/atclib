@@ -2,6 +2,22 @@
 #include <stdlib.h>
 #include <string.h>
 
+int **allocate_2D_array(int rows, int columns) {
+    int k = 0;
+    int **array = malloc(rows * sizeof (int *) );
+
+    array[0] = malloc(columns * rows * sizeof (int) );
+    for (k=1; k < rows; k++)
+    {
+        array[k] = array[0] + columns*k;
+        bzero(array[k], columns * sizeof (int) );
+    }
+
+    bzero(array[0], columns * sizeof (int) );
+
+    return array;
+}
+
 void display(int (*a)[2]) {
     int i, j;
     for (i = 0; i < 2; i++) {
