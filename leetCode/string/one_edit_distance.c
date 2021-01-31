@@ -44,7 +44,7 @@
 
 #define MIN(a, b)   (a < b ? a : b)
 
-bool isOneEditDistance(char * s, char * t){
+bool isOneEditDistance2(char * s, char * t) {
   int m = strlen(s);
   int n = strlen(t);
 
@@ -64,7 +64,7 @@ bool isOneEditDistance(char * s, char * t){
 
 }
 
-bool isOneEditDistance2(char * s, char * t){
+bool isOneEditDistance(char * s, char * t) {
 
   if (abs(strlen(s) - strlen(t)) > 1 || strcmp(s, t) == 0) return false;
 
