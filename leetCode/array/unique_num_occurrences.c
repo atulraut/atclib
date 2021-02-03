@@ -69,3 +69,18 @@ int main () {
   bool ans = uniqueOccurrences(arr, sz);
   printf ("--> O/P = %d \n", ans);
 }
+
+/***
+    => ./a.out
+    sz = 6
+    i=0 j=1 i.f=3 j.f=2 diff=1
+    i=0 j=2 i.f=3 j.f=0 diff=1
+    i=0 j=3 i.f=3 j.f=0 diff=1
+    i=0 j=4 i.f=3 j.f=0 diff=1
+    i=0 j=5 i.f=3 j.f=1 diff=1
+    i=1 j=2 i.f=2 j.f=0 diff=1
+    i=1 j=3 i.f=2 j.f=0 diff=1
+    i=1 j=4 i.f=2 j.f=0 diff=1
+    i=1 j=5 i.f=2 j.f=1 diff=1
+    --> O/P = 1
+*/

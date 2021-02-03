@@ -10,10 +10,11 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <limits.h>
-#include <string.h>
+#include <string.h>  /* malloc */
 #include <stdbool.h>
 #include <math.h>
 #include <assert.h>
+#include <stdint.h> /* uint32_t */
 
 /***
     In case File Debug Option needs to Enabled.

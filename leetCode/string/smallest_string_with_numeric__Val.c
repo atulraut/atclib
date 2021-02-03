@@ -1,5 +1,5 @@
 /***
-    1663. Smallest String With A Given Numeric Value
+    1663. Smallest String With A Given Numeric Value using C
     The numeric value of a lowercase character is defined as its position (1-indexed)
     in the alphabet, so the numeric value of a is 1, the numeric value of b is 2,
     the numeric value of c is 3, and so on.
@@ -39,7 +39,7 @@
     value for each remaining position (k - position). Thus the maximum numeric value
     for the current position given by add can be calculated as, minimum of k - position and 26.
     Subtract the value calculated for the current position add from k.
-    The process would continue until all the positions are filled, with reduecing K at each iternation.
+    The process would continue until all the positions are filled, with reducing K at each iternation.
 
     Date : 1-29-21
     San Diego, CA
@@ -51,15 +51,33 @@
 
 #define min(x, y) (((x) < (y)) ? (x) : (y))
 
-char* getSmallestString(int n, int k) {
+/***
+    LeetCode Accepted: 20ms
+ */
+char * getSmallestString(int n, int k){
+  char *result_ptr = (char *)malloc(n+1);
+  int position;
+  int add;
+
+  for (position = n - 1; position >= 0; position--) {
+    add = min(k - position, 26); /*Logic is to reduce k, so k=30, it can be 25+5 or 26 + 4, we want former one, */
+    result_ptr[position] = (char)(add + 'a' - 1);  /* Try to make Small Char by adding + a*/
+    //printf ("[%s] add = %d , 'a' = %d char = %c \n", __func__, add, 'a', (char)(add + 'a' - 1));
+    k -= add;
+  }
+  result_ptr[n] = '\0';
+  return result_ptr;
+}
+
+char* getSmallestString2(int n, int k) {
   char result[n+1];
   char *result_ptr = result;
   int position;
   int add;
 
   for (position = n - 1; position >= 0; position--) {
-    add = min(k - position, 26);
-    result_ptr[position] = (char)(add + 'a' - 1);
+    add = min(k - position, 26); /*Logic is to reduce k, so k=30, it can be 25+5 or 26 + 4, we want former one, */
+    result_ptr[position] = (char)(add + 'a' - 1);  /* Try to make Small Char by adding + a*/
     printf ("[%s] add = %d , 'a' = %d char = %c \n", __func__, add, 'a', (char)(add + 'a' - 1));
     k -= add;
   }
@@ -73,7 +91,9 @@ int main () {
   int k = 27;
   char *ret = getSmallestString(n, k);
   printf ("[%s] result = %s \n", __func__, ret);
+  free(ret);
 }
+
 /***
 
     Complexity Analysis :
