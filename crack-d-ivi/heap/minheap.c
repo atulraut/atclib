@@ -118,8 +118,14 @@ int main() {
     return -1;
   }
 
-  for(i = 9; i>0; i--)
-    m_insert(heap, i);
+  //  for(i = 9; i>0; i--)
+    //    m_insert(heap, i);
+  m_insert(heap, 100);
+  m_insert(heap, 10);
+  m_insert(heap, 20);
+  m_insert(heap, 3);
+  m_insert(heap, 4);
+
 
   m_print(heap);
 

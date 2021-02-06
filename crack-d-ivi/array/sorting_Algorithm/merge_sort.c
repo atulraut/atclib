@@ -1,25 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int merge_sort (int a[], int m, int b[], int n, int c[]);
-
-int main() {
-  int A[] = {3,5,7,9};
-  int B[] = {2,4,6};
-  int szA = sizeof(A) / sizeof(A[0]);
-  int szB = sizeof(B) / sizeof(B[0]);
-  int *C = (int *)malloc((sizeof(szA+szB)));;
-  int i;
-  merge_sort (A, 4, B, 3, C);
-  for (i=0; i<7; i++)
-    printf("-->[%d]!\n", C[i]);
-  return 0;
-}
-
-int merge_sort (int *a, int m, int *b, int n, int *c) {
+void merge_sort (int *a, int m, int *b, int n, int *c, int szc) {
   int i = 0; // m
   int j = 0; // n
-  int k = -1; int p;
+  int k = -1;
+
+  if (szc != (m+n))
+    printf ("[%s] Something Went Wrong szc=%d \n", __func__,  szc);
   while (i < m && j < n) { // if at least 1 number in both array
     if (a[i] < b[j]) { // if a < b copy a to c
       c[++k] = a[i++];
@@ -38,4 +26,21 @@ int merge_sort (int *a, int m, int *b, int n, int *c) {
   printf ("end i=%d, j=%d, k=%d\n", i, j, k);
   for (i=0; i<7; i++)
     printf("Here-->[%d]\n", c[i]);
+}
+
+int main() {
+  int a[] = {3,5,7,9};
+  int b[] = {2,4,6};
+  int sza = sizeof(a) / sizeof(a[0]);
+  int szb = sizeof(b) / sizeof(b[0]);
+  int szc = sza + szb;
+  int *c = (int *)malloc(sizeof(int) * (szc));
+  c[szc] = 0;
+
+  printf ("[%s] sza = %d szb = %d  szc = %d \n", __func__, sza, szb, szc);
+  int i;
+  merge_sort (a, sza, b, szb, c, szc);
+  for (i=0; i<7; i++)
+    printf("-->[%d]!\n",c[i]);
+  return 0;
 }

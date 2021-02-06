@@ -11,7 +11,7 @@ int* sortArrayByParity(int *a, const int asize, int *retsize) {
   int beg = 0, end = asize-1;
   int *newarr = (int *)malloc(sizeof(int) * asize);
   if (NULL == newarr)
-    return;
+    return NULL;
   *retsize = asize;
 
   for(i=0; i<asize; i++) {
@@ -31,8 +31,8 @@ int main() {
   int asz;
   int *sz = sortArrayByParity(ar, 4, &asz);
 
-  for (int i=0; i<asize; i++) {
-    printf ("-> %d\n", newarr[i]);
+  for (int i=0; i<asz; i++) {
+    printf ("-> %d\n", sz[i]);
   }
   free(sz);
 }
