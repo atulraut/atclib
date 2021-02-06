@@ -30,6 +30,13 @@ int reverse(int a) {
 
 int main() {
   unsigned int a = 0x12345678;
+  printf("Big endian  a = 0x%x\n", a);
   printf("Big endian  a = 0x%x\n", reverse(a));
   return 0;
 }
+
+/*
+  => ./a.out 
+  Big endian  a = 0x12345678
+  Big endian  a = 0x78563412
+*/

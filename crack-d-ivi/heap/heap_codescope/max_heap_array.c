@@ -115,16 +115,16 @@ void print_heap(int A[]) {
 
 int main() {
   int A[tree_array_size];
-  insert(A, 20);
+  insert(A, 100);
   //  insert(A, 15);
-  insert(A, 8);
+  insert(A, 10);
   //insert(A, 10);
-  insert(A, 5);
-  insert(A, 7);
+  insert(A, 20);
+  insert(A, 3);
   // insert(A, 6);
-  insert(A, 2);
-  insert(A, 9);
-  insert(A, 1);
+  insert(A, 4);
+  //  insert(A, 9);
+  // insert(A, 1);
 
   print_heap(A);
 

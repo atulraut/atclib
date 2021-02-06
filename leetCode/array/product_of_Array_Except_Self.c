@@ -58,3 +58,11 @@ int main () {
   for(int i=0; i<returnSize; i++)
     printf ("[%s] arr[%d]=%d  \n", __func__, i, ret[i]);
 }
+
+/***
+    => ./a.out
+    [main] arr[0]=24
+    [main] arr[1]=12
+    [main] arr[2]=8
+    [main] arr[3]=6
+*/

@@ -20,10 +20,12 @@ void send(struct ntb_msg smsg[], struct ntb_msg rmsg[]) {
   uint32_t cid, lsb, msb, cmd, wid, flag = 1;
   uint64_t data = 0xffffffc0f882fca1;
 
+  /* Unpack 64 to 32 bit */
   lsb = ( (smsg[0].buf[3] << 24) | (smsg[0].buf[2] << 16) | (smsg[0].buf[1] <<  8) | (smsg[0].buf[0] << 0 ) );
   msb = ( (smsg[1].buf[3] << 24) | (smsg[1].buf[2] << 16) | (smsg[1].buf[1] <<  8)| (smsg[1].buf[0] << 0) );
   cid = ( (smsg[2].buf[3] << 24) | (smsg[2].buf[2] << 16) | (smsg[2].buf[1] <<  8)| (smsg[2].buf[0] << 0) );
 
+  /* Pack 32 to 64 bit */
   data_back = ( ( (uint64_t) ( ( (msb) >> 16) >> 16)  ) | lsb);
   data_back = (((uint64_t) msb) << 32) | ((uint64_t) lsb);
 
@@ -32,6 +34,7 @@ void send(struct ntb_msg smsg[], struct ntb_msg rmsg[]) {
   wid = smsg[2].buf[1];
   printf ("[%s] data_back=0x%lx cmd=%d wid=%d L=%d \n\n", __func__, data_back, cmd, wid, __LINE__);
 
+  /* Pack 32 to 64 bit*/
   for(int i=0; i<4; i++) {
     rmsg[0].buf[i] = lsb >> i*8;
     rmsg[1].buf[i] = msb >> i*8;
@@ -60,6 +63,7 @@ void recv(uint32_t lsb, uint32_t msb, uint32_t cm, struct ntb_msg rmsg[], uint32
   uint8_t i2[4] = {0};
   uint8_t i3[4] = {0};
 
+  /* Unpack 32 into 8 bit */
   i1[0] = (cm >>  0);
   i1[1] = (cm >>  8);
   i1[2] = (cm >> 16);
@@ -93,10 +97,11 @@ int main() {
   int i;
   printf ("[%s] Enter data=0x%lx L=%d \n", __func__, data, __LINE__);
 
-  /* Send Data */
+  /* Send Data : Unpack 64 into 8 bit */
   for(i=0; i<4; i++)
     i1[i] = (data >>  i*8);
 
+  /* Unpack 64 into 8 bit */
   for(i=1; i<4; i++)
     i2[i-1] = (data >> (32+(i*8)));
 
@@ -104,14 +109,17 @@ int main() {
   i3[0] = 8;
   i3[1] = 9;
 
+  /* Pack 8 bit into 32 bit */
   for(i=0; i<4; i++) {
     lsb |= (i1[i] << i*8);
     msb |= (i2[i] << i*8);
   }
   //msg[0].buf[i] = lsb >> i;
 
+  /* Pack 8 bit into 32 bit */
   //  lsb = ( (i1[3] << 24) | (i1[2] << 16) | (i1[1] <<  8) | (i1[0] << 0 ));
   //  msb = ( (i2[3] << 24) | (i2[2] << 16) | (i2[1] <<  8) | (i2[0] << 0 ));
+  /* Pack 2, 32 bit into 1, 64 bit */
   data = (((uint64_t) msb) << 32) | ((uint64_t) lsb);
 
   printf ("[%s] Unpack data=0x%lx msb=0x%x lsb=0x%x L=%d \n", __func__, data, msb, lsb,__LINE__);
@@ -163,23 +171,25 @@ int main() {
     },
   };
 
-  /**************************************************************************************************************/
+  /***************************************************PACK********************************************************/
   send(Smsg, rmsg);
   lsb = ( (rmsg[0].buf[3] << 24) | (rmsg[0].buf[2] << 16) | (rmsg[0].buf[1] <<  8) | (rmsg[0].buf[0] << 0 ) );
   msb = ( (rmsg[1].buf[3] << 24) | (rmsg[1].buf[2] << 16) | (rmsg[1].buf[1] <<  8)| (rmsg[1].buf[0] << 0) );
   cm  = ( (rmsg[2].buf[3] << 24) | (rmsg[2].buf[2] << 16) | (rmsg[2].buf[1] <<  8)| (rmsg[2].buf[0] << 0) );
+  /* Unpack */
   data = ( ( (uint64_t) ( ( (msb) >> 16) >> 16)  ) | lsb);
   data = (((uint64_t) msb) << 32) | ((uint64_t) lsb);
   printf ("[%s]_Recv: ATUL Unpack data=0x%lx msb=0x%x lsb=0x%x sz=%d L=%d \n", __func__, data, msb, lsb, sizeof(rmsg)/sizeof(rmsg[0]),__LINE__);
   cmd = rmsg[2].buf[0];
   wid = rmsg[2].buf[1];
   printf ("[%s]_Recv: ATUL Unpack cid=%d cmd=%d wid=%d L=%d \n", __func__, cm, cmd, wid,__LINE__);
-  /**************************************************************************************************************/ 
+  /****************************************************PACK*******************************************************/ 
   flag = 0;
   /* Recieve Message */
   recv(lsb, msb, cmd, rmsg, flag);
   lsb = ( (rmsg[0].buf[3] << 24) | (rmsg[0].buf[2] << 16) | (rmsg[0].buf[1] <<  8) | (rmsg[0].buf[0] << 0) );
   msb = ( (rmsg[1].buf[3] << 24) | (rmsg[1].buf[2] << 16) | (rmsg[1].buf[1] <<  8) | (rmsg[1].buf[0] << 0) );
+  /* Unpack */
   data = ( ( (uint64_t) ( ( (msb) >> 16) >> 16)  ) | lsb);
   data = (((uint64_t) msb) << 32) | ((uint64_t) lsb);
 
