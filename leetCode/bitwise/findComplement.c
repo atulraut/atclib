@@ -46,8 +46,8 @@ int getCompliment(int num) {
   return sol;
 
 
-int main () {
-  int num = 5;
-  //  printf ("\n -> %d \n", findComplement(num));
-  printf ("\n -> %d \n", getCompliment(num));
-}
+  int main () {
+    int num = 5;
+    //  printf ("\n -> %d \n", findComplement(num));
+    printf ("\n -> %d \n", getCompliment(num));
+  }

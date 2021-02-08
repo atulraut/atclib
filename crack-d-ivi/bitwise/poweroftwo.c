@@ -21,7 +21,6 @@ unsigned int powerOfTwo(unsigned int num) {
 
   // return (num && !(num & (num - 1)));
   return num > 0 && !(num & (num - 1));  /* Leet Code */
-
 }
 
 /***
@@ -38,20 +37,20 @@ unsigned int powerOfTwo(unsigned int num) {
     To Compile : gcc poweroftwo.c -o aout -lm
 */
 bool isPowerOfFour(int num) {
-   if (num == 1)
+  if (num == 1)
     return 1;
-    if (num < 4)
-        return 0;
-    if ((num & (num-1)) ==0)  {
-        printf("\n -> num = %d \n", num);
-        int a = sqrt(num);
-        printf("-> a  = %d \n", a);
-        if (a * a != num)
-            return 0;
-        if ((a & (a -1))==0)
-            return 1;
-    }
+  if (num < 4)
     return 0;
+  if ((num & (num-1)) ==0)  {
+    printf("\n -> num = %d \n", num);
+    int a = sqrt(num);
+    printf("-> a  = %d \n", a);
+    if (a * a != num)
+      return 0;
+    if ((a & (a -1))==0)
+      return 1;
+  }
+  return 0;
 }
 
 int findPositionOfBit(unsigned int num) {
@@ -94,19 +93,40 @@ int main(void) {
   return 0;
 }
 
-/* O/P :-->
-  1. --> 0
-  2. --> 1
-  The num = 4 is Power Of  Two!
+/*
+   gcc poweroftwo.c -o aout -lm
+   1. --> 0
+   2. --> 1
+   The num = 4 is Power Of  Two!
 
-----------------------------
-  Routine bitAtPosition   :
-----------------------------
-  128 64 32 16 8 4 2 10   : Val per bitwise
-----------------------------
-  7   6  5  4  3 2 1 0    : Bit Position
-----------------------------
-  0   0  0  1  1 0 0 0    : Num = 24
------------------------------
+   ----------------------------
+   Routine bitAtPosition   :
+   ----------------------------
+   128 64 32 16 8 4 2 10   : Val per bitwise
+   ----------------------------
+   7   6  5  4  3 2 1 0    : Bit Position
+   ----------------------------
+   0   0  0  1  1 0 0 0    : Num = 24
+   -----------------------------
 */
+/***
+    => ./aout
+    1. --> 0
+    2. --> 1
+    The num = 4 is Power Of Two!
+    1. --> 0
+    2. --> 1
 
+    Find Position of num = 8 & its = 4
+    1. --> 4
+    2. --> 0
+    Find Position of num = 5 & its = -1
+
+
+    The num = 24 & bit at position = 16
+
+    -> num = 16
+    -> a  = 4
+    Is Power if Four = 1
+    Is Power if Four = 0
+*/

@@ -1,6 +1,7 @@
 ---------------------------------------BitWise---------------------------------
 Links :
 https://web.stanford.edu/class/archive/cs/cs107/cs107.1194/lab1/practice.html
+http://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetKernighan
 https://web.stanford.edu/class/archive/cs/cs107/cs107.1186/lectures/02-bits.pdf
 -------------------------------------------------------------------------------
   3 2 1 0 [Index]
@@ -62,6 +63,13 @@ Tips/Tricks :
 To Pack Bits Used : "<<" | {2 Operator}
 To Unpack Bits    : ">>"   {1 Operator}
 --------------------------------------------------------------------------------
+|Value		| Binary
+--------------------------------------------------------------------------------
+| -1		11111111 11111111 11111111 11111111
+| INT_MAX 	01111111 11111111 11111111 11111111
+| INT_MIN 	10000000 00000000 00000000 00000000
+| UINT_MAX 	11111111 11111111 11111111 11111111
+--------------------------------------------------------------------------------
 What is difference between & and && operator :
 --> Ref : http://www.geeksforgeeks.org/what-are-the-differences-between-bitwise-and-logical-and-operators-in-cc/
 a) The logical and operator ‘&&’ expects its operands to be boolean expressions
@@ -81,4 +89,8 @@ int main() {
 
     return 0;
 }
+--------------------------------------------------------------------------------
+Tool :
+1. gdb - p 'I' or p/t 'I'
+2. https://mdrach.github.io/cs107-apps/
 --------------------------------------------------------------------------------

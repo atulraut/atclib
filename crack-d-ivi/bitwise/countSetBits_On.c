@@ -12,8 +12,7 @@ int num_to_bits[16] = { 0, 1, 1, 2, 1, 2, 2, 3,
 
 /* Recursively get nibble of a given number
 and map them in the array */
-unsigned int countSetBitsRec(unsigned int num)
-{
+unsigned int countSetBitsRec(unsigned int num) {
     int nibble = 0;
     if (0 == num)
         return num_to_bits[0];
@@ -29,8 +28,7 @@ unsigned int countSetBitsRec(unsigned int num)
 }
 
 // Driver code
-int main()
-{
+int main() {
     int num = 31;
     printf("O/P--> %d\n", countSetBitsRec(num));
     return 0;

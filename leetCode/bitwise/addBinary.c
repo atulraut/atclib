@@ -16,11 +16,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../../at_lib.h"
 
 char * addBinary(char * a, char * b){
   int i = strlen(a);
   int j = strlen(b);
-  if(i < j) return addBinary(b, a);
+
+  if(i < j)
+    return addBinary(b, a);
+
   char *res = (char *)calloc(i + 2, 1);
   res[i+1] = '\0';
 
@@ -32,12 +36,14 @@ char * addBinary(char * a, char * b){
       carry += a[--i] - '0';
     if(j)
       carry += b[--j] - '0';
-    res[k--] = carry % 2 + '0';
+    res[k--] = carry % 2 + '0'; /* 0 + 0 = 0 [as 0 == 48 (ASIC)]*/
+    int q = k;
+    debug ("res = %d carry1 = %d carry2 = %d", res[q], (carry % 2 + '0'), carry);
     carry /= 2;
   }
   res[0] = carry+'0';
   if(!carry)
-    return;
+    return NULL;
   res+1;
   return res;
 }
@@ -50,7 +56,9 @@ int main () {
   printf ("[%s] ret-> %s L=%d\n",__func__, ret, __LINE__);
 }
 
-/***
+/**
     => ./a.out
-    [main] ret-> 100 L=48
-*/
+    [addBinary] L=41 :res = 0 carry1 = 48 carry2 = 2
+    [addBinary] L=41 :res = 0 carry1 = 48 carry2 = 2
+    [main] ret-> 100 L=56
+**/

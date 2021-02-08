@@ -9,6 +9,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/***
+    Find Bit At Position 4.
+ */
 int bitAtPos(int num) {
   return (1 & (num >> 3));
 }
@@ -17,3 +20,8 @@ int main () {
   int i = 7;
   printf ("O/P - %d \n ", bitAtPos(i));
 }
+
+/**
+   => ./a.out
+   O/P - 0
+**/

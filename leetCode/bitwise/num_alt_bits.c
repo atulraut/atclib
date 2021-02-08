@@ -22,19 +22,25 @@
 #include <stdbool.h>
 
 bool hasAlternatingBits(int n){
-        int a,b;
-        while(n){
-                a = n % 2;
-                n = n>>1;
-                b = n % 2;
-                if(a==b) return false;
-        }
-        return true;
+  int a,b;
+  while(n){
+    a = n % 2;
+    n = n>>1;
+    b = n % 2;
+    if(a==b)
+      return false;
+  }
+  return true;
 }
 
 int main () {
-        int num = 7;
-        bool ret;
-        ret = hasAlternatingBits(num);
-        printf ("--> O/P = %d \n", ret);
+  int num = 7;
+  bool ret;
+  ret = hasAlternatingBits(num);
+  printf ("--> O/P = %d \n", ret);
 }
+
+/**
+   => ./a.out
+   --> O/P = 0
+**/
