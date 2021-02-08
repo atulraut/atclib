@@ -5,7 +5,7 @@
  * L To R, or those bits are not set in x. L and R are 0-based.
  * operators.
  * Date : 10/Jan/2020
- * Place : San Diego, CA, USA 
+ * Place : San Diego, CA, USA
 */
 #include <stdio.h>
 #include <stdlib.h>
@@ -33,3 +33,8 @@ int main () {
   int R = 2;
   printf ("O/P - %d \n ", set_bit_L_To_R(i, j, L, R));
 }
+
+/**
+   => ./a.out
+   O/P - 7
+**/

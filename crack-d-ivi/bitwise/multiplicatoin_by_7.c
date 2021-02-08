@@ -1,17 +1,8 @@
 /*
-* Program to multiplication by 7 using bitwise operator.
-*/
+ * Program to multiplication by 7 using bitwise operator.
+ */
 
 #include<stdio.h>
-
-void multiplication_by_7 (int x);
-int multiply(int x, int y); 
-
-int main() {
-  multiplication_by_7(2);
-  printf("\n %d \n", multiply(5, -11));
-  return (0);
-}
 
 void multiplication_by_7 (int x) {
   int i;
@@ -32,19 +23,7 @@ void multiplication_by_7 (int x) {
   printf ("\nx[4] = %d \n",(x << 4));
 }
 
-/*by geeksforgeeks.org function to multiply two numbers x and y*/
-int multiply(int x, int y) {
-  static int cnt;
-  printf ("cnt =[%d] x = %d, y=%d \n", cnt, x, y);
-  /* 0  multiplied with anything gives 0 */
-  if(y == 0)
-    return 0;
- 
-  /* Add x one by one */
-  if(y > 0 )
-    return (x + multiply(x, y-1));
-  
-  /* the case where y is negative */
-  if(y < 0 )
-    return -multiply(x, -y);
+int main() {
+  multiplication_by_7(2);
+  return (0);
 }
