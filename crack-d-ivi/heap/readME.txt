@@ -1,6 +1,8 @@
 
 MinHeap using C :
 
+https://www.youtube.com/results?search_query=heap++techdose
+https://www.youtube.com/watch?v=qQkfUKer3LU - Check all video's
 https://algorithmtutor.com/Data-Structures/Tree/Binary-Heaps/
 https://www.geeksforgeeks.org/binary-heap/
 
@@ -20,11 +22,11 @@ The same property must be recursively true for all nodes in Binary Tree. Max Bin
 
 Examples of Min Heap:
 
-            10                      10
+            10                      10			- 0
          /      \               /       \
-       20        100          15         30
+       20        100          15         30		- 1
       /                      /  \        /  \
-    30                     40    50    100   40
+    30                     40    50    100   40		- 2 {h-Height}
 
 How is Binary Heap represented?
 A Binary Heap is a Complete Binary Tree. A binary heap is typically represented as an array.
@@ -37,3 +39,7 @@ A Binary Heap is a Complete Binary Tree. A binary heap is typically represented 
 
     The traversal method use to achieve Array representation is Level Order
 
+Basic of Heaps : It is complete Binary Tree.
+      if Height is h per above daigram
+      The max node at height h = 2^h
+      Max nodes in entire tree = 2^(h+1) - 1 <-- This also be the size of Array.
