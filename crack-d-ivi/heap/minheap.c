@@ -1,6 +1,8 @@
 /***
     Ref: https://www.geeksforgeeks.org/binary-heap/
     Min Heap implementation in c
+    https://www.youtube.com/results?search_query=heap++techdose
+    https://www.youtube.com/watch?v=qQkfUKer3LU
 */
 #include<stdio.h>
 #include<stdlib.h>
@@ -19,7 +21,8 @@ struct heap {
 
 void m_heapify_bottom_top(struct heap *h,int index) {
   int temp;
-  int parent_node = (index-1)/2;
+  int parent_node1 = (index-1)/2;
+  int parent_node = ( ((index)/2) -1 );
   debug ("parent_node = %d index = %d", parent_node, index);
   if(h->arr[parent_node] > h->arr[index]){
     //swap and recursive call
@@ -118,14 +121,14 @@ int main() {
     return -1;
   }
 
-  //  for(i = 9; i>0; i--)
-    //    m_insert(heap, i);
-  m_insert(heap, 100);
+  for(i = 1; i<7; i++)
+      m_insert(heap, i);
+  /* m_insert(heap, 100);
   m_insert(heap, 10);
   m_insert(heap, 20);
   m_insert(heap, 3);
   m_insert(heap, 4);
-
+*/
 
   m_print(heap);
 
@@ -135,6 +138,62 @@ int main() {
   }
   return 0;
 }
+
+/**
+            1
+         /      \
+       2         3
+      / \       /
+    4    5     6
+
+   => ./a.out
+   [m_heapify_bottom_top] L=25 :parent_node = 0 index = 0
+   [m_heapify_bottom_top] L=25 :parent_node = 0 index = 1
+   [m_heapify_bottom_top] L=25 :parent_node = 0 index = 2
+   [m_heapify_bottom_top] L=25 :parent_node = 1 index = 3
+   [m_heapify_bottom_top] L=25 :parent_node = 1 index = 4
+   [m_heapify_bottom_top] L=25 :parent_node = 2 index = 5
+   ____________Print Heap_____________
+   -> 1 -> 2 -> 3 -> 4 -> 5 -> 6 ->__/\__
+   Pop Minima : 1
+   ____________Print Heap_____________
+   -> 2 -> 4 -> 3 -> 6 -> 5 ->__/\__
+   Pop Minima : 2
+   ____________Print Heap_____________
+   -> 3 -> 4 -> 5 -> 6 ->__/\__
+   Pop Minima : 3
+   ____________Print Heap_____________
+   -> 4 -> 6 -> 5 ->__/\__
+   Pop Minima : 4
+   ____________Print Heap_____________
+   -> 5 -> 6 ->__/\__
+   Pop Minima : 5
+   ____________Print Heap_____________
+   -> 6 ->__/\__
+   Pop Minima : 6
+   ____________Print Heap_____________
+   ->__/\__
+
+   __Heap is Empty__
+   Pop Minima : -1
+   ____________Print Heap_____________
+   ->__/\__
+
+   __Heap is Empty__
+   Pop Minima : -1
+   ____________Print Heap_____________
+   ->__/\__
+
+   __Heap is Empty__
+   Pop Minima : -1
+   ____________Print Heap_____________
+   ->__/\__
+
+   __Heap is Empty__
+   Pop Minima : -1
+   ____________Print Heap_____________
+   ->__/\__
+**/
 
 /**
    => ./a.out
