@@ -1,14 +1,36 @@
+/***
+    LeetCode : https://leetcode.com/problems/valid-palindrome/
+    isalphanum() : Function returns a non-zero integer if an argument (character)
+    passed to the function is an alphanumeric (alphabet and number) character.
+
+    Valid Palindrome :
+
+    Given a string, determine if it is a palindrome, considering only alphanumeric
+    characters and ignoring cases.
+    Note: For the purpose of this problem, we define empty string as valid palindrome.
+
+    Example 1:
+    Input: "A man, a plan, a canal: Panama"
+    Output: true
+
+    Example 2:
+    Input: "race a car"
+    Output: false
+
+    Constraints:
+    s consists only of printable ASCII characters.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
 #include <ctype.h>
 #include "../../at_lib.h"
-/***
-    LeetCode : https://leetcode.com/problems/valid-palindrome/
-    isalphanum() : Function returns a non-zero integer if an argument (character)
-    passed to the function is an alphanumeric (alphabet and number) character.
- */
+
+/**
+   LeetCode Solution : 0ms
+*/
 bool isPalindrome(char * s){
   if(s==NULL || !strcmp(s,""))
     return true;
@@ -82,3 +104,14 @@ int main () {
     AR--> s=a d=e *p=8 *s=8
     [isStringPalindrome.c] [main()] L=65 :[0]
 */
+
+/**
+   Complexity Analysis
+
+   Time complexity : O(n), in length nnn of the string. We traverse over each
+   character at-most once, until the two pointers meet in the middle,
+   or when we break and return early.
+
+   Space complexity : O(1). No extra space required, at all.
+**/
+

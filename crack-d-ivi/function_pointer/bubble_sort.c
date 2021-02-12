@@ -18,9 +18,12 @@ void bubblesort(void* A, int n, int (*cmpfunc)(int *a, int b, int c), void(*swap
 	(*swapfunc)(A,j,j+1);
 }
 
+/* int (*cmpfunc)(int*, int, int) */
 int intcomp(int A[],int i, int j) {
   return (A[i]-A[j]);
 }
+
+/* void (*swapfunc)(int *, int, int) */
 void intswap(int A[], int i, int j) {
   int temp = A[i];
   A[i] = A[j];
@@ -41,3 +44,9 @@ int main () {
   }
   printf ("\n");
 }
+
+/**
+   => ./a.out
+   ->[9]->[4]->[8]->[3]->[1]
+   ->[1]->[3]->[4]->[8]->[9]
+**/

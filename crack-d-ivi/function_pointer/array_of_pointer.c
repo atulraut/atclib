@@ -42,7 +42,22 @@ int main () {
   for(char **p = list; *p != NULL; p++) {
     printf ("--> %s \t", p[0]);
   }
+  printf ("\n");
   test_array_of_pointers();
   test_pointers_to_an_array();
   printf ("\n\n");
 }
+
+/***
+    => ./a.out
+    --> Atul 	--> Ramesh 	--> Raut
+    --> i=2
+    --> i=3
+    --> i=4
+    --> i=5
+    --> i=6
+    p = 0x7ffc2aa70930, ptr = 0x7ffc2aa70930
+    *p = 3, *ptr = 0x7ffc2aa70930
+    sizeof(p) = 8, sizeof(*p) = 4
+    sizeof(ptr) = 8, sizeof(*ptr) = 20
+*/

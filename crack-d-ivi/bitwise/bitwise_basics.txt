@@ -2,6 +2,7 @@
 Links :
 https://web.stanford.edu/class/archive/cs/cs107/cs107.1194/lab1/practice.html
 http://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetKernighan
+https://mdrach.github.io/cs107-apps/
 https://web.stanford.edu/class/archive/cs/cs107/cs107.1186/lectures/02-bits.pdf
 -------------------------------------------------------------------------------
   3 2 1 0 [Index]

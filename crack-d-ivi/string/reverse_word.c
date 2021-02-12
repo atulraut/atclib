@@ -17,10 +17,10 @@
     Here is some C code to do the same ....
 */
 /***
-  Algorithm..
-  1. Reverse whole sentence first.
-  2. Reverse each word individually.
-  All the reversing happens in-place.
+    Algorithm..
+    1. Reverse whole sentence first.
+    2. Reverse each word individually.
+    All the reversing happens in-place.
 */
 
 #include <stdio.h>
@@ -40,8 +40,9 @@ void reverse_word () {
   char *end, *x, *y;
 
   // Reverse the whole sentence first..
-  for(end=buf; *end; end++);
-    rev(buf, end-1);
+  for(end=buf; *end; end++)
+            ;
+  rev(buf, end-1);
 
   printf("[%s] %s L=%d \n",__func__, buf, __LINE__);
 
@@ -49,10 +50,10 @@ void reverse_word () {
   x = buf-1;
   y = buf;
   while(x++ < end) {
-      if(*x == '\0' || *x == ' ') {
-	  rev(y, x-1);
-	  y = x+1;
-      }
+    if(*x == '\0' || *x == ' ') {
+      rev(y, x-1);
+      y = x+1;
+    }
   }
 
   // Now print the final string....
@@ -64,3 +65,15 @@ int main(int argc, char *argv[]) {
   reverse_word();
   return(0);
 }
+
+/**
+   => ./a.out
+   [rev] l=I r=y L=30
+   [reverse_word] yob doog a ma I L=46
+   [rev] l=y r=b L=30
+   [rev] l=d r=g L=30
+   [rev] l=a r=a L=30
+   [rev] l=m r=a L=30
+   [rev] l=I r=I L=30
+   [reverse_word] boy good a am I L=59
+**/

@@ -69,5 +69,13 @@ int main () {
   while (!empty(st))
     printf("-->[%d] ", pop(st));
   printf("\n");
-  
 }
+
+/**
+   => ./a.out
+   --> 50
+   --> 40
+   --> 30
+   --> 20
+   --> 10
+**/
