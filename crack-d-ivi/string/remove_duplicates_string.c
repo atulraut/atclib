@@ -1,4 +1,4 @@
-/*
+/***
   Design an algorithm and write code to remove the duplicate characters
   in a string without using any additional buffer.
   Date : 03/15/2020, Sunday, SD, CA, USA

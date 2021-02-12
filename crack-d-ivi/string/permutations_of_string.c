@@ -39,3 +39,13 @@ int main() {
   do_permute(str, 0, n-1);
   return 0;
 }
+
+/***
+    => ./a.out
+    ABC
+    ACB
+    BAC
+    BCA
+    CBA
+    CAB
+*/

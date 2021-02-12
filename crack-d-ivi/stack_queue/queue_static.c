@@ -114,3 +114,24 @@ int main () {
   m_insert(qptr, j);
   m_display(qptr);
 }
+
+/**
+   => ./a.out
+   [q_main] rear=-1, front=-1
+   [m_insert] val=1 added at q->rear=0
+   [m_insert] val=2 added at q->rear=1
+   [m_display] q->rear = 1  q->front =0
+   [m_display] q->buf[0] = 1
+   [m_display] q->buf[1] = 2
+   [m_remvoe] val = 1 at q->front = 0
+   [m_main] remove val = 1
+   [m_display] q->rear = 1  q->front =1
+   [m_display] q->buf[1] = 2
+   [m_remvoe] val = 2 at q->front = 1
+   [m_main] remove val = 2
+   [m_display] q->rear = 1  q->front =2
+   [m_remove] Empty
+   [m_insert] Quque is FULL
+   [m_display] q->rear = 1  q->front =2
+   [m_remove] Empty
+**/

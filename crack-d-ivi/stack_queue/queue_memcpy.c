@@ -124,3 +124,21 @@ int main () {
   Q_Display (qptr);
   Q_Free (qptr);
 }
+
+/**
+   Q = 0x7fff1cea0cb0 pBuf = 0x1d9d010
+   [insert]p=0 [0]->[0]
+   [insert]p=1 [1]->[1]
+   [insert]p=4 [2]->[4]
+   [m_main] Crap. Queue became full at 3.
+   [m_display] q->front=0 q->rear=3
+   [m_display] = [0]
+   [m_display] = [1]
+   [m_display] = [4]
+   [remove]p=0 [0]->[9]
+   [remove]p=1 [1]->[9]
+   [remove]p=4 [2]->[9]
+   [m_main] Crap. Queue became Empty at 3.
+   [m_display] q->front=3 q->rear=3
+   [Free] Q= 0x7fff1cea0cb0 pBuf = 0x1d9d010
+**/

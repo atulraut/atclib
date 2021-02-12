@@ -26,9 +26,9 @@ int main(void) {
     err(1, "open");
 
   /*
-  user space processes can't access device memory directly for security purpose. 
-  So, user space processes use the mmap system call to ask kernel to map the 
-  device into virtual address space of the calling process. 
+  user space processes can't access device memory directly for security purpose
+  So, user space processes use the mmap system call to ask kernel to map the
+  device into virtual address space of the calling process.
   */
   anon = (char*)mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_ANON|MAP_SHARED, -1, 0);
   zero = (char*)mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_SHARED, fd, 0);
@@ -69,3 +69,12 @@ int main(void) {
   close(fd);
   return EXIT_SUCCESS;
 }
+
+/**
+   => ./a.out
+   PID 15730:	 [A]anonymous ATUL 1, zero-backed ATUL 1
+   PID 15731:	 [T]anonymous ATUL 1, zero-backed ATUL 1
+   PID 15730:	 [L]anonymous RAUT 2, zero-backed RAUT 2
+
+   => PID 15731:	 [U]anonymous RAUT 2, zero-backed RAUT 2
+**/

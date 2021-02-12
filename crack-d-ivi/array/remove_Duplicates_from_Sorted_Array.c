@@ -37,6 +37,7 @@
  * values are set beyond the returned length.
 */
 #include<stdio.h>
+#include "../../at_lib.h"
 
 int removeDuplicates(int* nums, int numsSize){
   if (numsSize == 0)
@@ -44,7 +45,10 @@ int removeDuplicates(int* nums, int numsSize){
   int c1 = 0;
   int c2 = 0;
   int size = numsSize;
+
   for (c2 = 0; c2 < size; c2++) {
+    debug ("B: c1 = %d nums[c1] = %d c2 = %d nums[c2] = %d ", c1, nums[c1], c2, nums[c2]);
+    printf ("\n");
     if (nums[c1] != nums[c2]) {
       c1++;
       nums[c1] = nums[c2];

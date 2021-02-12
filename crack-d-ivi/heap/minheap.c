@@ -4,10 +4,10 @@
 */
 #include<stdio.h>
 #include<stdlib.h>
+#include "../../at_lib.h"
 /*
   Array Implementation of MinHeap data Structure
 */
-
 #define HEAP_SIZE 20
 
 struct heap {
@@ -20,7 +20,7 @@ struct heap {
 void m_heapify_bottom_top(struct heap *h,int index) {
   int temp;
   int parent_node = (index-1)/2;
-
+  debug ("parent_node = %d index = %d", parent_node, index);
   if(h->arr[parent_node] > h->arr[index]){
     //swap and recursive call
     temp = h->arr[parent_node];
@@ -91,7 +91,7 @@ struct heap *m_createHeap(int capacity, int heap_type) {
   h->heap_type = heap_type;
   h->count = 0;
   h->capacity = capacity;
-  h->arr = (int *) malloc(capacity*sizeof(int)); //size in bytes
+  h->arr = (int *) malloc(capacity * sizeof(int)); //size in bytes
 
   //check if allocation succeed
   if ( h->arr == NULL) {
@@ -135,3 +135,49 @@ int main() {
   }
   return 0;
 }
+
+/**
+   => ./a.out
+   ____________Print Heap_____________
+   -> 3 -> 4 -> 20 -> 100 -> 10 ->__/\__
+   Pop Minima : 3
+   ____________Print Heap_____________
+   -> 4 -> 10 -> 20 -> 100 ->__/\__
+   Pop Minima : 4
+   ____________Print Heap_____________
+   -> 10 -> 100 -> 20 ->__/\__
+   Pop Minima : 10
+   ____________Print Heap_____________
+   -> 20 -> 100 ->__/\__
+   Pop Minima : 20
+   ____________Print Heap_____________
+   -> 100 ->__/\__
+   Pop Minima : 100
+   ____________Print Heap_____________
+   ->__/\__
+
+   __Heap is Empty__
+   Pop Minima : -1
+   ____________Print Heap_____________
+   ->__/\__
+
+   __Heap is Empty__
+   Pop Minima : -1
+   ____________Print Heap_____________
+   ->__/\__
+
+   __Heap is Empty__
+   Pop Minima : -1
+   ____________Print Heap_____________
+   ->__/\__
+
+   __Heap is Empty__
+   Pop Minima : -1
+   ____________Print Heap_____________
+   ->__/\__
+
+   __Heap is Empty__
+   Pop Minima : -1
+   ____________Print Heap_____________
+   ->__/\__
+**/
