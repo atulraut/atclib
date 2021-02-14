@@ -1,5 +1,6 @@
 /***
  * C program to print all permutations with duplicates allowed
+ * Ref : https://www.geeksforgeeks.org/write-a-c-program-to-print-all-permutations-of-a-given-string/
  */
 
 #include <stdio.h>

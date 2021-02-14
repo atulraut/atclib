@@ -186,7 +186,7 @@ void m_Printrev () {
     The number represented by the linked list does not contain leading zeros except for the zero itself.
 
 */
-struct list_t* m_plusOne(){
+struct list_t* m_plusOne() {
   // sentinel head _पहारेकरी, watchman
   printf ("[%s] Enter L=%d \n",__func__,  __LINE__);
   struct list_t* sentinel = m_CreateNodeL(0);
