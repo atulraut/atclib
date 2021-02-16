@@ -19,5 +19,6 @@ void m_add (void *, int);
 void m_display (void *);
 void m_free (void *);
 void m_Printrev(void *);
+void m_insertionSort(void *);
 
 #endif

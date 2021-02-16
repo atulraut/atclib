@@ -13,10 +13,10 @@
 int main() {
     int  ch, val;
     LIST *nw_list = NULL;
-    nw_list = init_list (nw_list); 
+    nw_list = init_list (nw_list);
     if (NULL == nw_list)
       return 0;
-    printf ("---------------------------------------------------");    
+    printf ("---------------------------------------------------");
     printf("\nEnter to the world of Atul Raut's Programing:\n");
     printf ("---------------------------------------------------");
     while(1) {
@@ -39,12 +39,14 @@ int main() {
 				scanf("%d", &val);
 				m_add (nw_list, val);
 				break;
-/*
+
 			case 2:
-				printf("\nEnter the number : ");
-				scanf("%d", &val);
-				m_Addlast(val);
+			m_insertionSort(nw_list);
+				  //printf("\nEnter the number : ");
+				  //scanf("%d", &val);
+				  //m_Addlast(val);
 				break;
+/*				
 			case 3:
 				printf("\nEnter the number and position :");
 				scanf("%d%d", &val,&pos);

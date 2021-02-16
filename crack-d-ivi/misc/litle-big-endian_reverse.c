@@ -10,6 +10,7 @@
 */
 
 #include <stdio.h>
+#include "../../at_lib.h"
 
 /***
  * Reverse Endianness :
@@ -28,15 +29,28 @@ int reverse(int a) {
   return x;
 }
 
+int rev2(int num) {
+  unsigned int i = num;//0x12345678;//0xfafbfcfd;
+  unsigned int j;
+  j= ((i & 0xff000000) >> 24) | ((i & 0xff0000)>>8) | ((i & 0xff00) << 8) | ((i & 0xff) << 24);
+  debug ("Big endian  a = 0x%x\n", j);
+  return num;
+}
+
 int main() {
   unsigned int a = 0x12345678;
   printf("Big endian  a = 0x%x\n", a);
   printf("Big endian  a = 0x%x\n", reverse(a));
+  debug ("Big endian  a = 0x%x\n", rev2(a));
+
   return 0;
 }
 
 /*
-  => ./a.out 
+  => ./a.out
   Big endian  a = 0x12345678
   Big endian  a = 0x78563412
+  [rev2] L=36 :Big endian  a = 0x78563412
+
+  [main] L=44 :Big endian  a = 0x12345678
 */
