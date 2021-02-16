@@ -378,7 +378,27 @@ void m_SearchData(void *ptr) {
  The Linked List is not empty.
  Number of nodes will not exceed 30.
  Each node's value is either 0 or 1.
+
 ***/
+/**
+   LeetCode Approch - 0ms
+   * Definition for singly-linked list.
+   * struct ListNode {
+   *     int val;
+   *     struct ListNode *next;
+   * };
+
+   int getDecimalValue(struct ListNode* head) {
+   int sum = 0;
+
+   while (head != NULL) {
+     sum = (sum << 1) + head->val;
+     head = head->next;
+   }
+   return sum;
+   }
+**/
+/* Atul Approch - 4ms */
 void getDecimalValue(void *ptr) {
   int i = 0, op = 0;
   struct list_node* trav = NULL;
