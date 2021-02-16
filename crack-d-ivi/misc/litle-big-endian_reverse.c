@@ -29,6 +29,9 @@ int reverse(int a) {
   return x;
 }
 
+/*
+  This code snippet can convert 32bit little Endian number to Big Endian number.
+*/
 int rev2(int num) {
   unsigned int i = num;//0x12345678;//0xfafbfcfd;
   unsigned int j;
@@ -37,11 +40,31 @@ int rev2(int num) {
   return num;
 }
 
+/**
+  Unpack 32 into 8 bit
+  uint32_t cm
+  i1[0] = (cm >>  0);
+  i1[1] = (cm >>  8);
+  i1[2] = (cm >> 16);
+  i1[3] = (cm >> 24);
+
+  i2[0] = (data >> 32);
+  i2[1] = (data >> 40);
+  i2[2] = (data >> 48);
+  i2[3] = (data >> 56);
+**/
+unsigned int change_endian3(unsigned int x) {
+    unsigned char *ptr = (unsigned char *)&x;
+    return (ptr[0] << 24) | (ptr[1] << 16) | (ptr[2] << 8) | ptr[3];
+}
+
+
 int main() {
   unsigned int a = 0x12345678;
   printf("Big endian  a = 0x%x\n", a);
   printf("Big endian  a = 0x%x\n", reverse(a));
   debug ("Big endian  a = 0x%x\n", rev2(a));
+  debug ("Big endian  a = 0x%x\n", change_endian3(a));
 
   return 0;
 }
@@ -50,7 +73,9 @@ int main() {
   => ./a.out
   Big endian  a = 0x12345678
   Big endian  a = 0x78563412
-  [rev2] L=36 :Big endian  a = 0x78563412
+  [rev2] L=39 :Big endian  a = 0x78563412
 
-  [main] L=44 :Big endian  a = 0x12345678
+  [main] L=66 :Big endian  a = 0x12345678
+
+  [main] L=67 :Big endian  a = 0x78563412
 */
