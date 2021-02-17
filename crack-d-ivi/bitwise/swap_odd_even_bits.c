@@ -43,7 +43,7 @@ unsigned char swapOddEvenBits2(unsigned char num) {
 
 int main() {
   int ret = 0;
-  ret = swapOddEvenBits2(6);
+  ret = swapOddEvenBits(6);
   printf ("--> %d \n", ret);
 }
 
