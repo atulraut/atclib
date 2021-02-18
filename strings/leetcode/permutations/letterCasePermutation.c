@@ -68,7 +68,7 @@ char** letterCasePermutation2(char* S, int* returnSize) {
       if (isalpha(S[m])) {
 	a[j][m] = (i1 & 1) ? toupper(S[m]) : tolower(S[m]);
 	i1 >>= 1;
-	debug ("i1=%d (i1 & 1)=%d", i1, (i1 & 1));
+	debug ("i1=%d (i1 & 1)=%d c=%c", i1, (i1 & 1), a[j][m]);
       } else
 	  a[j][m] = S[m];
     j++;
