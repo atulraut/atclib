@@ -10,6 +10,19 @@ https://web.stanford.edu/class/archive/cs/cs107/cs107.1186/lectures/02-bits.pdf
   << ==   [Multiplication *]
   >> ==   [Divide  /]
 -------------------------------------------------------------------------------
+Practice ascii to hex. The values are char.
+Ascii 	Hex
+'I' 	0x49
+'5' 	0x35
+'d' 	0x64
+'0'     0x0    48
+Each lowercase letter is 32 + uppercase equivalent. This means simply flipping
+the bit at position 5 (counting from least significant bit at position 0)
+inverts the case of a letter.  A --> 65 | 65 + 32 = 97 <-- a
+S C T
+O A X
+SOCATX - To Remember
+-------------------------------------------------------------------------------
 [1     0    0      1       0   0     1   1      1   0   0    0   0   0   0]
 16384 8196  4096   2048  1024  512  256  128    64  32  16   8   4   2    1
 
