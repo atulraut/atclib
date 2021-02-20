@@ -15,6 +15,7 @@
 #include <math.h>
 #include <assert.h>
 #include <stdint.h> /* uint32_t */
+#include <unistd.h> /* sleep */
 
 /***
     In case File Debug Option needs to Enabled.

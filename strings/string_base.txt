@@ -9,8 +9,17 @@ Char | Dec
 'Z'  | 90
 'a'  | 97
 'z'  | 122
-
 '0'  | 48 - Number Zero
+
+65 + 32 = 97 :
+{ 0x20(HX) == 32 (DECIBLE) }
+Note : Each lowercase letter is 32 + uppercase equivalent.
+This means simply flipping the bit at position 5 (counting from least
+significant bit at position 0) inverts the case of a letter.
+A --> 65 | 65 + 32 = 97 <-- a
+S C T
+O A X
+SOCATX - To Remember
 -------------------------------------------------------------------------
 int[26] for Letters 'a' - 'z' or 'A' - 'Z'
 int[128] for ASCII
