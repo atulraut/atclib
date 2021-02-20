@@ -1,4 +1,5 @@
 http://c-faq.com/decl/pfitypedef.html
+http://www.newty.de/fpt/fpt.html#chapter2 - Introduction to Function Pointers
 
 Q: What does
 
