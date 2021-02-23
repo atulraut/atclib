@@ -37,6 +37,8 @@
 #include <stdio.h>
 #include <stdarg.h>
 
+#define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
+
 /* getMissingNo takes array and size of array as arguments*/
 int getMissingNo (int a[], int n) {
   int i, total;
@@ -70,15 +72,30 @@ int getMissingNoXOR(int a[], int n) {
   return (x1^x2);
 }
 
+/***
+    LeetCode : https://leetcode.com/problems/missing-number/
+    Note : It need 1 element in array 0.
+ */
+int missingNumber(int* nums, int numsSize){
+  int missing = numsSize;
+   for (int i = 0; i < numsSize; i++) {
+            missing ^= i ^ nums[i];
+        }
+        return missing;
+}
+
 /*program to test above function */
 int main() {
   int a[] = {1,2,4,5,6};
-
+  int a1[] = {1,2,4,5,0};
   int miss = getMissingNo(a,5);
-  printf("\n\n [%s] Output --> [%d] \n", __func__, miss);
+  debug ("Output --> [%d] \n", miss);
   miss = getMissingNoXOR(a, 5);
-  printf("\n [%s] Output = %d \n", __func__, miss);
-  getchar();
+  debug ("Output = %d \n", miss);
+
+  miss = missingNumber(a1, 5);
+  debug ("Output = %d \n", miss);
+
 }
 
 /**
