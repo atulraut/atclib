@@ -32,6 +32,7 @@ char * addBinary(char * a, char * b){
   int k = i;
 
   while(i || j){
+    debug ("res = %d carry = %d", res[k],  carry);
     if(i)
       carry += a[--i] - '0';
     if(j)
@@ -40,6 +41,7 @@ char * addBinary(char * a, char * b){
     int q = k;
     debug ("res = %d carry1 = %d carry2 = %d", res[q], (carry % 2 + '0'), carry);
     carry /= 2;
+    debug ("res = %d carry = %d", res[q],  carry);
   }
   res[0] = carry+'0';
   if(!carry)
