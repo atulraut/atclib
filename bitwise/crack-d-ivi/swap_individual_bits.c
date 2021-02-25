@@ -16,9 +16,26 @@ int swapAdjacentBits(int n) {
   return (((n & 0xAAAAAAAA) >> 1) | ((n & 0x55555555) << 1));
 }
 
+#define xorswap(a,b) ((a) ^= (b), (b) ^= (a), (a) ^= (b))
+
+void xorswap2(int *x, int *y) {
+  if (x != y) {
+    *x ^= *y;
+    *y ^= *x;
+    *x ^= *y;
+  }
+  debug("x= %d y = %d \n", *x, *y);
+}
+
 int main() {
   debug("o/p = %d \n", swapAdjacentBits(85));
   debug("o/p = %d \n", swapAdjacentBits(64));
+  int a = 10, b = 5;
+
+  xorswap2(&a, &b);
+  xorswap(a, b);
+  debug("a = %d b = %d \n", a, b);
+
   return 0;
 }
 /**
