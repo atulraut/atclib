@@ -9,7 +9,45 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "../../at_lib.h"
+#include <ctype.h>
+#include <limits.h>
+#include <string.h>  /* malloc */
+#include <stdbool.h>
+#include <math.h>
+#include <assert.h>
+#include <stdint.h> /* uint32_t */
+#include <unistd.h> /* sleep */
+
+#define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
+
+/**
+ * memmove - Copy one area of memory to another
+ * @dest: Where to copy to
+ * @src: Where to copy from
+ * @count: The size of the area.
+ *
+ * Unlike memcpy(), memmove() copes with overlapping areas.
+ * https://elixir.bootlin.com/linux/latest/source/lib/string.c#L99L
+ */
+void *memmove_linux(void *dest, const void *src, size_t count) {
+  char *tmp;
+  const char *s;
+
+  if (dest <= src) {
+    tmp = dest;
+    s = src;
+    while (count--)
+      *tmp++ = *s++;
+  } else {
+    tmp = dest;
+    tmp += count;
+    s = src;
+    s += count;
+    while (count--)
+      *--tmp = *--s;
+  }
+  return dest;
+}
 
 /**
    Ref: http://www.danielvik.com/2010/02/fast-memcpy-in-c.html
@@ -48,7 +86,9 @@ int main(int argc, char* argv[]) {
   char *p1, *p2;
   char *p3, *p4;
   int size;
+
   /*  CASE 1 : From (SRC) < To (DEST) * From To  */
+
   p1 = (char *) malloc(12);
   memset(p1,12,'\0');
   size=10;
@@ -62,7 +102,9 @@ int main(int argc, char* argv[]) {
   printf("\nFrom (after-p1)  = [%s]",p1);
   printf("\nTo   (after-p2)  = [%s]",p2);
   printf("\n--------------------------------");
-  /*CASE 2 : From (SRC) > To (DEST) To From */
+
+  /* CASE 2 : From (SRC) > To (DEST) To From */
+
   p3 = (char *) malloc(12);
   memset(p3,12,'\0');
   p4 = p3 + 2;
@@ -72,7 +114,9 @@ int main(int argc, char* argv[]) {
   mymemmove(p3, p4, size);
   printf("\nFrom (after-p4)  = [%s]",p4);
   printf("\nTo (after-p3)    = [%s]",p3);
+
   /* CASE 3 : No overlap */
+
   p1 = (char *) malloc(30);
   memset(p1,30,'\0');
   size=10;
