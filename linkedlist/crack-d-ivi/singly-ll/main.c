@@ -11,11 +11,10 @@
 int main()
 {
     int  ch, val,pos;
-    printf ("---------------------------------------------------");    
+    printf ("---------------------------------------------------");
     printf("\nEnter to the world of Atul Raut's Programing:\n");
     printf ("---------------------------------------------------");
     while(1) {
-//		system("clear");
 		printf("\n 0>Exit         \n 1>Add First      \n 2>Add Last     \n 3>Insert     \
                 \n 4>Delete First \n 5>Delete Node    \n 6>Delete Last                  \
                 \n 7>Display      \n 9>Print Reversly \n 10>Free list                   \
@@ -41,7 +40,7 @@ int main()
 				m_Addlast(val);
 				break;
 			case 3:
-				printf("\nEnter the number and position :");
+				printf("\nEnter the Position and Data :");
 				scanf("%d%d", &val,&pos);
 				printf ("\n ---------------- ");
 				m_Insert (val, pos);
@@ -72,7 +71,6 @@ int main()
 				exit(0);
 			}
 		}
-		//getch();
 	}
 	return 0;
 }
