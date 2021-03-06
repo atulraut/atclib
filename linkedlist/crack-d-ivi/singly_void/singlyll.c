@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "list.h"
-
+#include "../../../at_lib.h"
 
 static int get_input(char *cmd) {
   int res = 1;
@@ -288,6 +288,9 @@ void m_RemoveDuplicateNodes(void *ptr) {
 
   prev = (LIST_NODE *)ll->head;
   current = prev->next;
+
+  debug ("prev = %p curr= %p ", prev, current);
+
   while (current != NULL) {
     LIST_NODE *runner = (LIST_NODE *)ll->head;
     while (runner != current) {
@@ -298,12 +301,12 @@ void m_RemoveDuplicateNodes(void *ptr) {
 	break; // all other dups have removed
       }
       runner = runner->next;
-    }
+    } // Inner While Ends
     if (runner == current) { // current not update, update now
       prev = current;
       current = current->next;
-    }
-  }
+    } // if Ends
+  } // 1st while Ends.
 }
 
 /* Our search should be able to tell us that 52 is
@@ -321,6 +324,25 @@ void m_SearchData(void *ptr) {
     printf ("Found Key = %d \n",current->data);
   }
   printf ("Key Not Found! \n");
+}
+
+/*
+  Detect Loop in Linked List
+*/
+void m_detect_loop (void *ptr) {
+  LIST *ll = (LIST *)ptr;
+  LIST_NODE *trav = (LIST_NODE *)ll->head;
+  LIST_NODE *slow_p = trav;
+  LIST_NODE *fast_p = trav;
+
+  while (slow_p && fast_p && fast_p->next) {
+    slow_p = slow_p->next;
+    fast_p = fast_p->next->next;
+    if (slow_p == fast_p) {
+      printf ("Found Loop! \n");
+      return;
+    }
+  }
 }
 
 void m_Display(void *ptr){

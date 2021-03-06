@@ -11,7 +11,7 @@
 #include <string.h>
 #include "list.h"
 
-truct ll_func {
+struct ll_func {
   void (*compute) (void *_ptr);
   char key;
   char *name;

@@ -20,6 +20,7 @@
 
 #define DEBUG_T 0
 #define DEBUG_L 1
+#define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
 
 struct table* m_createTable(int size) {
   int i;
@@ -41,6 +42,10 @@ int m_getHashCode(struct table *t, int key) {
 void m_insert (struct table *t, int key) {
   int pos = m_getHashCode (t, key);
   struct node *list = t->list[pos];
+  if (NULL == list)
+    debug ("list is NULL! ");
+  else
+    debug ("list - %p ", list);
 
   struct node *nn = (struct node *)malloc(sizeof(struct node));
 
@@ -54,11 +59,11 @@ void m_insert (struct table *t, int key) {
 #endif
 #ifdef DEBUG_L
       temp->val = key; /* As it is same as val */
-      printf ("%s 0. key = %d val = %d \n", __func__, key, temp->val);
+      debug ("key = %d val = %d \n", key, temp->val);
       return;
 #endif
     }
-    printf ("%s 1. key = %d val = %d \n", __func__, key, temp->val);
+    debug ("key = %d val = %d \n",key, temp->val);
     temp = temp->next;
   }
 #ifdef DEBUG_T
@@ -70,7 +75,7 @@ void m_insert (struct table *t, int key) {
   nn->key = key;
   nn->next = list;
   t->list[pos] = nn;
-  printf ("%s 2. key = %d val = %d \n", __func__, key, nn->val);
+  debug("key = %d val = %d \n", key, nn->val);
 }
 
 int m_lookup (struct table *t, int key) {
