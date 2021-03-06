@@ -25,6 +25,7 @@ void m_DelNode(void *, LIST_NODE *);
 void m_ReturnNthNode_From_End(void *);
 void m_RemoveDuplicateNodes(void *ptr);
 void m_SearchData(void *ptr);
+void m_detect_loop (void *ptr);
 void quit(void *);
 /*
 void m_Insert(int,int);

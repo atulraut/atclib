@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "list.h"
-#include "../../at_lib.h"
+#include "../../../at_lib.h"
 
 LIST *init_list (void *_list) {
   _list = (LIST *) malloc (sizeof(LIST));
@@ -27,67 +27,52 @@ void m_add (void *_list, int _data) {
   NODE *nn = NULL;
   nn = create_node (_data);
   if (NULL == list->head) { // first Node
-	  nn->prev = list->head;
-	  list->head = nn;
+    nn->prev = list->head;
+    list->head = nn;
   } else {  // add last
-	  NODE *trav = list->head;
-	  while (NULL != trav->next)
-	     trav = trav->next;
-	  trav->next = nn;
-	  nn->prev = trav;
+    NODE *trav = list->head;
+    while (NULL != trav->next)
+      trav = trav->next;
+    trav->next = nn;
+    nn->prev = trav;
   }
 }
-
-void m_sort() {
-
-}
-
 
 // function to insert a new node in sorted way in
 // a sorted doubly linked list
-void sortedInsert(void *_list, NODE* newNode) {
-  LIST *list = (LIST *)_list;
-  if (NULL == list->head) {
-    printf ("List is Empty\n");
-    return;
+void sortedInsert(NODE **head_ref, NODE* newNode) {
+  NODE* current;
+
+  if (NULL == *head_ref) {
+    *head_ref = newNode;
   }
-  NODE *trav = list->head;
+  // if the node is to be inserted at the beginning
+  // of the doubly linked list
+  else if ((*head_ref)->data >= newNode->data) {
+    newNode->next = *head_ref;
+    newNode->next->prev = newNode;
+    *head_ref = newNode;
+  } else {
+    current = *head_ref;
 
-   NODE* current;
+    // locate the node after which the new node
+    // is to be inserted
+    while (current->next != NULL &&
+	   current->next->data < newNode->data)
+      current = current->next;
 
-    // if list is empty
-    if (list->head == NULL)
-        list->head = newNode;
+    /*Make the appropriate links */
 
-    // if the node is to be inserted at the beginning
-    // of the doubly linked list
-    else if (trav->data >= newNode->data) {
-        newNode->next = trav;
-        newNode->next->prev = newNode;
-        trav = newNode;
-    }
+    newNode->next = current->next;
 
-    else {
-      current = list->head;
+    // if the new node is not inserted
+    // at the end of the list
+    if (current->next != NULL)
+      newNode->next->prev = newNode;
 
-        // locate the node after which the new node
-        // is to be inserted
-        while (current->next != NULL &&
-               current->next->data < newNode->data)
-            current = current->next;
-
-        /*Make the appropriate links */
-
-        newNode->next = current->next;
-
-        // if the new node is not inserted
-        // at the end of the list
-        if (current->next != NULL)
-            newNode->next->prev = newNode;
-
-        current->next = newNode;
-        newNode->prev = current;
-    }
+    current->next = newNode;
+    newNode->prev = current;
+  }
 }
 
 /**
@@ -98,36 +83,35 @@ void sortedInsert(void *_list, NODE* newNode) {
 void m_insertionSort(void *_list) {
   LIST *list = (LIST *)_list;
   if (NULL == list->head) {
-    printf ("List is Empty\n");
+    debug ("List is Empty\n");
     return;
   }
-  NODE *trav = list->head;
 
-    // Initialize 'sorted' - a sorted doubly linked list
-    struct NODE* sorted = NULL;
+  // Initialize 'sorted' - a sorted doubly linked list
+  struct NODE* sorted = NULL;
 
-    // Traverse the given doubly linked list and
-    // insert every node to 'sorted'
-    //struct Node* current = *head_ref;
-    NODE *current = list->head;
-    while (current != NULL) {
+  // Traverse the given doubly linked list and
+  // insert every node to 'sorted'
+  //struct Node* current = *head_ref;
+  NODE *current = list->head;
+  while (current != NULL) {
 
-        // Store next for next iteration
-        struct NODE* next = current->next;
+    // Store next for next iteration
+    struct NODE* next = current->next;
 
-        // removing all the links so as to create 'current'
-        // as a new node for insertion
-        current->prev = current->next = NULL;
+    // removing all the links so as to create 'current'
+    // as a new node for insertion
+    current->prev = current->next = NULL;
 
-        // insert current in 'sorted' doubly linked list
-        sortedInsert(&sorted, current);
+    // insert current in 'sorted' doubly linked list
+    sortedInsert(&sorted, current);
 
-        // Update current
-        current = next;
-    }
+    // Update current
+    current = next;
+  }
 
-    // Update head_ref to point to sorted doubly linked list
-    list->head = sorted;
+  // Update head_ref to point to sorted doubly linked list
+  list->head = sorted;
 }
 
 void m_display (void *_list) {

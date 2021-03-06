@@ -21,4 +21,3 @@ void m_Display(void *);
 void quit(void *);
 
 #endif
-
