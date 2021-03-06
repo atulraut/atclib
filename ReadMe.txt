@@ -1,7 +1,14 @@
 This Project started by Atul Raut.
 India.
 
-email ->
+What it is ?
+    You will find C program from basics to very advanced.`
+
+Build Macros and functions
+    croot - change directory to the top of the tree
+    m - execute 'make' from the top of the tree (even if your current directory is somewhere else)
+
+email for Query & suggestions/Improvement ->
 rauji.raut@gmail.com
 
 blog ->
