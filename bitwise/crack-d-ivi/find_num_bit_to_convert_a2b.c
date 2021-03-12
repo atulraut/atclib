@@ -19,9 +19,9 @@
 */
 
 int bitSwapRequired(int a, int b) {
-  int count = 0;
+  int count = 0, i=0;
   for (int c = a ^ b; c != 0; c = c >> 1) {
-    debug ("--> c %d ", c);
+    debug ("i=[%d]--> c %d ",++i, c);
     count += c & 1;
     debug ("--> cnt=%d (c&1) = %d ", count, (c&1));
 
@@ -51,15 +51,15 @@ int main() {
 
 /**
    => ./a.out
-   [bitSwapRequired] L=24 :--> c 17
+   [bitSwapRequired] L=24 :i=[1]--> c 17
    [bitSwapRequired] L=26 :--> cnt=1 (c&1) = 1
-   [bitSwapRequired] L=24 :--> c 8
+   [bitSwapRequired] L=24 :i=[2]--> c 8
    [bitSwapRequired] L=26 :--> cnt=1 (c&1) = 0
-   [bitSwapRequired] L=24 :--> c 4
+   [bitSwapRequired] L=24 :i=[3]--> c 4
    [bitSwapRequired] L=26 :--> cnt=1 (c&1) = 0
-   [bitSwapRequired] L=24 :--> c 2
+   [bitSwapRequired] L=24 :i=[4]--> c 2
    [bitSwapRequired] L=26 :--> cnt=1 (c&1) = 0
-   [bitSwapRequired] L=24 :--> c 1
+   [bitSwapRequired] L=24 :i=[5]--> c 1
    [bitSwapRequired] L=26 :--> cnt=2 (c&1) = 1
    --> 2
 **/

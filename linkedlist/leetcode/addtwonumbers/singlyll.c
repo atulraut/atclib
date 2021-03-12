@@ -10,54 +10,34 @@
 #include <string.h>
 #include "list.h"
 
-struct list *list1 = NULL;
-struct list *list2 = NULL;
-struct list *l_base = NULL;
-
 static int get_input(char *cmd) {
   int res = 1;
 
   printf ("Enter number! \n");
-
-  while(fgets (cmd, 20, stdin) && cmd[0] != '\n') {
+  while(fgets (cmd, 20, stdin) && cmd[0] != '\n')
     res = atoi(cmd);
-    //    printf ("atoi=%d, cmd=%s \n", res, cmd);
-  }
   return res;
-}
-
-struct list* getLLType() {
-  int llType = 0;
-  int cmd;
-
-  printf ("Select Linked List Type ? 1 : 2 \n");
-  scanf ("%d", &cmd);
-  llType = cmd;
-  printf ("llType = %d, cmd = %d \n", llType, cmd);
-  if (llType == 1)
-    l_base = list1;
-  if (llType == 2)
-    l_base = list2;
-  printf ("Selected Linked List Type l=%p L1=%p L2=%p\n", l_base, list1, list2);
-  return l_base;
 }
 
 struct list* m_Init (struct list *ll){
   struct list *list = NULL;
-  memset((void *)ll, 0, sizeof(struct list));
+
   list = (struct list *)malloc (sizeof (struct list));
+  if (NULL == list)
+    return NULL;
+
   list->head = NULL;
   return list;
 }
 
 static struct list_node* m_CreateNodeL (int data){
-        struct list_node *nn = NULL;
-	nn = (struct list_node*)malloc(sizeof (struct list_node *));
-	if (nn == NULL)
-		return NULL;
-	nn->data  = data;
-	nn->next = NULL;
-	return nn;
+  struct list_node *nn = NULL;
+  nn = (struct list_node*)malloc(sizeof (struct list_node *));
+  if (nn == NULL)
+    return NULL;
+  nn->data  = data;
+  nn->next = NULL;
+  return nn;
 }
 
 void m_Addfirst(void *ptr) {
@@ -66,21 +46,20 @@ void m_Addfirst(void *ptr) {
   char cmd[20] = {0};
   int data;
 
-  /* Set Linked List Type ? 1 : 2 */
-  list = getLLType();
-  printf ("Selected Linked List Type l=%p L1=%p L2=%p\n", l_base, list1, list2);
+  printf ("Selected Linked List Type l=%p L1=%p L2=%p\n", list, list1, list2);
 
   data = get_input(cmd);
+
   nn = m_CreateNodeL (data);
   nn->data = data;
-  if (NULL == l_base->head) {
-    l_base->head = (struct list_node *)nn;
+  if (NULL == list->head) {
+    list->head = (struct list_node *)nn;
     nn->next = NULL;
   } else {
     struct list_node *trav;
-    trav = (struct list_node *)l_base->head;
+    trav = (struct list_node *)list->head;
     nn->next = trav;
-    l_base->head = (struct list_node *)nn;
+    list->head = (struct list_node *)nn;
   }
 }
 
@@ -108,40 +87,40 @@ void m_Addlast(void *ptr) {
 
 void m_Delfirst(void *ptr) {
   struct list *ll = (struct list *)ptr;
-	if (ll == NULL)
-		printf ("\n Empty Link List.");
-	else {
-		struct list_node *temp = NULL;
-		temp = (struct list_node *)ll->head;
-		if (temp->next == NULL) {
-			free (temp);
-			temp = NULL;
-		}
-		else {
-			temp = (struct list_node *)ll->head;
-			ll->head = (struct list_node *)temp->next;
-			free (temp);
-			temp = NULL;
-		}
-	}
+  if (ll == NULL)
+    printf ("\n Empty Link List.");
+  else {
+    struct list_node *temp = NULL;
+    temp = (struct list_node *)ll->head;
+    if (temp->next == NULL) {
+      free (temp);
+      temp = NULL;
+    }
+    else {
+      temp = (struct list_node *)ll->head;
+      ll->head = (struct list_node *)temp->next;
+      free (temp);
+      temp = NULL;
+    }
+  }
 }
 
 void m_Freelist(void *ptr) {
-	struct list *ll = (struct list *)ptr;
-	if (ll->head == NULL)
-		printf ("\n Empty Link List.");
-	else {
-	  struct list_node *temp = NULL;
-	  struct list_node *trav = NULL;
-	  temp = (struct list_node *)ll->head;
-	  while (temp != NULL) {
-		  trav = temp->next;
-		  free(temp);
-		  temp = NULL;
-		  temp = trav;
-	  }
-	  ll->head = NULL;
-	}
+  struct list *ll = (struct list *)ptr;
+  if (ll->head == NULL)
+    printf ("\n Empty Link List.");
+  else {
+    struct list_node *temp = NULL;
+    struct list_node *trav = NULL;
+    temp = (struct list_node *)ll->head;
+    while (temp != NULL) {
+      trav = temp->next;
+      free(temp);
+      temp = NULL;
+      temp = trav;
+    }
+    ll->head = NULL;
+  }
 }
 
 void m_Revlist(void *ptr) {
@@ -157,37 +136,6 @@ void m_Revlist(void *ptr) {
     ll->head = (struct list_node *)head;
     temp = trav;
   }
-}
-
-void m_RevlistKthNode(void *ptr) {
-  struct list *ll = ptr;
-  struct list_node *head = (struct list_node *)ll->head;
-  struct list_node *trav;
-  struct list_node *temp = head;
-  struct list_node *start= head;
-  head = NULL;
-  int cnt = 0;
-  char cmd[20] = {0};
-  int k = 0;
-
-  k = get_input(cmd);
-
-  if(k<1) {
-    printf ("Cant reverse the list! \n");
-    return;
-  }
-  if(k==1)  /* if just 2 element in list we need this condition. */
-    k=2;
-  while (temp != NULL && cnt < k) {
-    trav = temp->next;
-    temp->next = head;
-    head = temp;
-    ll->head = (struct list_node *)head;
-    temp = trav;
-    cnt++;
-  }
-  start->next = trav;
-  printf ("Reverse the kth Node! k = %d cnt =%d \n", k, cnt);
 }
 
 /*
@@ -228,11 +176,11 @@ void m_Sortlist(void *_list) {
     min = start;
     trav = start->next;
     while (trav) {
-       if (min->data > trav->data) {
-         min = trav;
-	 flag = 1; // to check we really needs to swap data
-       }
-       trav = trav->next;
+      if (min->data > trav->data) {
+	min = trav;
+	flag = 1; // to check we really needs to swap data
+      }
+      trav = trav->next;
     }
     if(flag) {
       swap (start, min);
@@ -298,97 +246,19 @@ void middleNode(void *ptr) {
   printf ("[%s] Middle Node = %d \n", __func__, tortoise->data);
 }
 
-void m_ReturnNthNode_From_End(void *ptr) {
-  struct list *ll = (struct list *)ptr;
-  struct list_node *p1 = NULL;
-  struct list_node *p2 = NULL;
-  char cmd[20] = {0};
-  int NthNode = 0;
-
-  NthNode = get_input(cmd);
-
-  p1 = p2 = (struct list_node *)ll->head;
-
-  if (ll->head == NULL || NthNode < 1) {
-      return;
-  }
-  for (int j = 0; j<(NthNode-1); ++j) { // skip n-1 steps ahead
-      if (p2 == NULL) {
-	return;// not found since list size < n
-      }
-      p2 = p2->next;
-  }
-
-  while (p2->next != NULL) {
-      p1 = p1->next;
-      p2 = p2->next;
-  }
-  printf ("\nval--> %d\n", p1->data);
-}
-
-/* Middle Most Node of a Linked List */
-void m_RemoveDuplicateNodes(void *ptr) {
-  struct list *ll = (struct list *)ptr;
-  struct list_node *prev = NULL;
-  struct list_node *current = NULL;
-
-  prev = (struct list_node *)ll->head;
-  current = prev->next;
-  while (current != NULL) {
-    struct list_node *runner = (struct list_node *)ll->head;
-    while (runner != current) {
-      if(runner->data == current->data) {
-	struct list_node *temp = current->next; // remove current
-	prev->next = temp;
-	current = temp; // update current to next node
-	break; // all other dups have removed
-      }
-      runner = runner->next;
-    }
-    if (runner == current) { // current not update, update now
-      prev = current;
-      current = current->next;
-    }
-  }
-}
-
-/* Our search should be able to tell us that 52 is
- *  in the list. On the other hand, if we searched for 25, our search
- *  should report that 25 is not in the list.
- */
-void m_SearchData(void *ptr) {
-  struct list *ll = (struct list *)ptr;
-  struct list_node *current = (struct list_node *)ll->head;
-  char cmd[20] = {0};
-  int key = 0;
-
-  key = get_input(cmd);
-  while (current != NULL && current->data != key) {
-    printf ("Found Key = %d \n",current->data);
-  }
-  printf ("Key Not Found! \n");
-}
-
 /*
   https://leetcode.com/problems/add-two-numbers/
 ***/
 //struct list* addTwoNumbers(struct list* l1, struct list* l2) {
 void addTwoNumbers(void *ptr) {
-  struct list *temp;
-  struct list_node *temp_nn;
   struct list_node *trav1;
   struct list_node *trav2;
   int remainder = 0, sum;
 
-  /* Set Linked List Type ? 1 : 2 */
-  getLLType();
-
   trav1 = (struct list_node *)list1->head;
   trav2 = (struct list_node *)list2->head;
 
-  temp_nn->data = 0;
-  temp_nn->next = NULL;
-  struct list_node* curr = temp_nn;
+  struct list_node* curr;
 
   while (trav1 != NULL || trav2 != NULL || remainder != 0) {
     sum = remainder + (trav1 == 0 ? 0 : trav1->data) + (trav2 == 0 ? 0: trav2->data);
@@ -404,11 +274,82 @@ void addTwoNumbers(void *ptr) {
   //return temp_nn->next;
 }
 
+/**
+   Merged Unsorted Linked List :
+   Given two character array of limited size, create a link list
+   with elements from both array in alternate way
+   Example
+   arr1 = a,b,c,d,e
+   arr2 = x.y.z
+   link list = a->x->b->y->c->z->d
+   Assumption : We have list1 & list2 available to Merge (No Sorting)
+   Date : 11 March 2021, San Diego, CA
+**/
+void mergeTwoLinkedList (void *ptr) {
+  int flag = 1;
+  struct list *list3, l3;
+  list3 = m_Init(&l3);
+  if (NULL == list1 || NULL == list2 || NULL == list3)
+    return;
+
+  struct list_node *trav3 = list3->head = list1->head;
+  struct list_node *trav1 = (struct list_node *)list1->head;
+  trav1 = trav1->next;
+  struct list_node *trav2 = (struct list_node *)list2->head;
+  //  struct list_node *trav3 = (struct list_node *)list3->head;
+
+  while (trav1 != NULL && trav2 != NULL) {
+    if (flag) { // Add L2
+      trav3->next = trav2;
+      trav2 = trav2->next;
+    } else {    // Add L1
+      trav3->next = trav1;
+      trav1 = trav1->next;
+    }
+    trav3 = trav3->next;
+    flag = !flag;
+  }
+
+  // if there are still some elements in either list, just keep adding them.
+  while (trav1 != NULL) {
+    trav3->next = trav1;
+    trav1 = trav1->next;
+    trav3 = trav3->next;
+  }
+  while (trav2 != NULL) {
+    trav3->next = trav2;
+    trav2 = trav2->next;
+    trav3 = trav3->next;
+  }
+
+  m_Display(list3);
+}
+
+/* Sort & Merged Linked List /
+struct list_node* SortedMergeLL(struct list_node* a, struct list_node* b) {
+  struct list_node* result = NULL;
+
+  // Base cases
+  if (a == NULL)
+     return(b);
+  else if (b==NULL)
+     return(a);
+
+  // Pick either a or b, and recur
+  if (a->data <= b->data) {
+     result = a;
+     result->next = SortedMerge(a->next, b);
+  } else {
+     result = b;
+     result->next = SortedMerge(a, b->next);
+  }
+  m_Display(result);
+  //  return(result);
+}
+*/
+
 void m_Display(void *ptr){
   struct list *list = (struct list *)ptr;
-
-  /* Set Linked List Type ? 1 : 2 */
-  getLLType();
 
   printf ("\n----------:: Output ::-----------\n");
   struct list_node *temp = NULL;

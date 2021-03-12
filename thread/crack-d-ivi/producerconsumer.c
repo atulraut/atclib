@@ -36,11 +36,11 @@ void* consumer(void *ptr) {
 
   for (i = 1; i <= MAX; i++) {
     pthread_mutex_lock(&the_mutex);/* protect buffer */
-    while (buffer == 0)/* 1. If there is nothing in 
+    while (buffer == 0)/* 1. If there is nothing in
 			  the buffer then wait */
     pthread_cond_wait(&condc, &the_mutex); /* Before enter critical section Hold lock so only 1 process can access critical section */
     printf ("4. consumer: buffer = %d \n", buffer);
-    buffer = 0;    
+    buffer = 0;
     pthread_cond_signal(&condp);/*5. wake up producer, Finished with lock */
     pthread_mutex_unlock(&the_mutex);/* release the buffer */
   }
@@ -71,3 +71,27 @@ int main(int argc, char **argv) {
   pthread_cond_destroy(&condc);/* Free up consumer condition variable */
   pthread_cond_destroy(&condp);/* Free up producer condition variable */
 }
+
+/**
+   => ./main.out
+   2. producer: buffer = 1
+   4. consumer: buffer = 1
+   2. producer: buffer = 2
+   4. consumer: buffer = 2
+   2. producer: buffer = 3
+   4. consumer: buffer = 3
+   2. producer: buffer = 4
+   4. consumer: buffer = 4
+   2. producer: buffer = 5
+   4. consumer: buffer = 5
+   2. producer: buffer = 6
+   4. consumer: buffer = 6
+   2. producer: buffer = 7
+   4. consumer: buffer = 7
+   2. producer: buffer = 8
+   4. consumer: buffer = 8
+   2. producer: buffer = 9
+   4. consumer: buffer = 9
+   2. producer: buffer = 10
+   4. consumer: buffer = 10
+**/

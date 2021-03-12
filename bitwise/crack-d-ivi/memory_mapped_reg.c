@@ -15,7 +15,7 @@ void write_REG(unsigned int address, int offset, int data) {
   *((volatile unsigned int*)address + offset) = data;
 }
 
-void increment_reg(){
+void increment_reg() {
 
   int c;    //to save the address read from memory
   volatile char *control_register_ptr= (char*) 0x1ffff670;//memory mapped address. using char because it is 8 bits
@@ -26,5 +26,5 @@ void increment_reg(){
 }
 
 int main () {
-
+  increment_reg();
 }

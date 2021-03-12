@@ -27,7 +27,6 @@ unsigned int countSetBitsRec(unsigned int num) {
     return num_to_bits[nibble] + countSetBitsRec(num >> 4);
 }
 
-// Driver code
 int main() {
     int num = 31;
     printf("O/P--> %d\n", countSetBitsRec(num));

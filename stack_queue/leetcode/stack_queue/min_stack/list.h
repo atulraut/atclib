@@ -17,4 +17,5 @@ int topElement(void *_ptr);
 int isEmpty(void *_ptr);
 int getMin(void *_ptr);
 int m_Display(void *_ptr);
+int m_DisplayMin(void *_ptr);
 int quit(void *_ptr);

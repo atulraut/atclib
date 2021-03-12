@@ -7,6 +7,8 @@
 #include <stdbool.h>
 #include <math.h>
 
+#define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
+
 /* Trick: Any power of 2 variable, only 1 bit is set,
    hence & with -1 number always turns 0 & !num will
    return 1, so if 1, is power of 2.
@@ -54,14 +56,18 @@ bool isPowerOfFour(int num) {
 }
 
 int findPositionOfBit(unsigned int num) {
-  if (!powerOfTwo(num))
-    return -1;
   unsigned int i = 1;
   unsigned int pos = 1;
+  if (!powerOfTwo(num))
+    return -1;
+
+  debug ("num = %d, i = %d", num, i);
   while (!(i&num)) {
+    debug ("(num&i) = %d", (num & i));
     i = i << 1;
     ++pos;
   }
+  debug ("pos = %d ", pos);
   return pos;
 }
 
@@ -121,7 +127,6 @@ int main(void) {
     1. --> 4
     2. --> 0
     Find Position of num = 5 & its = -1
-
 
     The num = 24 & bit at position = 16
 
