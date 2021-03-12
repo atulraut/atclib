@@ -58,6 +58,7 @@ int** subsets(int* nums, int numsSize, int* returnSize, int** returnColumnSizes)
 }
 
 int main () {
+  int i,j;
   int nums[] = {1, 2, 3};
   int returnSize;
   int* returnColumnSizes;
@@ -65,8 +66,8 @@ int main () {
 
   int**op =  subsets(nums, numsSize, &returnSize, &returnColumnSizes);
 
-  for (int i=0,j=0; i<returnSize; i++, j++)
-    debug (" op = %d ", op[i][j]);
+  for (i=0,j=0; i<returnSize; i++, j++)
+      debug (" op = %c ", op[i][j]);
   return 0;
 }
 

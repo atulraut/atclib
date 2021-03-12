@@ -2,6 +2,7 @@
 * Aim :  Create Singly Link List
 * Date : July-29-2016
 * Date : Feb - 13-02-2021 San Diego, CA
+* Date : March - 11-03-2021 San Diego, CA
 * FixMed - Pending
 ***/
 
@@ -62,34 +63,24 @@ struct ll_func function_table[] = {
     .name = "Show"
   },
   {
-    .compute = m_RevlistKthNode,
-    .key = '8',
-    .name = "Reverse K'th Node Link List",
-  },
-  {
     .compute = m_Sortlist,
     .key = '9',
     .name = "Sort Link List",
   },
   {
-    .compute = m_ReturnNthNode_From_End,
-    .key = 'a',
-    .name = "Return Nth Node From End",
-  },
-  {
-    .compute = m_RemoveDuplicateNodes,
-    .key = 'b',
-    .name = "Remove Duplicate Nodes",
-  },
-  {
-    .compute = m_SearchData,
-    .key = 'c',
-    .name = "Search Data in Link List",
-  } ,
-  {
     .compute = addTwoNumbers,
     .key = 'd',
     .name = "Add Two Int of different Linked List",
+  },
+  {
+    .compute = mergeTwoLinkedList,
+    .key = 'm',
+    .name = "Merged 2 Linked List",
+  },
+   {
+    .compute = setLLType,
+    .key = 's',
+    .name = "Switched Linked List- L1 : L2 ?",
   },
   {
     .compute = quit,
@@ -107,19 +98,13 @@ static void print_all_functions() {
   }
 }
 
-int main () {
+void motion_linkedlist (void *_ptr) {
   int i = 0;
   char cmd[20];
-  struct list ll1, ll2;
-  struct list *list1 = NULL;
-  struct list *list2 = NULL;
-  struct list *l_base = NULL;
 
-  list1 = m_Init(&ll1);
-  list2 = m_Init(&ll2);
-  printf ("Linked List Ptrs l=%p L1=%p L2=%p\n", l_base, list1, list2);
+  struct list *list = (struct list *)_ptr;
 
-  printf ("Welcome to simple LinkList 2.0 \n");
+  printf ("Welcome to simple LinkList 3.0 \n");
   printf ("===================================\n");
   print_all_functions();
   printf ("===================================\n");
@@ -131,9 +116,40 @@ int main () {
     for(i=0; i<NUM_FUNCS; i++) {
       if(function_table[i].key == cmd[0]) {
 	printf ("Calling command: %s \n", function_table[i].name);
-	function_table[i].compute(list1);
+	function_table[i].compute(list);
 	break;
       }
     }
   } // while Ends
+}
+
+/* Set Linked List Type- (L1 : L2) ? */
+void setLLType() {
+  int llType = 0;
+  int cmd;
+
+  while (1) {
+    printf ("Select Linked List Type ? 1 : 2 \n");
+    scanf ("%d", &cmd);
+    llType = cmd;
+    printf ("llType = %d, cmd = %d \n", llType, cmd);
+    if (llType == 1)
+      l_base = list1;
+    if (llType == 2)
+      l_base = list2;
+
+    debug ("Selected Linked List Type l=%p L1=%p L2=%p\n", l_base, list1, list2);
+
+    motion_linkedlist (l_base);
+  }
+}
+
+int main () {
+  struct list ll1, ll2;
+
+  list1 = m_Init(&ll1);
+  list2 = m_Init(&ll2);
+  debug ("Linked List Ptrs l=%p L1=%p L2=%p", l_base, list1, list2);
+
+  setLLType ();
 }

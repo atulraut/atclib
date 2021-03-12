@@ -1,0 +1,44 @@
+Hash Tables :
+
+Ref : The Practice of Programming by Brian Kernighan & Rob Pike
+Github : https://github.com/asankov/the-practice-of-programming
+
+The idea is to pass the key through a hash function to generate a hash value that
+will be evenly distributed through a modest-sized integer range.
+The hash value is used to index a table where the information is stored.
+
+In practice, the hash function is pre-defined and an appropriate size of array
+is allocated, often at compile time.
+
+Each element of the array is a list that chains together the items that share
+a hash value.
+In other words, a hash table of n items is an array of lists whose average length
+is n/(.array size).
+Retrieving an item is an O(1) operation provided we pick a good hash function
+and the lists don't grow too long.
+
+
+This combination of lookup and optional insertion is common. Without it, there is
+duplication of effort; one must write
+if (lookup("namel') == NULL)
+   add item(newi tem("name" , value)) ;
+and the hash is computed twice.
+
+One of the most common hashing algorithms for strings builds a hash value
+by adding each byte of the string to a multiple of the hash so far.
+The multiplication spreads bits from the new byte through the value so far;
+at the end of the loop, the result should be a thorough mixing of the input bytes.
+Empirically, the values 31 and 37 have proven to be good choices for the multiplier
+in a hash function for ASCII strings.
+
+enum { MULTIPLIER = 31 };
+
+    -------------------
+     A | T  | U  | L
+    -------------------
+h = 65 | 84 | 85 | 76 | ==> 310
+    --------------------
+
+return (h % NHASH);
+
+310 % 16 == 6 <--> Hash Function Returns.

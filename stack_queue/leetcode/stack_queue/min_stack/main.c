@@ -53,7 +53,12 @@ struct ll_func function_table[] = {
   {
     .compute = m_Display,
     .key = '7',
-    .name = "Show"
+    .name = "Show All"
+  },
+  {
+    .compute = m_DisplayMin,
+    .key = '8',
+    .name = "Show Min"
   },
   {
     .compute = quit,

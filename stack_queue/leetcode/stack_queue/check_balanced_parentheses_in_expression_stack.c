@@ -1,18 +1,25 @@
 /*
 	Check for balanced parentheses in an expression
-	Given an expression string exp , write a program to examine whether the pairs and the orders of “{“,”}”,”(“,”)”,”[“,”]” are correct in exp.
-	For example, the program should print true for exp = “[()]{}{[()()]()}” and false for exp = “[(])”
+	Given an expression string exp , write a program to examine whether 
+	the pairs and the orders of “{“,”}”,”(“,”)”,”[“,”]” are correct in exp.
+	For example, the program should print true for exp = “[()]{}{[()()]()}” 
+	and false for exp = “[(])”
 	Algorithm:
 	1) Declare a character stack S.
 	2) Now traverse the expression string exp.
-		a) If the current character is a starting bracket (‘(‘ or ‘{‘ or ‘[‘) then push it to stack.
-		b) If the current character is a closing bracket (‘)’ or ‘}’ or ‘]’) then pop from stack and if the popped character is the matching starting bracket then fine else parenthesis are not balanced.
-	3) After complete traversal, if there is some starting bracket left in stack then “not balanced”
+		a) If the current character is a starting bracket 
+		   (‘(‘ or ‘{‘ or ‘[‘) then push it to stack.
+		b) If the current character is a closing bracket 
+		   (‘)’ or ‘}’ or ‘]’) then pop from stack and if the popped 
+		   character is the matching starting bracket then fine else 
+		   parenthesis are not balanced.
+	3) After complete traversal, if there is some starting bracket left 
+	   in stack then “not balanced”
 */
 
 #include<stdio.h>
 #include<stdlib.h>
-#define bool int
+#include <stdbool.h>
 
 /* structure of a stack node */
 struct sNode {
@@ -77,17 +84,6 @@ bool areParenthesisBalanced(char exp[]) {
      return 0;  /*not balanced*/
 }
 
-/* UTILITY FUNCTIONS */
-/*driver program to test above functions*/
-int main() {
-  char exp[100] = "{()}[]";
-  if (areParenthesisBalanced(exp))
-    printf("Balanced \n");
-  else
-    printf("Not Balanced \n");
-  return 0;
-}
-
 /* Function to push an item to stack*/
 void push(struct sNode** root, int new_data) {
   /* allocate node */
@@ -129,3 +125,18 @@ int pop(struct sNode** root) {
      return res;
   }
 }
+
+/* UTILITY FUNCTIONS */
+int main() {
+  char exp[100] = "{()}[]";
+  if (areParenthesisBalanced(exp))
+    printf("Balanced \n");
+  else
+    printf("Not Balanced \n");
+  return 0;
+}
+
+/**
+   => ./a.out
+   Balanced
+**/
