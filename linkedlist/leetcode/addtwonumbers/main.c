@@ -53,11 +53,6 @@ struct ll_func function_table[] = {
     .name = "Free List",
   },
   {
-    .compute = m_Revlist,
-    .key = '6',
-    .name = "Reverse Link List",
-  },
-  {
     .compute = m_Display,
     .key = '7',
     .name = "Show"
@@ -68,22 +63,28 @@ struct ll_func function_table[] = {
     .name = "Sort Link List",
   },
   {
-    .compute = addTwoNumbers,
+    .compute = m_addTwoNumbers,
     .key = 'd',
     .name = "Add Two Int of different Linked List",
   },
   {
-    .compute = mergeTwoLinkedList,
+    .compute = m_mergeTwoLinkedList,
     .key = 'm',
     .name = "Merged 2 Linked List",
   },
+
+  {
+    .compute = m_sortedMergeLL,
+    .key = 'n',
+    .name = "Merged 2 Sorted Linked List",
+  },
    {
-    .compute = setLLType,
+    .compute = m_setLLType,
     .key = 's',
     .name = "Switched Linked List- L1 : L2 ?",
   },
   {
-    .compute = quit,
+    .compute = m_quit,
     .key = 'q',
     .name = "Quit",
   },
@@ -124,7 +125,7 @@ void motion_linkedlist (void *_ptr) {
 }
 
 /* Set Linked List Type- (L1 : L2) ? */
-void setLLType() {
+void m_setLLType() {
   int llType = 0;
   int cmd;
 
@@ -151,5 +152,5 @@ int main () {
   list2 = m_Init(&ll2);
   debug ("Linked List Ptrs l=%p L1=%p L2=%p", l_base, list1, list2);
 
-  setLLType ();
+  m_setLLType ();
 }
