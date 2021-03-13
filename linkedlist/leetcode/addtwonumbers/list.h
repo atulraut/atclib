@@ -24,13 +24,13 @@ void m_Display(void *);
 void m_Dellast(void *);
 void middleNode(void *);
 void m_Freelist(void *);
-void m_Revlist(void *);
 void m_Sortlist(void *);
 void m_DelNode(void *, struct list_node *);
-void quit(void *);
-void setLLType();
-void addTwoNumbers(void *); // LeetCode
-void mergeTwoLinkedList(void *);
+void m_quit(void *);
+void m_setLLType();
+void m_addTwoNumbers(void *); // LeetCode
+void m_mergeTwoLinkedList(void *);
+void m_sortedMergeLL(void *);
 
 #define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
 

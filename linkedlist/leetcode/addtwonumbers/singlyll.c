@@ -1,6 +1,7 @@
 /*
 * Aim : Singly Linked List.
 * Date : Sunday, May 24 2020
+* Date : Friday, March 11 2021
 * San Diego, CA
 * By : Atul R. Raut
 * valgrind -v --leak-check=full --show-reachable=yes ./main
@@ -123,41 +124,6 @@ void m_Freelist(void *ptr) {
   }
 }
 
-void m_Revlist(void *ptr) {
-  struct list *ll = ptr;
-  struct list_node *head = (struct list_node *)ll->head;
-  struct list_node *trav;
-  struct list_node *temp = head;
-  head = NULL;
-  while (temp != NULL) {
-    trav = temp->next;
-    temp->next = head;
-    head = temp;
-    ll->head = (struct list_node *)head;
-    temp = trav;
-  }
-}
-
-/*
-void m_RevRec(NODE **head_ref) {
-  NODE *first;
-  NODE *rest;
-  printf ("**head_ref->[%p] *head_ref->[%p] \n", **head_ref, *head_ref);
-  if (NULL == *head_ref)
-    return;
-  first = *head_ref;
-  rest  = first->next;
-  if (NULL == rest)
-    return;
-
-  m_RevRec (&rest);
-  first->next->next = first;
-  first->next = NULL;
-  *head_ref = rest;
-
-}
-*/
-
 static void swap (struct list_node *s, struct list_node *m) {
   int temp;
   temp = s->data;
@@ -191,38 +157,6 @@ void m_Sortlist(void *_list) {
   m_Display(_list);
 }
 
-/* Given only a pointer to a node to be deleted */
-void m_DelNode(void *_list, struct list_node *_node) {
-  struct list_node *node_ptr = (struct list_node*)_node;
-  struct list_node *temp = node_ptr->next;
-  node_ptr->data = temp->data;
-  node_ptr->next = temp->next;
-  free (temp);
-  m_Display(_list);
-}
-
-/* Middle Most Node of a Linked List */
-void m_Middlenode(void *ptr) {
-  struct list *ll = (struct list *)ptr;
-  struct list_node *p = NULL;
-  struct list_node *q = NULL;
-  int flag = 0;
-  q = p = (struct list_node *)ll->head;
-  /*for every two hops of q, one hop for p*/
-  while (q->next != NULL) {
-    q = q->next;
-    if (flag) {
-      p = p->next;
-    }
-    flag = !flag;
-  }
-  if (flag) {
-    printf("List contains even number of nodes.\n The middle two node's values are: %d  %d\n", p->next->data, p->data);
-  } else {
-    printf("The middle node of the list is: %d\n", p->data);
-  }
-}
-
 /*
   LeetCode:   Middle of the Linked List
 */
@@ -246,11 +180,19 @@ void middleNode(void *ptr) {
   printf ("[%s] Middle Node = %d \n", __func__, tortoise->data);
 }
 
-/*
+/**
   https://leetcode.com/problems/add-two-numbers/
-***/
-//struct list* addTwoNumbers(struct list* l1, struct list* l2) {
-void addTwoNumbers(void *ptr) {
+  You are given two non-empty linked lists representing two non-negative
+  integers.
+  The digits are stored in reverse order, and each of their nodes
+  contains a single digit. Add the two numbers and return the sum
+  as a linked list.
+  You may assume the two numbers do not contain any leading zero, except
+  the number 0 itself.
+**/
+static struct list_node* addTwoNumbers(struct list* list1, struct list* list2) {
+//static void addTwoNumbers(void *ptr) {
+  struct list_node temp;
   struct list_node *trav1;
   struct list_node *trav2;
   int remainder = 0, sum;
@@ -258,12 +200,14 @@ void addTwoNumbers(void *ptr) {
   trav1 = (struct list_node *)list1->head;
   trav2 = (struct list_node *)list2->head;
 
-  struct list_node* curr;
+  struct list_node* curr = &temp;
 
   while (trav1 != NULL || trav2 != NULL || remainder != 0) {
     sum = remainder + (trav1 == 0 ? 0 : trav1->data) + (trav2 == 0 ? 0: trav2->data);
+    debug ("sum = %d, remainder = %d", sum, remainder);
     remainder = sum/10;
     sum %= 10;
+    debug ("sum = %d, remainder = %d", sum, remainder);
     curr->next = (struct list_node*)malloc(sizeof(struct list_node));
     curr->next->next = NULL;
     curr->next->data = sum;
@@ -271,7 +215,29 @@ void addTwoNumbers(void *ptr) {
     trav1 = (trav1 == 0 ? 0 : trav1->next);
     trav2 = (trav2 == 0 ? 0 : trav2->next);
   }
-  //return temp_nn->next;
+
+  return temp.next;
+}
+/**
+   L1 :-> 2 4
+   L2 :-> 4 6
+   O/P:-> 6 0 1
+   Calling command: Add Two Int of different Linked List
+   [addTwoNumbers] L=238 :sum = 6, remainder = 0
+   [addTwoNumbers] L=241 :sum = 6, remainder = 0
+   [addTwoNumbers] L=238 :sum = 10, remainder = 0
+   [addTwoNumbers] L=241 :sum = 0, remainder = 1
+   [addTwoNumbers] L=238 :sum = 1, remainder = 1
+   [addTwoNumbers] L=241 :sum = 1, remainder = 0
+**/
+
+void m_addTwoNumbers(void *_ptr) {
+  struct list *list3 = NULL;
+  struct list_node* result = addTwoNumbers(list1, list2);
+  list3 = (struct list *)malloc(sizeof(struct list));
+  list3->head = (struct list_node *)result;
+  m_Display(list3);
+  free(list3);
 }
 
 /**
@@ -285,7 +251,7 @@ void addTwoNumbers(void *ptr) {
    Assumption : We have list1 & list2 available to Merge (No Sorting)
    Date : 11 March 2021, San Diego, CA
 **/
-void mergeTwoLinkedList (void *ptr) {
+void m_mergeTwoLinkedList (void *ptr) {
   int flag = 1;
   struct list *list3, l3;
   list3 = m_Init(&l3);
@@ -296,7 +262,6 @@ void mergeTwoLinkedList (void *ptr) {
   struct list_node *trav1 = (struct list_node *)list1->head;
   trav1 = trav1->next;
   struct list_node *trav2 = (struct list_node *)list2->head;
-  //  struct list_node *trav3 = (struct list_node *)list3->head;
 
   while (trav1 != NULL && trav2 != NULL) {
     if (flag) { // Add L2
@@ -325,28 +290,36 @@ void mergeTwoLinkedList (void *ptr) {
   m_Display(list3);
 }
 
-/* Sort & Merged Linked List /
-struct list_node* SortedMergeLL(struct list_node* a, struct list_node* b) {
+/**
+    Sort & Merged Linked List
+    Assume : Caller Created 2 Linked List.
+ **/
+static struct list_node * sortedMergeLL(struct list_node* a, struct list_node* b) {
   struct list_node* result = NULL;
 
-  // Base cases
+  /* Base cases */
   if (a == NULL)
      return(b);
   else if (b==NULL)
      return(a);
 
-  // Pick either a or b, and recur
+  /* Pick either a or b, and recur */
   if (a->data <= b->data) {
      result = a;
-     result->next = SortedMerge(a->next, b);
+     result->next = sortedMergeLL(a->next, b);
   } else {
      result = b;
-     result->next = SortedMerge(a, b->next);
+     result->next = sortedMergeLL(a, b->next);
   }
-  m_Display(result);
-  //  return(result);
+  return(result);
 }
-*/
+
+void m_sortedMergeLL(void *_ptr) {
+  struct list *list3 = NULL;
+  struct list_node* result = sortedMergeLL(list1->head, list2->head);
+  list3->head = (struct list_node *)result;
+  m_Display(list3);
+}
 
 void m_Display(void *ptr){
   struct list *list = (struct list *)ptr;
@@ -367,7 +340,7 @@ void m_Display(void *ptr){
   //	m_Middlenode(ptr);
 }
 
-void quit(void *_ptr) {
+void m_quit(void *_ptr) {
   printf ("Good Bye! \n");
   exit(0);
 }
