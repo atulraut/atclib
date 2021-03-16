@@ -1,5 +1,37 @@
 Hash Tables :
 
+Basics : https://www.youtube.com/watch?v=vmGASZxeGVQ
+
+Hash function : can be used to map data of arbitary size to fixed-size values.
+
+Ref : https://www.youtube.com/watch?v=92aV0eJEVug&t=53s
+--------------------------------------------------------------------------------     	      	       	       	     Find
+Data -----> 	    (^}     	     -----> Key
+Large	    	    Hash Fun	    Smaller
+--------------------------------------------------------------------------------
+Converting Data to Key is called Hasing.
+Hash function is Many to 1 Function.
+Key is generally Intger.
+You have 1000 numbers but you want to hash number 10 at a time.
+Then use hashtable of size 10.
+--------------------------------------------------------------------------------
+
+Data / Hash Func - Get Key
+Hash Table :
+Key  	| Value |
+--------------
+8	| abc	|
+2	| efg	|
+5	| kmn	|
+Data                Key
+abc <-- Hashing --> 8
+efg <-- Hashing --> 2
+kmn <-- Hashing --> 5
+--------------------------------------------------------------------------------
+Collision - To avoid used better hash functions.
+Chaining  - Helps to fixed collision, its nothing but linkedlist.
+          - Still collision, try to recamput hash.
+
 Ref : The Practice of Programming by Brian Kernighan & Rob Pike
 Github : https://github.com/asankov/the-practice-of-programming
 
@@ -16,7 +48,6 @@ In other words, a hash table of n items is an array of lists whose average lengt
 is n/(.array size).
 Retrieving an item is an O(1) operation provided we pick a good hash function
 and the lists don't grow too long.
-
 
 This combination of lookup and optional insertion is common. Without it, there is
 duplication of effort; one must write
