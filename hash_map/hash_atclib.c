@@ -1,15 +1,18 @@
+/***
+    Hash Map using linked list.
+ */
 #include <stdio.h>
 #include <stdlib.h>
-#include "../../../at_lib.h"
 
+#define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
 #define HASH_MAP_SIZE 10
 
-typedef struct node {
+struct node {
   int data;
   struct node *next;
-} node;
+};
 
-node *hash_map[HASH_MAP_SIZE];
+struct node *hash_map[HASH_MAP_SIZE];
 
 #define is_valid_key(key)			\
   if (key >= HASH_MAP_SIZE) {			\
@@ -23,8 +26,8 @@ node *hash_map[HASH_MAP_SIZE];
     return -1;					\
   }
 
-node *create_node(int val) {
-  node *temp = malloc(sizeof(*temp));
+struct node *create_node(int val) {
+  struct node *temp = malloc(sizeof(*temp));
   temp->data = val;
   temp->next = NULL;
   return temp;
@@ -38,8 +41,8 @@ void put(int key, int value) {
     return;
   } else {
     debug ("key = %d val =%d", key, value);
-    node *head = hash_map[key];
-    node *new_node = create_node(value);
+    struct node *head = hash_map[key];
+    struct node *new_node = create_node(value);
     new_node->next = head;
     hash_map[key] = new_node;
   }
@@ -47,7 +50,7 @@ void put(int key, int value) {
 
 void print_all(int key) {
   is_valid_key(key);
-  node *temp = hash_map[key];
+  struct node *temp = hash_map[key];
   if (!temp)
     return;
   while (temp) {
@@ -58,7 +61,7 @@ void print_all(int key) {
 
 int get(int key) {
   is_valid_key_value(key);
-  node *temp = hash_map[key];
+  struct node *temp = hash_map[key];
   if (!temp)
     return -1;
   return temp->data;
@@ -66,10 +69,10 @@ int get(int key) {
 
 int remove_value(int key) {
   int data;
-  node *prev;
+  struct node *prev;
   is_valid_key_value(key);
-  node *head = hash_map[key];
-  node *temp = head;
+  struct node *head = hash_map[key];
+  struct node *temp = head;
   if (!temp)
     return -1;
   if (head) {
