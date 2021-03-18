@@ -1,5 +1,5 @@
 /***
- * Hashing Data Structure
+ * Hashing Data Structure : Using Division Method
  * Hashing is an important Data Structure which is designed to use a
  * special function called the Hash function which is used to map a given
  * value with a particular key for faster access of elements. The efficiency

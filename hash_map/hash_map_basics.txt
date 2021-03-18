@@ -1,11 +1,19 @@
-Hash Tables :
+Hash Tables : Try to use Prime Number for efficient Hash Function e.g. 11, 97
 
 Basics : https://www.youtube.com/watch?v=vmGASZxeGVQ
 
-Hash function : can be used to map data of arbitary size to fixed-size values.
+Hash Function : Can be used to map data of arbitary size to fixed-size values.
+	        A Hash Function is simply a mathematical formula, which when applied
+		to a key, produces an integer which can be used an an index for the key
+		in the Hash Table.
+Hash Table    : It is a dat structure in which keys are mapped to array position
+                by a hash function.
+Collision     : To avoid used better hash functions.
+Chaining      : Helps to fixed collision, its nothing but linkedlist.
+                Still collision, try to recamput hash.
 
 Ref : https://www.youtube.com/watch?v=92aV0eJEVug&t=53s
---------------------------------------------------------------------------------     	      	       	       	     Find
+--------------------------------------------------------------------------------
 Data -----> 	    (^}     	     -----> Key
 Large	    	    Hash Fun	    Smaller
 --------------------------------------------------------------------------------
@@ -28,11 +36,17 @@ abc <-- Hashing --> 8
 efg <-- Hashing --> 2
 kmn <-- Hashing --> 5
 --------------------------------------------------------------------------------
-Collision - To avoid used better hash functions.
-Chaining  - Helps to fixed collision, its nothing but linkedlist.
-          - Still collision, try to recamput hash.
+Hashing Functions : 4 Types - Details See R. Thareja, Page - 615.
+1] Division Method       - Using 'Mod'
+2] Multiplication Method - h(x) = L m(kA mod 1)_|
+                         - By Knuth - (sqrt5 - 1 / 2) = 0.6180339887
+3] Mid Square Method     - Square value of Key - K^2
+                         - Extract Middle r bits of above call.
+4] Folding Method        - Divide K into k1,k2,k3..Kn..
+                         - Add individual parts k1+ k2 + k3., Ignore last carry.
+--------------------------------------------------------------------------------
 
-Ref : The Practice of Programming by Brian Kernighan & Rob Pike
+Explain : Ref : The Practice of Programming by Brian Kernighan & Rob Pike
 Github : https://github.com/asankov/the-practice-of-programming
 
 The idea is to pass the key through a hash function to generate a hash value that
