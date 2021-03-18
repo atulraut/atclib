@@ -7,7 +7,7 @@
 void foo () {
   // const int n = 5; /* Error : Mention Below in comments */
   const int n = 5;
-  int arr[n];// = {0};
+  int arr[n];// = {0};  // error: variable-sized object may not be initialized
 
   for (int i=0; i<n; i++)
     printf ("[%s] Enter val = %d L=%d \n", __func__, arr[i], __LINE__);
