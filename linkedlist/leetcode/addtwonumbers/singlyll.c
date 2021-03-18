@@ -351,7 +351,17 @@ void m_sortedMergeLL(void *_ptr) {
       Ref : https://www.youtube.com/watch?v=kpCesr9VXDA
  */
 struct list_node* mergeKLists(struct list_node** lists, int listsSize){
-
+  if (listsSize == 0) {
+    return NULL;
+  }
+  if (listsSize == 1) {
+    return lists[0];
+  }
+  for (int i = 0,j = listsSize - 1; i < j; i++, j--) {
+    lists[i] = mergeTwoLists(lists[i], lists[j]);
+    listsSize--;
+  }
+  return mergeKLists(lists, listsSize);
 }
 
 void m_Display(void *ptr){
