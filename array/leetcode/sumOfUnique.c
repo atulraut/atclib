@@ -21,6 +21,8 @@
     Constraints:
     1 <= nums.length <= 100
     1 <= nums[i] <= 100
+    Date : 19 March 2021, Friday.
+    San Diego, CA.
 */
 
 #include <stdio.h>
@@ -66,6 +68,8 @@ int sumOfUnique(int* nums, int numsSize) {
       debug ("sum = %d", sum);
     }
   }
+  free(stateType);
+  stateType = NULL;
   return sum;
 }
 
