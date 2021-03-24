@@ -4,6 +4,8 @@ Basics : Resources :
 0] Thareja DS, Kernighan - The Practice of C Programming.
 1] https://www.youtube.com/watch?v=vmGASZxeGVQ
 2] https://leetcode.com/explore/learn/card/hash-table/182/practical-applications/1109/
+3] https://www.cpp.edu/~ftang/courses/CS240/lectures/hashing.htm
+4] https://algs4.cs.princeton.edu/34hash/
 
 Hash Function : Can be used to map data of arbitary size to fixed-size values.
 	        A Hash Function is simply a mathematical formula, which when applied
