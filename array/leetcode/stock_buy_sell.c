@@ -23,6 +23,7 @@
   Output: 0
   Explanation: In this case, no transaction is done, i.e. max profit = 0.
   Solution : https://www.youtube.com/watch?v=K8iHi8AW1ls
+  Ref : https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
 */
 
 #include <stdio.h>
@@ -30,20 +31,34 @@
 #include <string.h>
 
 int maxProfit(int* prices, int pricesSize) {
-  int diff = 0;
-  for(int i=1; i<pricesSize; i++) {
-    if (prices[i] > prices[i-1]) {
-      diff += prices[i] - prices[i-1];
-      printf ("[%s] o/p = %d \n",__func__, diff);
+  int min = prices[0];
+  int max = prices[0];
+  int profit = 0;
+  for (int i=1; i<pricesSize; i++) {
+    if (prices[i] < min) {
+      if (max - min > profit) profit = max - min;
+      max = min = prices[i];
+    }
+    if (prices[i] > max){
+      max = prices[i];
     }
   }
-  printf ("[%s] o/p = %d \n",__func__, diff);
-  return diff;
+  if (max - min > profit)
+    profit = max - min;
+
+  printf ("[%s] o/p = %d \n",__func__, profit);
+  return profit;
 }
 
 int main () {
+  int input1[] = {7,1,5,3,6,4};
   int input[] = {7,1,5,3,6,4};
   int sz = sizeof(input) / sizeof(input[0]);
   printf ("[%s] o/p = %d \n",__func__, maxProfit(input, sz));
   return 0;
 }
+/*
+=> ./a.out
+[maxProfit] o/p = 5
+[main] o/p = 5
+  */

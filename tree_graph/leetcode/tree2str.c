@@ -55,7 +55,6 @@
 
 #define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
 
-
 struct tree_node {
   int val;
   struct tree_node *left;
