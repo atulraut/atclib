@@ -313,17 +313,21 @@ void m_RemoveDuplicateNodes(void *ptr) {
  *  in the list. On the other hand, if we searched for 25, our search
  *  should report that 25 is not in the list.
  */
-void m_SearchData(void *ptr) {
+void m_SearchData2(void *ptr) {
   LIST *ll = (LIST *)ptr;
   LIST_NODE *current = (LIST_NODE *)ll->head;
   char cmd[20] = {0};
   int key = 0;
 
   key = get_input(cmd);
-  while (current != NULL && current->data != key) {
-    printf ("Found Key = %d \n",current->data);
-  }
-  printf ("Key Not Found! \n");
+
+  for (; current != NULL; current = current->next)
+    if (key == current->data) {  // if (strcmp(name, 1 i stp->name) == 0)
+      debug ("Found %d ", current->data);
+      //return current;
+    }
+  debug ("Not Found!");
+  return NULL;
 }
 
 /*

@@ -1,0 +1,32 @@
+Ref : INTRODUCTION TO ALGORITHMS - THOMASH. CORMEN
+Dynamic programming:
+Like the divide-and-conquer method, solves problems by
+combining the solutions to subproblems. (“Programming” in this context refers
+to a tabular method, not to writing computer code.) As we saw in Chapters 2
+and 4, divide-and-conquer algorithms partition the problem into disjoint subprob-
+lems, solve the subproblems recursively, and then combine their solutions to solve
+the original problem. In contrast, dynamic programming applies when the subprob-
+lems overlap—that is, when subproblems share subsubproblems. In this context,
+a divide-and-conquer algorithm does more work than necessary, repeatedly solv-
+ing the common subsubproblems. A dynamic-programming algorithm solves each
+subsubproblem just once and then saves its answer in a table, thereby avoiding the
+work of recomputing the answer every time it solves each subsubproblem.
+We typically apply dynamic programming to optimization problems.
+
+Dynamic Programming is mainly an optimization over plain recursion.
+Wherever we see a recursive solution that has repeated calls for same
+inputs, we can optimize it using Dynamic Programming. The idea is to
+simply store the results of subproblems, so that we do not have to
+re-compute them when needed later. This simple optimization reduces
+time complexities from exponential to polynomial. For example, if we
+write simple recursive solution for Fibonacci Numbers, we get exponential
+time complexity and if we optimize it by storing solutions of subproblems,
+time complexity reduces to linear.
+
+When developing a dynamic-programming algorithm, we follow a sequence of
+four steps:
+1. Characterize the structure of an optimal solution.
+2. Recursively define the value of an optimal solution.
+3. Compute the value of an optimal solution, typically in a bottom-up fashion.
+4. Construct an optimal solution from computed information.
+
