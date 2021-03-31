@@ -10,6 +10,37 @@
     Good One : https://blog.feabhas.com/2019/01/peripheral-register-access-using-c-structs-part-1/
  */
 #include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <limits.h>
+#include <string.h>  /* malloc */
+#include <stdbool.h>
+#include <math.h>
+#include <assert.h>
+#include <stdint.h> /* uint32_t */
+#include <unistd.h> /* sleep */
+
+#define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
+
+/***
+    dev/c/to_push/desgin_patterns_c/ch-03/
+    https://elixir.bootlin.com/linux/latest/source/arch/ia64/include/asm/bitops.h#L22
+*/
+int linux_set_bit (int nr, volatile void *addr) {
+  int bit, old_num, new;
+  volatile int *m;
+
+  m = (volatile int *) addr;
+  old_num = *m;
+
+
+  old_num |= (1 << nr);
+  return old_num;
+
+  // Below Also works
+  //  *m |= (1 << nr);
+  //return (old_num = *m);
+}
 
 void write_REG(unsigned int address, int offset, int data) {
   *((volatile unsigned int*)address + offset) = data;
@@ -26,5 +57,19 @@ void increment_reg() {
 }
 
 int main () {
-  increment_reg();
+  //  increment_reg();
+  int i = 10;
+  int *ptr = &i;
+  int bit = 2;
+
+  int ret = linux_set_bit(bit, ptr);
+  debug ("ret = %d", ret);
+
+  return 0;
 }
+
+
+/***
+    => ./a.out
+    [main] L=63 :ret = 14
+*/
