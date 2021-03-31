@@ -10,7 +10,7 @@
     Date : 24 March 2021
     San Diego, CA.
 
-    gcc thread_safe_queue.c -o main.out -lpthread
+    gcc thread_safe_queue_optz.c -o main.out -lpthread
 */
 
 #include <stdio.h>
@@ -57,45 +57,38 @@ int queue_init(struct queue *const q, const unsigned int slots) {
 }
 
 /***
-   Consumer : Remove
+   Consumer : Remove : Deque
    A get() method called from a single consumer thread
    returns the next available message in the queue, blocking
    while the queue is empty.
 */
 struct job *queue_get(struct queue *const q) {
   struct job *j;
-  printf ("[%s] L=%d: Enter \n",  __func__, __LINE__);
 
   pthread_mutex_lock(&q->lock);
   while (q->head == q->tail) {
     printf ("[%s] L=%d: Waiting for Data! \n",  __func__, __LINE__);
     pthread_cond_wait(&q->wait_data, &q->lock);
   }
-  printf ("[%s] L=%d: Enter to get Data! tail=%d\n",  __func__, __LINE__, q->tail);
-  j = q->queue[q->tail+1];
-  if(j)
-    printf ("[%s] L=%d: Reached! head = %d q->tail=%d data = %d\n",  __func__, __LINE__, q->head, q->tail, j->data);
 
+  j = q->queue[q->tail+1];
   q->queue[q->tail] = NULL;
   q->tail = (q->tail + 1U) % q->size;
 
   pthread_cond_signal(&q->wait_room);
-
   pthread_mutex_unlock(&q->lock);
 
-  //int data = *((int *)(j->data));
-  if (j != NULL)
+  //  if (j != NULL)
     printf ("[%s] L=%d: Consumer Got Data = %d \n",  __func__, __LINE__, j->data);
   return j;
 }
 
 /***
-   Producer : Insertion
+   Producer : Insertion : Enque
    A put() method (which can be called from multiple
    producer threads) adds a message to the queue.
    */
 void queue_put(struct queue *const q, struct job *const j) {
-  printf ("[%s] L=%d: Enter \n",  __func__, __LINE__);
   pthread_mutex_lock(&q->lock);
   while ((q->head + 1U) % q->size == q->tail)
     pthread_cond_wait(&q->wait_room, &q->lock);
@@ -112,7 +105,6 @@ void queue_put(struct queue *const q, struct job *const j) {
 }
 
 void* producer(void *ptr) {
-  printf ("[%s] L=%d: Enter \n",  __func__, __LINE__);
   struct queue *q = (struct queue*)ptr;
   struct job *j;
   static int i = 10;
@@ -124,37 +116,40 @@ void* producer(void *ptr) {
 }
 
 void* consumer(void *ptr) {
-  printf ("[%s] L=%d: Enter \n",  __func__, __LINE__);
   struct queue *q = (struct queue*)ptr;
   struct job *j = queue_get(q);
-  printf ("[%s] L=%d: Reached! \n",  __func__, __LINE__);
-  //int *i = j->data;
-  printf ("[%s] L=%d: Reached! \n",  __func__, __LINE__);
   if (j != NULL)
     printf ("[%s] L=%d: j->data = %d \n",  __func__, __LINE__, (j->data));
 }
 
 int main(int argc, char **argv) {
   int ret;
-  int tsz = 3;
+  int tpsz = 3;
+  int tcsz = 2;
   struct queue q;
-  pthread_t pro[tsz];
-  pthread_t con[tsz];
+  pthread_t pro[tpsz];
+  pthread_t con[tcsz];
 
   unsigned int slots = 10;
   ret = queue_init(&q, slots);
 
   //
   // Create the threads
-  for (int i = 0; i<tsz; i++) {
+  for (int i = 0; i<tcsz; i++) {
     pthread_create(&con[i], NULL, consumer, (void *)&q);
+  }
+
+  for (int i = 0; i<tpsz; i++) {
     pthread_create(&pro[i], NULL, producer, (void *)&q);
   }
+
   // Wait for the threads to finish
   // Otherwise main might run to the end
   // and kill the entire process when it exits.
-  for (int i = 0; i<tsz; i++) {
+  for (int i = 0; i<tcsz; i++) {
     pthread_join(con[i], NULL);
+  }
+  for (int i = 0; i<tpsz; i++) {
     pthread_join(pro[i], NULL);
   }
 

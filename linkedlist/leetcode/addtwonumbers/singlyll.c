@@ -350,6 +350,20 @@ void m_sortedMergeLL(void *_ptr) {
       The sum of lists[i].length won't exceed 10^4.
       Ref : https://www.youtube.com/watch?v=kpCesr9VXDA
  */
+struct list_node* mergeTwoLists(struct list_node* l1, struct list_node* l2) {
+    if (l1 == NULL) {
+        return l2;
+    }else if (l2 == NULL){
+        return l1;
+    }else if (l1->data < l2->data){
+        l1->next = mergeTwoLists(l1->next, l2);
+        return l1;
+    }else{
+        l2->next = mergeTwoLists(l1, l2->next);
+        return l2;
+    }
+}
+
 struct list_node* mergeKLists(struct list_node** lists, int listsSize){
   if (listsSize == 0) {
     return NULL;
