@@ -71,3 +71,12 @@ Dec  Char                           Dec  Char     Dec  Char     Dec  Char
  30  RS  (record separator)          62  >         94  ^        126  ~
  31  US  (unit separator)            63  ?         95  _        127  DEL
 -------------------------------------------------------------------------
+snprintf :
+int snprintf ( char * s, size_t n, const char * format, ... );
+Write formatted output to sized buffer
+
+Takeaway :
+@size: The size of the buffer, including the trailing null space
+https://stackoverflow.com/questions/2674312/how-to-append-strings-using-sprintf
+https://elixir.bootlin.com/linux/latest/source/lib/vsprintf.c#L2746
+-------------------------------------------------------------------------
