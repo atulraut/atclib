@@ -25,6 +25,16 @@
 /***
     dev/c/to_push/desgin_patterns_c/ch-03/
     https://elixir.bootlin.com/linux/latest/source/arch/ia64/include/asm/bitops.h#L22
+
+     #include <linux/io.h>
+     struct resource *iomem;
+     void clear_bit (int *addr, int bit) {
+        int data = readl(addr);
+        mb();
+        data &= ~(1 << bit);
+        writel(data, (void *)addr);
+     }
+
 */
 int linux_set_bit (int nr, volatile void *addr) {
   int bit, old_num, new;
