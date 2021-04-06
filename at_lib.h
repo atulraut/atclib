@@ -17,11 +17,11 @@
 #include <stdint.h> /* uint32_t */
 #include <unistd.h> /* sleep */
 
+#define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
+
 /***
     In case File Debug Option needs to Enabled.
 */
 //#define debug(str,args...) printf("[%s] [%s()] L=%d :"str"\n",__FILE__, __func__, __LINE__, ##args)
-
-#define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
 
 #endif

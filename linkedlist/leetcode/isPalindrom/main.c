@@ -1,9 +1,6 @@
 /*
-* Aim :  Create Singly Link List
-* Date : July-29-2016
-* Date : Feb - 13-02-2021 San Diego, CA
-* Date : March - 11-03-2021 San Diego, CA
-* FixMed - Pending
+* Aim : Is LinkedList Palindrome or NOT.
+* Date: 4/3/21 - Palindrome Date
 ***/
 
 #include <stdio.h>
@@ -43,11 +40,6 @@ struct ll_func function_table[] = {
     .name = "Delete First",
   },
   {
-    .compute = middleNode,
-    .key = '4',
-    .name = "LeetCode: middle Node",
-  },
-  {
     .compute = m_Freelist,
     .key = '5',
     .name = "Free List",
@@ -56,31 +48,6 @@ struct ll_func function_table[] = {
     .compute = m_Display,
     .key = '7',
     .name = "Show"
-  },
-  {
-    .compute = m_Sortlist,
-    .key = '9',
-    .name = "Sort Link List",
-  },
-  {
-    .compute = m_addTwoNumbers,
-    .key = 'd',
-    .name = "Add Two Int of different Linked List",
-  },
-  {
-    .compute = m_mergeTwoLinkedList,
-    .key = 'm',
-    .name = "Merged 2 Linked List",
-  },
-  {
-    .compute = m_sortedMergeLL,
-    .key = 'n',
-    .name = "Merged 2 Sorted Linked List",
-  },
-   {
-    .compute = m_setLLType,
-    .key = 's',
-    .name = "Switched Linked List- L1 : L2 ?",
   },
   {
     .compute = m_isPalindrome,
