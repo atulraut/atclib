@@ -378,6 +378,34 @@ struct list_node* mergeKLists(struct list_node** lists, int listsSize){
   return mergeKLists(lists, listsSize);
 }
 
+struct list_node* helper(struct list_node* current, struct list_node* head, bool* ans) {
+  if(current == NULL) {
+    return head;
+  } else {
+    head = helper(current->next, head, ans);
+    if(*ans) {
+      if(current->data != head->data) {
+	*ans = false;
+	return head->next;
+      } else {
+	return head->next;
+      }
+    }
+  }
+  return head;
+}
+
+//bool isPalindrome(struct ListNode* head) {
+void m_isPalindrome(void *ptr) {
+    struct list *ll = (struct list *)ptr;
+    struct list_node *head = (struct list_node*)ll->head;
+    bool* ans = malloc(sizeof(bool));
+    *ans = true;
+    helper(head, head, ans);
+    debug("IsPalindrome = %d", *ans);
+    //    return *ans;
+}
+
 void m_Display(void *ptr){
   struct list *list = (struct list *)ptr;
 

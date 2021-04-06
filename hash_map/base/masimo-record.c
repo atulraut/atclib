@@ -1,8 +1,10 @@
 /***
  * Design and implement a function that performs * input:
  * list of unordered records with timestamp, name, data * output: arranged
- * records satisfying all of below. * 1. Group by name * 2. Sort each
- * group by timestamp in descending order * 3. Sort groups by timestamp
+ * records satisfying all of below.
+ * 1. Group by name
+ * 2. Sort each group by timestamp in descending order
+ * 3. Sort groups by timestamp
  * of the first record in desceding order example as a record in
  * format of name(timestamp) where data is not part of this example
  * Input: Foo(10), Bar(11), Kun(12), Foo(1), Bar(8), Foo(2), Bar(4), Foo(14)
@@ -135,7 +137,7 @@ struct record* m_insert (char *str, int val) {
     sysNew->value = val;
     sys->count += 1;
 
-    sysNew->next = systab[h];
+    sysNew->next = sys;
     systab[h] = sysNew;
     /* Sort List in Ascending Order! */
     m_sort_Record(h);
