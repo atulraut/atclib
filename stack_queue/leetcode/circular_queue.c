@@ -1,5 +1,11 @@
 /***
  * https://leetcode.com/problems/design-circular-queue/
+
+
+                            [F| Obj |R]
+                            -----------
+	    [50|NextPtr|]->[40|NextPtr|]->[30|NextPtr|]
+	     -----------    -----------    -----------
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -86,7 +92,7 @@ int myCircularQueueDeQueue(MyCircularQueue* obj) {
       (obj->count)--;//Every reduction of a node will reduce a count
     }
     else{
-      Node *temp = (Node*)malloc(sizeof(Node));//The temp is ready to be free
+      Node *temp = NULL;
       temp = obj -> front;//Turn temp into the front of obj
       obj -> front = obj -> front -> next;//Turn the original first into temp
       free(temp);
@@ -129,44 +135,44 @@ void m_display (void *_ptr) {
  * Your MyCircularQueue struct will be instantiated and called as such:
  * MyCircularQueue* obj = myCircularQueueCreate(k);
  * bool param_1 = myCircularQueueEnQueue(obj, value);
- 
+
 / * bool param_2 = myCircularQueueDeQueue(obj);
- 
+
  * int param_3 = myCircularQueueFront(obj);
- 
+
  * int param_4 = myCircularQueueRear(obj);
- 
+
  * bool param_5 = myCircularQueueIsEmpty(obj);
- 
+
  * bool param_6 = myCircularQueueIsFull(obj);
- 
+
  * mng0yCircularQueueFree(obj);
  */
 
 int main () {
  MyCircularQueue* obj = myCircularQueueCreate(5);
 
- for (int i=1; i<=5; i++) 
+ for (int i=1; i<=5; i++)
    myCircularQueueEnQueue(obj, i*10);
 
  // printf ("Enque param  = %d =%d \n", param_0, param_1);
- 
+
  int param_2 = myCircularQueueDeQueue(obj);
  printf ("Deque param = %d \n", param_2);
- 
+
  int param_3 = myCircularQueueFront(obj);
  printf ("QFront param = %d \n", param_3);
- 
+
  int param_4 = myCircularQueueRear(obj);
  printf ("QRear param = %d \n", param_4);
- 
+
  int param_5 = myCircularQueueIsEmpty(obj);
  printf ("IsEmpty param = %d \n", param_5);
- 
+
  int param_6 = myCircularQueueIsFull(obj);
 
  //m_display (obj);
  printf ("param = %d \n", param_6);
- 
+
  myCircularQueueFree(obj);
 }

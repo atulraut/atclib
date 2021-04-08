@@ -1,6 +1,6 @@
 /*
 * Aim : Singly Linked List for verifying isPalindrome LinkedList.
-* Date : 4/3/21 {Note Date is Palindrome} 
+* Date : 4/3/21 {Note Date is Palindrome}
 * San Diego, CA
 * By : Atul R. Raut
 * valgrind -v --leak-check=full --show-reachable=yes ./main
