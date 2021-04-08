@@ -106,7 +106,7 @@ int main () {
 
     Now, let's look at the process by which we'll fill the dp array. We
     traverse the given list of strings one by one. Suppose, at some point,
-    we pick up any string sks_ksk​ consisting of x zeroes and y ones.
+    we pick up any string sks_ksk consisting of x zeroes and y ones.
     Now, choosing to put this string in any of the subset possible by
     using the previous strings traversed so far will impact the element
     denoted by dp[i][j] for i and j satisfying x ≤ i ≤ m, y ≤ j ≤ n.
