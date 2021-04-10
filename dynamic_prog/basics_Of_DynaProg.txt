@@ -1,5 +1,7 @@
 Ref : INTRODUCTION TO ALGORITHMS - THOMASH. CORMEN
+--------------------------------------------------------------------------------------
 Dynamic programming:
+--------------------------------------------------------------------------------------
 Like the divide-and-conquer method, solves problems by
 combining the solutions to subproblems. (“Programming” in this context refers
 to a tabular method, not to writing computer code.) As we saw in Chapters 2
@@ -30,3 +32,91 @@ four steps:
 3. Compute the value of an optimal solution, typically in a bottom-up fashion.
 4. Construct an optimal solution from computed information.
 
+The dynamic-programming method works as follows. Having observed that a
+naive recursive solution is inefficient because it solves the same subproblems re-
+peatedly, we arrange for each subproblem to be solved only once, saving its solu-
+tion. If we need to refer to this subproblem’s solution again later, we can just look
+up, rather than recompute it. Dynamic programming thus uses additional memory
+to save computation time; it serves an example of a time-memory trade-off. The
+savings may be dramatic: an exponential-time solution may be transformed into a
+polynomial-time solution.
+A dynamic-programming approach runs in polynomial
+time when the number of distinct subproblems involved is polynomial in the input
+size and we can solve each such subproblem in polynomial time.
+
+There are usually two equivalent ways to implement a dynamic-programming
+approach. We shall illustrate both of them with our rod-cutting example.
+The first approach is "Top-Down with Memoization". 2 In this approach, we write
+the procedure recursively in a natural manner, but modified to save the result of
+each subproblem (usually in an array or hash table). The procedure now first checks
+to see whether it has previously solved this subproblem. If so, it returns the saved
+value, saving further computation at this level; if not, the procedure computes the
+value in the usual manner. We say that the recursive procedure has been memoized;
+it “remembers” what results it has computed previously.
+
+The second approach is the "Bottom-Up Method". This approach typically depends
+on some natural notion of the “size” of a subproblem, such that solving any par-
+ticular subproblem depends only on solving “smaller” subproblems. We sort the
+subproblems by size and solve them in size order, smallest first. When solving a
+particular subproblem, we have already solved all of the smaller subproblems its
+solution depends upon, and we have saved their solutions. We solve each sub-
+problem only once, and when we first see it, we have already solved all of its
+prerequisite subproblems.
+--------------------------------------------------------------------------------------
+Recursive top-down implementation
+CUT-ROD (p, n)
+1 if n == 0
+2	return 0
+3 q = -Infinity(Symbol)
+4 for i D 1 to n
+5	q = max(q, p[i] + CUT-ROD(p, n-i))
+6 return q
+--------------------------------------------------------------------------------------
+
+MEMOIZED-CUT-ROD(p, n)
+1 let r[0..n] be a new array
+2 for i 0 to n
+3	r[i] = -Iinfinity(Symbol)
+4 return MEMOIZED-CUT-ROD-AUX(p, n, r)
+--------------------------------------------------------------------------------------
+MEMOIZED-CUT-ROD-AUX(p, n, r)
+1 if r[n] >= 0
+2 	return r[n]
+3 if n == 0
+4    q = 0
+5 else q = -Infinity(Symbol)
+6 	for i = 1 to n
+7           q = max(q, p[i] + MEMOIZED-CUT-ROD-AUX(p, n-i, r)
+8 r[n] = q
+9 return q
+--------------------------------------------------------------------------------------
+BOTTOM-UP-CUT-ROD (p, n)
+1 let r[0..n] be a new array
+2 r[0] = 0
+3 for j = 1 to n
+4  	q = -Infinity(Symbol)
+5		for i D 1 to j
+6			q = max(q, p[i] + r[j-i])
+7		r[j] = q
+8 return r[n]
+--------------------------------------------------------------------------------------
+The running time of procedure BOTTOM -UP-CUT-ROD is ‚.n2
+--------------------------------------------------------------------------------------
+EXTENDED-BOTTOM-UP-CUT-ROD .(p, n)
+1 let r[0..n] and s[0..n] be new arrays
+2 r[0] = 0
+3 for j = 1 to n
+4	q = -Inifinity(Symbol)
+5	for i = 1 to j
+6		if q < p[i] + r[j-i]
+7			q = p[i]+r[j-i]
+8			s[j] = i
+9	r[j] = q
+10 return r and s
+--------------------------------------------------------------------------------------
+PRINT-CUT-ROD-SOLUTION .(p,n)
+1 (r,s) = EXTENDED-BOTTOM-UP-CUT-ROD (p,n)
+2 while n > 0
+3	print s[n]
+4 	n = n - s[n]
+--------------------------------------------------------------------------------------
