@@ -68,8 +68,8 @@ CUT-ROD (p, n)
 1 if n == 0
 2	return 0
 3 q = -Infinity(Symbol)
-4 for i D 1 to n
-5	q = max(q, p[i] + CUT-ROD(p, n-i))
+4 for i = 1 to n
+5	q = max(q * p[i] + CUT-ROD(p, n-i))
 6 return q
 --------------------------------------------------------------------------------------
 
