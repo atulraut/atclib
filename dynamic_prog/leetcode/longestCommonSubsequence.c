@@ -88,23 +88,23 @@ int longestCommonSubsequence(char* text1, char* text2) {
   int n = strlen(text2);
 
   /* Returns length of LCS for X[0..m-1], Y[0..n-1] */
-  int L[m+1][n+1];
+  int dpGrid[m+1][n+1];
   int i, j;
 
-  /* Following steps build L[m+1][n+1] in bottom up fashion. Note
-     that L[i][j] contains length of LCS of X[0..i-1] and Y[0..j-1] */
+  /* Following steps build dpGrid[m+1][n+1] in bottom up fashion. Note
+     that dpGrid[i][j] contains length of LCS of X[0..i-1] and Y[0..j-1] */
   for (i=0; i<=m; i++) {
     for (j=0; j<=n; j++) {
       if (i == 0 || j == 0)
-	L[i][j] = 0;
+	dpGrid[i][j] = 0;
       else if (text1[i-1] == text2[j-1])
-	L[i][j] = L[i-1][j-1] + 1;
+	dpGrid[i][j] = dpGrid[i-1][j-1] + 1;
       else
-	L[i][j] = max(L[i-1][j], L[i][j-1]);
+	dpGrid[i][j] = max(dpGrid[i-1][j], dpGrid[i][j-1]);
     }
   }
-  /* L[m][n] contains length of LCS for X[0..n-1] and Y[0..m-1] */
-  return L[m][n];
+  /* dpGridm][n] contains length of LCS for X[0..n-1] and Y[0..m-1] */
+  return dpGrid[m][n];
 }
 
 int main () {
