@@ -1,0 +1,13 @@
+
+Sliding Window Technique :
+This technique shows how a nested for loop in some problems can
+be converted to a single for loop to reduce the time complexity.
+
+Sliding Window Technique is a method for finding subarrays in an
+array that satisfy given conditions. We do this via maintaining a
+subset of items as our window, and resize and move that window
+within the larger list until we find a solution. Sliding Window
+Technique is a subset of Dynamic Programming
+
+https://www.geeksforgeeks.org/window-sliding-technique/
+https://zengruiwang.medium.com/sliding-window-technique-360d840d5740
