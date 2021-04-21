@@ -406,6 +406,48 @@ void m_isPalindrome(void *ptr) {
     //    return *ans;
 }
 
+/**
+   86. Partition List Medium
+   https://leetcode.com/problems/partition-list/
+   Given the head of a linked list and a value x, partition it such
+   that all nodes less than x come before nodes greater than or equal to x.
+
+   You should preserve the original relative order of the nodes in each
+   of the two partitions.
+   Input: head = [1,4,3,2,5,2], x = 3
+   Output: [1,2,2,4,3,5]
+   Input: head = [2,1], x = 2
+   Output: [1,2]
+   Date: 04/14/2021 April.
+ */
+struct list_node* m_partition(struct list_node* head, int x) {
+  struct list_node *before_x = (struct list_node *) malloc (sizeof(struct list_node));
+  struct list_node *after_x = (struct list_node *) malloc (sizeof(struct list_node));
+
+  struct list_node *dummy_after_x = (struct list_node *) malloc (sizeof(struct list_node));
+  struct list_node *dummy_before_x = (struct list_node *) malloc (sizeof(struct list_node));
+
+  dummy_after_x = after_x;
+  dummy_before_x = before_x;
+
+  while(head != NULL) {
+    if (head->val < x) {
+      before_x->next = head;
+      before_x = before_x->next;
+    }
+    else {
+      after_x->next = head;
+      after_x = after_x->next;
+    }
+    head = head->next;
+  }
+
+  after_x->next = NULL;
+  before_x->next = dummy_after_x->next;
+  return dummy_before_x->next;
+}
+
+
 void m_Display(void *ptr){
   struct list *list = (struct list *)ptr;
 
