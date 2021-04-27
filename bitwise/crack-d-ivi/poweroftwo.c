@@ -84,7 +84,7 @@ int main(void) {
     printf("The num = %d is Power Of Two! \n", num);
   else
     printf("The numb = %d is Not Power Of Two! \n", num);
-
+/*
   num = 8;
   printf("\n Find Position of num = %d & its = %d  \n", num, findPositionOfBit(num));
   num = 5;
@@ -95,7 +95,7 @@ int main(void) {
 
   printf ("Is Power if Four = %d \n", isPowerOfFour(16));
   printf ("Is Power if Four = %d \n ", isPowerOfFour(5));
-
+*/
   return 0;
 }
 

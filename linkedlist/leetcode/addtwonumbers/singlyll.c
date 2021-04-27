@@ -395,6 +395,9 @@ struct list_node* helper(struct list_node* current, struct list_node* head, bool
   return head;
 }
 
+/***
+	https://leetcode.com/problems/palindrome-linked-list/
+*/
 //bool isPalindrome(struct ListNode* head) {
 void m_isPalindrome(void *ptr) {
     struct list *ll = (struct list *)ptr;
