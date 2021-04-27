@@ -163,6 +163,8 @@ void m_RevlistKthNode(void *ptr) {
     temp = trav;
     cnt++;
   }
+  debug("start = %p head = %p temp =%p trav = %p", start, head, temp, trav);
+  debug("head->next = %p", head->next);
   start->next = trav;
   printf ("Reverse the kth Node! k = %d cnt =%d \n", k, cnt);
 }
@@ -313,7 +315,7 @@ void m_RemoveDuplicateNodes(void *ptr) {
  *  in the list. On the other hand, if we searched for 25, our search
  *  should report that 25 is not in the list.
  */
-void m_SearchData2(void *ptr) {
+void m_SearchData(void *ptr) {
   LIST *ll = (LIST *)ptr;
   LIST_NODE *current = (LIST_NODE *)ll->head;
   char cmd[20] = {0};
@@ -326,8 +328,8 @@ void m_SearchData2(void *ptr) {
       debug ("Found %d ", current->data);
       //return current;
     }
-  debug ("Not Found!");
-  return NULL;
+  //debug ("Not Found!");
+  //return NULL;
 }
 
 /*
