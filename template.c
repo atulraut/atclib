@@ -18,7 +18,10 @@
 #define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
 
 int main () {
+  int ret = 0;
 
+  debug("Output = ");
+  return 0;
 }
 
 /**
