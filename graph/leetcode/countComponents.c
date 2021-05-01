@@ -121,7 +121,7 @@ int dfs(Graph *g) {
   return count;
 }
 
-int countComponents(int n, int** edges, int edgesRowSize, int edgesColSize) {
+int countComponents2(int n, int** edges, int edgesRowSize, int edgesColSize) {
   if(n == 0 || edges == NULL)
     return 0;
   Graph *g = initGraph(n);
@@ -129,6 +129,36 @@ int countComponents(int n, int** edges, int edgesRowSize, int edgesColSize) {
   //printGraph(g);
   return dfs(g);
 
+}
+
+int findParent(int* parent, int val)
+{
+    if(parent[val] == val)
+        return val;
+    else
+        return findParent(parent, parent[val]);
+}
+
+int countComponents(int n, int** edges, int edgesSize, int* edgesColSize){
+    int parent[n], result =0;
+    for(int i=0; i<n; i++)
+        parent[i] = i;
+
+    for(int i=0; i<edgesSize; i++)
+    {
+        int x = findParent(parent, edges[i][0]);
+        int y = findParent(parent, edges[i][1]);
+
+        parent[y] = x;
+    }
+
+    for(int i=0; i<n; i++)
+    {
+        if(parent[i] == i)
+            result++;
+    }
+
+    return result;
 }
 
 int** create_matrix(int rows, int cols) {
