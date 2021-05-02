@@ -125,7 +125,6 @@ int** create_matrix(int rows, int cols) {
   return mat;
 }
 
-
 int main () {
   int **obstacleGrid = create_matrix(ROWS, COLS);
   int gridSize = ROWS;
