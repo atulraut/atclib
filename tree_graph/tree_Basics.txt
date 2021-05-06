@@ -1,0 +1,38 @@
+Tree: Ref : R. Thareja
+
+Complete Binary Trees : Tree which satisfy two properties :
+1] Every level, except possibly the last, is completely filled.
+2] All nodes appear as far left as possible.
+Tree with only a root node has a height of zero.
+A binary tree of height h has at least h nodes & at most 2^h - 1 nodes.
+
+                  1
+	     /         \
+           /	        \
+          2   		 3
+        / \		/ \
+      4    5            6   7
+     / \  / \         / \
+    8  9 10 11       12  13
+
+
+Above tree has 13 Nodes, if K is parent, then
+Left node  == (2 * K)
+Right node == (2 * K + 1)
+Parent of K = [K/2]
+
+e.g. Children of 4,
+left  == 2 * 4 = 8
+right == 2 * 4 + 1 = 9
+Parent of 4  == [4/2] = 2.
+
+Number of Nodes ni Tree:
+Total nodes of left sub-tree  = 7
+Total nodes of right sub-tree = 5
+Total nodes of tree = (7 + 5) + 1 = 13
+
+Breadth-first traversal :
+All the nodes at a level are accessed before going to the next level.
+e.g. 1-2-3-4-5-6-7 - per above daigram.
+
+Depth-first traversal :
