@@ -36,28 +36,31 @@ Constraints:
 #define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
 
 int minDistance(char* word1, char* word2) {
-  int n1 = strlen(word1), n2 = strlen(word2);
+  int len1 = strlen(word1), len2 = strlen(word2);
 
   /* Variable-length automatic arrays: introduced in C99 but relegated (made optional) in C11 */
 
-  int c[n1+1][n2+1];
+  int dp[len1+1][len2+1];
 
-  for(int i = 0; i <= n1; ++i)
-    c[i][0] = 0;
+  for(int i = 0; i <= len1; ++i)
+    dp[i][0] = 0;
 
-  for(int j = 0; j <= n2; ++j)
-    c[0][j] = 0;
+  for(int j = 0; j <= len2; ++j)
+    dp[0][j] = 0;
 
-  for(int i = 1; i <= n1; ++i)
-    for (int j = 1; j <= n2; ++j)
-      if (word1[i-1] == word2[j-1])
-	c[i][j] = c[i-1][j-1] + 1;
+  for(int i = 1; i <= len1; ++i)
+    for (int j = 1; j <= len2; ++j)
+      if (word1[i-1] == word2[j-1]) {
+	dp[i][j] = dp[i-1][j-1] + 1;
+	debug ("i=%d j=%d c[%d][%d] = %d", i, j, i, j, dp[i][j]);
+      }
       else {
-	int c1 = c[i][j-1], c2 = c[i-1][j];
-	c[i][j] = (c1 >= c2 ? c1 : c2);
+	int c1 = dp[i][j-1], c2 = dp[i-1][j];
+	dp[i][j] = (c1 >= c2 ? c1 : c2);
       }
 
-  return n1 + n2 - 2 * c[n1][n2];
+  debug ("c=%d", dp[len1][len2]);
+  return len1 + len2 - 2 * dp[len1][len2];
 }
 
 int main () {
@@ -76,5 +79,8 @@ int main () {
 
 /**
    => ./a.out
-   [main] L=73 :Output = 2
+   [minDistance] L=55 :i=2 j=1 c[2][1] = 1
+   [minDistance] L=55 :i=3 j=2 c[3][2] = 2
+   [minDistance] L=62 :c=2
+   [main] L=75 :Output = 2
 **/
