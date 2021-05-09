@@ -56,10 +56,6 @@ int uniquePathsWithObstacles(int** obstacleGrid, int obstacleGridSize, int* obst
   int cols = *obstacleGridColSize;
   int dp[rows][cols];
 
-  for(int i=0;i<rows;++i)
-    for(int j=0;j<cols;++j)
-      debug("out = %d", obstacleGrid[i][j]);
-
   bool flag = false;
   // If the starting cell has an obstacle, then simply return as there would be
   // no paths to the destination.
@@ -76,6 +72,12 @@ int uniquePathsWithObstacles(int** obstacleGrid, int obstacleGridSize, int* obst
       dp[0][i] = 1;
   }
 
+  for(int i=0; i<rows; ++i)
+    for(int j=0; j<cols; ++j)
+      debug("dp[%d][%d]=%d",i, j, dp[i][j]);
+
+  debug("____R Ends ____");
+
   //Fill 1st column
   flag = false;
   for(int i=0;i<rows;++i) {
@@ -87,6 +89,12 @@ int uniquePathsWithObstacles(int** obstacleGrid, int obstacleGridSize, int* obst
       dp[i][0] = 1;
   }
 
+  for(int i=0; i<rows; ++i)
+    for(int j=0; j<cols; ++j)
+      debug("dp[%d][%d]=%d",i, j, dp[i][j]);
+
+  debug("____C+R Ends____");
+
   for(int i=1;i<rows;++i) {
     for(int j=1;j<cols;++j) {
       if(obstacleGrid[i][j]==1)
@@ -95,6 +103,13 @@ int uniquePathsWithObstacles(int** obstacleGrid, int obstacleGridSize, int* obst
 	dp[i][j] = dp[i-1][j] + dp[i][j-1];
     }
   }
+
+  for(int i=0; i<rows; ++i)
+    for(int j=0; j<cols; ++j)
+      debug("dp[%d][%d]=%d",i, j, dp[i][j]);
+
+  debug("____Ends____");
+
   return dp[rows-1][cols-1];
 }
 
@@ -147,14 +162,35 @@ int main () {
 
 /**
    => ./a.out
-   [uniquePathsWithObstacles] L=61 :out = 0
-   [uniquePathsWithObstacles] L=61 :out = 0
-   [uniquePathsWithObstacles] L=61 :out = 0
-   [uniquePathsWithObstacles] L=61 :out = 0
-   [uniquePathsWithObstacles] L=61 :out = 1
-   [uniquePathsWithObstacles] L=61 :out = 0
-   [uniquePathsWithObstacles] L=61 :out = 0
-   [uniquePathsWithObstacles] L=61 :out = 0
-   [uniquePathsWithObstacles] L=61 :out = 0
-   [main] L=135 :Output = 2
+   [uniquePathsWithObstacles] L=77 :dp[0][0]=1
+   [uniquePathsWithObstacles] L=77 :dp[0][1]=1
+   [uniquePathsWithObstacles] L=77 :dp[0][2]=1
+   [uniquePathsWithObstacles] L=77 :dp[1][0]=48
+   [uniquePathsWithObstacles] L=77 :dp[1][1]=0
+   [uniquePathsWithObstacles] L=77 :dp[1][2]=0
+   [uniquePathsWithObstacles] L=77 :dp[2][0]=0
+   [uniquePathsWithObstacles] L=77 :dp[2][1]=0
+   [uniquePathsWithObstacles] L=77 :dp[2][2]=91
+   [uniquePathsWithObstacles] L=79 :____R Ends ____
+   [uniquePathsWithObstacles] L=94 :dp[0][0]=1
+   [uniquePathsWithObstacles] L=94 :dp[0][1]=1
+   [uniquePathsWithObstacles] L=94 :dp[0][2]=1
+   [uniquePathsWithObstacles] L=94 :dp[1][0]=1
+   [uniquePathsWithObstacles] L=94 :dp[1][1]=0
+   [uniquePathsWithObstacles] L=94 :dp[1][2]=0
+   [uniquePathsWithObstacles] L=94 :dp[2][0]=1
+   [uniquePathsWithObstacles] L=94 :dp[2][1]=0
+   [uniquePathsWithObstacles] L=94 :dp[2][2]=91
+   [uniquePathsWithObstacles] L=96 :____C+R Ends____
+   [uniquePathsWithObstacles] L=109 :dp[0][0]=1
+   [uniquePathsWithObstacles] L=109 :dp[0][1]=1
+   [uniquePathsWithObstacles] L=109 :dp[0][2]=1
+   [uniquePathsWithObstacles] L=109 :dp[1][0]=1
+   [uniquePathsWithObstacles] L=109 :dp[1][1]=0
+   [uniquePathsWithObstacles] L=109 :dp[1][2]=1
+   [uniquePathsWithObstacles] L=109 :dp[2][0]=1
+   [uniquePathsWithObstacles] L=109 :dp[2][1]=1
+   [uniquePathsWithObstacles] L=109 :dp[2][2]=2
+   [uniquePathsWithObstacles] L=111 :____Ends____
+   [main] L=151 :Output = 2
 **/
