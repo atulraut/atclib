@@ -20,7 +20,7 @@
 int main () {
   int ret = 0;
 
-  debug("Output = ");
+  debug("Output = %d", ret);
   return 0;
 }
 

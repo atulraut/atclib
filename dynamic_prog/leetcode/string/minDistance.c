@@ -42,12 +42,18 @@ int minDistance(char* word1, char* word2) {
 
   int dp[len1+1][len2+1];
 
+  /* Set 1st Column */
   for(int i = 0; i <= len1; ++i)
     dp[i][0] = 0;
 
+  /* Set 1st Row */
   for(int j = 0; j <= len2; ++j)
     dp[0][j] = 0;
 
+  /**
+      Check if char match, if match add to given matrix box,
+      else pick up bigger 1.
+  **/
   for(int i = 1; i <= len1; ++i)
     for (int j = 1; j <= len2; ++j)
       if (word1[i-1] == word2[j-1]) {
