@@ -41,21 +41,26 @@
 #define min(a, b) ((a) < (b) ? (a) : (b))
 
 int countBinarySubstrings(char* s){
-    char curChar;
-    int preCnt, curCnt, cnt;
-    for (curChar = *s++, preCnt = cnt = 0, curCnt = 1; *s; s++, curCnt++)
-        if (*s != curChar) {
-            cnt += min(preCnt, curCnt);
-            curChar = *s;
-            preCnt = curCnt;
-            curCnt = 0;
-        }
-    cnt += min(preCnt, curCnt);
-    return cnt;
+  char curChar;
+  int preCnt, curCnt, cnt;
+  for (curChar = *s++, preCnt = cnt = 0, curCnt = 1; *s; s++, curCnt++) {
+    debug("*s=%c curChar=%c cnt=%d preCnt=%d curCnt=%d", *s, curChar, cnt, preCnt, curCnt);
+    if (*s != curChar) {
+      cnt += min(preCnt, curCnt);
+      curChar = *s;
+      preCnt = curCnt;
+      curCnt = 0;
+    }
+    debug("*s=%c curChar=%c cnt=%d preCnt=%d curCnt=%d", *s, curChar, cnt, preCnt, curCnt);
+  }
+  cnt += min(preCnt, curCnt);
+  debug("cnt = %d", cnt);
+  return cnt;
 }
 
 int main () {
-  char *s = "00110011";
+  char *s1 = "00110011";
+  char *s = "10101";
 
   int ret =  countBinarySubstrings(s);
 
@@ -63,3 +68,17 @@ int main () {
 
   return 0;
 }
+
+/***
+    => ./a.out
+    [countBinarySubstrings] L=47 :*s=0 curChar=1 cnt=0 preCnt=0 curCnt=1
+    [countBinarySubstrings] L=54 :*s=0 curChar=0 cnt=0 preCnt=1 curCnt=0
+    [countBinarySubstrings] L=47 :*s=1 curChar=0 cnt=0 preCnt=1 curCnt=1
+    [countBinarySubstrings] L=54 :*s=1 curChar=1 cnt=1 preCnt=1 curCnt=0
+    [countBinarySubstrings] L=47 :*s=0 curChar=1 cnt=1 preCnt=1 curCnt=1
+    [countBinarySubstrings] L=54 :*s=0 curChar=0 cnt=2 preCnt=1 curCnt=0
+    [countBinarySubstrings] L=47 :*s=1 curChar=0 cnt=2 preCnt=1 curCnt=1
+    [countBinarySubstrings] L=54 :*s=1 curChar=1 cnt=3 preCnt=1 curCnt=0
+    [countBinarySubstrings] L=57 :cnt = 4
+    [main] L=67 :Output = 4
+*/
