@@ -4,175 +4,175 @@
 #define max(X,Y) ((X) > (Y) ? (X) : (Y))
 
 tree_node *create_node(int val) {
-	tree_node *node = (tree_node *)malloc(sizeof(tree_node));
-	if (NULL == node)
-		return NULL;
-	node->data = val;
-	node->left = NULL;
-	node->right= NULL;
-	return node;
+  tree_node *node = (tree_node *)malloc(sizeof(tree_node));
+  if (NULL == node)
+    return NULL;
+  node->data = val;
+  node->left = NULL;
+  node->right= NULL;
+  return node;
 }
 
 void m_insert (void *_root, int val) {
-	tree_node *rt = (tree_node *)_root;
-	tree_node *nn = NULL;	
-	tree_node *trav=NULL;
-	tree_node *parent_trav=NULL;
-	//printf ("at max = %d \n", max (14,5));
-	nn = create_node (val);
-	nn->data = val;
-	printf ("ATUL trav=%p, val=[%d] \n", nn, val);
-	if (NULL == rt) {
-		rt = nn;
-		rt->left = NULL;
-		rt->right= NULL;
-	} else {
-		parent_trav = NULL;
-		trav = rt;
-		while (NULL != trav) {
-			parent_trav = trav;
-			if (val < trav->data) {
-			  printf ("L:: trav->data=%d\n", trav->data);
-				trav = trav->left;
-			} else {
-			  printf ("R:: trav->data=%d\n", trav->data);
-				trav = trav->right;
-			}
-		}
-		if (val < parent_trav->data) {
-			parent_trav->left = nn;
-			printf ("parent_trav->left =%p \n", parent_trav->left);
-		}
-		else {
-			parent_trav->right= nn;
-			printf ("parent_trav->right =%p \n", parent_trav->right);
-		}
-	}
-	//printf ("root->left =%p \n", rt->left);
-	//printf ("root->right=%p \n", rt->right);
+  tree_node *rt = (tree_node *)_root;
+  tree_node *nn = NULL;
+  tree_node *trav=NULL;
+  tree_node *parent_trav=NULL;
+  //printf ("at max = %d \n", max (14,5));
+  nn = create_node (val);
+  nn->data = val;
+  printf ("ATUL trav=%p, val=[%d] \n", nn, val);
+  if (NULL == rt) {
+    rt = nn;
+    rt->left = NULL;
+    rt->right= NULL;
+  } else {
+    parent_trav = NULL;
+    trav = rt;
+    while (NULL != trav) {
+      parent_trav = trav;
+      if (val < trav->data) {
+	printf ("L:: trav->data=%d\n", trav->data);
+	trav = trav->left;
+      } else {
+	printf ("R:: trav->data=%d\n", trav->data);
+	trav = trav->right;
+      }
+    }
+    if (val < parent_trav->data) {
+      parent_trav->left = nn;
+      printf ("parent_trav->left =%p \n", parent_trav->left);
+    }
+    else {
+      parent_trav->right= nn;
+      printf ("parent_trav->right =%p \n", parent_trav->right);
+    }
+  }
+  //printf ("root->left =%p \n", rt->left);
+  //printf ("root->right=%p \n", rt->right);
 }
 
 void m_preorder(void *_root) {
-	tree_node *nn = (tree_node *)_root;
-	printf ("\n m_inoder-> ");
-	printf ("->[%d]", nn->data);
-	if(nn == NULL)
-		return;
-	if(NULL != nn->left)
-		m_preorder(nn->left);
-	if(NULL != nn->right)
-		m_preorder(nn->right);
+  tree_node *nn = (tree_node *)_root;
+  printf ("\n m_inoder-> ");
+  printf ("->[%d]", nn->data);
+  if(nn == NULL)
+    return;
+  if(NULL != nn->left)
+    m_preorder(nn->left);
+  if(NULL != nn->right)
+    m_preorder(nn->right);
 }
 
 void m_inorder(void *_root) {
-	tree_node *nn = (tree_node *)_root;
-	if(nn == NULL)
-		return;
-	m_inorder(nn->left);
-	printf("->[%d]\n", nn->data);
-	m_inorder(nn->right);
+  tree_node *nn = (tree_node *)_root;
+  if(nn == NULL)
+    return;
+  m_inorder(nn->left);
+  printf("->[%d]\n", nn->data);
+  m_inorder(nn->right);
 }
 
 /***
  * LeetCode : Diameter of Binary Tree
  * https://leetcode.com/explore/featured/card/30-day-leetcoding-challenge/529/week-2/3293/
  *        1
-         / \
-        2   3
-       / \
-      4   5
+ / \
+ 2   3
+ / \
+ 4   5
  * Return 3, which is the length of the path [4,2,1,3] or [5,2,1,3].
  */
 int max;
 
 int preorder(struct tree_node *node) {
-    int ld, rd, dia;
+  int ld, rd, dia;
 
-    if (!node)
-        return 0;
-    ld = preorder(node->left);
-    rd = preorder(node->right);
+  if (!node)
+    return 0;
+  ld = preorder(node->left);
+  rd = preorder(node->right);
 
-    dia = ld + rd + 1;
-    if (dia > max)
-        max = dia;
+  dia = ld + rd + 1;
+  if (dia > max)
+    max = dia;
 
-    return ((ld>rd) ? ld+1 : rd+1);
+  return ((ld>rd) ? ld+1 : rd+1);
 }
 
 
 int diameterOfBinaryTree(struct tree_node* root) {
-    int x;
+  int x;
 
-    if (!root)
-        return 0;
-    max=0;
-    x= preorder(root);
-    return ((x>max) ? x-1 : max-1);
+  if (!root)
+    return 0;
+  max=0;
+  x= preorder(root);
+  return ((x>max) ? x-1 : max-1);
 }
 
 struct tree_node* searchBST_LeetCode(struct tree_node* root, int val){
 
   if(root == NULL) {
-      return NULL;
+    return NULL;
   }
 
   if(val < root->data) {
-      return searchBST_LeetCode(root->left, val);
+    return searchBST_LeetCode(root->left, val);
   } else if(val > root->data) {
-      return searchBST_LeetCode(root->right, val);
+    return searchBST_LeetCode(root->right, val);
   }
   return root;
 }
 
 void m_search(void *_root, int val) {
-	tree_node *nn = (tree_node *)_root;
-	tree_node *trav = NULL;
-	trav = nn;
-	if (trav == NULL) {
-		printf ("Not found = %d \n", val);
-		return;
-	}
-	if (val == (trav->data)) {
-		printf ("[m_search] Found = [%d]\n", trav->data);
-		return;
-	}
-	else if (val < trav->data) {
-		trav = trav->left;
-		m_search(trav, val);
-	}
-	else {
-		trav = trav->right;
-		m_search(trav, val);
-	}
+  tree_node *nn = (tree_node *)_root;
+  tree_node *trav = NULL;
+  trav = nn;
+  if (trav == NULL) {
+    printf ("Not found = %d \n", val);
+    return;
+  }
+  if (val == (trav->data)) {
+    printf ("[m_search] Found = [%d]\n", trav->data);
+    return;
+  }
+  else if (val < trav->data) {
+    trav = trav->left;
+    m_search(trav, val);
+  }
+  else {
+    trav = trav->right;
+    m_search(trav, val);
+  }
 }
 
 void m_delete_tree(void *_root) {
-	tree_node *nn = (tree_node *)_root;
-	tree_node *trav = nn;
-	if (NULL != trav) {
-		m_delete_tree(trav->left);
-		m_delete_tree(trav->right);
-		free(trav);
-	        trav = NULL;
-	}
+  tree_node *nn = (tree_node *)_root;
+  tree_node *trav = nn;
+  if (NULL != trav) {
+    m_delete_tree(trav->left);
+    m_delete_tree(trav->right);
+    free(trav);
+    trav = NULL;
+  }
 }
 
 static int h1,h2;
 int tree_height(void *_root) {
-	  tree_node *p = (tree_node *)_root;
-          if(p==NULL)
-	           return(0);
-          if(p->left) {
-                          h1=tree_height(p->left);
-                          h1++;
-          }
-          if(p->right) {
-                      h2=tree_height(p->right);
-                      h2++;
-          }
-          return(max(h1,h2)+1);
- }
+  tree_node *p = (tree_node *)_root;
+  if(p==NULL)
+    return(0);
+  if(p->left) {
+    h1=tree_height(p->left);
+    h1++;
+  }
+  if(p->right) {
+    h2=tree_height(p->right);
+    h2++;
+  }
+  return(max(h1,h2)+1);
+}
 
 /*
  * Write a C program to determine the number of elements (or size) in a tree.
@@ -180,15 +180,15 @@ int tree_height(void *_root) {
 int tree_size(void *_root) {
   tree_node *nn = (tree_node *)_root;
   if (nn==NULL) {
-      return(0);
+    return(0);
   } else {
-      return(tree_size(nn->left) + tree_size(nn->right) + 1);
-    }
+    return(tree_size(nn->left) + tree_size(nn->right) + 1);
+  }
 }
 
 /*
  * Write C code to determine if two trees are identical
-*/
+ */
 int identical(struct tree_node* a, struct tree_node* b)
 {
   if (a==NULL && b==NULL){return(1);}
@@ -209,7 +209,7 @@ int minValue(void* _root) {
   tree_node *node = (tree_node *)_root;
   struct tree_node* current = node;
   while (current->left != NULL) {
-      current = current->left;
+    current = current->left;
   }
   return(current->data);
 }
@@ -220,13 +220,13 @@ int minValue(void* _root) {
 int maxDepth(void* _root) {
   tree_node *node = (tree_node *)_root;
   if (node==NULL) {
-      return(0);
+    return(0);
   } else {
-      int leftDepth = maxDepth(node->left);
-      int rightDepth = maxDepth(node->right);
-      if (leftDepth > rightDepth) return(leftDepth+1);
-      else return(rightDepth+1);
-    }
+    int leftDepth = maxDepth(node->left);
+    int rightDepth = maxDepth(node->right);
+    if (leftDepth > rightDepth) return(leftDepth+1);
+    else return(rightDepth+1);
+  }
 }
 
 /*

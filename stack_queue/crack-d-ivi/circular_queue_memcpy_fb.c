@@ -85,17 +85,13 @@ int Q_Insert(void *_ptr, char *pNew, int datalen) {
   }
 
   while (datalen > 0 && Q->ElemCnt <= Q->QSize) {
-    /*if (Q->Tail == (Q->Head + Q->QSize) && Q->Head == 0) { // Reset Q Tail H| | |T|
-      printf ("[m_Insert] Reset Q =0 ");
-      Q->Tail = 0;
-    } else*/
-    if (Q->Tail == Q->QSize-1) { // Reach End of Q, hence Reset
-      Q->Tail = 0;
-    } else if (Q->Tail == -1 && Q->Head == -1) { // Reset Q HT| | | |
+    if (Q->Tail == Q->QSize -1 && Q->Head == 0) {
+      debug("Queue is FULL, _OverFlow_! ");
+    }  else if (Q->Tail == -1 && Q->Head == -1) { // Reset Q HT| | | |
       Q->Tail = Q->Head = 0;
-    } else if (Q->Tail == (Q->Head + Q->QSize) && Q->Head != 0) { // | |H|T|
+    } else if (Q->Tail == Q->QSize-1 && Q->Head != 0) { // Reach End of Q, hence Reset
       Q->Tail = 0;
-    }  else {
+    } else {
       Q->Tail += 1;
     }
 
@@ -126,9 +122,9 @@ int Q_Remove(void *_ptr, char *pOld, int datalen) {
     debug ("[remove]p=%c Q->Head = %lu Q->Head=[%lu] c->[%c] datalen=%d", lOld, Q->Head,  (Q->Head*Q->DataTypeSz), Q->pBuf[Q->Head*Q->DataTypeSz], datalen);
     debug ("Q->Head = %ld Q->Tail =%ld", Q->Head, Q->Tail);
     Q->pBuf[Q->Head * Q->DataTypeSz] = -1;
-    /*if (Q->Head == Q->Tail) {   // | | | |HT
-      //Q->Head = Q->Tail = 0;
-    } else */if (Q->Head == (Q->QSize)) {  // | | | |H
+    if (Q->Head == Q->Tail) {   // | | | |HT
+      Q->Head = Q->Tail = 0;
+    } else if (Q->Head == (Q->QSize)) {  // | | | |H
       Q->Head = 0;
       debug("Reached!");
     } else {

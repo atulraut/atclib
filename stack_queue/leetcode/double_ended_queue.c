@@ -1,58 +1,29 @@
 /***
-	https://www.programiz.com/dsa/deque
-	https://en.wikipedia.org/wiki/Double-ended_queue
+    Deque implementation in C Using Array.
+    Knuth : Page-239 Vol-I
+
+    It is a linear list, for which all insertion & deletions
+    (& usually all accesses) are made at the ends of the list.
+
+    https://www.programiz.com/dsa/deque
+    https://en.wikipedia.org/wiki/Double-ended_queue
+
+    Date : 16 May 2021.
+    San Diego, CA.
 */
-// Deque implementation in C
 
 #include <stdio.h>
 
 #define MAX 10
 
-void addFront(int *, int, int *, int *);
-void addRear(int *, int, int *, int *);
-int delFront(int *, int *, int *);
-int delRear(int *, int *, int *);
-void display(int *);
-int count(int *);
+int count(int *arr) {
+  int c = 0, i;
 
-int main() {
-  int arr[MAX];
-  int front, rear, i, n;
-
-  front = rear = -1;
-  for (i = 0; i < MAX; i++)
-    arr[i] = 0;
-
-  addRear(arr, 5, &front, &rear);
-  addFront(arr, 12, &front, &rear);
-  addRear(arr, 11, &front, &rear);
-  addFront(arr, 5, &front, &rear);
-  addRear(arr, 6, &front, &rear);
-  addFront(arr, 8, &front, &rear);
-
-  printf("\nElements in a deque: ");
-  display(arr);
-
-  i = delFront(arr, &front, &rear);
-  printf("\nremoved item: %d", i);
-
-  printf("\nElements in a deque after deletion: ");
-  display(arr);
-
-  addRear(arr, 16, &front, &rear);
-  addRear(arr, 7, &front, &rear);
-
-  printf("\nElements in a deque after addition: ");
-  display(arr);
-
-  i = delRear(arr, &front, &rear);
-  printf("\nremoved item: %d", i);
-
-  printf("\nElements in a deque after deletion: ");
-  display(arr);
-
-  n = count(arr);
-  printf("\nTotal number of elements in deque: %d", n);
+  for (i = 0; i < MAX; i++) {
+    if (arr[i] != 0)
+      c++;
+  }
+  return c;
 }
 
 void addFront(int *arr, int item, int *pfront, int *prear) {
@@ -159,12 +130,42 @@ void display(int *arr) {
   printf("  :rear");
 }
 
-int count(int *arr) {
-  int c = 0, i;
+int main() {
+  int arr[MAX];
+  int front, rear, i, n;
 
-  for (i = 0; i < MAX; i++) {
-    if (arr[i] != 0)
-      c++;
-  }
-  return c;
+  front = rear = -1;
+  for (i = 0; i < MAX; i++)
+    arr[i] = 0;
+
+  addRear(arr, 5, &front, &rear);
+  addFront(arr, 12, &front, &rear);
+  addRear(arr, 11, &front, &rear);
+  addFront(arr, 5, &front, &rear);
+  addRear(arr, 6, &front, &rear);
+  addFront(arr, 8, &front, &rear);
+
+  printf("\nElements in a deque: ");
+  display(arr);
+
+  i = delFront(arr, &front, &rear);
+  printf("\nremoved item: %d", i);
+
+  printf("\nElements in a deque after deletion: ");
+  display(arr);
+
+  addRear(arr, 16, &front, &rear);
+  addRear(arr, 7, &front, &rear);
+
+  printf("\nElements in a deque after addition: ");
+  display(arr);
+
+  i = delRear(arr, &front, &rear);
+  printf("\nremoved item: %d", i);
+
+  printf("\nElements in a deque after deletion: ");
+  display(arr);
+
+  n = count(arr);
+  printf("\nTotal number of elements in deque: %d", n);
 }
