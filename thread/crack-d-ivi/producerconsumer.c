@@ -4,8 +4,17 @@
  *  The producer is putting numbers into the shared buffer (in this case sequentially)
  *  And the consumer is taking them out. If the buffer contains zero, that indicates that the buffer is empty.
  *  Any other value is valid.
+ *
+ *  You use the SIGNAL operation to add or return
+ *  resources to the shared pool.
+ *  And you use the WAIT operation to allocate a resource
+ *  for your exclusive use.
+ *  The Producer consumes spaces & Produces Characters
+ *  The Consumer consumes characters & produces spaces.
+ *  Check thread_2.png
+ *
  *  To Compile =-->    g++ producerconsumerpthread.c  -o main.out -pthread -std=c++11
-*/
+ */
 
 #include <stdio.h>
 #include <pthread.h>
