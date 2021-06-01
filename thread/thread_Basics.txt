@@ -1,0 +1,28 @@
+Thread using C :
+
+MIT OpenCourseWare :
+https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-004-computation-structures-spring-2017/c1/c1s2/c1s2v12/
+
+19.2.1 Interprocess Communication :
+https://www.youtube.com/watch?v=Y_PNOmL_yqY
+19.2.2 Semaphores {Wait/Signal Explain} :
+https://www.youtube.com/watch?v=70auqrv84y8
+
+19.2.3 Atomic Transactions :Explan producerconsumer.c code base
+https://www.youtube.com/watch?v=776ZuSOo6hg&t=3s
+19.2.4 Semaphore Implementation :
+https://www.youtube.com/watch?v=VxVF6QzwtwI
+19.2.5 Deadlock
+https://www.youtube.com/watch?v=Teo5DweypWU
+
+K is the initial value of the semaphore manages POOL
+of K resources.
+Check thread_1.png
+
+You use the SIGNAL operation to add or return
+resources to the shared pool.
+And you use the WAIT operation to allocate a resource
+for your exclusive use.
+The Producer consumes spaces & Produces Characters
+The Consumer consumes characters & produces spaces.
+Check thread_2.png

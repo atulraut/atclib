@@ -23,7 +23,7 @@ static int get_input(char *cmd) {
   return res;
 }
 
-LIST * m_Init (LIST *ll){
+LIST * m_Init (LIST *ll) {
   LIST *list = NULL;
   memset((void *)ll, 0, sizeof(struct list_t));
   list = malloc (sizeof (LIST));
@@ -31,14 +31,14 @@ LIST * m_Init (LIST *ll){
   return list;
 }
 
-static LIST_NODE* m_CreateNodeL (int data){
-        LIST_NODE *nn = NULL;
-	nn = (LIST_NODE*)malloc(sizeof (LIST_NODE *));
-	if (nn == NULL)
-		return NULL;
-	nn->data  = data;
-	nn->next = NULL;
-	return nn;
+static LIST_NODE* m_CreateNodeL (int data) {
+  LIST_NODE *nn = NULL;
+  nn = (LIST_NODE*)malloc(sizeof (LIST_NODE *));
+  if (nn == NULL)
+    return NULL;
+  nn->data  = data;
+  nn->next = NULL;
+  return nn;
 }
 
 void m_Addfirst(void *ptr) {
@@ -85,40 +85,40 @@ void m_Addlast(void *ptr) {
 
 void m_Delfirst(void *ptr) {
   LIST *ll = (LIST *)ptr;
-	if (ll == NULL)
-		printf ("\n Empty Link List.");
-	else {
-		LIST_NODE *temp = NULL;
-		temp = (LIST_NODE *)ll->head;
-		if (temp->next == NULL) {
-			free (temp);
-			temp = NULL;
-		}
-		else {
-			temp = (LIST_NODE *)ll->head;
-			ll->head = (LIST_NODE *)temp->next;
-			free (temp);
-			temp = NULL;
-		}				
-	}
+  if (ll == NULL)
+    printf ("\n Empty Link List.");
+  else {
+    LIST_NODE *temp = NULL;
+    temp = (LIST_NODE *)ll->head;
+    if (temp->next == NULL) {
+      free (temp);
+      temp = NULL;
+    }
+    else {
+      temp = (LIST_NODE *)ll->head;
+      ll->head = (LIST_NODE *)temp->next;
+      free (temp);
+      temp = NULL;
+    }				
+  }
 }
 
 void m_Freelist(void *ptr) {
-	LIST *ll = (LIST *)ptr;
-	if (ll->head == NULL)
-		printf ("\n Empty Link List.");
-	else {
-	  LIST_NODE *temp = NULL;
-	  LIST_NODE *trav = NULL;
-	  temp = (LIST_NODE *)ll->head;
-	  while (temp != NULL) {
-		  trav = temp->next;
-		  free(temp);
-		  temp = NULL;
-		  temp = trav;
-	  }
- 	  ll->head = NULL;
-	}
+  LIST *ll = (LIST *)ptr;
+  if (ll->head == NULL)
+    printf ("\n Empty Link List.");
+  else {
+    LIST_NODE *temp = NULL;
+    LIST_NODE *trav = NULL;
+    temp = (LIST_NODE *)ll->head;
+    while (temp != NULL) {
+      trav = temp->next;
+      free(temp);
+      temp = NULL;
+      temp = trav;
+    }
+    ll->head = NULL;
+  }
 }
 
 void m_Revlist(void *ptr) {
