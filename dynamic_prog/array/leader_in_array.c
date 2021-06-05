@@ -1,13 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
+#include <limits.h>
+#include <string.h>  /* malloc */
+#include <stdbool.h>
+#include <math.h>
+#include <assert.h>
+#include <stdint.h> /* uint32_t */
+#include <unistd.h> /* sleep */
+
+#define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
 
 /* O(n): Max From Right Method */
 void find_leader_in_array (int arr[], int n) {
   int mfr = arr[n-1];
-  printf ("Lieader Is = %d \n", mfr);
+  debug ("Lieader Is = %d \n", mfr);
   for(int i=n-2; i>=0; i--) {
     if(arr[i] > mfr) {
-      printf ("Lieader Is = %d \n", arr[i]);
+      debug ("Lieader Is = %d \n", arr[i]);
       mfr = arr[i];
     }
   }
@@ -23,7 +33,7 @@ void simple_method(int *arr, int n) {
       }
     }
     if (j == n)
-      printf ("Leader Is = %d \n", arr[i]);
+      debug ("Leader Is = %d \n", arr[i]);
   }
 }
 
