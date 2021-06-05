@@ -31,7 +31,7 @@
     2 <= k <= 104
     s only contains lower case English letters.
     Date: 04/18/2021 April.
-    San Diego, CA	
+    San Diego, CA
 */
 #include <stdio.h>
 #include <stdlib.h>
