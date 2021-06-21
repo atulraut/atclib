@@ -65,7 +65,7 @@ void quicksort(int *matchsticks, int matchsticksSize) {
   if(matchsticksSize > 1) {
     while(i != j) {
       for(; i<j; j--)
-	if(matchsticks[j]>key) {	
+	if(matchsticks[j]>key) {
 	  matchsticks[i] = matchsticks[j];
 	  break;
 	}
