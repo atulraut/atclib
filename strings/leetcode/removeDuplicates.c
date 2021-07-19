@@ -150,7 +150,7 @@ int main() {
   int k = 2;
   char* ret = removeDuplicates(s, k);
 
-  //debug("ret = %s", ret);
+  debug("ret = %s", ret);
   return 0;
 }
 
