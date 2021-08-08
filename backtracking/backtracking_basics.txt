@@ -1,0 +1,39 @@
+Backtracking :
+
+The backtracking algorithms consists of the following steps:
+
+    Choose: Choose the potential candidate. Here, our potential candidates are all
+       substrings that could be generated from the given string.
+
+    Constraint: Define a constraint that must be satisfied by the chosen candidate.
+       In this case, the constraint is that the string must be a palindrome.
+
+    Goal: We must define the goal that determines if have found the required
+       solution and we must backtrack. Here, our goal is achieved if we have
+       reached the end of the string.
+
+Algorithm :
+
+In the backtracking algorithm, we recursively traverse over the string in
+   depth-first search fashion. For each recursive call, the beginning index
+   of the string is given as start\text{start}start.
+
+1. Iteratively generate all possible substrings beginning at start index.
+   The end index increments from start\text{start}start till the end of
+   the string.
+
+2. For each of the substring generated, check if it is a palindrome.
+
+3. If the substring is a palindrome, the substring is a potential candidate.
+   Add substring to the currentList  and perform  a depth-first search on the
+   remaining substring. If current substring ends at index end, end+1 becomes
+   the start index for the next recursive call.
+
+4. Backtrack if start index is greater than or equal to the string length and
+   add the currentList to the result.
+
+Ref:
+https://en.wikipedia.org/wiki/Backtracking
+https://www.youtube.com/watch?v=PK2jQesRzgY
+
+

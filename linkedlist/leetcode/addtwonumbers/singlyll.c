@@ -434,7 +434,7 @@ struct list_node* m_partition(struct list_node* head, int x) {
   dummy_before_x = before_x;
 
   while(head != NULL) {
-    if (head->val < x) {
+    if (head->data < x) {
       before_x->next = head;
       before_x = before_x->next;
     }
@@ -474,3 +474,13 @@ void m_quit(void *_ptr) {
   printf ("Good Bye! \n");
   exit(0);
 }
+
+/***
+    alling command: Add Two Int of different Linked List
+    [addTwoNumbers] L=207 :sum = 7, remainder = 0
+    [addTwoNumbers] L=210 :sum = 7, remainder = 0
+    [addTwoNumbers] L=207 :sum = 10, remainder = 0
+    [addTwoNumbers] L=210 :sum = 0, remainder = 1
+    [addTwoNumbers] L=207 :sum = 8, remainder = 1
+    [addTwoNumbers] L=210 :sum = 8, remainder = 0
+*/
