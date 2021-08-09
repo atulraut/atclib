@@ -1,0 +1,90 @@
+
+Git Commands
+
+    repo forall -c ‘git reset –hard m/froyo’
+    repo sync
+    git checkout  branch at_Branch_Name. [To Switch to branch]
+    git branch 17March Or repo start at_New_Branch . [New Branch]
+    git add .
+    git commit –amemd -a or -as
+    repo upload .
+    repo upload –replace .
+    git branch -de.g atul [to delete branch]
+    repo forall -c “git log tu-01.08..tu-01.08″|
+    grep commit|awk ‘{print $2}’ [diff between two tu’s]
+    git apply ../../temp/atkt.patch00000 [apply patch set]
+    git am -3 001-usb-msm.patch platform/external/sonivox.git
+    git reset –hard  234asd2342lk32
+    git clean -f
+    rm -rf .git/rebase-apply    // git rebase –skip [instead.]
+    git fsck
+    git push ssh://gerrit.com:21414/platform/external/opencore.git HEAD:refs/for/froyo [to creaet new change id]
+    git push ssh://gerrit.com:29418/platform/packages/apps/Contacts.git HEAD:refs/changes/10911
+    If you want to used different mail id and name for particular branch, Run below command to change mail id for your particular[Single] branch this will ask your Name and Mail id.          ” repo init “
+    git commit –amend –author=”Atul Raut <atul.raut@ymail.com>”
+    Change/set – in ALL your (local) repositories. This updates ~/.gitconfig
+
+git config --global user.name Atul R. Raut
+git config --global user.email atulraut17@gmail.com
+
+=== How to rebase ===
+   "Create a new directory and 'cd' to it."
+   git init  /* init git project new */
+   git fetch ssh://review-xxx.org:12181/kernel refs/heads/mykernel    /* bring new kernel into it */
+   git checkout FETCH_HEAD  /* make sure its latest */
+   git fetch ssh://review-xxx.org:12181/kernel refs/changes/10000
+   git cherry-pick FETCH_HEAD
+   "Update/fix conflicts files"
+   git add .
+   git commit -c FETCH_HEAD
+   git push ssh://review-xxx.org:12181/kernel HEAD:refs/changes/10000
+
+git diff
+git add
+git commit -s -v
+git format-patch LAST_LOCAL_COMMIT_ID
+git show HEAD
+git log --pretty=oneline --abbrev-commit
+git show --pretty=oneline --abbrev-commit HEAD
+git show HEAD | perl scripts/get_maintainer.pl --separator , --nokeywords --nogit --nogit-fallback --norolestats --nol
+perl scripts/get_maintainer.pl --separator , --nokeywords --nogit --nogit-fallback --norolestats --nol -f drivers/staging/most/aim-sound/sound.c
+git format-patch -o /tmp/ HEAD^
+
+
+How to send patches to Upstream Linux Kernel
+
+    Tagging :
+    git tag
+    git reflog
+    git log –pretty=oneline
+    git log –oneline –decorate –graph –all
+    Cherry pick from upstream :
+    1. git clone linux-4.4
+    2. git checkout linux-4.4
+    3. git remote add 4.14 ssh://git.atul.com:29418/kernel/linux-4.14
+    4. git fetch 4.14
+    5. git cherry-pick <4.14 commit>
+    Generate a git patch for a specific commit :
+    git format-patch -1 <sha>
+    git format-patch -1 7405f74badf46b5d023c5d2b670b4471525f6c91
+    Get patch from top commit :
+    git format-patch -n HEAD^
+    The last 10 patches from head in a single patch file :
+    git format-patch -10 HEAD –stdout > 0001-last-10-commits.patch
+    How to send patches in version format to Upstream Linux Kernel :
+    git format-patch -v2 -n4 –cover-letter
+    Then edit the cover letter, and git send-email –to=<ntb list> ~/patches/*.patch?
+    I will send all a fresh new [PATCH v2 0..4]
+
+Modify/updat git commit message of 2 or 3 commit from HEAD :
+git rebase -i HEAD~2
+Replace pick with reword
+Commit & close, it will open 2nd commit & now we can modify commit message.
+
+https://asciinema.org/a/189650
+
+Task 8 :
+1. Send 1st Patch manually using Thunderbird.
+2. Modify patches using rebase - Subject as per requested.
+3. Send 2 patches using
+git send-email --to=little@eudyptula-challenge.org *.patch
