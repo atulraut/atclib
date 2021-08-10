@@ -1,0 +1,10 @@
+Math Tips for C Programming :
+
+Tip 1:
+sum = remainder + (l1 == 0 ? 0 : l1->val) + (l2 == 0 ? 0: l2->val);
+remainder = sum/10;
+sum %= 10;
+curr->next->val = sum;
+
+Tip 2:
+

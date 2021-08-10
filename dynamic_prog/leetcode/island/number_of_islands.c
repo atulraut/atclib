@@ -40,7 +40,7 @@ void mark_current_island(int (*grid)[5], int x, int y, int row, int col) {
   /* Check bondry condition, such that we cant go beyond array bondry. */
   if (x < 0 || x >= row || y <= 0 || grid[x][y] != 1)
     return;
-  if ( (row == 0 && y == 0) || (row == 1 && y ==0)) 
+  if ( (row == 0 && y == 0) || (row == 1 && y ==0))
     printf ("row = %d \n", row);
   grid[x][y] = 2;
 
