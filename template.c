@@ -17,7 +17,7 @@
 
 #define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
 
-int main () {
+int main (int argc, char **argv) {
   int ret = 0;
 
   debug("Output = %d", ret);
