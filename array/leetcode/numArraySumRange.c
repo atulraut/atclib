@@ -1,46 +1,34 @@
 /***
-    Medium: 307. Range Sum Query - Mutable
+    Easy: 303. Range Sum Query - Immutable
 
-    Given an integer array nums, handle multiple queries of
-    the following types:
+    Given an integer array nums, handle multiple queries of the following type:
 
-    Update the value of an element in nums.
-    Calculate the sum of the elements of nums between indices
-    left and right inclusive where left <= right.
+    Calculate the sum of the elements of nums between indices left and right
+    inclusive where left <= right.
 
     Implement the NumArray class:
 
     NumArray(int[] nums) Initializes the object with the integer array nums.
-    void update(int index, int val) Updates the value of nums[index] to be val.
-    int sumRange(int left, int right) Returns the sum of the elements
-    of nums between indices left and right inclusive
+    int sumRange(int left, int right) Returns the sum of the elements of n
+    ums between indices left and right inclusive
     (i.e. nums[left] + nums[left + 1] + ... + nums[right]).
 
     Input
-    ["NumArray", "sumRange", "update", "sumRange"]
-    [[[1, 3, 5]], [0, 2], [1, 2], [0, 2]]
+    ["NumArray", "sumRange", "sumRange", "sumRange"]
+    [[[-2, 0, 3, -5, 2, -1]], [0, 2], [2, 5], [0, 5]]
     Output
-    [null, 9, null, 8]
+    [null, 1, -1, -3]
 
     Explanation
-    NumArray numArray = new NumArray([1, 3, 5]);
-    numArray.sumRange(0, 2); // return 1 + 3 + 5 = 9
-    numArray.update(1, 2);   // nums = [1, 2, 5]
-    numArray.sumRange(0, 2); // return 1 + 2 + 5 = 8
+    NumArray numArray = new NumArray([-2, 0, 3, -5, 2, -1]);
+    numArray.sumRange(0, 2); // return (-2) + 0 + 3 = 1
+    numArray.sumRange(2, 5); // return 3 + (-5) + 2 + (-1) = -1
+    numArray.sumRange(0, 5); // return (-2) + 0 + 3 + (-5) + 2 + (-1) = -3
 
-    Constraints:
+    https://leetcode.com/problems/range-sum-query-immutable/
 
-    1 <= nums.length <= 3 * 104
-    -100 <= nums[i] <= 100
-    0 <= index < nums.length
-    -100 <= val <= 100
-    0 <= left <= right < nums.length
-    At most 3 * 104 calls will be made to update and sumRange.
-
-    https://leetcode.com/problems/range-sum-query-mutable/
-
-    Date: 19 June 2021
-    San Diego, CA.
+    Date: 17 August 2021
+    Fair Oaks, CA.
 */
 
 #include <stdio.h>
@@ -57,107 +45,81 @@
 #define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
 
 typedef struct {
-  int size;
-  int *tree;
+  int* arr;
 } NumArray;
 
-
 NumArray* numArrayCreate(int* nums, int numsSize) {
-  NumArray *array = (NumArray *)calloc(1, sizeof(NumArray));
-  array -> size = numsSize;
-  array -> tree = (int *)calloc(2*numsSize, sizeof(int));
+  NumArray *obj;
+  int i;
 
-  int i, j;
-  for(i=numsSize, j=0; i<2*numsSize; i++, j++) {
-    array -> tree[i] += nums[j];
+  obj = (NumArray*)calloc(1, sizeof(NumArray));
+  obj->arr = (int *) calloc(numsSize+1, sizeof(int));
+  //obj->size = numsSize;
+  obj->arr[0] = 0;
+  for(i = 0; i < numsSize; i++){
+    obj->arr[i+1] = nums[i] + obj->arr[i];
+    debug ("-> nums[%d]=%d obj->arr[%d]=%d obj->arr[%d]=%d", i, nums[i], i, obj->arr[i], i+1, obj->arr[i+1] );
   }
-  for(i=numsSize-1; i>0; i--){
-    array -> tree[i] = array -> tree[2*i] + array -> tree[2*i+1];
-  }
-
-  return array;
-
+  return obj;
 }
 
-void numArrayUpdate(NumArray* obj, int pos, int val) {
-  pos += obj -> size;
-  obj -> tree[pos] = val;
-
-  int left, right, middle;
-  while(pos > 0) {
-    left = pos;
-    right = pos;
-    if(pos % 2 == 0) right = pos + 1;
-    else left = pos - 1;
-    middle = pos / 2;
-    obj -> tree[middle] = obj -> tree[left] + obj -> tree[right];
-    pos /= 2;
-  }
-}
-
-int numArraySumRange(NumArray* obj, int l, int r) {
-  l += obj -> size;
-  r += obj -> size;
-
-  int sum_arr = 0;
-  while(l <= r) {
-    if(l % 2 == 1) {
-      sum_arr += obj -> tree[l];
-      l ++;
-    }
-    if(r % 2 == 0) {
-      sum_arr += obj -> tree[r];
-      r --;
-    }
-
-    l /= 2;
-    r /= 2;
-  }
-
-  return sum_arr;
+int numArraySumRange(NumArray* obj, int left, int right) {
+  int sum = 0;
+  if(!obj)
+    return 0;
+  sum = obj->arr[right+1] - obj->arr[left];
+  return sum;
 }
 
 void numArrayFree(NumArray* obj) {
-  free(obj -> tree);
+  free(obj->arr);
   free(obj);
 }
 
 /**
  * Your NumArray struct will be instantiated and called as such:
  * NumArray* obj = numArrayCreate(nums, numsSize);
- * numArrayUpdate(obj, index, val);
-
- * int param_2 = numArraySumRange(obj, left, right);
+ * int param_1 = numArraySumRange(obj, left, right);
 
  * numArrayFree(obj);
- */
+*/
 
-int main () {
+int main (int argc, char **argv) {
   int ret = 0;
-  //["NumArray","sumRange","update","sumRange"]
+  int arr[] = {-2, 0, 3, -5, 2, -1};
+  int sz = sizeof(arr) / sizeof(arr[0]);
 
-  int nums[] = {1, 3, 5};
-  int numsSize = sizeof(nums) / sizeof(nums[0]);
+  /* Step I :*/
+  NumArray* obj = numArrayCreate(arr, sz);
 
-  //  [[[1,3,5]],[0,2],[1,2],[0,2]]
+  /* Step II :*/
+  //ret =  numArraySumRange(obj, 0, 2);
+  ret =  numArraySumRange(obj, 2, 5);
 
-  NumArray* obj = numArrayCreate(nums, numsSize);
-
-  ret = numArraySumRange(obj, 0, 2);
-  debug("Output = %d", ret);
-
-  numArrayUpdate(obj, 1, 2);
-
-  ret = numArraySumRange(obj, 0, 2);
-  debug("Output = %d", ret);
-
+  /* Step III :*/
   numArrayFree(obj);
 
+  debug("Output = %d", ret);
   return 0;
 }
 
 /**
    => ./a.out
-   [main] L=147 :Output = 9
-   [main] L=152 :Output = 8
+   [numArrayCreate] L=34 :-> nums[0]=-2 obj->arr[0]=0 obj->arr[1]=-2
+   [numArrayCreate] L=34 :-> nums[1]=0 obj->arr[1]=-2 obj->arr[2]=-2
+   [numArrayCreate] L=34 :-> nums[2]=3 obj->arr[2]=-2 obj->arr[3]=1
+   [numArrayCreate] L=34 :-> nums[3]=-5 obj->arr[3]=1 obj->arr[4]=-4
+   [numArrayCreate] L=34 :-> nums[4]=2 obj->arr[4]=-4 obj->arr[5]=-2
+   [numArrayCreate] L=34 :-> nums[5]=-1 obj->arr[5]=-2 obj->arr[6]=-3
+   [main] L=75 :Output = -1
+**/
+
+/**
+   Complexity analysis
+
+   Time complexity : O(1) time per query, O(n)
+   time pre-computation. Since the cumulative sum is cached, each sumRange
+   query can be calculated in O(1) time.
+
+   Space complexity : O(n).
 **/
