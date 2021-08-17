@@ -1,0 +1,4 @@
+Array Tips :
+
+Q1] Fastest way to zero out a 2D array in C ?
+memset(array, 0, sizeof(array))
