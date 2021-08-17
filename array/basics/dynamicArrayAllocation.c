@@ -1,9 +1,49 @@
+/***
+    Add 3D array allocation routines.
+
+    Date: 16 August 2021
+    Fair Oaks, CA.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 
 #define r 4
 #define c 3
 #define DEBUG 0
+
+/***
+ * allocate a 3D array
+ */
+int*** allocate3D(int l,int rows, int cols) {
+  int ***arr3D;
+  int i,j,k;
+
+  arr3D = (int***)malloc(l * sizeof(int **));
+
+  for(i=0; i<l; i++) {
+    arr3D[i] = (int**)malloc(rows * sizeof(int*));
+
+    for(j=0; j<rows; j++) {
+      arr3D[i][j] = (int*)malloc(cols * sizeof(int));
+    }
+  }
+
+  return arr3D;
+}
+
+//deallocate a 3D array
+void deallocate3D(int arr3D,int l,int m) {
+  int i,j;
+
+  for(i=0; i<l; i++) {
+    for(int j=0;j<m;j++) {
+      free(arr3D[i][j]);
+    }
+    free(arr3D[i]);
+  }
+  free(arr3D);
+}
 
 int **getDynamicArray(int row, int col) {
   int i, j;
