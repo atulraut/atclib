@@ -1,6 +1,21 @@
+/***
+    Pointers are passed by Value.
+    i.e. The copy of address in pointer is created.
+
+    Date: 18 August 2021.
+    Fair Oaks, CA.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <ctype.h>
+#include <limits.h>
+#include <string.h>  /* malloc */
+#include <stdbool.h>
+#include <math.h>
+#include <assert.h>
+#include <stdint.h> /* uint32_t */
+#include <unistd.h> /* sleep */
 
 /***
  * Whenever you are passing address of variable
@@ -9,33 +24,49 @@
  * Remember pointers are passed by value.
  * i.e. the copy of address in pointer is created
  */
-int a = 20;
+
 /***
- * Bleow Code is Call by Value
  * https://www.youtube.com/watch?v=4Tv3uebRasg
  * 30 Sec.
  */
-void ptr_pass_by_value(int *p) {
-  p = &a;
-}
+
+#define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
+
+int a = 20;
 
 /***
- * To fix, and make really call by address
+ * Call by address
+ * op = 20
  */
-void ptr_pass_by_value_fix(int *p) {
+void passbyref_works(int *p) {
   *p = a;
 }
 
-void foo () {
-  int i, j;
-  i = j = 0;
+/***
+ * Call by Value
+ * op = 10
+ */
+void passbyref_NOTworks(int *p) {
+  p = &a;
 }
 
-int main () {
+void test() {
   int x = 10;
   int *p = &x;
-  ptr_pass_by_value_fix(p);
-  foo();
-  printf ("[%s] --> x = %d \n", __func__, x);
+  passbyref_works(p);
+  debug("x= %d", x);
+  //passbyref_NOTworks(p);
+  debug("x= %d", x);
+}
+
+int main (int argc, char **argv) {
+  int ret = 0;
+
+  test();
+  debug("Output = %d", ret);
   return 0;
 }
+
+/**
+
+ **/
