@@ -1,5 +1,5 @@
 /*
-  strok_r : 
+  strok_r :
   Ref: https://code.woboq.org/userspace/glibc/string/strtok_r.c.html#__strtok_r
 */
 #include <stdio.h>
@@ -50,4 +50,10 @@ int main() {
     token = atstrtok(NULL, "-");
   }
   return 0;
-} 
+}
+
+/**
+	=> ./a.out
+	Atul
+	R
+**/

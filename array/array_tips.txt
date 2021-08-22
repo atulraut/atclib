@@ -1,0 +1,72 @@
+Array Tips :
+
+-----------------------------------------------------------------------
+Q] Fastest way to zero out a 2D array in C ?
+memset(array, 0, sizeof(array))
+
+-----------------------------------------------------------------------
+Q] How to Return 2D array from function :
+==>
+int (*generate())[4] {
+  static int arr[3][4] = {
+    {3,3,1,1},
+    {2,2,1,2},
+    {1,1,1,2}
+  };
+  return arr;
+}
+Ref :
+https://github.com/atulraut/atclib/blob/master/array/basics/pass_return_2D_array.c
+https://github.com/atulraut/atclib/blob/master/array/leetcode/high/sort_the_Matrix_Diagonally.c
+
+-----------------------------------------------------------------------
+Q] Passing 2D array to function :
+==> Pointer to the block of 2 Integer
+void display(int (*a)[2]) {
+    int i, j;
+    for (i = 0; i < 2; i++) {
+        for (j = 0; j < 2; j++)
+            printf("%d\n", a[i][j]);
+    }
+}
+int main() {
+    int arr[][2] = { 19, 29, 39, 49 };
+    // ptr;
+    display(arr);
+}
+
+Ref: https://github.com/atulraut/atclib/blob/master/array/basics/pass_return_2D_array.c
+
+-----------------------------------------------------------------------
+Q] Passing 3D array to function :
+==>
+int (*func())[2][3] {
+   static int arr[][2][3] = {
+				{11, 22, 33},
+				{44, 55, 66},
+			     };
+   int (*ptr)[2][3] = arr;
+   return arr;
+}
+
+-----------------------------------------------------------------------
+Q] Sparse Matrix - True Matrix Allocation if you know column size is fixed.
+==>
+int (*create_sparse_matrix(int rows))[3] {
+    int (*mat)[3];
+    mat = (int(*)[3]) malloc(rows * 3 * sizeof(int));
+    return mat;
+}
+
+Ref:
+https://github.com/atulraut/Advanced-Pointers-in-C/blob/master/pointers/sparse_matrix.c
+
+-----------------------------------------------------------------------
+Q] Pointers to Array
+==>
+
+-----------------------------------------------------------------------
+Q] Array of Pointers
+==>
+
+-----------------------------------------------------------------------
