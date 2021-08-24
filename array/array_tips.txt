@@ -1,5 +1,24 @@
 Array Tips :
 
+Q] How to convert array to readable format.
+==> if we have array of 2 rows & 3 columens --> arr[2][3]
+Note - Scan factor very Important, here for Int its 4.
+Step 1: 2 rows
+-------------------
+|	|	  |
+|	|	  |
+-------------------
+x100   x112    x124
+
+Step 2: 3 Columsn
+-------------------
+|	 |	  |
+-------------------
+|10|20|30|40|50|60|
+-------------------
+|	 |	  |
+-------------------
+
 -----------------------------------------------------------------------
 Q] Fastest way to zero out a 2D array in C ?
 memset(array, 0, sizeof(array))
