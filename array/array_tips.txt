@@ -81,6 +81,18 @@ Ref:
 https://github.com/atulraut/Advanced-Pointers-in-C/blob/master/pointers/sparse_matrix.c
 
 -----------------------------------------------------------------------
+Q] Size  of 2D Array
+ int mat[3][3] = {
+    {1, 2, 3},
+    {2, 3, 4},
+    {2, 3, 5}
+  };
+
+  int r = sizeof (mat)/ sizeof (mat[0]);
+  int c = sizeof (mat[0]) / sizeof (mat[0][0]);
+  debug ("row size = %d col size = %d ", r, c);
+-----------------------------------------------------------------------
+
 Q] Pointers to Array
 ==>
 

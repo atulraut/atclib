@@ -69,13 +69,16 @@ int arrayNesting(int* nums, int numsSize) {
   int* visited = (int *)calloc(sizeof(int), numsSize);
   int res = 0;
   for (int i = 0; i < numsSize; i++) {
+    debug("Entre i = %d", i);
     if (!visited[i]) {
       start = nums[i];
       count = 0;
       do {
+	//	debug("start=%d count = %d num[%d]=%d", start, count, start, nums[start]);
 	start = nums[start];
 	count++;
 	visited[start] = true;
+	debug("start=%d count = %d num[%d]=%d", start, count, i, nums[i]);
       } while (start != nums[i]);
       res = max(res, count);
     }
@@ -97,8 +100,22 @@ int main (int argc, char **argv) {
 }
 
 /**
-   => ./a.out
-   [main] L=74 :Output = 4
+=> ./a.out
+[arrayNesting] L=72 :Entre i = 0
+[arrayNesting] L=81 :start=6 count = 1 num[0]=5
+[arrayNesting] L=81 :start=2 count = 2 num[0]=5
+[arrayNesting] L=81 :start=0 count = 3 num[0]=5
+[arrayNesting] L=81 :start=5 count = 4 num[0]=5
+[arrayNesting] L=72 :Entre i = 1
+[arrayNesting] L=81 :start=1 count = 1 num[1]=4
+[arrayNesting] L=81 :start=4 count = 2 num[1]=4
+[arrayNesting] L=72 :Entre i = 2
+[arrayNesting] L=72 :Entre i = 3
+[arrayNesting] L=81 :start=3 count = 1 num[3]=3
+[arrayNesting] L=72 :Entre i = 4
+[arrayNesting] L=72 :Entre i = 5
+[arrayNesting] L=72 :Entre i = 6
+[main] L=98 :Output = 4
 **/
 
 /**
