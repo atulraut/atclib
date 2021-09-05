@@ -16,6 +16,7 @@
     4 1 8 3
     The minimum path sum from top to bottom is 2 + 3 + 5 + 1 = 11 (underlined above).
 
+    Status - Pending
     https://leetcode.com/problems/triangle/
     Date : 26/04/2021 April
     San Diego, CA.
