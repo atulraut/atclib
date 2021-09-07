@@ -77,12 +77,40 @@
 
 #define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
 
+char slowestKey(int* releaseTimes, int releaseTimesSize, char * keysPressed) {
+  char max_key = 0;
+  int max_duration = 0;
+
+  int i=0;
+
+  for(i=0; i<releaseTimesSize; i++) {
+    int cur_duration;
+    if(i==0) {
+      cur_duration = releaseTimes[i] - 0;
+    } else {
+      cur_duration = releaseTimes[i] - releaseTimes[i - 1];
+    }
+
+    if(cur_duration == max_duration) {
+      if(keysPressed[i] >= max_key) {
+	max_key = keysPressed[i];
+      }
+      max_duration = cur_duration;
+    } else if(cur_duration > max_duration) {
+      max_key = keysPressed[i];
+      max_duration = cur_duration;
+    }
+  }
+  return max_key;
+}
+
+/* Atul Hash Map Implementaion */
 /*
   Key   -: currentKey        {'a', 'b' 'c'}
   Value -: currentDuration   {1,   2,   4}
 */
 
-#define NHASH 256
+#define NHASH 26
 
 struct nameval {
   char ch;
@@ -96,8 +124,8 @@ unsigned int get_hash(char c) {
   unsigned int h=0;
   unsigned char ci;
 
-  //debug ("key = %d char=%c", (c % NHASH), (c % NHASH) );
-  return c % NHASH;
+  debug ("key = %d char=%c", (c-'0' % NHASH), (c % NHASH) );
+  return ((c-'0') % NHASH);
 }
 
 void print_table () {
@@ -144,7 +172,7 @@ struct nameval* lookup(char c, int val, int isCreate) {
   return sym;
 }
 
-char slowestKey(int* releaseTimes, int releaseTimesSize, char* keysPressed) {
+char slowestKey_ATUL(int* releaseTimes, int releaseTimesSize, char* keysPressed) {
   int current_duration = releaseTimes[0];
   char key = keysPressed[0];
   int isCreate = 1;
@@ -196,8 +224,8 @@ int main (int argc, char **argv) {
   int releaseTimes1[] = {9,29,49,50};
   char keysPressed1[] = "cbcd";
 
-  int releaseTimes[] = {12,23,36,46,62};
-  char keysPressed[] = "spuda";
+  int releaseTimes2[] = {12,23,36,46,62};
+  char keysPressed2[] = "spuda";
 
   int releaseTimesSize = sizeof(releaseTimes)/sizeof(releaseTimes[0]);
 
