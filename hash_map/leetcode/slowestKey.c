@@ -178,7 +178,7 @@ char slowestKey_ATUL(int* releaseTimes, int releaseTimesSize, char* keysPressed)
   int isCreate = 1;
   char slowestKey = ' ';
   int longestPressDuration = 0;
-	
+
   struct nameval* sym = lookup(key, current_duration, isCreate);
 
   /*
