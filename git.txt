@@ -1,4 +1,3 @@
-
 Git Commands
 
     repo forall -c ‘git reset –hard m/froyo’
@@ -50,8 +49,26 @@ git show HEAD | perl scripts/get_maintainer.pl --separator , --nokeywords --nogi
 perl scripts/get_maintainer.pl --separator , --nokeywords --nogit --nogit-fallback --norolestats --nol -f drivers/staging/most/aim-sound/sound.c
 git format-patch -o /tmp/ HEAD^
 
+====_______ git pull Request _______====
+git checkout -b my-new-branch
 
-How to send patches to Upstream Linux Kernel
+Create, edit, or delete files. The stage and commit them:
+
+git add .
+git commit -m "My commit message"
+
+Push your branch to GitLab:
+
+git push origin my-new-branch
+
+GitLab prompts you with a direct link for creating a merge request:
+
+...
+remote: To create a merge request for docs-new-merge-request, visit:
+remote:   https://github.example.com/my-group/my-project/merge_requests/new?merge_request%5Bsource_branch%5D=my-new-branch
+
+
+===_______ How to send patches to Upstream Linux Kernel _______===
 
     Tagging :
     git tag

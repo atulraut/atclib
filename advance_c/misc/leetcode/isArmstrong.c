@@ -14,6 +14,8 @@
 
     https://leetcode.com/problems/armstrong-number/
 
+    gcc -o main isArmstrong.c -lm
+
     Date: July 19, 2021
     Fair Oaks, CA.
 */
