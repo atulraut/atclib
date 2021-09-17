@@ -69,6 +69,27 @@ int (*func())[2][3] {
 }
 
 -----------------------------------------------------------------------
+Q] Static Array Initialisation
+int** create_matrix(int rows, int cols) {
+  int** max = (int**)malloc(sizeof(int) * rows);
+  for (int i=0; i<rows; ++i) {
+    max[i] = (int*)malloc(sizeof(int *) * cols);
+  }
+  return max;
+}
+int **grid = create_matrix(rows, cols);
+
+  *(*(grid + 0) + 0) = 1;
+  *(*(grid + 0) + 1) = 1;
+  *(*(grid + 0) + 2) = 1;
+  *(*(grid + 1) + 0) = 1;
+  *(*(grid + 1) + 1) = 0;
+  *(*(grid + 1) + 2) = 1;
+  *(*(grid + 2) + 0) = 1;
+  *(*(grid + 2) + 1) = 1;
+  *(*(grid + 2) + 2) = 1;
+
+-----------------------------------------------------------------------
 Q] Sparse Matrix - True Matrix Allocation if you know column size is fixed.
 ==>
 int (*create_sparse_matrix(int rows))[3] {
