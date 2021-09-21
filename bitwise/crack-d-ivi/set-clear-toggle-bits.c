@@ -158,3 +158,13 @@ int main () {
   printf ("[range_toggling] num = %d, start = %d end = %d res = %d\n", num, start, end, res);
   return 0;
 }
+
+/**
+   => ./a.out
+   num = 10, bit = 2 res = 14
+   num = 10, bit = 2 res = 10
+   num = 10, bit = 2 res = 14
+   num = 10, bit = 2 res = -1
+   num = 10, bit = 2 res = 5
+   [range_toggling] num = 12, start = 1 end = 3 res = 2
+**/

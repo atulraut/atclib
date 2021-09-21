@@ -190,3 +190,9 @@ int main () {
     first kkk elements from the queue and build the resultant array.
     The following figure illustrates the idea for nums = [3, 6, 4, 2, 1] and k = 3.
 */
+
+/**
+   => ./a.out
+   [main] L=55 :2
+   [main] L=55 :6
+**/
