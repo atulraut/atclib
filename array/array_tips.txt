@@ -71,9 +71,9 @@ int (*func())[2][3] {
 -----------------------------------------------------------------------
 Q] Static Array Initialisation
 int** create_matrix(int rows, int cols) {
-  int** max = (int**)malloc(sizeof(int) * rows);
+  int** max = (int**)calloc(sizeof(int), rows);
   for (int i=0; i<rows; ++i) {
-    max[i] = (int*)malloc(sizeof(int *) * cols);
+    max[i] = (int*)calloc(sizeof(int *),  cols);
   }
   return max;
 }
