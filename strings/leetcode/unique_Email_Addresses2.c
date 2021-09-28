@@ -21,6 +21,35 @@
 #include <stdlib.h>
 #include <string.h>
 
+int numUniqueEmails(char** emails, int emailsSize) {
+  int i,j,count=1;
+  char *a,*b;
+
+  for(i=0; i<emailsSize; i++) {
+    for(a=emails[i],b=emails[i]; *a; a++) {
+      if(*a =='+'||*a == '@'){
+	a = strchr(a, '@');
+	*b++ = *a;
+	while(*a++)
+	  *b+ += *a;
+	break;
+      }
+      if(*a == '.')
+	continue;
+      *b++ = *a;
+    }
+    if(i) {
+      j=i;
+      while(j--)
+	if(!strcmp(emails[j], emails[i]))
+	  break;
+      if(j<0)
+	count++;
+    }
+  }
+  return count;
+}
+
 int validateUniqueEmails(char* str) {
   int i=0, j=0, len=0, cnt=0, flag=0, k=0, m=0, emailcnt=0;
   //  char *domain = "gmail.com";
