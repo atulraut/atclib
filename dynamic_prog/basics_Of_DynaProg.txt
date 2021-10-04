@@ -2,6 +2,17 @@ Ref : INTRODUCTION TO ALGORITHMS - THOMASH. CORMEN
 --------------------------------------------------------------------------------------
 Dynamic programming:
 --------------------------------------------------------------------------------------
+This is a dynamic programming question. Usually, solving and
+fully understanding a dynamic programming problem is a 4 step process:
+
+1] Start with the recursive backtracking solution
+2] Optimize by using a memoization table (top-down dynamic programming)
+3] Remove the need for recursion (bottom-up dynamic programming)
+4] Apply final tricks to reduce the time / memory complexity
+
+--------------------------------------------------------------------------------------
+Introduction :
+--------------------------------------------------------------------------------------
 Like the divide-and-conquer method, solves problems by
 combining the solutions to subproblems. (“Programming” in this context refers
 to a tabular method, not to writing computer code.) As we saw in Chapters 2
