@@ -121,6 +121,18 @@ void m_Freelist(void *ptr) {
   }
 }
 
+void m_Freelist(void *ptr) {
+  struct list *ll = (struct list *)ptr;
+  struct list *listptr = (struct list*)head;
+  struct list *nextptr;
+
+  for(; listptr != NULL; listptr = nextptr) {
+    nextptr = listptr->next;
+    free(listptr);
+  }
+  head = NULL;
+}
+
 void m_Revlist(void *ptr) {
   struct list *ll = ptr;
   struct list_node *head = (struct list_node *)ll->head;
