@@ -9,16 +9,17 @@
 #include <stdlib.h>
 #include "list.h"
 
-NODE *head = NULL;
+#define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
+struct node *head = NULL;
 
-void m_Init (NODE *node){
+void m_Init (struct node *node){
   node->data = 0;
   node->next = NULL;
 }
 
-NODE* m_CreateNodeL (int data){
-  NODE *nn = NULL;
-  nn = (NODE*)malloc(sizeof (NODE));
+struct node* m_CreateNodeL (int data){
+  struct node *nn = NULL;
+  nn = (struct node*)malloc(sizeof (struct node));
   if (nn == NULL)
     return NULL;
   nn->data  = data;
@@ -27,7 +28,7 @@ NODE* m_CreateNodeL (int data){
 }
 
 void m_Addfirst(int data) {
-  NODE *nn = NULL;
+  struct node *nn = NULL;
   nn = m_CreateNodeL (data);
 
   if (head == NULL) {
@@ -40,13 +41,13 @@ void m_Addfirst(int data) {
 }
 
 void m_Addlast(int data) {
-  NODE *nn = NULL;
+  struct node *nn = NULL;
   nn = m_CreateNodeL (data);
 
   if (head == NULL)
     m_Addfirst (data);
   else {
-    NODE *temp = NULL;
+    struct node *temp = NULL;
     temp = head;
     while (temp->next != NULL)
       temp = temp->next;
@@ -56,9 +57,9 @@ void m_Addlast(int data) {
 }
 
 void m_Insert(int pos, int data){
-  NODE *temp2, *temp = NULL;
-  NODE *nn = NULL;
-  temp = head;
+  struct node *temp2 = NULL;
+  struct node *nn = NULL;
+  struct node *trav = head;
 
   if (pos < 1) {
     printf ("\n Enter valid input\n");
@@ -68,12 +69,17 @@ void m_Insert(int pos, int data){
     if (pos == 1 || head == NULL)
       m_Addfirst (data);
     else {
-      temp = head; // Re-assing temp
+      trav = head; // Re-assing temp
+      /* Assume 1st Node is 1 */
       for (int i=1; i<pos-1; i++) {
-	temp = temp->next;
+	trav = ((trav->next != NULL) ? trav->next : NULL);
+	if(NULL == trav->next)
+	  break;
+	trav = trav->next;
       }
-      temp2 = temp->next;
-      temp->next = nn;
+      /* Assume 3 node in list & you're adding 2nd Node */
+      temp2 = trav->next;
+      trav->next = nn;
       nn->next = temp2;
     }
   }
@@ -83,7 +89,7 @@ void m_Delfirst() {
   if (head == NULL)
     printf ("\n Empty Link List.");
   else {
-    NODE *temp = NULL;
+    struct node *temp = NULL;
     if (head->next == NULL) {
       free (head);
       head = NULL;
@@ -101,8 +107,8 @@ void m_Dellast() {
   if (head == NULL)
     printf ("\n Empty Link List.");
   else {
-    NODE *temp = NULL;
-    NODE *tmp  = NULL;
+    struct node *temp = NULL;
+    struct node *tmp  = NULL;
     if (head->next == NULL) {
       free (head);
       head = NULL;
@@ -121,8 +127,8 @@ void m_Dellast() {
 }
 
 void m_Deletenode(int data) {
-  NODE *temp = NULL;
-  NODE *tmp  = NULL;
+  struct node *temp = NULL;
+  struct node *tmp  = NULL;
   temp = head;
   while (temp != NULL) {
     if (temp->next != NULL) {
@@ -145,8 +151,8 @@ void m_Deletenode(int data) {
 }
 
 void m_Printrev () {
-  NODE *trav = NULL;
-  NODE *temp = NULL;
+  struct node *trav = NULL;
+  struct node *temp = NULL;
   if (head == NULL) {
     printf ("\nEmpty link list.\n");
   } else {
@@ -157,7 +163,7 @@ void m_Printrev () {
     while (temp != NULL) {
       printf ("temp=[%p][%d]\n", temp,temp->data);
       trav = temp->next;
-      temp->next = head; // attach NODE
+      temp->next = head; // attach struct node
       head = temp;     // L1 Make NULL, L2 Attach Node
       temp = trav;
       printf ("temp=[%p][%d]\n", temp,temp->data);
@@ -169,8 +175,8 @@ void m_Freelist() {
   if (head == NULL)
     printf ("\n Empty Link List.");
   else {
-    NODE *temp = NULL;
-    NODE *tmp  = NULL;
+    struct node *temp = NULL;
+    struct node *tmp  = NULL;
     if (head->next == NULL) {
       free (head);
       head = NULL;
@@ -191,7 +197,7 @@ void m_Freelist() {
 
 void m_Display(){
   printf ("\n----------:: Output ::-----------\n");
-  NODE *temp = NULL;
+  struct node *temp = NULL;
   temp = head;
   while (temp != NULL) {
     printf ("->[%d][%p]", temp->data, temp);

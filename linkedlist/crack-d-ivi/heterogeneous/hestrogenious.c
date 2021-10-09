@@ -1,3 +1,12 @@
+/*
+  Q] If you are using C language to implement the heterogeneous
+  linked list, what pointer type will you use?
+  --> The heterogeneous linked list contains different data types in
+  its nodes and we need a link, pointer to connect them. It
+  is not possible to use ordinary pointers for this. So we go for
+  void pointer. Void pointer is capable of storing pointer to
+  any type as it is a generic pointer type.
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -13,8 +22,8 @@ typedef struct _list {
 
 struct check {
    int i;
-   char c; 
-   double d; 
+   char c;
+   double d;
 } chk[] = { { 1, 'a', 1.1 }, { 2, 'b', 2.2 }, { 3, 'c', 3.3 } };
 
 LIST* m_init(void *);
@@ -31,7 +40,7 @@ int main () {
   int j[] = {10, 20, 30};
 
   LIST *list1, *list2, *list3, *list4;
-  LIST lst, lst2, lst3, lst4; 
+  LIST lst, lst2, lst3, lst4;
   list1 = m_init(&lst);
   list2 = m_init(&lst2);
   list3 = m_init(&lst3);
@@ -44,17 +53,17 @@ int main () {
   m_insert(list2, str[0], (strlen(str[0])) );
   m_print (list2, m_print_str);
   /* int */
-  printf("Printing INT:\n"); 
+  printf("Printing INT:\n");
   m_insert(list3, &j[0], sizeof(int));
   m_print (list3, m_print_int);
-  printf(" : done INT\n"); 
+  printf(" : done INT\n");
   /* composite */
   m_insert(list4, &chk[0], sizeof(chk[0]));
   //  m_insert(&list4, &chk[1], sizeof chk[1]);
-  //m_insert(&list4, &chk[2], sizeof chk[2]); 
-  printf("Printing composite:\n"); 
-  m_print(list4, m_printcomp); 
-  printf(" : done\n"); 
+  //m_insert(&list4, &chk[2], sizeof chk[2]);
+  printf("Printing composite:\n");
+  m_print(list4, m_printcomp);
+  printf(" : done\n");
 }
 
 LIST* m_init(void *_ptr) {
@@ -100,7 +109,7 @@ void m_print_char(void *_ptr) {
 }
 
 void m_print_str(void *_ptr) {
-  printf("\"%s\"", (char *)_ptr); 
+  printf("\"%s\"", (char *)_ptr);
   printf ("\n");
 }
 
@@ -111,8 +120,8 @@ void m_print_int(void *_ptr) {
 void m_printcomp(void *comp)
 {
   printf("REACHED : %d, %s\n", __LINE__, __FILE__);
-  struct check temp = *(struct check *)comp; 
-  printf(" '%d:%c:%f", temp.i, temp.c, temp.d); 
+  struct check temp = *(struct check *)comp;
+  printf(" '%d:%c:%f", temp.i, temp.c, temp.d);
 }
 
 

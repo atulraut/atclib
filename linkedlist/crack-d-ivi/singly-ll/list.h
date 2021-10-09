@@ -1,14 +1,14 @@
 #ifndef ADD_H_LIST
 #define ADD_H_LIST
 
-typedef struct list_t {
+struct node {
     int data;
-    struct list_t *next;
-} NODE;
+    struct node *next;
+};
 
 int counter;
-void m_Init (NODE *);
-NODE* m_CreateNodeL (int);
+void m_Init (struct node *);
+struct node* m_CreateNodeL (int);
 void m_Display();
 void m_Addfirst(int);
 void m_Addlast(int);

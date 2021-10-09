@@ -99,7 +99,7 @@ static void print_all_functions() {
 int main () {
   int i = 0;
   char cmd[20];
-  LIST *l, ll;
+  struct list *l, ll;
 
   l = m_Init(&ll);
 
