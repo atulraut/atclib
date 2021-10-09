@@ -9,6 +9,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "list.h"
 
 #define MAXLINE 6
@@ -22,18 +23,18 @@ int getLine (char line[], int max, FILE *fr);
 void add_to_list ();
 
 int main() {
-    int  ch, val, _data, pos;
+    int  ch, val, pos;
+    list _atclib_list_;
     fr = fopen ("rf.txt", "r");
     fw = fopen ("wt.txt", "w");
     if (fr == NULL || fw == NULL) {
         printf ("\n File can't open !\n");
         exit (0);
     }
-    printf ("\nlist size = %d, list_node size = %d\n", sizeof(list), sizeof(list_node));
+    printf ("\nlist size = %ld, list_node size = %ld\n", sizeof(list), sizeof(list_node));
 
-//    list_node *atclib_list = NULL;   // create empty list, can create no. of such list
-    atclib_list = list_init (atclib_list);
-    printf ("\nNext to list_init\n");
+    atclib_list = list_init (&_atclib_list_);
+
     fr = fopen ("rf.txt", "r");
     if (fr == NULL) {
        printf ("\n File can't open !");
@@ -108,13 +109,13 @@ int readlines ( char *lineptr[], int maxlines, FILE *fr) {
    char line[maxlines];
    char *cPtr = NULL;
    nLines = 0;
-   while (iLine = getLine (line, maxlines, fr) > 0) {
+   while ((iLine = getLine (line, maxlines, fr)) > 0) {
        if (iLine >= maxlines || (cPtr = (char *) malloc (strlen(line+1))) == NULL) {
             printf ("\n returing\n");
             return -1;
        } else {
                 if (cPtr == NULL)
-                    return;
+                    return -1;
                 strcpy (cPtr, line);
                 lineptr[nLines++] = cPtr;
                  //printf ("\n ATUL: lineptr = %s, cPtr=%s, line=%s\n", lineptr[nLines-1], cPtr, line);
@@ -142,10 +143,7 @@ int getLine (char s[], int maxline, FILE *fr) {
 }
 
 void add_to_list () {
-    int len, maxline, i;
-    char c;
-    char str[100];
-    len = 0; i = 0;
+    int maxline, i;
     // get input from file, add to link list.
     maxline = readlines (lineptr, MAXLINES, fr);
     printf ("\nmaxlines = %d\n", maxline);

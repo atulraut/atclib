@@ -35,7 +35,7 @@ enum list_status {
    EXTEND
 } LIST_STATUS;
 
-list_node *atclib_list; // create empty list, can create no. of such list
+list* atclib_list; // create empty list, can create no. of such list
 
 list * list_init (list *);
 list_node * create_node (void *, int);

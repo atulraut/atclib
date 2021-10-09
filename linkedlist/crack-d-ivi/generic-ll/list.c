@@ -20,7 +20,7 @@ list * list_init (list *_list) {
             _list->pLast  = NULL;
             _list->pCurr  = NULL;
     }
-    printf ("\nsizeof = %d\n", sizeof(_list));
+    printf ("\nsizeof = %ld\n", sizeof(_list));
     return (_list);
 }
 
