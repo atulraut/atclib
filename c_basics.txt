@@ -1,0 +1,22 @@
+C Basics :
+---------------------------------------------------------------------
+Q] static const ?
+A] A static const string array often reduces size of the size of text
+section and can lead to an improved runtime performance as the need
+to initialize and populate the array every time a given function is
+called would be removed, contrary to local variables that live on
+the stack and have to be initialized every time the come into scope.
+
+Thus, make the rst_names array a static const array with constant
+strings elements (stored in the .rodata section) so that it will be
+stored in the data section and accessible for the total lifetime of
+the running kernel.
+ex -
+static const char * const rst_names[] =
+       { "axi_m", "axi_s", "pipe",
+	  "axi_m_sticky", "sticky",
+	  "ahb", "sleep",
+	};
+Ref : https://www.spinics.net/lists/linux-pci/msg114953.html
+
+---------------------------------------------------------------------
