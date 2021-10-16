@@ -113,7 +113,22 @@ Q] Size  of 2D Array
   int c = sizeof (mat[0]) / sizeof (mat[0][0]);
   debug ("row size = %d col size = %d ", r, c);
 -----------------------------------------------------------------------
-
+Ex - Parsing array of char pointer (2D)
+ while(!failed && strs[0][++currentChar]) {
+    debug ("ch=%c", strs[0][currentChar]);
+    for(int j=1; j<strsSize; j++) {
+      debug ("-> %c --> %c", strs[0][currentChar], strs[j][currentChar]);
+      debug ("Whyy thisss?");
+      if(strs[0][currentChar] != strs[j][currentChar] || !strs[j][currentChar]) {
+	failed = 1;
+	debug ("All Good");
+	break;
+      }
+      debug ("NOT!");
+    }
+  }
+  Ref : https://github.com/atulraut/atclib/blob/master/strings/leetcode/longestCommonPrefix.c
+-----------------------------------------------------------------------
 Q] Pointers to Array
 ==>
 
