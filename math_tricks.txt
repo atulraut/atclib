@@ -13,4 +13,12 @@ while (temp > 0) {
   cur++;
 }
 
-Tip 3:
+Tip 3: Add array individual elements one by one.
+int digits[] = {1,2,3,4};
+while (i > 0) {
+  ret[i] = (digits[i-1] + carry) % 10;
+  carry  = (digits[i-1] + carry) / 10;
+  i--;
+}
+
+Tip 4:
