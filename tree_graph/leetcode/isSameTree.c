@@ -1,6 +1,8 @@
 /***
     https://leetcode.com/problems/same-tree/
-    Same Tree
+    https://leetcode.com/problems/symmetric-tree/
+    1] Same Tree
+    2] Symmetric Tree
 
     Given the roots of two binary trees p and q,
     write a function to check if they are the
@@ -62,6 +64,25 @@ bool isSameTree(struct TreeNode* p, struct TreeNode* q){
   } else {
     return false;
   }
+}
+
+bool parallel_traverse(struct TreeNode* a, struct TreeNode* b) {
+    if (a == NULL && b == NULL)
+        return true;
+
+    if (a == NULL || b == NULL)
+        return false;
+
+    if (a->val != b->val)
+        return false;
+
+    return parallel_traverse(a->left, b->right) && parallel_traverse(a->right, b->left);
+}
+
+bool isSymmetric(struct TreeNode* root) {
+    if (root == NULL)
+        return true;
+    return parallel_traverse(root->left, root->right);
 }
 
 int main (int argc, char **argv) {

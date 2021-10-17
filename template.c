@@ -1,5 +1,7 @@
 /***
 
+    gcc -g -o main -Wall -Wextra -pedantic -Wwrite-strings *.c -lm
+
     Date:
     Fair Oaks, CA.
  */

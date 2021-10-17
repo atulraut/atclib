@@ -137,3 +137,7 @@ Q] Array of Pointers
 ==>
 
 -----------------------------------------------------------------------
+Find how many positive numbers are missingbetween two array elements:
+Formula : arr[i + 1] - arr[i] - 1
+|4|7| - 2 numbers missing between 4 & 7, i.e. 5,6
+-----------------------------------------------------------------------

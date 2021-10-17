@@ -384,6 +384,22 @@ void m_detect_loop (void *ptr) {
   }
 }
 
+bool hasCycle(struct ListNode *head) {
+  if (head == NULL) {
+    return false;
+  }
+
+  struct ListNode *slow = head;
+  struct ListNode *fast = head->next;
+  while (slow != fast) {
+    if (fast == NULL || fast->next == NULL) {
+      return false;
+    }
+    slow = slow->next;
+    fast = fast->next->next;
+  }
+  return true;
+}
 void m_Display(void *ptr){
 	struct list *ll = (struct list *)ptr;
 	printf ("\n----------:: Output ::-----------\n");

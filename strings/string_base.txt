@@ -80,3 +80,6 @@ Takeaway :
 https://stackoverflow.com/questions/2674312/how-to-append-strings-using-sprintf
 https://elixir.bootlin.com/linux/latest/source/lib/vsprintf.c#L2746
 -------------------------------------------------------------------------
+char to int number converter : e.g. if ch = '2'
+int digit = ch - '0';
+-------------------------------------------------------------------------
