@@ -1,30 +1,101 @@
 /***
-    Write a C program to reverse the words in a sentence in place.
-    That is, given a sentence like this
-    I am a good boy
-    The in place reverse would be
-    boy good a am I
-    Method1
-    First reverse the whole string and then individually reverse the words
-    I am a good boy
-    <------------->
-    yob doog a
-    <-> <--> <->
-    ma
-    I
-    <-> <->
-    boy good a am I
-    Here is some C code to do the same ....
-*/
-/***
-    Algorithm..
-    1. Reverse whole sentence first.
-    2. Reverse each word individually.
-    All the reversing happens in-place.
-*/
+    https://leetcode.com/problems/reverse-words-in-a-string/
+    Reverse Words in a String
 
+    Given an input string s, reverse the order of the words.
+    A word is defined as a sequence of non-space characters.
+    The words in s will be separated by at least one space.
+
+    Return a string of the words in reverse order concatenated
+    by a single space.
+
+    Note that s may contain leading or trailing spaces or
+    multiple spaces between two words. The returned string
+    should only have a single space separating the words.
+    Do not include any extra spaces.
+
+    Input: s = "the sky is blue"
+    Output: "blue is sky the"
+    Example 2:
+
+    Input: s = "  hello world  "
+    Output: "world hello"
+    Explanation: Your reversed string should not contain
+    leading or trailing spaces.
+
+    Input: s = "a good   example"
+    Output: "example good a"
+    Explanation: You need to reduce multiple spaces between
+    two words to a single space in the reversed string.
+
+    Input: s = "  Bob    Loves  Alice   "
+    Output: "Alice Loves Bob"
+
+    Input: s = "Alice does not even like bob"
+    Output: "bob like even not does Alice"
+
+    Constraints:
+    1 <= s.length <= 104
+    s contains English letters (upper-case and lower-case), digits, and spaces ' '.
+    There is at least one word in s.
+
+    Follow-up: If the string data type is mutable in your language,
+    can you solve it in-place with O(1) extra space?
+
+    gcc -g -o main -Wall -Wextra -pedantic -Wwrite-strings -fstack-protector-all -fsanitize=address reverse_word.c -lm
+
+    Date: 20 Oct 2021
+    Fair Oaks, CA.
+*/
 #include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <limits.h>
+#include <string.h>  /* malloc */
+#include <stdbool.h>
+#include <math.h>
+#include <assert.h>
+#include <stdint.h> /* uint32_t */
+#include <unistd.h> /* sleep */
 
+#define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
+
+void reverseString(char* start, char* end) {
+    while (start < end) {
+        char c = *start;
+        *start++ = *--end;
+        *end = c;
+    }
+}
+
+char* reverseWords_LeetCode(char* s) {
+    char *w = s;
+    char *s_ptr = s;
+    char *w_ptr = s;
+    bool space = true;
+    while ((*w_ptr = *s_ptr++) != 0) {
+        if (*w_ptr != ' ') {
+            space = false;
+            w_ptr++;
+        }
+        else if (!space) {
+            space = true;
+            reverseString(w, w_ptr++);
+            w = w_ptr;
+        }
+    }
+    if (w_ptr == s)
+      return s;
+    if (space)
+      *--w_ptr = 0;
+    else
+      reverseString(w, w_ptr);
+
+    reverseString(s, w_ptr);
+    return s;
+}
+
+/* Runtime Error */
 void rev(char *l,char *r) {
   char t;
   printf ("[%s] l=%c r=%c L=%d\n",__func__, *l, *r, __LINE__);
@@ -59,7 +130,6 @@ void reverse_word () {
   // Now print the final string....
   printf("[%s] %s L=%d \n",__func__, buf, __LINE__);
 }
-
 
 int main(int argc, char *argv[]) {
   reverse_word();

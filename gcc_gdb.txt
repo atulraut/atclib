@@ -1,0 +1,47 @@
+gcc flag :
+
+ gcc -g -o main -Wall -Wextra -pedantic -Wwrite-strings -fstack-protector-all -fsanitize=address reverse_word.c -lm
+gcc main.c -o main -fsanitize=address -static-libasan -g
+Ref: https://www.osc.edu/book/export/html/5471
+
+valgrind -v --leak-check=full --show-reachable=yes ./main
+
+1] https://embeddedbits.org/finding-memory-bugs-with-addresssanitizer/
+2] https://stackoverflow.com/questions/12380758/error-function-returns-address-of-local-variable
+3] https://stackoverflow.com/questions/58488551/how-should-the-heap-buffer-overflow-error-message-be-read
+4] https://github.com/google/sanitizers/wiki/AddressSanitizerAlgorithm
+
+gdb debugging :
+debug SIGSEGV  fault, it will Print exact line number from where error causing.
+
+Compile Code with -g flag
+$ gcc -g longestCommonPrefix.c
+
+$ gdb a.out
+$ run
+[longestCommonPrefix] L=58 :All Good
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00000000004007a9 in longestCommonPrefix (strs=0x7fffffffddd0, strsSize=3) at longestCommonPrefix.c:65
+65	  strs[0][currentChar] = '\0';
+
+Ref : More options to enable
+https://stackoverflow.com/questions/77005/how-to-automatically-generate-a-stacktrace-when-my-program-crashes/77336#77336
+https://github.com/atulraut/atclib/blob/master/strings/leetcode/longestCommonPrefix.c
+
+Conditional Compilation :
+#define DEBUG 1
+int main (int argc, char **argv) {
+char* ret = 0;
+int strsSize = 3;
+
+#if DEBUG
+char** strs = getString();
+#else
+char* strs[] = {"flower","flow","flight"};
+#endif
+
+ret = longestCommonPrefix(strs, strsSize);
+debug("Output = %s", ret);
+return 0;
+}
