@@ -1,0 +1,19 @@
+The LLVM Compiler Infrastructure:
+
+How to install LLVM 12 for Ubuntu 16.04?
+printf "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-12 main" |sudo tee /etc/apt/sources.list.d/llvm-toolchain-xenial-12.list
+wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key |sudo apt-key add -
+sudo apt update
+sudo apt install llvm-12
+
+How to compile ?
+clang test.c
+clang++ -Wall -std=c++11 test.cc -o test
+
+Static Code Analysis:
+https://clang-analyzer.llvm.org/
+
+Ref:
+https://clang.llvm.org/get_started.html
+llvm diagnostics :
+https://clang.llvm.org/diagnostics.html

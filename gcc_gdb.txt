@@ -11,6 +11,9 @@ valgrind -v --leak-check=full --show-reachable=yes ./main
 3] https://stackoverflow.com/questions/58488551/how-should-the-heap-buffer-overflow-error-message-be-read
 4] https://github.com/google/sanitizers/wiki/AddressSanitizerAlgorithm
 
+GCC Extensions :
+https://gcc.gnu.org/onlinedocs/gcc/C-Extensions.html#C-Extensions
+
 gdb debugging :
 debug SIGSEGV  fault, it will Print exact line number from where error causing.
 

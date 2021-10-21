@@ -18,6 +18,15 @@
 #include <unistd.h> /* sleep */
 
 #define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
+#define atsizeof(object) (char *)(&object+1) - (char*)(&object)
+#define max(a,b)		\
+  ({ typeof (a) _a = (a);	\
+    typeof (b) _b = (b);	\
+    _a > _b ? _a : _b; })
+#define min(a,b)		\
+  ({ typeof (a) _a = (a);	\
+    typeof (b) _b = (b);	\
+    _a < _b ? _a : _b; })
 
 int main (int argc, char **argv) {
   int ret = 0;

@@ -119,7 +119,7 @@ char* sortSentence__Pending_AR(char* s) {
   int thisIdx = 0;
   char charCnt = 0;
   int wordCnt = 0, i=-1;
-  char** strs;
+  //  char** strs;
 
   while (s[++i] != '\0')
     if (s[i] == ' ')
@@ -127,7 +127,6 @@ char* sortSentence__Pending_AR(char* s) {
   wordCnt += 1;
   debug("wordCnt = %d", wordCnt);
 
-  int i = 0;
   char* str = "Atul4 Ramesh6 Raut4";
   int len = strlen(str);
   char* strs = (char*)malloc(sizeof(char) * len+1);
@@ -146,6 +145,7 @@ char* sortSentence__Pending_AR(char* s) {
     debug("<--------------***----------->");
   }
   printf("Hello World");
+  return strs;
 }
 
 char* sortSentence__1(char* s) {
@@ -181,7 +181,7 @@ char* sortSentence__1(char* s) {
 	strs[digit] = (char*)malloc(sizeof(char) * charCnt);
 	memmove(strs+digit, s+thisIdx, charCnt-1);
 	//strncpy(strs[digit], s+thisIdx, charCnt);
-	strs[digit] = '\0';
+	strs[digit] = 0;//'\0';
 	//debug("digit = %d strs=%s", digit, strs[digit]);
 	charCnt = 0;
 	thisIdx = 0;
@@ -189,6 +189,7 @@ char* sortSentence__1(char* s) {
     }
     thisIdx = charCnt;
   }
+  return s;
 }
 
 int main (int argc, char **argv) {
@@ -198,7 +199,7 @@ int main (int argc, char **argv) {
 
   //ret = sortSentence(s);
   //debug("Output = %s", ret);
-  ret = sortSentence__1(s);
+  ret = __sortSentence(s);
   debug("Output = %s", ret);
 
   return 0;

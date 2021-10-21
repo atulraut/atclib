@@ -82,6 +82,7 @@ int push(void *_ptr, int val) {
   s->top = s->top+1;
   s->buf[s->top] = val;
   debug ("top=%d val=%d", s->top, val);
+  return 0;
 }
 
 int pop (void *_ptr) {
