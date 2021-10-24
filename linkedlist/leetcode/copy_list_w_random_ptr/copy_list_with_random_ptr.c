@@ -93,7 +93,8 @@ void m_set_random_ptr (void *ptr) {
   temp->random = NULL;
  }
 
-struct node* m_copyRandomList(void* ptr) {
+//struct node* m_copyRandomList(void* ptr) {
+void m_copyRandomList(void* ptr) {
   head = (struct node*)(ptr);
   struct node* nn, *p;
   if(head == NULL)
@@ -143,7 +144,7 @@ struct node* m_copyRandomList(void* ptr) {
 
   printf( "[%s] Done Deep Copy! %d \n", __func__, __LINE__);
   m_Display(dummy.next);
-  return dummy.next;
+  //  return dummy.next;
 }
 
 /***

@@ -12,7 +12,8 @@ struct node *head;
 int cnt;
 
 void m_Addfirst(void*);
-struct node* m_copyRandomList(void *);
+//struct node* m_copyRandomList(void *);
+void m_copyRandomList(void *);
 void m_set_random_ptr (void *);
 void m_Display(void *);
 void m_SearchData(void *);
