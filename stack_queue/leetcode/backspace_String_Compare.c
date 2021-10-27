@@ -34,7 +34,46 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <ctype.h>
+#include <limits.h>
+#include <string.h>  /* malloc */
+#include <stdbool.h>
+#include <math.h>
+#include <assert.h>
+#include <stdint.h> /* uint32_t */
+#include <unistd.h> /* sleep */
+
+#define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
+
+bool backspaceCompare(char* s, char* t) {
+  int index = 0;
+  for (int i = 0; s[i] != '\0'; i++, index++) {
+    if (index < 0) index = 0;
+    if (s[i] == '#') index -= 2;
+    else s[index] = s[i];
+  }
+
+  if (index < 0)
+    index = 0;
+  s[index] = '\0';
+  index = 0;
+
+  for (int i = 0; t[i] != '\0'; i++, index++) {
+    if (index < 0)
+      index = 0;
+
+    if (t[i] == '#')
+      index -= 2;
+    else
+      t[index] = t[i];
+  }
+  if (index < 0)
+    index = 0;
+  t[index] = '\0';
+
+  debug ("Output = %d",  !strcmp(s, t));
+  return !strcmp(s, t);
+}
 
 struct stack {
   int top;
@@ -98,8 +137,8 @@ int isEmpty(void *_ptr) {
   }
 }
 
-/* Approch #1 */
-int backspaceCompare(char *s, char *t){
+/* Approch #1 : Runtime Error */
+int backspaceCompare2(char *s, char *t){
   int i;
   int lens = strlen(s);
   int lent = strlen(t);
@@ -159,14 +198,12 @@ int backspaceCompare(char *s, char *t){
 int main () {
   //char *src = "aaa###a";
   //char *tar = "aaaa###a";
-  //char *src = "ab#c";
-  //char *tar = "ad#c";
+  char src[] = "ab#c";
+  char tar[] = "ad#c";
   //char *src = "ab##";
   //char *tar = "c#d#";
   //char *src = "a##c";
   //char *tar = "#a#c";
-  char *src = "a#c";
-  char *tar = "b";
 
   if (backspaceCompare(src, tar) > 0)
     printf ("[%s] -> SUCCESS! \n",__func__);
@@ -174,3 +211,8 @@ int main () {
     printf ("[%s] -> FAILED!! \n",__func__);
   return 0;
 }
+
+/**
+[backspaceCompare] L=74 :Output = 1
+[main] -> SUCCESS!
+**/
