@@ -28,11 +28,53 @@
 #include <ctype.h>
 #include "../../at_lib.h"
 
+bool _isPalindrome(char* s, int i, int j) {
+  debug ("i=%d j=%d", i,j);
+    while(i < j) {
+        if(s[i] != s[j])
+            return 0;
+        i++;
+	j--;
+    }
+    return 1;
+}
+
+/**
+ * https://leetcode.com/problems/valid-palindrome-ii/
+ * Valid Palindrome II
+ * Given a string s, return true if the s can be palindrome
+ * after _DELETING_ at most _ONE_ character from it.
+ *
+ * Input: s = "aba"
+ * Output: true
+ *
+ * Input: s = "abca"
+ * Output: true
+ * Explanation: You could delete the character 'c'.
+ *
+ * Input: s = "abc"
+ * Output: false
+ * Date : Oct 20, 2021
+*/
+bool validPalindrome(char* s) {
+  int i = 0;
+  int j = strlen(s)-1;
+    while(i < j) {
+      debug ("i=%d j=%d", i, j);
+        if(s[i] != s[j]) {
+            return _isPalindrome(s, i+1, j) || _isPalindrome(s, i, j-1);
+        }
+        i++;
+	j--;
+    }
+    return 1;
+}
+
 /**
    LeetCode Solution : 0ms
 */
-bool isPalindrome(char * s){
-  if(s==NULL || !strcmp(s,""))
+bool isPalindrome(char* s) {
+  if(s == NULL || !strcmp(s,""))
     return true;
   char *p = s + (strlen(s) -1);
 
@@ -84,26 +126,10 @@ int main () {
   char ar [] = "IT !I";
   debug ("[%d]", isStringPalindrome(ar));
   char *str = "race a car";
-  debug ("[%d]", isPalindrome(str));
+  debug ("isPalindrome = [%d]", isPalindrome(str));
+
+  debug ("validPalindrom = [%d]", validPalindrome(str));
 }
-
-/***
-    => ./a.out
-    [isStringPalindrome.c] [main()] L=63 :[1]
-
-    AR--> s=0x400b76 d=0x400b6d
-    AR--> s=r d=r *p=8 *s=8
-
-    AR--> s=0x400b75 d=0x400b6e
-    AR--> s=a d=a *p=8 *s=8
-
-    AR--> s=0x400b74 d=0x400b6f
-    AR--> s=c d=c *p=8 *s=8
-
-    AR--> s=0x400b72 d=0x400b70
-    AR--> s=a d=e *p=8 *s=8
-    [isStringPalindrome.c] [main()] L=65 :[0]
-*/
 
 /**
    Complexity Analysis
@@ -115,3 +141,26 @@ int main () {
    Space complexity : O(1). No extra space required, at all.
 **/
 
+/**
+   => ./a.out
+   [main] L=127 :[1]
+
+   AR--> s=0x400cea d=0x400ce1
+   AR--> s=r d=r *p=8 *s=8
+
+   AR--> s=0x400ce9 d=0x400ce2
+   AR--> s=a d=a *p=8 *s=8
+
+   AR--> s=0x400ce8 d=0x400ce3
+   AR--> s=c d=c *p=8 *s=8
+
+   AR--> s=0x400ce6 d=0x400ce4
+   AR--> s=a d=e *p=8 *s=8
+   [main] L=129 :isPalindrome = [0]
+   [validPalindrome] L=63 :i=0 j=9
+   [validPalindrome] L=63 :i=1 j=8
+   [validPalindrome] L=63 :i=2 j=7
+   [validPalindrome] L=63 :i=3 j=6
+   [_isPalindrome] L=32 :i=4 j=6
+   [main] L=131 :validPalindrom = [1]
+**/

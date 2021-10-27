@@ -26,6 +26,7 @@
 #include <math.h>
 #include <string.h>
 #include "list.h"
+#define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
 
 static int get_input(char *cmd) {
   int res = 1;
@@ -87,7 +88,7 @@ void m_set_random_ptr (void *ptr) {
   while (temp->next != NULL) {
       old = temp;
       temp = temp->next;
-      temp->random = old->next;
+      temp->random = old;
       printf ("[index=%d :- val->[%d] ]\n", temp->index,  temp->val);
     }
   temp->random = NULL;
@@ -132,10 +133,10 @@ void m_copyRandomList(void* ptr) {
   struct node dummy;
   dummy.next = head;
   struct node *temp = &dummy;
-
+  debug ("head = %p dummy.next = %p",head, dummy.next);
   for(p = head; p != NULL; p = p->next) {
     nn = p->next;
-
+    debug ("temp=%p temp->next=%p", temp, temp->next);
     temp->next = nn;
     p->next = nn->next;
     temp = nn;
