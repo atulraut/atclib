@@ -3,7 +3,7 @@
     gcc -g -o main -Wall -Wextra -pedantic -Wwrite-strings -fsanitize=address *.c -lm
 
     Date:
-    Fair Oaks, CA.
+    Folsom, CA.
  */
 
 /*----------------------------------- Header --------------------------------------*/
