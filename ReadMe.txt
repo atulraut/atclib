@@ -22,13 +22,13 @@ Build Macros and functions
 
 How to Use it :
 ---------------------------------------------------------------------------------
-atul@Raigad:~/dev/c/atclib
+atul@raigad:~/dev/c/atclib
 => source build/envsetup.sh
-atul@Raigad:~/dev/c/atclib
+atul@raigad:~/dev/c/atclib
 => cd bitwise/
-atul@Raigad:~/dev/c/atclib/bitwise
+atul@raigad:~/dev/c/atclib/bitwise
 => croot
-atul@Raigad:~/dev/c/atclib
+atul@raigad:~/dev/c/atclib
 =>
 
 ----------------------------------------------------------------------------------
@@ -42,8 +42,8 @@ http://atulraut.wordpress.com/
 15 August 2021 : 13th August onward passwords will not work with github.
 Follow steps :
 1] https://github.com/settings/tokens
-2] Raigad SSH details - https://github.com/settings/keys
-3] Raigad access token found below.
+2] raigad SSH details - https://github.com/settings/keys
+3] raigad access token found below.
 Token for this repo :
 Username - You Knew It
 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2137

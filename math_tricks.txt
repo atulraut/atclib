@@ -15,6 +15,7 @@ while (temp > 0) {
 
 Tip 3: Add array individual elements one by one.
 int digits[] = {1,2,3,4};
+i = sizeof(digits)/sizeof(digits[0]);
 while (i > 0) {
   ret[i] = (digits[i-1] + carry) % 10;
   carry  = (digits[i-1] + carry) / 10;
