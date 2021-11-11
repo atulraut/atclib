@@ -11,6 +11,44 @@
 #define max(x, y) (((x) > (y)) ? (x) : (y))
 #define min(x, y) (((x) < (y)) ? (x) : (y))
 
+/**
+   https://leetcode.com/problems/maximum-subarray
+   Maximum Subarray
+   Given an integer array nums, find the contiguous
+   subarray (containing at least one number) which
+   has the largest sum and return its sum.
+   A subarray is a contiguous part of an array.
+
+   Input: nums = [-2,1,-3,4,-1,2,1,-5,4]
+   Output: 6
+   Explanation: [4,-1,2,1] has the largest sum = 6.
+
+   Input: nums = [1]
+   Output: 1
+
+   Input: nums = [5,4,-1,7,8]
+   Output: 23
+
+   Constraints:
+   1 <= nums.length <= 105
+   -104 <= nums[i] <= 104
+   Date: 11 Nov 2021
+*/
+int maxSubArray(int *nums, int n) {
+  int max = INT_MIN;
+  int sum = 0;
+  int i;
+
+  for (i = 0; i < n; i++) {
+    sum += nums[i];
+    if (sum > max)
+      max = sum;
+    if (sum < 0)
+      sum = 0;
+  }
+  return max;
+}
+
 int maxProduct_plus(int A[], int n) {
   int ans=A[0],i,j,sum=0;
   for(i=0;i<n;i++) {
