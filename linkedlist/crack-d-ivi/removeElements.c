@@ -83,51 +83,23 @@ struct node* removeElements(struct node* head, int val) {
 }
 
 struct node* removeElements1(struct node* head, int val) {
-  struct node *tmp, *tracker = head;
+  struct node *tmp, *trav = head;
   if(head == NULL)
     return NULL;
 
-  while(tracker != NULL && tracker == head && tracker->val == val) {
-    tracker = tracker->next;
+  while(trav != NULL && trav == head && trav->val == val) {
+    trav = trav->next;
     free(head);
-    head = tracker;
+    head = trav;
   }
 
-  while(tracker != NULL) {
-    if(tracker->next != NULL && tracker->next->val == val) {
-      tmp = tracker->next;
-      tracker->next = tracker->next->next;
+  while(trav != NULL) {
+    if(trav->next != NULL && trav->next->val == val) {
+      tmp = trav->next;
+      trav->next = trav->next->next;
       free(tmp);
     } else
-       tracker = tracker->next;
-  }
-  return head;
-}
-
-// Need Improvement
-struct node* removeElements2(struct node* head, int val) {
-  struct node *trav = head;
-  struct node *temp = NULL;
-
-  while (trav->next != NULL) {
-    debug (" trav->val=%d", trav->val);
-    if(trav->val == val)  {
-      if (trav->next == NULL) {
-	break;
-      } else {
-	temp = trav->next;
-	trav->next = temp->next;
-	trav->val = temp->val;
-	free(temp);
-	temp = NULL;
-      }
-    } else
-      trav = trav->next;
-    debug (" trav->val=%d", trav->val);
-  }
-  if(trav->val == val) {
-    free(trav);
-    trav = NULL;
+       trav = trav->next;
   }
   return head;
 }
@@ -164,7 +136,7 @@ int main (int argc, char **argv) {
   printList(head);
 
   debug("Remove Duplicates from LinkedList!");
-  head = removeElements(head, 6);
+  head = removeElements1(head, 6);
   printList(head);
 
   return 0;
