@@ -1,43 +1,43 @@
 /***
     https://leetcode.com/problems/minimum-value-to-get-positive-step-by-step-sum/
-    Minimum Value to Get Positive Step by Step Sum
+     Minimum Value to Get Positive Step by Step Sum
+     Given an array of integers nums, you start with
+     an initial positive value startValue.
 
-    Given an array of integers nums, you start with an initial
-    positive value startValue.
-    In each iteration, you calculate the step by step sum of
-    startValue plus elements in nums (from left to right).
+     In each iteration, you calculate the step by
+     step sum of startValue plus elements in nums
+     (from left to right).
 
-    Return the minimum positive value of startValue such that the
-    step by step sum is never less than 1.
+     Return the minimum positive value of startValue
+     such that the step by step sum is never less than 1.
 
-    Input: nums = [-3,2,-3,4,2]
-    Output: 5
-    Explanation: If you choose startValue = 4, in the third iteration
-    your step by step sum is less than 1.
-    step by step sum
-    startValue = 4 | startValue = 5 | nums
-    (4 -3 ) = 1  | (5 -3 ) = 2    |  -3
-    (1 +2 ) = 3  | (2 +2 ) = 4    |   2
-    (3 -3 ) = 0  | (4 -3 ) = 1    |  -3
-    (0 +4 ) = 4  | (1 +4 ) = 5    |   4
-    (4 +2 ) = 6  | (5 +2 ) = 7    |   2
+     Input: nums = [-3,2,-3,4,2]
+     Output: 5
+     Explanation: If you choose startValue = 4, in the
+     third iteration your step by step sum is less than 1.
+                step by step sum
+                startValue = 4 | startValue = 5 | nums
+                  (4 -3 ) = 1  | (5 -3 ) = 2    |  -3
+                  (1 +2 ) = 3  | (2 +2 ) = 4    |   2
+                  (3 -3 ) = 0  | (4 -3 ) = 1    |  -3
+                  (0 +4 ) = 4  | (1 +4 ) = 5    |   4
+                  (4 +2 ) = 6  | (5 +2 ) = 7    |   2
+  Input: nums = [1,2]
+  Output: 1
+  Explanation: Minimum start value should be positive.
 
-    Input: nums = [1,2]
-    Output: 1
-    Explanation: Minimum start value should be positive.
+  Input: nums = [1,-2,-3]
+  Output: 5
 
-    Input: nums = [1,-2,-3]
-    Output: 5
-
-    Constraints:
-    1 <= nums.length <= 100
-    -100 <= nums[i] <= 100
+Constraints:
+1 <= nums.length <= 100
+-100 <= nums[i] <= 100
 
     gcc -g -o main -Wall -Wextra -pedantic -Wwrite-strings -fsanitize=address *.c -lm
 
     Date: 11/11/2021
     Folsom, CA.
-*/
+ */
 
 /*----------------------------------- Header --------------------------------------*/
 #include <stdio.h>
@@ -55,17 +55,63 @@
 #define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
 #define atsizeof(object) (char *)(&object+1) - (char*)(&object)
 #define arrsz(x)  (sizeof(x) / sizeof((x)[0]))
-#define max(a,b)				\
-  ({ __typeof__ (a) _a = (a);			\
-    __typeof__ (b) _b = (b);			\
+#define max(a,b)		\
+  ({ __typeof__ (a) _a = (a);	\
+    __typeof__ (b) _b = (b);	\
     _a > _b ? _a : _b; })
-#define min(a,b)				\
-  ({ __typeof__ (a) _a = (a);			\
-    __typeof__ (b) _b = (b);			\
+#define min(a,b)		\
+  ({ __typeof__ (a) _a = (a);	\
+    __typeof__ (b) _b = (b);	\
     _a < _b ? _a : _b; })
 /*----------------------------------- Micro --------------------------------------*/
 
-int minStartValue(int* nums, int numsSize) {
+int minStartValue(int* nums, int numsSiz) {
+  // Let n be the length of the array "nums", m be the absolute value
+  // of the lower boundary of the element. In this question we have m = 100.
+  int n = numsSiz;
+  int m = 100;
+
+  // Set left and right boundaries according to left = 1, right = m * n + 1.
+  int left = 1;
+  int right = m * n + 1;
+
+  while (left < right) {
+    // Get the middle index "middle" of the two boundaries, let the start value
+    // be "middle". The initial step-by-step total "total" equals to middle as well.
+    // Use boolean parameter "isValid" to record whether the total
+    // is greater than or equal to 1.
+    int middle = (left + right) / 2;
+    int total = middle;
+    bool isValid = true;
+
+    // Iterate over the array "nums".
+    for (int i=0; i<numsSiz; ++i) {
+
+      // In each iteration, calculate "total" plus the element "num" in the array.
+      total += nums[i];
+
+      // If "total" is less than 1, we shall try a larger start value,
+      // we mark "isValid" as "false" and break the current iteration.
+      if (total < 1) {
+	isValid = false;
+	break;
+      }
+    }
+
+    // Check if middle is valid, and reduce the search space by half.
+    if (isValid) {
+      right = middle;
+    } else {
+      left = middle + 1;
+    }
+  }
+
+  // When the left and right boundaries coincide, we have found
+  // the target value, that is, the minimum valid startValue.
+  return left;
+}
+
+int minStartValue2(int* nums, int numsSize) {
   // Start with startValue = 1.
   int startValue = 1;
 
@@ -105,10 +151,10 @@ int minStartValue(int* nums, int numsSize) {
 
 int main (int argc, char **argv) {
   int ret = 0;
-  int arr[] = {-3,2,-3,4,2};
-  int sz = sizeof(arr)/sizeof(arr[0]);
+  int num[] = {-3,2,-3,4,2};
+  int sz = sizeof(num)/sizeof(num[0]);
 
-  ret = minStartValue(arr, sz);
+  ret = minStartValue(num, sz);
   debug("Output = %d", ret);
   return 0;
 }
