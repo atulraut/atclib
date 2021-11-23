@@ -55,7 +55,8 @@
 int count(int m, int n, int x) {
   int count = 0;
   for(int i = 1; i <= m; i++)
-    count += n < x/i ? n : x/i;
+    count += min(x/i, n);
+  //    count += n < x/i ? n : x/i;
   return count;
 }
 
@@ -63,6 +64,7 @@ int findKthNumber(int m, int n, int k) {
   int start = 1, end = m * n + 1;
   while(start < end) {
     int mid = (start + end) / 2;
+    debug("count = %d", count(m, n, mid));
     if(count(m, n, mid) >= k)
       end = mid;
     else
@@ -81,6 +83,48 @@ int main (int argc, char **argv) {
   debug("Output = %d", ret);
   return 0;
 }
+
+/**
+   Algorithm
+
+   Let's do the binary search for the answer {A}A.
+
+   Say enough(x) is true if and only if there are {k}k or more values
+   in the multiplication table that are less than or equal to {x}x.
+   Colloquially, enough describes whether {x}x is large enough to be the k^{th}k
+   th
+   value in the multiplication table.
+
+   Then (for our answer {A}A), whenever {x ≥ A}, enough(x) is True; and
+   whenever {x < A}x < A, enough(x) is False.
+
+   In our binary search, our loop invariant is enough(hi) = True. At
+   the beginning, enough(m*n) = True, and whenever hi is set, it is
+   set to a value that is "enough" (enough(mi) = True). That means hi will
+   be the lowest such value at the end of our binary search.
+
+   This leaves us with the task of counting how many values are less than
+   or equal to {x}x. For each of {m}m rows, the i^{th}i
+   th
+   row looks like {[i, 2*i, 3*i, ..., n*i]}[i, 2*i, 3*i, ..., n*i].
+   The largest possible {k*i ≤ x} that could appear is {k = x // i}k = x // i.
+   However, if {x}x is really big, then perhaps {k > n}k > n, so in total
+   there are {min(k, n) = min(x // i, n)}min(k, n) = min(x // i, n) values
+   in that row that are less than or equal to {x}x.
+
+   After we have the count of how many values in the table are less than
+   or equal to {x}x, by the definition of enough(x), we want to know if
+   that count is greater than or equal to {k}k.
+**/
+/**
+  Complexity Analysis
+  Time Complexity: O(m * \log (m*n))O(m∗log(m∗n)).
+  Our binary search divides the interval {[lo, hi]}[lo, hi]
+  into half at each step. At each step, we call enough
+  which requires O(m)O(m) time.
+  Space Complexity: O(1)O(1). We only keep integers in
+  memory during our intermediate calculations.
+**/
 
 /**
    [main] L=61 :Output = 3

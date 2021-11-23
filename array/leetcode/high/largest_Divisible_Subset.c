@@ -1,4 +1,5 @@
 /***
+ * https://leetcode.com/problems/largest-divisible-subset/
  * LeetCode : Largest Divisible Subset
  * Given a set of distinct positive integers, find the largest subset such
  * that every pair (Si, Sj) of elements in this subset satisfies:
@@ -32,9 +33,9 @@ void func(int* nums, int numsSize, int* map, int* lens, int pre_index) {
     }
 
     for(i=1; i<numsSize; i++) {
-        if(nums[i]%nums[0] == 0) {
+        if(nums[i] % nums[0] == 0) {
             if(map[i] == 0) {
-                func(&nums[i], numsSize-i,&map[i],&lens[i],pre_index+i);
+                func(&nums[i], numsSize-i, &map[i], &lens[i], pre_index+i);
             }
             if(lens[0] < lens[i]+1) {
                 map[0] = i+pre_index;
