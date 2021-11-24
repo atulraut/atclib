@@ -24,10 +24,21 @@
   Constraints:
   -231 <= x <= 231 - 1
 
-  Date: 11/23/1981
+  Date: 11/23/ - Fibonacci Day
   Folsom, CA.
 */
 #include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <limits.h>
+#include <string.h>  /* malloc */
+#include <stdbool.h>
+#include <math.h>
+#include <assert.h>
+#include <stdint.h> /* uint32_t */
+#include <unistd.h> /* sleep */
+
+#define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
 
 /**
    Approach 1: Pop and Push Digits & Check before Overflow
@@ -106,28 +117,36 @@ int reverseInteger(int x) {
   int ans = 0;
   while (x) {
     int temp = ans * 10 + x % 10;
-    printf ("x%10 = %d temp = %d \t", (x%10), temp);
+    printf ("\nx %% 10 = %d temp = %d ans = %d\n", (x%10), temp, ans);
+    printf ("(temp / 10) = %d\t", (temp / 10));
+
     if (temp / 10 != ans)
       return 0;
     ans = temp;
     x /= 10;
-    printf ("\nx= %d \t", x);
+    printf ("x= %d ans = %d\n", x, ans);
   }
   return ans;
 }
 
 int main() {
-  printf("\n Reverse Int = %d\n", reverseInteger(321));
+  printf("\n");
+  debug(" Reverse Int = %d ", reverseInteger(321));
 
   return 0;
 }
 
 /***
-    x%10 = 1 temp = 1
-    x= 32
-    x%10 = 2 temp = 12
-    x= 3
-    x%10 = 3 temp = 123
-    x= 0
-    Reverse Int = 123
+    => ./a.out
+
+    x % 10 = 1 temp = 1 ans = 0
+    (temp / 10) = 0	x= 32 ans = 1
+
+    x % 10 = 2 temp = 12 ans = 1
+    (temp / 10) = 1	x= 3 ans = 12
+
+    x % 10 = 3 temp = 123 ans = 12
+    (temp / 10) = 12	x= 0 ans = 123
+
+    [main] L=133 : Reverse Int = 123
 */
