@@ -41,8 +41,19 @@ int* findDisappearedNumbers(int* nums, int numsSize, int* returnSize) {
   char * temp = (char *)malloc(numsSize*sizeof(char));
   int * result = (int *)malloc(numsSize*sizeof(int));
   int count = 0;
+
+  /**
+     1] get position of array where number available from "nums" array.
+     Logic used - nums[i] - 1
+     2] Used temp array to take note of available numbers by marking with 1
+  */
   for(int i=0; i<numsSize; i++)
     temp[nums[i]-1] = 1;
+
+  /**
+     3] Just check temps[i-1] == 1, means number available else not.
+     4] Check jpg for details
+   */
   for(int i=1; i<=numsSize; i++)
     if(temp[i-1] != 1)
       result[count++] = i;
