@@ -82,7 +82,8 @@ int** intervalIntersection(int** A, int ASize, int* AColSize, int** B, int BSize
   int   j=0;
   while (i < ASize && j < BSize) {
     if  ((A[i])[0] < (B[j])[0]) {             // [ {
-      if ((A[i])[1] < (B[j])[0]) i++;     // []{}
+      if ((A[i])[1] < (B[j])[0])
+	i++;     // []{}
       else if ((A[i])[1] < (B[j])[1]) {   // [{]}
 	result[count] = malloc(sizeof(int)*2);
 	(result[count])[0] = (B[j])[0];
@@ -98,7 +99,8 @@ int** intervalIntersection(int** A, int ASize, int* AColSize, int** B, int BSize
       }
 
     } else {                                // { [
-      if ((B[j])[1] < (A[i])[0]) j++;     // {}[]
+      if ((B[j])[1] < (A[i])[0])
+	j++;     // {}[]
       else if ((B[j])[1] < (A[i])[1]) {   // {[}]
 	result[count] = malloc(sizeof(int)*2);
 	(result[count])[0] = (A[i])[0];
@@ -112,9 +114,9 @@ int** intervalIntersection(int** A, int ASize, int* AColSize, int** B, int BSize
 	i++;
 	(*returnColumnSizes)[count++]=2;
       }
-
     }
-  }
+  } // While Ends
+
   *returnSize = count;
   return result;
 }
