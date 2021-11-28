@@ -230,8 +230,23 @@ void m_DelNode(void *_list, struct list_node *_node) {
   m_Display(_list);
 }
 
-/* Middle Most Node of a Linked List */
+//struct ListNode *middleNode(struct ListNode *head) {
 void m_Middlenode(void *ptr) {
+  struct list *ll = (struct list *)ptr;
+  if (head->next == NULL) {
+    return head;
+  }
+  struct list_node* slow = head;
+  struct list_node* fast = head;
+  while (fast != NULL && fast->next != NULL) {
+    slow = slow->next;
+    fast = fast->next->next;
+  }
+  //    return slow;
+}
+
+/* Middle Most Node of a Linked List */
+void m_Middlenode1(void *ptr) {
   struct list *ll = (struct list *)ptr;
   struct list_node *p = NULL;
   struct list_node *q = NULL;
