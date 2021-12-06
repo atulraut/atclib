@@ -6,10 +6,18 @@
 */
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <ctype.h>
+#include <limits.h>
+#include <string.h>  /* malloc */
+#include <stdbool.h>
+#include <math.h>
+#include <assert.h>
+#include <stdint.h> /* uint32_t */
+#include <unistd.h> /* sleep */
 
 #define max(x, y) (((x) > (y)) ? (x) : (y))
 #define min(x, y) (((x) < (y)) ? (x) : (y))
+#define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
 
 /**
    https://leetcode.com/problems/maximum-subarray
@@ -171,7 +179,27 @@ int findmaxsum(int arr[], int n) {
   return ((max_g > max_c)? max_g : max_c);
 }
 
+/**
+   https://leetcode.com/problems/maximum-product-subarray/
+**/
+int maxProduct_LeetCode(int* nums, int numsSize){
+  if (numsSize == 0) return 0;
+
+  int result = nums[0];
+
+  for (int i = 0; i < numsSize; i++) {
+    int accu = 1;
+    for (int j = i; j < numsSize; j++) {
+      accu *= nums[j];
+      result = max(result, accu);
+    }
+  }
+
+  return result;
+}
+
 int main () {
+  int nums[] = {2, 3, -2, 4};
   //  int ar[] = {2, 3, 8, -2, 4, 8};
   int ar[] = {2,3,-2,4};
   //  int ar[] = {-2, 3, 2, -1};
@@ -185,6 +213,9 @@ int main () {
   //ret = maxProduct_qc(ar, sz);
   //ret = findmaxsum(ar, sz);
   printf ("-> %d \n", ret);
+
+  ret = maxProduct_LeetCode(nums, 4);
+  debug ("ret = %d", ret);
 }
 
 /**
@@ -207,4 +238,5 @@ int main () {
    ==>max_c = 3
    ==>max_c = 7
    main -> 7
+   [main] L=218 :ret = 6
 **/
