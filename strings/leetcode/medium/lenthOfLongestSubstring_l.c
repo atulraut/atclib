@@ -71,16 +71,16 @@ int lengthOfLongestSubstring(char* s) {
       assert(counts[c] == 1);
       // need to move the window until removing the instance of c
       while (win_start < i) {
-       int to_del = s[win_start];
-       counts[to_del]--;
-       win_start++;
-       if (counts[c] == 0)
-         break;
+	int to_del = s[win_start];
+	counts[to_del]--;
+	win_start++;
+	if (counts[c] == 0)
+	  break;
       }
     }
     counts[c]++;
-    debug ("i=%d c= %c cnt=%d", i, c, counts[c]);
     best = MAX(best, i - win_start + 1);
+    debug ("i=%d c= %c cnt=%d best=%d", i, c, counts[c], best);
   }
   return best;
 }
@@ -96,11 +96,11 @@ int main (int argc, char **argv) {
 
 /**
    => ./a.out
-   [lengthOfLongestSubstring] L=83 :i=0 c= a cnt=1
-   [lengthOfLongestSubstring] L=83 :i=1 c= b cnt=1
-   [lengthOfLongestSubstring] L=83 :i=2 c= c cnt=1
-   [lengthOfLongestSubstring] L=83 :i=3 c= a cnt=1
-   [lengthOfLongestSubstring] L=83 :i=4 c= b cnt=1
-   [main] L=94 :Output = 3
- **/
+   [lengthOfLongestSubstring] L=83 :i=0 c= a cnt=1 best=1
+   [lengthOfLongestSubstring] L=83 :i=1 c= b cnt=1 best=2
+   [lengthOfLongestSubstring] L=83 :i=2 c= c cnt=1 best=3
+   [lengthOfLongestSubstring] L=83 :i=3 c= a cnt=1 best=3
+   [lengthOfLongestSubstring] L=83 :i=4 c= b cnt=1 best=3
+   [main] L=93 :Output = 3
+**/
 
