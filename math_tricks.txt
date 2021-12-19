@@ -23,3 +23,27 @@ while (i > 0) {
 }
 
 Tip 4:
+bool isPalindrome(int x) {
+  long int rev = 0;
+  int temp = x;
+  if(x < 0)
+    return false;
+
+  while(x) {
+    rev = rev * 10 + x % 10;
+    x /= 10;
+  }
+  debug ("temp=%d rev=%ld", temp, rev);
+  return (temp == rev);
+}
+
+Tip 5:
+void atoi(char *s) {
+     while (1) {
+     d = (*s++) - '0';
+	   if (d > 9)
+	      break;
+	   ret *= 10;
+	   ret += d;
+      }
+}

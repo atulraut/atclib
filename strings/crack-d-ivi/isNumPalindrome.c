@@ -70,6 +70,7 @@ bool isPalindrome(int x) {
     rev = rev * 10 + x % 10;
     x /= 10;
   }
+  debug ("temp=%d rev=%ld", temp, rev);
   return (temp == rev);
 }
 
@@ -96,7 +97,7 @@ int main (int argc, char **argv) {
   int ret = 0;
   int x = 121;
 
-  ret = isPalindrome2(x);
+  ret = isPalindrome(x);
   debug("Output = %d", ret);
   return 0;
 }
