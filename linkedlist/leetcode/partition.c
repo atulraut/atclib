@@ -33,9 +33,9 @@
 #define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
 
 struct ListNode {
-    int val;
-     struct ListNode *next;
- };
+  int val;
+  struct ListNode *next;
+};
 
 
 struct ListNode* partition(struct ListNode* head, int x) {
@@ -66,52 +66,58 @@ struct ListNode* partition(struct ListNode* head, int x) {
   return dummy_before_x->next;
 }
 
-/***
-    Medium : 19. Remove Nth Node From End of List
-    https://leetcode.com/problems/remove-nth-node-from-end-of-list/
-    Given the head of a linked list, remove the nth node from the
-    end of the list and return its head.
+void push(struct ListNode** head_ref, int val) {
+  struct ListNode* nn = (struct ListNode*)malloc(sizeof(struct ListNode));
+  nn->val = val;
+  nn->next = (*head_ref);
+  (*head_ref) = nn;
+}
 
-    Follow up: Could you do this in one pass?
-    Input: head = [1,2,3,4,5], n = 2
-    Output: [1,2,3,5]
-
-
-    Input: head = [1], n = 1
-    Output: []
-
-    Input: head = [1,2], n = 1
-    Output: [1]
-
-    Constraints:
-    The number of nodes in the list is sz.
-    1 <= sz <= 30
-    0 <= Node.val <= 100
-    1 <= n <= sz
-*/
-struct ListNode* removeNthFromEnd(struct ListNode* head, int n) {
-  struct ListNode *new_head = (struct ListNode*)malloc(sizeof(struct ListNode));
-  new_head->next = head;
-  int length = 0;
-  struct ListNode *curr = head;
-
-  while (curr != NULL) {
-    length++;
-    curr = curr->next;
+void printList(struct ListNode* head) {
+  struct ListNode* trav = head;
+  while (trav != NULL) {
+    debug("%d  ", trav->val);
+    trav = trav->next;
   }
+}
 
-  length -= n;
-  curr = new_head;
+void test_remove() {
+  struct ListNode* head = NULL;
 
-  while (length > 0) {
-    length--;
-    curr = curr->next;
-  }
+  push(&head, 2);
+  push(&head, 4);
+  push(&head, 2);
+  push(&head, 3);
+  push(&head, 4);
+  push(&head, 1);
 
-  curr->next = curr->next->next;
-  return new_head->next;
+  debug("Given linked list\n");
+  printList(head);
+  debug("*** Remove Nth from End List ***");
+  head = partition(head, 3);
+  printList(head);
 }
 
 int main () {
-
+  test_remove();
 }
+
+
+/**
+   => ./a.out
+   [test_remove] L=94 :Given linked list
+
+   [printList] L=79 :1
+   [printList] L=79 :4
+   [printList] L=79 :3
+   [printList] L=79 :2
+   [printList] L=79 :4
+   [printList] L=79 :2
+   [test_remove] L=96 :*** Remove Nth from End List ***
+   [printList] L=79 :1
+   [printList] L=79 :2
+   [printList] L=79 :2
+   [printList] L=79 :4
+   [printList] L=79 :3
+   [printList] L=79 :4
+**/
