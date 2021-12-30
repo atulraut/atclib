@@ -63,6 +63,9 @@
 /*----------------------------------- Micro --------------------------------------*/
 #define MAX_STACK 300000
 
+/**
+   Approch I:
+ */
 typedef struct stack_t_ {
   int top;
   int data[MAX_STACK];
@@ -85,6 +88,7 @@ bool stack_push(stack_t *stack, int data) {
 
 char *get_num(char *s, int *num) {
   int data = 0;
+  debug ("*s = %c", *s);
   while (*s) {                                        // string may end with NULL
     if ((*s >= '0') && (*s <= '9')) {               // process digits
       data = (data * 10) + (*s - '0');            // shift data in place
@@ -94,10 +98,11 @@ char *get_num(char *s, int *num) {
     ++s;                                            // consume and advance s
   }
   *num = data;                                        // update return data
+  debug ("data =%d", data);
   return s;                                           // return next string position to be processed
 }
 
-int calculate(char * s) {
+int calculate(char* s) {
   int data, tmp;
   stack_t stack={.top = -1};
 
@@ -130,6 +135,9 @@ int calculate(char * s) {
   return data;
 }
 
+/**
+   Approch II:
+ */
 // +, -, *, /, (, push
 // ) or end of string then keep calaulate until ( or end of stack
 // digit or () result check stack top, if * or / then operate, + or - then push
@@ -183,6 +191,9 @@ int calculate1(char * s) {
   return prev + sum;
 }
 
+/**
+   Approch III:
+ */
 struct node {
   long int val;
   struct node* next;
@@ -289,7 +300,7 @@ int calculate2(char *s) {
 int main (int argc, char **argv) {
   int ret = 0;
   char s[] = "3+2*2";
-  ret = calculate2(s);
+  ret = calculate(s);
   debug("Output = %d", ret);
   return 0;
 }
