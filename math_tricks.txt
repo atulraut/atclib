@@ -1,5 +1,7 @@
 Math Tips for C Programming :
 
+1] https://leetcode.com/problems/add-digits/solution/
+
 Tip 1:Get Remainder
 sum = remainder + (l1 == 0 ? 0 : l1->val) + (l2 == 0 ? 0: l2->val);
 remainder = sum/10;
