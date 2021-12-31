@@ -27,8 +27,45 @@ B            C
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
+#include <limits.h>
+#include <string.h>  /* malloc */
+#include <stdbool.h>
+#include <math.h>
+#include <assert.h>
+#include <stdint.h> /* uint32_t */
+#include <unistd.h> /* sleep */
 
 #define sz 1024
+
+bool isHappy(int n) {
+  int* table = malloc(0);
+  int index = 0;
+  int new;
+  while(1) {
+    new = 0;
+    // Do the process generate the new number
+    while(n != 0) {
+      new += (n % 10) * (n % 10);
+      n /= 10;
+    }
+
+    // return if get a 1
+    if (new == 1)
+      return true;
+
+    // Check if the number was showed before
+    for(int i = 0; i < index; i++) {
+      if (table[i] == new)
+	return false;
+    }
+
+    // If not, add the new number into the table
+    table = realloc(table, sizeof(int) * (index + 1));
+    table[index++] = new;
+    n = new;
+  }
+}
 
 struct node {
     int key;
@@ -99,8 +136,8 @@ int lookup(struct table *t, int key) {
     return -1;
 }
 
-int isHappy(int n) {
-  int v, val;x
+int isHappy2(int n) {
+  int v, val;
   int index;
 
   struct table *t = createTable(sz);
@@ -138,12 +175,16 @@ int main () {
   //int num = 2;
 
   if(isHappy(num) > 0)
-    printf ("[%s] Is Happye Number --> %d \n", __func__, num);
+    printf ("[%s] %d Is Happye Number True \n", __func__, num);
   else
     printf ("[%s] Is NOT Happye Number --> %d \n", __func__, num);
   return 0;
 }
 
+/**
+   => ./a.out
+   [main] 19 Is Happye Number True
+**/
 /*
 => ./a.out
 [isHappy] index=9 val=81 n=1
