@@ -97,8 +97,8 @@ int main (int argc, char **argv) {
   int ret = 0;
   struct Node rt[7];
 
-  rt[0] = (struct Node){.val=1,  .left=NULL, .right=NULL};
-  rt[1] = (struct Node){.val=2,  .left=NULL, .right=NULL};
+  rt[0] = (struct Node){.val=1, .left=NULL, .right=NULL};
+  rt[1] = (struct Node){.val=2, .left=NULL, .right=NULL};
   rt[2] = (struct Node){.val=3, .left=NULL, .right=NULL};
   rt[3] = (struct Node){.val=4, .left=NULL, .right=NULL};
   rt[4] = (struct Node){.val=5, .left=NULL, .right=NULL};
