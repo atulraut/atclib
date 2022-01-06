@@ -78,14 +78,17 @@ int findComplement(int num) {
    Folsom, CA
 */
 int bitwiseComplement(int N) {
-    if (N == 0) return 1;
+    if (N == 0)
+      return 1;
     int todo = N, bit = 1;
+
     while (todo != 0) {
       // flip current bit
       N = N ^ bit;
       // prepare for the next run
       bit = bit << 1;
       todo = todo >> 1;
+      debug ("N = %d bit = %d todo=%d", N, bit, todo);
     }
     return N;
 }
@@ -117,5 +120,8 @@ int bitwiseComplement(int N) {
 **/
 
 /**
+   [bitwiseComplement] L=91 :N = 4 bit = 2 todo=2
+   [bitwiseComplement] L=91 :N = 6 bit = 4 todo=1
+   [bitwiseComplement] L=91 :N = 2 bit = 8 todo=0
    [main] L=98 :bitwiseComplement = 2
 **/
