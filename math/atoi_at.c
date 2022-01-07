@@ -219,8 +219,20 @@ int main () {
 
   char d[] = "789";
   n = atoi_linux (d);
+  debug ("String to Number Linux Way atoi-->%d", n);
   n = leetcode_atoi(d);
   debug ("String to Number Linux Way atoi-->%d", n);
   return 0;
 }
+
+/**
+   => ./a.out
+
+   c = a�
+   s = a�
+   int = 1585068083
+   [main] L=222 :String to Number Linux Way atoi-->789
+   i=0 c=7
+   [main] L=224 :String to Number Linux Way atoi-->789
+*/
 

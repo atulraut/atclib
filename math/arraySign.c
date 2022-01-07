@@ -100,6 +100,7 @@ int arraySign(int* nums, int numsSize) {
   for(int i=0; i<numsSize; i++) {
     product = product*nums[i];
     product = signFunc(product);
+    debug ("product = %d", product);
   }
   return product;
 }
@@ -107,7 +108,8 @@ int arraySign(int* nums, int numsSize) {
 
 int main (int argc, char **argv) {
   int ret = 0;
-  int nums[] = {-1,1,-1,1,-1};
+  int nums1[] = {-1,1,-1,1,-1};
+  int nums[]  = {-1,-2,-3,-4,3,2,1};
   int numsSize = arrsz(nums);
 
   ret = arraySign(nums, numsSize);
@@ -119,3 +121,13 @@ int main (int argc, char **argv) {
    => ./a.out
    [main] L=87 :Output = -1
 **/
+
+/**
+   [arraySign] L=103 :product = -1
+   [arraySign] L=103 :product = 1
+   [arraySign] L=103 :product = -1
+   [arraySign] L=103 :product = 1
+   [arraySign] L=103 :product = 1
+   [arraySign] L=103 :product = 1
+   [arraySign] L=103 :product = 1
+*/

@@ -64,12 +64,16 @@ bool carPooling(int** trips, int tripsSize, int* tripsColSize, int capacity){
   int rem[1001] = {0};
 
   for(int i = 0; i < tripsSize; i++) {
+    debug ("i= %d trips[%d][0]=%d, trips[%d][1]=%d, trips[%d][2]=%d",i, i, trips[i][0], i, trips[i][1], i, trips[i][2]);
     rem[trips[i][1]] += trips[i][0];
     rem[trips[i][2]] += -trips[i][0];
+    debug ("i=%d rem[trips[i][1]]=%d rem[trips[i][1]]=%d", i, rem[trips[i][1]], rem[trips[i][2]]);
   }
   int curr = 0;
   for(int i = 0; i <= 1000; i++) {
     curr += rem[i];
+    if (curr != 0)
+      debug ("curr = %d rem[%d]=%d", curr, i, rem[i]);
     if(curr > capacity) {
       return false;
     }
@@ -123,15 +127,32 @@ int main (int argc, char **argv) {
 
 /**
    => ./a.out
-   [main] L=113 :Input :>
-   [main] L=116 :Output = 2
-   [main] L=116 :Output = 1
-   [main] L=116 :Output = 5
+   [main] L=117 :Input :>
+   [main] L=120 :Output = 2
+   [main] L=120 :Output = 1
+   [main] L=120 :Output = 5
 
-   [main] L=116 :Output = 3
-   [main] L=116 :Output = 3
-   [main] L=116 :Output = 7
+   [main] L=120 :Output = 3
+   [main] L=120 :Output = 3
+   [main] L=120 :Output = 7
 
-   [test] L=94 :Output = 0
-   [test] L=97 :Output = 1
+   [carPooling] L=67 :i= 0 trips[0][0]=2, trips[0][1]=1, trips[0][2]=5
+   [carPooling] L=70 :i=0 rem[trips[i][1]]=2 rem[trips[i][1]]=-2
+   [carPooling] L=67 :i= 1 trips[1][0]=3, trips[1][1]=3, trips[1][2]=7
+   [carPooling] L=70 :i=1 rem[trips[i][1]]=3 rem[trips[i][1]]=-3
+   [carPooling] L=76 :curr = 2 rem[1]=2
+   [carPooling] L=76 :curr = 2 rem[2]=0
+   [carPooling] L=76 :curr = 5 rem[3]=3
+   [test] L=98 :Output = 0
+   [carPooling] L=67 :i= 0 trips[0][0]=2, trips[0][1]=1, trips[0][2]=5
+   [carPooling] L=70 :i=0 rem[trips[i][1]]=2 rem[trips[i][1]]=-2
+   [carPooling] L=67 :i= 1 trips[1][0]=3, trips[1][1]=3, trips[1][2]=7
+   [carPooling] L=70 :i=1 rem[trips[i][1]]=3 rem[trips[i][1]]=-3
+   [carPooling] L=76 :curr = 2 rem[1]=2
+   [carPooling] L=76 :curr = 2 rem[2]=0
+   [carPooling] L=76 :curr = 5 rem[3]=3
+   [carPooling] L=76 :curr = 5 rem[4]=0
+   [carPooling] L=76 :curr = 3 rem[5]=-2
+   [carPooling] L=76 :curr = 3 rem[6]=0
+   [test] L=101 :Output = 1
 **/

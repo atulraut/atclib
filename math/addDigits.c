@@ -69,7 +69,8 @@ int addDigits(int num) {
 
 int main (int argc, char **argv) {
   int ret = 0;
-  int num = 38;
+  int num1 = 38;
+  int num = 91;
 
   ret = addDigits(num);
   debug("Output = %d", ret);
