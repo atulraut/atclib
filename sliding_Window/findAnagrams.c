@@ -28,6 +28,8 @@
     1 <= s.length, p.length <= 3 * 104
     s and p consist of lowercase English letters.
 
+    https://www.youtube.com/watch?v=fYgU6Bi2fRg&t=2s
+
     gcc -g -o main -Wall -Wextra -pedantic -Wwrite-strings -fsanitize=address *.c -lm
 
     Date: 7 Jan 2021
@@ -64,7 +66,7 @@
  * Note: The returned array must be malloced, assume caller calls free().
  */
 int* findAnagrams(char* s, char* p, int* returnSize) {
-  int hash[26] = {0};
+  int p_hash[26] = {0};
   int cnt_hash[26] = {0};
   int i, j, k, s_len, p_len, idx = 0, tmp_i, tmp_idx;
   int *ret_array;
@@ -80,18 +82,22 @@ int* findAnagrams(char* s, char* p, int* returnSize) {
   ret_array = malloc(sizeof(int) * s_len);
 
   for (i = 0; i < p_len; i++)
-    hash[p[i] - 'a']++;
+    p_hash[p[i] - 'a']++;
 
   /* loop through the whole string with a sliding window */
   for (i = 0; i < s_len; i++) {
     cnt_hash[s[i] -'a']++;
+    debug ("i=%d cnt_hash[%d]=%d", i, (s[i] -'a'), cnt_hash[s[i] -'a']);
 
-    if (i >= p_len)
+    if (i >= p_len) {
+      debug ("i-p_len = %d s[i - p_len]=%d 'a' = %d stat=%d", (i-p_len), s[i - p_len], 'a', (s[i - p_len] - 'a'));
       cnt_hash[s[i - p_len] - 'a']--;
+      debug ("cnt_hash[%d]=%d", (s[i - p_len] - 'a'), cnt_hash[s[i - p_len] - 'a']);
+    }
 
     debug("i=%d char=%c cnt=%d\n", i, s[i], cnt_hash[s[i]-'a']);
     for (j = 0; j < 26; j++) {
-      if (cnt_hash[j] != hash[j])
+      if (cnt_hash[j] != p_hash[j])
 	break;
     }
     if (j == 26) {
@@ -176,21 +182,29 @@ int main (int argc, char **argv) {
 
 /**
    => ./a.out
-   [findAnagrams] L=92 :i=0 char=a cnt=1
+   [findAnagrams] L=90 :i=0 cnt_hash[0]=1
+   [findAnagrams] L=98 :i=0 char=a cnt=1
 
-   [findAnagrams] L=92 :i=1 char=b cnt=1
+   [findAnagrams] L=90 :i=1 cnt_hash[1]=1
+   [findAnagrams] L=98 :i=1 char=b cnt=1
 
-   [findAnagrams] L=98 :***** match i=1
+   [findAnagrams] L=104 :***** match i=1
 
-   [findAnagrams] L=92 :i=2 char=a cnt=1
+   [findAnagrams] L=90 :i=2 cnt_hash[0]=2
+   [findAnagrams] L=93 :i-p_len = 0 s[i - p_len]=97 'a' = 97 stat=0
+   [findAnagrams] L=95 :cnt_hash[0]=1
+   [findAnagrams] L=98 :i=2 char=a cnt=1
 
-   [findAnagrams] L=98 :***** match i=2
+   [findAnagrams] L=104 :***** match i=2
 
-   [findAnagrams] L=92 :i=3 char=b cnt=1
+   [findAnagrams] L=90 :i=3 cnt_hash[1]=2
+   [findAnagrams] L=93 :i-p_len = 1 s[i - p_len]=98 'a' = 97 stat=1
+   [findAnagrams] L=95 :cnt_hash[1]=1
+   [findAnagrams] L=98 :i=3 char=b cnt=1
 
-   [findAnagrams] L=98 :***** match i=3
+   [findAnagrams] L=104 :***** match i=3
 
-   [main] L=171 :Output = 0
-   [main] L=171 :Output = 1
-   [main] L=171 :Output = 2
-**/
+   [main] L=179 :Output = 0
+   [main] L=179 :Output = 1
+   [main] L=179 :Output = 2
+*/
