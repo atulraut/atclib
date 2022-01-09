@@ -42,13 +42,13 @@
 #define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
 #define atsizeof(object) (char *)(&object+1) - (char*)(&object)
 #define arrsz(x)  (sizeof(x) / sizeof((x)[0]))
-#define max(a,b)		\
-  ({ __typeof__ (a) _a = (a);	\
-    __typeof__ (b) _b = (b);	\
+#define max(a,b)				\
+  ({ __typeof__ (a) _a = (a);			\
+    __typeof__ (b) _b = (b);			\
     _a > _b ? _a : _b; })
-#define min(a,b)		\
-  ({ __typeof__ (a) _a = (a);	\
-    __typeof__ (b) _b = (b);	\
+#define min(a,b)				\
+  ({ __typeof__ (a) _a = (a);			\
+    __typeof__ (b) _b = (b);			\
     _a < _b ? _a : _b; })
 /*----------------------------------- Micro --------------------------------------*/
 
@@ -67,6 +67,53 @@ int addDigits(int num) {
   return num == 0 ? 0 : 1 + (num - 1) % 9;
 }
 
+/*
+  1. During each iteration first element inthe unsorted set is picked up
+  & inserted into the correct position int the sorted set.
+  1. Divide Array into 2 like below.
+  ----------------------------------
+  | Unsorted Array | Sorted Array   |
+  ----------------------------------
+*/
+void insertionSort(int list[], int n) {
+  // sort list[0] to list[n-1] in ascedning order
+  for(int h=1; h<n; h++) {
+    int key = list[h];		/* I */
+    int j=h-1; /* start comparing with previous item */
+    while(j>=0 && key < list[j]) { /*Copy Elememnt from Unsorted(list[j]) to Sorted Array (list[j+1])*/
+      list[j+1] = list[j];	/* II */
+      --j;
+    }
+    list[j+1] = key; /* III - key will create hole, copy that at last*/
+  }//end for
+}//end insertionSort
+
+/**
+   Sort the numbers according to their sum of digits
+   Also: Modify insertion Sort
+*/
+void sort_by_sumofdigits(int list[], int n) {
+  int okey, key;
+  // sort list[0] to list[n-1] in ascedning order
+  for(int h=1; h<n; h++) {
+    okey = list[h];
+    key = addDigits2(list[h]);		/* I */
+    int j=h-1; /* start comparing with previous item */
+    while(j>=0 && key < addDigits2(list[j])) { /*Copy Elememnt from Unsorted(list[j]) to Sorted Array (list[j+1])*/
+      list[j+1] = list[j];	/* II */
+      --j;
+    }
+    list[j+1] = okey; /* III - key will create hole, copy that at last*/
+  }//end for
+  for(int i=0; i<n; ++i)
+    debug ("temp = %d", list[i]);
+}//end insertionSort
+
+void test() {
+  int arr[] = {15, 10, 45, 30};
+  sort_by_sumofdigits(arr, 4);
+}
+
 int main (int argc, char **argv) {
   int ret = 0;
   int num1 = 38;
@@ -74,6 +121,9 @@ int main (int argc, char **argv) {
 
   ret = addDigits(num);
   debug("Output = %d", ret);
+
+  test();
+
   return 0;
 }
 
@@ -81,3 +131,11 @@ int main (int argc, char **argv) {
    => ./a.out
    [main] L=75 :Output = 2
 **/
+/**
+   => ./a.out
+   [main] L=123 :Output = 1
+   [sort_by_sumofdigits] L=109 :temp = 10
+   [sort_by_sumofdigits] L=109 :temp = 30
+   [sort_by_sumofdigits] L=109 :temp = 15
+   [sort_by_sumofdigits] L=109 :temp = 45
+*/
