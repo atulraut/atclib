@@ -74,7 +74,7 @@ int pathSum(struct TreeNode* root, int sum) {
 int main (int argc, char **argv) {
   int ret = 0;
   int sum = 8;
-   struct TreeNode rt[10];
+  struct TreeNode rt[10];
 
   rt[0] = (struct TreeNode){.val=5, .left=NULL, .right=NULL};
   rt[1] = (struct TreeNode){.val=4, .left=NULL, .right=NULL};

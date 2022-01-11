@@ -32,10 +32,14 @@
     _a < _b ? _a : _b; })
 /*----------------------------------- Micro --------------------------------------*/
 
-int main (int argc, char **argv) {
+void test() {
   int ret = 0;
 
   debug("Output = %d", ret);
+}
+
+int main (int argc, char **argv) {
+  test();
   return 0;
 }
 
