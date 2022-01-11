@@ -92,10 +92,13 @@ int IsEmpty(struct Stack *S) {
   return S->next == NULL;
 }
 
-char* removeKdigits_(char* num, int k) {
+char* removeKdigits(char* num, int k) {
+  debug("Input = %s", num);
   struct Stack *S = Initialize();
 
   for(int i = 0; i < strlen(num); ++i) {
+    if (IsEmpty(S) == 0)
+      debug("i->[%d] S->val = %c", i, S->next->val);
     while(S->next != NULL && num[i] < S->next->val && k > 0) {
       Pop(S);
       k--;
@@ -103,19 +106,22 @@ char* removeKdigits_(char* num, int k) {
     if(num[i] != '0' || !IsEmpty(S)) {
       Push(S, num[i]);
     }
+    debug("S->val = %c Addr = %pK", S->next->val, S->next);
   }
 
   while(!IsEmpty(S) && k > 0) {
     Pop(S);
     k--;
   }
-
+  debug("----------------------------");
   struct Stack *pos = S->next;
   int len = 0;
   while(pos) {
+    debug("pos->val = %c Addr = %pK", pos->val, pos);
     len++;
     pos = pos->next;
   }
+  debug("Len = %d", len);
   if (len == 0) {
     char *res = (char*)malloc(sizeof(char) * (2));
     res[0] = '0';
@@ -133,7 +139,7 @@ char* removeKdigits_(char* num, int k) {
   return result;
 }
 
-char* removeKdigits(char* num, int k) {
+char* removeKdigits_(char* num, int k) {
   int n = strlen(num);
   char stack[100000];
   int top = -1;
@@ -174,7 +180,27 @@ int main (int argc, char **argv) {
 
 /**
    => ./a.out
-   [test] L=167 :Output = 1219
+   [removeKdigits] L=96 :Input = 1432219
+   [removeKdigits] L=109 :S->val = 1 Addr = 0x234f440K
+   [removeKdigits] L=101 :i->[1] S->val = 1
+   [removeKdigits] L=109 :S->val = 4 Addr = 0x234f460K
+   [removeKdigits] L=101 :i->[2] S->val = 4
+   [removeKdigits] L=109 :S->val = 3 Addr = 0x234f460K
+   [removeKdigits] L=101 :i->[3] S->val = 3
+   [removeKdigits] L=109 :S->val = 2 Addr = 0x234f460K
+   [removeKdigits] L=101 :i->[4] S->val = 2
+   [removeKdigits] L=109 :S->val = 2 Addr = 0x234f480K
+   [removeKdigits] L=101 :i->[5] S->val = 2
+   [removeKdigits] L=109 :S->val = 1 Addr = 0x234f480K
+   [removeKdigits] L=101 :i->[6] S->val = 1
+   [removeKdigits] L=109 :S->val = 9 Addr = 0x234f4a0K
+   [removeKdigits] L=116 :----------------------------
+   [removeKdigits] L=120 :pos->val = 9 Addr = 0x234f4a0K
+   [removeKdigits] L=120 :pos->val = 1 Addr = 0x234f480K
+   [removeKdigits] L=120 :pos->val = 2 Addr = 0x234f460K
+   [removeKdigits] L=120 :pos->val = 1 Addr = 0x234f440K
+   [removeKdigits] L=124 :Len = 4
+   [test] L=173 :Output = 1219
 */
 /**
    Complexity Analysis
