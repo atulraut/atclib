@@ -17,20 +17,22 @@
  * @dest: Where to copy the string to
  * @src: Where to copy the string from
  * @size: size of destination buffer
- *
+ * Copy string src to buffer dst of size dsize.  At most dsize-1
+ * chars will be copied.  Always NUL terminates (unless dsize == 0).
+ * Returns strlen(src); if retval >= dsize, truncation occurred
  * Compatible with ``*BSD``: the result is always a valid
  * NUL-terminated string that fits in the buffer (unless,
  * of course, the buffer size is zero). It does not pad
  * out the result like strncpy() does.
  */
-size_t strlcpy(char *dest, const char *src, size_t size) {
-        size_t ret = strlen(src);
+size_t my_strlcpy(char *dest, const char *src, size_t size) {
+        size_t src_len = strlen(src);
         if (size) {
-                size_t len = (ret >= size) ? size - 1 : ret;
+                size_t len = (src_len >= size) ? size - 1 : src_len;
                 memcpy(dest, src, len);
                 dest[len] = '\0';
         }
-        return ret;
+        return src_len;
 }
 
 /*
@@ -128,8 +130,10 @@ int main () {
 	//	output = at_strncat(dest, src, 4);
 	//	printf ("output = %s \n", output);
 
-	ret = my_strlcat(dest, src, 4);
-	printf ("output res = %d dest = %s \n", ret, dest);
+	//	ret = my_strlcat(dest, src, 4);
+	//	printf ("output res = %d dest = %s \n", ret, dest);
+	ret = my_strlcpy(dest, src, 5);
+	printf ("strlcpy Output = %d dest = %s \n", ret, dest);
 }
 
 
