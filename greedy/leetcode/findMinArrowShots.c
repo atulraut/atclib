@@ -83,7 +83,7 @@ int findMinArrowShots(int** points, int pointsSize, int* pointsColSize) {
   if((points==NULL) || (pointsSize==0)) {
     return 0;
   }
-  qsort(points,pointsSize,sizeof(int*),cmpfunc);
+  qsort(points, pointsSize, sizeof(int*), cmpfunc);
 
   pos = points[0][1];
   arrCount = 1;
@@ -97,9 +97,9 @@ int findMinArrowShots(int** points, int pointsSize, int* pointsColSize) {
 }
 
 int** create_matrix(int rows, int cols) {
-  int** max = (int**)calloc(sizeof(int), rows);
+  int** max = (int**)calloc(sizeof(int*), rows);
   for (int i=0; i<rows; ++i) {
-    max[i] = (int*)calloc(sizeof(int *),  cols);
+    max[i] = (int*)calloc(sizeof(int),  cols);
   }
   return max;
 }
@@ -136,6 +136,10 @@ void test() {
   printf("---------------------\n");
   debug("Output = %d", ret);
   print_matrix(grid, rows, cols);
+  for (int i=0; i<rows; ++i)
+    free(grid[i]);
+  free(grid);
+  grid = NULL;
 }
 
 int main (int argc, char **argv) {
