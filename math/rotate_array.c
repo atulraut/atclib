@@ -60,53 +60,6 @@
     _a < _b ? _a : _b; })
 /*----------------------------------- Micro --------------------------------------*/
 
-void rotate_2D(int matrix[][4], int n) {
-  for (int layer = 0; layer < n / 2; ++layer) {
-    int first = layer;
-    int last = n - 1 - layer;
-    for(int i = first; i < last; ++i) {
-      int offset = i - first;
-      int top = matrix[first][i]; // save top
-      // left -> top
-      matrix[first][i] = matrix[last-offset][first];
-      // bottom -> left
-      matrix[last-offset][first] = matrix[last][last - offset];
-      // right -> bottom
-      matrix[last][last - offset] = matrix[i][last];
-    }
-  }
-}
-
-/**
-   Coding IVI:
- **/
-void test2DArray() {
-  int i, j;
-  int sz = 4;
-  int arr[][4] = {
-    {1,2,3,4},
-    {5,6,7,8},
-    {9,10,11,12},
-    {13,14,15,16},
-  };
-  for(i=0; i<sz; i++) {
-    for(j=0; j<sz; j++) {
-      printf("--> %d \t", arr[i][j]);
-    }
-    printf("\n");
-  }
-  printf ("Start Rotate \n");
-
-  rotate_2D(arr, sz);
-  for(i=0; i<sz; i++) {
-    for(j=0; j<sz; j++) {
-      printf("--> %d \t", arr[i][j]);
-    }
-    printf("\n");
-  }
-  printf ("End\n");
-}
-
 void rotate(int* nums, int numsSize, int k) {
   int result[numsSize];
   for(int i = 0; i < numsSize; i++) {
@@ -115,25 +68,6 @@ void rotate(int* nums, int numsSize, int k) {
   }
   for(int j = 0; j < numsSize; j++)
     nums[j]=result[j];
-}
-
-void rotate_(int* nums, int numsSize, int k) {
-  long i=0, j=0;
-  int *temp;
-
-  if (k > numsSize)
-    k %= numsSize;
-
-  temp = (int *)malloc(sizeof(int) * k);
-
-  for (i=numsSize-k; i<numsSize; i++)
-    temp[j++] = nums[i];
-
-  for (i=numsSize-1; i>=k; i--)
-    nums[i] = nums[i-k];
-
-  for (i=0; i<k; i++)
-    nums[i] = temp[i];
 }
 
 void test1DArray() {
@@ -150,22 +84,12 @@ void test1DArray() {
 }
 
 int main() {
-  test2DArray();
   test1DArray();
   return 0;
 }
 
 /**
-   --> 1 	--> 2 	--> 3 	--> 4
-   --> 5 	--> 6 	--> 7 	--> 8
-   --> 9 	--> 10 	--> 11 	--> 12
-   --> 13 	--> 14 	--> 15 	--> 16
-   Start Rotate
-   --> 13 	--> 9 	--> 5 	--> 4
-   --> 14 	--> 10 	--> 7 	--> 8
-   --> 15 	--> 11 	--> 7 	--> 12
-   --> 16 	--> 12 	--> 8 	--> 4
-   End
+   => ./a.out
    ------ Input -------
    nums[0] = 1
    nums[1] = 2
@@ -174,6 +98,13 @@ int main() {
    nums[4] = 5
    nums[5] = 6
    nums[6] = 7
+   [rotate] L=66 :Place-> 3
+   [rotate] L=66 :Place-> 4
+   [rotate] L=66 :Place-> 5
+   [rotate] L=66 :Place-> 6
+   [rotate] L=66 :Place-> 0
+   [rotate] L=66 :Place-> 1
+   [rotate] L=66 :Place-> 2
    ------ Output -------
    nums[0] = 5
    nums[1] = 6

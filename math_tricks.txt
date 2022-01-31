@@ -49,3 +49,7 @@ void atoi(char *s) {
 	   ret += d;
       }
 }
+
+Tip 6:
+https://github.com/atulraut/atclib/tree/master/math/rotate_array.c
+result[(i+k)%numsSize]=nums[i];
