@@ -89,6 +89,11 @@ int **grid = create_matrix(rows, cols);
   *(*(grid + 2) + 1) = 1;
   *(*(grid + 2) + 2) = 1;
 
+void freeMatrix(int **matrix ,int row) {
+    for(int i=0;i<row;i++)
+        free(matrix[i]);
+    free(matrix);
+}
 -----------------------------------------------------------------------
 Q] Sparse Matrix - True Matrix Allocation if you know column size is fixed.
 ==>

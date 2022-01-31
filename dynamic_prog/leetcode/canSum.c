@@ -34,6 +34,9 @@
     How does it change the problem? What limitation we need to add
     to the question to allow negative numbers?
 
+    Status - Pending
+    https://www.youtube.com/watch?v=oBt53YbR9Kk&list=LL&index=35&t=7s
+    1:15:00
     Date: 5 June 2021, 6AM.
     San Diego, CA.
 */
@@ -50,43 +53,90 @@
 
 #define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
 
-bool __canSum__(int* nums, int numsSize, int target, int *dp) {
-  if (dp[target] == target)
-    return dp[taret];
-  if (target == 0)
+bool __canSum(int* nums, int numsSize, int targetSum, int *dp) {
+  debug ("target = %d dp=%d", targetSum ,dp[targetSum]);
+  if (dp[targetSum] == targetSum)
+    return !dp[targetSum]; // NOT requied '!' Needs fix here
+  if (targetSum == 0)
     return true;
-  if (target < 0)
+  if (targetSum < 0)
     return false;
 
-  for(int i=1; i<=numsSize; i++) {
-    int remainder = target - nums[i];
-    if (__canSum__(nums, numsSize, target, dp) == true) {
-      dp[target] = true;
+  for(int i=1; i<numsSize; i++) {
+    int remainder = targetSum - nums[i];
+    debug ("i = %d, nums[%d]=%d remainder=%d", i, i, nums[i], remainder);
+    if (__canSum(nums, numsSize, remainder, dp) == true) {
+      debug("Awesome!");
+      dp[remainder] = true;
       return true;
     }
   }
-  dp[target] = false;
+  debug ("Reached!");
+  dp[targetSum] = false;
   return false;
 }
 
 bool canSum(int* nums, int numsSize, int target) {
   int *memo = (int *)calloc(target+numsSize, sizeof(int));
-  bool ret = __canSum__(nums, numsSize, target, memo);
+  bool ret = __canSum(nums, numsSize, target, memo);
   return ret;
 }
 
-int main () {
-  bool ret = 0;
-  int nums[] = {5, 3, 4, 7};
-  int numsSize = sizeof(nums)/sizeof(nums[0]);
-  int target = 7;
+int combinationSum4(int* nums, int numsSize, int target) {
+    unsigned int *dp = malloc(sizeof(int) * (target+1));
+    memset(dp, 0, sizeof(int) * (target+1));
+    int i;
+    dp[0] = 1;
+    for(i = 1; i <= target; i++){
+        int j;
+        for(j = 0; j < numsSize; j++){
+            if(i >= nums[j]){
+                dp[i] = dp[i] + dp[i-nums[j]];
+            }
+        }
+    }
+    return dp[target];
+}
 
+void test() {
+  bool ret = 0;
+  int nums[] = {5, 3, 4, 7};  // true
+  int nums2[] = {2, 3, 15};    // true
+  int nums3[] = {7, 14};        // false
+  int numsSize = sizeof(nums)/sizeof(nums[0]);
+  int target = 700;  // true
+  int target2 = 8;    // true
+  int target3  = 300;  // false
+  debug("Sz = %d", numsSize);
   ret = canSum(nums, numsSize, target);
   debug("Output = %d", ret);
+}
+
+void test_leetCode() {
+    bool ret = 0;
+  int nums[] = {5, 3, 4, 7};  // true
+  int nums2[] = {2, 3, 15};    // true
+  int nums3[] = {7, 14};        // false
+  int numsSize = sizeof(nums)/sizeof(nums[0]);
+  int target = 700;  // true
+  int target2 = 8;    // true
+  int target3  = 300;  // false
+  debug("Sz = %d", numsSize);
+  ret = combinationSum4(nums, numsSize, target);
+  debug("Output = %d", ret);
+}
+
+int main () {
+  //  test();
+  test_leetCode();
   return 0;
 }
 
 /**
-   => ./a.out
    [main] L=78 :Output = 7
+**/
+
+/**
+   [test_leetCode] L=124 :Sz = 4
+   [test_leetCode] L=126 :Output = 1
 **/

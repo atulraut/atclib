@@ -142,7 +142,7 @@ https://www.youtube.com/watch?v=oBt53YbR9Kk&list=LL&index=35&t=7s
    add a memo object
    add a base case to return memo values
    store return values into the memo
-3. Ex -
+3. Ex - https://github.com/atulraut/atclib/blob/master/advance_c/misc/crack-ivi/febonacci_Optz.c
 --------------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------------
