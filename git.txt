@@ -67,6 +67,16 @@ GitLab prompts you with a direct link for creating a merge request:
 remote: To create a merge request for docs-new-merge-request, visit:
 remote:   https://github.example.com/my-group/my-project/merge_requests/new?merge_request%5Bsource_branch%5D=my-new-branch
 
+------------------------------------------------------------------------------
+Push to same commit :
+Assume branch ar_release - Have 1 commit ahead of head
+git reset --soft HEAD^
+git stash
+git push -f origin ar_release
+git stash pop
+git commit -a
+git push origin ar_release
+------------------------------------------------------------------------------
 
 ===_______ How to send patches to Upstream Linux Kernel _______===
 
