@@ -11,7 +11,7 @@ Hash Function : Can be used to map data of arbitary size to fixed-size values.
 	        A Hash Function is simply a mathematical formula, which when applied
 		to a key, produces an integer which can be used an an index for the key
 		in the Hash Table.
-Hash Table    : It is a dat structure in which keys are mapped to array position
+Hash Table    : It is a data structure in which keys are mapped to array position
                 by a hash function.
 Collision     : To avoid used better hash functions.
 Chaining      : Helps to fixed collision, its nothing but linkedlist.
