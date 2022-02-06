@@ -86,13 +86,15 @@ struct ListNode* mergeKLists(struct ListNode** lists, int listsSize){
     return NULL;
   }
   if (listsSize == 1) {
+    debug("i=1 list-> %pK", lists[0]);
     return lists[0];
   }
   for (int i=0, j=listsSize - 1; i<j; i++, j--) {
-
+    debug("i=%d list-> %pK",i, lists[i]);
     lists[i] = mergeTwoLists(lists[i], lists[j]);
     listsSize--;
   }
+  debug("lastman");
   return mergeKLists(lists, listsSize);
 }
 

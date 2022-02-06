@@ -35,9 +35,32 @@
  * Explanation: Your function should return length = 5, with the first five elements
  * of nums being modified to 0, 1, 2, 3, and 4 respectively. It doesn't matter what
  * values are set beyond the returned length.
-*/
+ */
 #include<stdio.h>
-#include "../../at_lib.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <limits.h>
+#include <string.h>  /* malloc */
+#include <stdbool.h>
+#include <math.h>
+#include <assert.h>
+#include <stdint.h> /* uint32_t */
+#include <unistd.h> /* sleep */
+
+/*----------------------------------- Micro --------------------------------------*/
+#define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
+#define atsizeof(object) (char *)(&object+1) - (char*)(&object)
+#define arrsz(x)  (sizeof(x) / sizeof((x)[0]))
+#define max(a,b)				\
+  ({ __typeof__ (a) _a = (a);			\
+    __typeof__ (b) _b = (b);			\
+    _a > _b ? _a : _b; })
+#define min(a,b)				\
+  ({ __typeof__ (a) _a = (a);			\
+    __typeof__ (b) _b = (b);			\
+    _a < _b ? _a : _b; })
+/*----------------------------------- Micro --------------------------------------*/
 
 int removeDuplicates(int* nums, int numsSize){
   if (numsSize == 0)
@@ -57,7 +80,7 @@ int removeDuplicates(int* nums, int numsSize){
   return c1 + 1;
 }
 
-int main() {
+void test1() {
   int arr[6] = {1,2, 2,3,4}; /* Must be non-decreasing */
   int i, j, k, size=5;
 
@@ -68,6 +91,42 @@ int main() {
   for (i = 0; i < size; i++) {
     printf("[%s] %d \n", __func__, arr[i]);
   }
+
+}
+
+/**
+   https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii
+   Remove Duplicates from Sorted Array II
+   Input: nums = [1,1,1,2,2,3]
+   Output: 5, nums = [1,1,2,2,3,_]
+   Explanation: Your function should return k = 5, with the first five
+   elements of nums being 1, 1, 2, 2 and 3 respectively.
+   It does not matter what you leave beyond the returned k (hence they
+   are underscores).
+
+   Date: Feb 5 2022
+**/
+int removeDuplicates_II(int* nums, int numsSize) {
+  int i=0,j;
+  for (j=0;j<numsSize;j++) {
+    if (i<2 || nums[j]>nums[i-2])
+      nums[i++]=nums[j];
+  }
+  return i;
+}
+
+void test2() {
+  int ret = 0;
+  int arr[] = {1,1,1,2,2,3};
+  debug("Remove II");
+  int sz = sizeof(arr)/sizeof(arr[0]);
+  ret = removeDuplicates_II(arr, sz);
+  debug ("Ret = %d", ret);
+}
+
+int main() {
+  test1();
+  test2();
   return (0);
 }
 
@@ -82,4 +141,9 @@ int main() {
     [main] 3
     [main] 4
     [main] 0
+*/
+
+/***
+    [test2] L=121 :Remove II
+    [test2] L=124 :Ret = 5
 */
