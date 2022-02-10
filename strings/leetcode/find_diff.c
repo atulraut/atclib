@@ -16,9 +16,35 @@
     'e' is the letter that was added.
     Logic : https://www.youtube.com/watch?v=sRwElQ_TOr8
     Use XOR 1 ^ 1 = 0 & 0 ^ 0 = 0 & rest all are 1, so easy to cancel same element.
-*/
 
-#include "../../at_lib.h"
+    Date: Fri Sep 25 11:50:40 2020 -0700
+    Place: San Diego
+
+*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <limits.h>
+#include <string.h>  /* malloc */
+#include <stdbool.h>
+#include <math.h>
+#include <assert.h>
+#include <stdint.h> /* uint32_t */
+#include <unistd.h> /* sleep */
+
+/*----------------------------------- Micro --------------------------------------*/
+#define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
+#define atsizeof(object) (char *)(&object+1) - (char*)(&object)
+#define arrsz(x)  (sizeof(x) / sizeof((x)[0]))
+#define max(a,b)		\
+  ({ __typeof__ (a) _a = (a);	\
+    __typeof__ (b) _b = (b);	\
+    _a > _b ? _a : _b; })
+#define min(a,b)		\
+  ({ __typeof__ (a) _a = (a);	\
+    __typeof__ (b) _b = (b);	\
+    _a < _b ? _a : _b; })
+/*----------------------------------- Micro --------------------------------------*/
 
 /* Optimal Solution */
 char findTheDifference(char * s, char * t) {
@@ -26,9 +52,11 @@ char findTheDifference(char * s, char * t) {
     register int i;
     for (i = 0; s[i] != '\0'; i++) {
         ans ^= s[i];
+	debug ("i=%d ans= %d", i, ans);
         ans ^= t[i];
+	debug ("i=%d ans= %d", i, ans);
     }
-
+    debug ("i=%d ans= %d", i, ans^t[i]);
     ans ^= t[i];
 
     return ans;
@@ -38,7 +66,7 @@ char findTheDifference(char * s, char * t) {
 /* Brute force */
 char findTheDifference2 (char * s, char * t) {
   int i, flag = 0;
-  char isPresent[256] = {0};
+  char isPresent[26] = {0};
 
   int slen = strlen (s);
   int tlen = strlen (t);
@@ -47,11 +75,11 @@ char findTheDifference2 (char * s, char * t) {
 
   for (i=0; i<tlen; i++) {
     if (isPresent[t[i]])  {
-      printf (" --> %c \n", t[i]);
+      debug (" --> %c", t[i]);
     } else
       flag = i;
   }
-  printf ("flag = %d \n", flag);
+  debug ("flag = %d", flag);
   return t[flag];
 }
 
@@ -67,3 +95,18 @@ int main () {
     [main] output = e
     [string/find_diff.c] [main()] L=63 : Enter
 */
+
+/**
+   => ./a.out
+   [findTheDifference] L=55 :i=0 ans= 97
+   [findTheDifference] L=57 :i=0 ans= 0
+   [findTheDifference] L=55 :i=1 ans= 98
+   [findTheDifference] L=57 :i=1 ans= 0
+   [findTheDifference] L=55 :i=2 ans= 99
+   [findTheDifference] L=57 :i=2 ans= 0
+   [findTheDifference] L=55 :i=3 ans= 100
+   [findTheDifference] L=57 :i=3 ans= 0
+   [findTheDifference] L=59 :i=4 ans= 101
+   [main] output = e
+   [main] L=91 : Enter
+**/

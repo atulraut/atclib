@@ -65,24 +65,42 @@ void print_table () {
     if (sym == NULL)
       continue;     /* don't print the bucket if it doesn't have anything in it! */
 
-    debug ("symtab[%d] = ", i);
     while (sym != NULL) {
-      debug ("(%s: %d)", sym->name, sym->value);
+      debug ("symtab[%d] = \"%s: %d\"", i, sym->name, sym->value);
       sym = sym->next;
     }
-    debug ("NULL! ");
   }
 }
 
-int main() {
-  for (int i = 0; i < 42; i++) {
+void test () {
+  int i;
+  struct nameval* sym = NULL;
+  debug("Inserting:");
+  for (i = 0; i < 4; i++) {
     char *nameBuf = (char *)malloc(sizeof(char) * 15);
     sprintf(nameBuf, "InputStr %d", i);
-    //    debug ("nameBuf = %s", nameBuf);
-    lookup(nameBuf, 12, 1);
+    debug ("nameBuf = %s", nameBuf);
+    sym = lookup(nameBuf, 12, 1);
+    if (sym == NULL)
+      debug("Failed to Insert - %s", nameBuf);
   }
-
   print_table();
+  debug("Searching:");
+  for (i = 1; i < 5; i++) {
+    char *nameBuf = (char *)malloc(sizeof(char) * 15);
+    sprintf(nameBuf, "InputStr %d", i);
+    debug ("nameBuf = %s", nameBuf);
+    sym = lookup(nameBuf, 12, 0);
+    if(sym)
+      debug ("Found: symtab[%d] = \"%s: %d\"", i, sym->name, sym->value);
+    if (sym == NULL)
+      debug("Failed to Find - %s", nameBuf);
+  }
+  //  print_table();
+}
+
+int main() {
+  test();
 }
 
 /**
@@ -101,4 +119,26 @@ int main() {
    (twice the number of inputs) there were 2 collisions, which was not good.
    So my guess is that input of that sort would be problematic for this algorigthm.
    And, of course, the smaller NHASH is, the bigger a possibility for collisi
+**/
+
+/**
+   => ./a.out
+   [test] L=78 :Inserting:
+   [test] L=82 :nameBuf = InputStr 0
+   [test] L=82 :nameBuf = InputStr 1
+   [test] L=82 :nameBuf = InputStr 2
+   [test] L=82 :nameBuf = InputStr 3
+   [print_table] L=69 :symtab[7] = "InputStr 0: 12"
+   [print_table] L=69 :symtab[8] = "InputStr 1: 12"
+   [print_table] L=69 :symtab[9] = "InputStr 2: 12"
+   [print_table] L=69 :symtab[10] = "InputStr 3: 12"
+   [test] L=88 :Searching:
+   [test] L=92 :nameBuf = InputStr 1
+   [test] L=95 :Found: symtab[1] = "InputStr 1: 12"
+   [test] L=92 :nameBuf = InputStr 2
+   [test] L=95 :Found: symtab[2] = "InputStr 2: 12"
+   [test] L=92 :nameBuf = InputStr 3
+   [test] L=95 :Found: symtab[3] = "InputStr 3: 12"
+   [test] L=92 :nameBuf = InputStr 4
+   [test] L=97 :Failed to Find - InputStr 4
 **/

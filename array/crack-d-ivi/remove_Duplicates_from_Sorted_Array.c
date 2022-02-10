@@ -109,8 +109,11 @@ void test1() {
 int removeDuplicates_II(int* nums, int numsSize) {
   int i=0,j;
   for (j=0;j<numsSize;j++) {
-    if (i<2 || nums[j]>nums[i-2])
+    debug ("i = %d i-2=%d j = %d", i, i-2, j);
+    if (i<2 || nums[j]>nums[i-2]) {
+      debug ("i = %d i-2=%d j = %d nums[%d]=%d nums[%d]=%d", i, i-2, j, i,nums[i], j,nums[j]);
       nums[i++]=nums[j];
+    }
   }
   return i;
 }
@@ -122,6 +125,8 @@ void test2() {
   int sz = sizeof(arr)/sizeof(arr[0]);
   ret = removeDuplicates_II(arr, sz);
   debug ("Ret = %d", ret);
+  for (int i=0; i<sz; ++i)
+    debug ("Out --> arr[%d]=%d", i, arr[i]);
 }
 
 int main() {
@@ -144,6 +149,23 @@ int main() {
 */
 
 /***
-    [test2] L=121 :Remove II
-    [test2] L=124 :Ret = 5
+    [test2] L=124 :Remove II
+    [removeDuplicates_II] L=112 :i = 0 i-2=-2 j = 0
+    [removeDuplicates_II] L=114 :i = 0 i-2=-2 j = 0 nums[0]=1 nums[0]=1
+    [removeDuplicates_II] L=112 :i = 1 i-2=-1 j = 1
+    [removeDuplicates_II] L=114 :i = 1 i-2=-1 j = 1 nums[1]=1 nums[1]=1
+    [removeDuplicates_II] L=112 :i = 2 i-2=0 j = 2
+    [removeDuplicates_II] L=112 :i = 2 i-2=0 j = 3
+    [removeDuplicates_II] L=114 :i = 2 i-2=0 j = 3 nums[2]=1 nums[3]=2
+    [removeDuplicates_II] L=112 :i = 3 i-2=1 j = 4
+    [removeDuplicates_II] L=114 :i = 3 i-2=1 j = 4 nums[3]=2 nums[4]=2
+    [removeDuplicates_II] L=112 :i = 4 i-2=2 j = 5
+    [removeDuplicates_II] L=114 :i = 4 i-2=2 j = 5 nums[4]=2 nums[5]=3
+    [test2] L=127 :Ret = 5
+    [test2] L=129 :Out --> arr[0]=1
+    [test2] L=129 :Out --> arr[1]=1
+    [test2] L=129 :Out --> arr[2]=2
+    [test2] L=129 :Out --> arr[3]=2
+    [test2] L=129 :Out --> arr[4]=3
+    [test2] L=129 :Out --> arr[5]=3
 */

@@ -14,11 +14,16 @@
  * Group [Bar(11), Bar(8), Bar(4)]
  * Takeaway :
  * @size: The size of the buffer, including the trailing null space
+ *
  * https://stackoverflow.com/questions/2674312/how-to-append-strings-using-sprintf
  * https://elixir.bootlin.com/linux/latest/source/lib/vsprintf.c#L2746
+ *
  * Date : 1-2 April 2021,
  * San Diago, CA
  * Author - Rauji(Atul) Raut.
+ *
+ *  gcc -g -o main -Wall -Wextra -pedantic -Wwrite-strings -fsanitize=address masimo-record.c -lm
+ *
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -212,7 +217,7 @@ struct record** m_makeRecord(struct record *rt, int sz, int *col) {
 }
 
 void test_record() {
-  int col;
+  int col, i;
   int sz = 8;
   /* Input : Foo(10), Bar(11), Kun(12), Foo(1), Bar(8), Foo(2), Bar(4), Foo(14) */
   struct record rt[sz];
@@ -228,7 +233,7 @@ void test_record() {
   struct record** result = m_makeRecord(rt, sz, &col);
 
   debug ("Enter");
-  for (int i=0; i<col; i++) {
+  for (i=0; i<col; i++) {
     struct record* sym = result[i];
     while (sym != NULL) {
       printf ("i=[%d] %s %d cnt = %d\t",i, sym->name, sym->value, sym->count);
@@ -236,11 +241,17 @@ void test_record() {
     }
     printf("\n");
   }
+  /* Free Records */
+  for (i=0; i < NHASH; i++) {
+    struct record* sym = systab[i];
+    if (NULL != sym)
+      free(sym);
+  }
+  free (result);
 }
 
 int main () {
   test_record();
-  m_print_table();
 }
 
 /**

@@ -30,6 +30,7 @@ static int get_input() {
 void m_TestFunc(void *ptr_dummy) {
   int i;
   int arr[] = {11,12,13,14,15,11, 27, 13, 11};
+  int arr2[] = {11,12,33,34,15,11, 27, 13, 11};
   int sz = sizeof(arr) / sizeof(arr[0]);
 
   /* Hold Big Number for Hashing if big input given else array size is Okay */
@@ -42,7 +43,7 @@ void m_TestFunc(void *ptr_dummy) {
   /* Lets validate the hashing */
   printf ("[%s] --> Search Eelement \n", __func__);
   for (i=0; i<sz; i++) {
-    printf ("[%s] --> Element Found = %d \n", __func__, m_lookup(t, arr[i]));
+    printf ("[%s] --> Element Found = %d \n", __func__, m_lookup(t, arr2[i]));
   }
 }
 

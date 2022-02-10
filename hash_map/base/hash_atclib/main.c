@@ -56,7 +56,7 @@ int main () {
   char cmd[20];
   struct table *t_dummy = NULL;
 
-  printf ("Welcome to simple LinkList 2.0 \n");
+  printf ("Welcome to simple Hashing Code 1.0 \n");
   printf ("===================================\n");
   print_all_functions();
   printf ("===================================\n");

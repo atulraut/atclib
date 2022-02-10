@@ -93,24 +93,57 @@ int m_lookup (struct table *t, int key) {
 }
 
 /***
+    => ./main
+    Welcome to simple LinkList 2.0
+    ===================================
+    --> Press key 0 for Print Functions
+    --> Press key 1 for Test Hasing in C
+    --> Press key 7 for Show
+    --> Press key q for Quit
+    ===================================
+    Enter a command
+    1
+    Calling command: Test Hasing in C
     [m_TestFunc] --> sz=9
-    m_insert 2. key = 11 val = 11
-    m_insert 2. key = 12 val = 12
-    m_insert 2. key = 13 val = 13
-    m_insert 2. key = 14 val = 14
-    m_insert 2. key = 15 val = 15
-    m_insert 0. key = 11 val = 11
-    m_insert 2. key = 27 val = 27
-    m_insert 0. key = 13 val = 13
-    m_insert 0. key = 11 val = 11
+    [m_insert] L=46 :list is NULL!
+    [m_insert] L=78 :key = 11 val = 11
+
+    [m_insert] L=46 :list is NULL!
+    [m_insert] L=78 :key = 12 val = 12
+
+    [m_insert] L=46 :list is NULL!
+    [m_insert] L=78 :key = 13 val = 13
+
+    [m_insert] L=46 :list is NULL!
+    [m_insert] L=78 :key = 14 val = 14
+
+    [m_insert] L=46 :list is NULL!
+    [m_insert] L=78 :key = 15 val = 15
+
+    [m_insert] L=48 :list - 0x1d6d8a0
+    [m_insert] L=62 :key = 11 val = 11
+
+    [m_insert] L=46 :list is NULL!
+    [m_insert] L=78 :key = 27 val = 27
+
+    [m_insert] L=48 :list - 0x1d6d8e0
+    [m_insert] L=62 :key = 13 val = 13
+
+    [m_insert] L=48 :list - 0x1d6d8a0
+    [m_insert] L=62 :key = 11 val = 11
+
     [m_TestFunc] --> Search Eelement
     [m_TestFunc] --> Element Found = 11
     [m_TestFunc] --> Element Found = 12
-    [m_TestFunc] --> Element Found = 13
-    [m_TestFunc] --> Element Found = 14
+    [m_TestFunc] --> Element Found = -1
+    [m_TestFunc] --> Element Found = -1
     [m_TestFunc] --> Element Found = 15
     [m_TestFunc] --> Element Found = 11
     [m_TestFunc] --> Element Found = 27
     [m_TestFunc] --> Element Found = 13
     [m_TestFunc] --> Element Found = 11
+    Enter a command
+    q
+    Calling command: Quit
+    Good Bye!
 */
