@@ -40,6 +40,68 @@
   https://leetcode.com/problems/subarray-sum-equals-k/solution/
   https://www.youtube.com/watch?v=HbbYPQc-Oo4
 */
+int SIZE;
+typedef struct hashTable {
+  int sum;
+  int count;
+} HashTable;
+
+int getIndex(int sum){
+  return (sum % SIZE + SIZE) % SIZE;
+}
+
+void addHash(HashTable** hash, int sum) {
+  int i = getIndex(sum);
+  while(hash[i] != NULL) {
+    if(hash[i]->sum == sum) {
+      hash[i]->count++;
+      return;
+    }
+    i = getIndex(i + 1);
+  }
+  HashTable* newHash = malloc(sizeof(HashTable));
+  newHash->sum = sum;
+  newHash->count = 1;
+  hash[i] = newHash;
+}
+
+int findHash(HashTable** hash, int sum) {
+  int i = getIndex(sum);
+  while(hash[i] != NULL) {
+    if(hash[i]->sum == sum)
+      return hash[i]->count;
+    i = getIndex(i + 1);
+  }
+  return 0;
+}
+
+int subarraySum(int* nums, int numsSize, int k) {
+  SIZE = numsSize * 2;
+  HashTable** hash = calloc(SIZE, sizeof(HashTable*));
+  int sum = 0;
+  int count = 0;
+
+  for(int i = 0; i < numsSize; i++) {
+    addHash(hash, sum);
+    sum += nums[i];
+    count += findHash(hash, sum - k);
+  }
+  free(hash);
+  return count;
+}
+
+int subarraySum22(int* nums, int numsSize, int k) {
+  int count = 0;
+  for (int start = 0; start < numsSize; start++) {
+    int sum=0;
+    for (int end = start; end < numsSize; end++) {
+      sum+=nums[end];
+      if (sum == k)
+	count++;
+    }
+  }
+  return count;
+}
 
 struct node {
   int key;
@@ -112,7 +174,7 @@ int lookup(struct table *t, int key) {
   return -1;
 }
 
-int subarraySum(int* nums, int numsSize, int k) {
+int subarraySum__(int* nums, int numsSize, int k) {
 
   struct table *t = createTable(numsSize);
   int sum=0,count=0,n;
@@ -135,9 +197,10 @@ int subarraySum(int* nums, int numsSize, int k) {
 
 int main() {
   //    int arr[] = {10, 2, -2, -20, 10};
-
-  int arr[] = {1, 2, 3, 4};
-  int key = 5;
+  // int arr[] = {1, 2, 3, 4};
+  int arr[] = {1, -1, 0};
+  //  int key = 5;
+  int key = 0;
   int cnt = subarraySum(arr, 5, key);
   printf("Occurances of subarray of val=%d is = %d \n",key, cnt);
 
@@ -223,4 +286,9 @@ int main() {
 
     After the complete array has been traversed, the countcountcount
     gives the required result.
+*/
+
+/***
+    => ./a.out
+    Occurances of subarray of val=0 is = 3
 */
