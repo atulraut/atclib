@@ -1,6 +1,7 @@
 /***
      LeetCode : Combination Sum
 
+     https://leetcode.com/problems/combination-sum
      https://leetcode.com/explore/featured/card/october-leetcoding-challenge/559/week-1-october-1st-october-7th/3481/
      Given an array of distinct integers candidates and a target integer target, return a list of
      all unique combinations of candidates where the chosen numbers sum to target. You may return
@@ -34,6 +35,8 @@
      All elements of candidates are distinct.
      1 <= target <= 500
      Logic : https://www.youtube.com/watch?v=7IQHYbmuoVU
+     2020-11-21 09:27:15 -0800
+     San Diego, CA
 */
 
 #include "../../at_lib.h"

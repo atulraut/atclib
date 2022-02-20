@@ -47,9 +47,19 @@
     you only have 3.
     Therefore, you can't travel around the circuit once no matter
     where you start.
+    Date: Fri Sep 25 11:50:40 2020 -0700
+    San Diego, CA
 */
-
-#include "../../at_lib.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <limits.h>
+#include <string.h>  /* malloc */
+#include <stdbool.h>
+#include <math.h>
+#include <assert.h>
+#include <stdint.h> /* uint32_t */
+#include <unistd.h> /* sleep */
 
 int canCompleteCircuit(int* gas, int gasSize, int* cost, int costSize){
         int total_surplus = 0;

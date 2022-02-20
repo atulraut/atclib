@@ -21,8 +21,10 @@
     1 <= nums.length <= 3 * 104
     -3 * 104 <= nums[i] <= 3 * 104
     Each element in the array appears twice except for one element which appears only once.
+    Tue Feb 23 13:49:11 2021 -0800
 
     https://leetcode.com/problems/single-number/
+    San Diego, CA
 */
 
 #include <stdio.h>
@@ -39,9 +41,13 @@
 
 
 // 4 ms
-int singleNumber(int* nums, int numsSize){
-  while (--numsSize)
+int singleNumber(int* nums, int numsSize) {
+   debug("*nums=%d", *nums);
+  while (--numsSize) {
+    debug("*nums=%d nums[numsSize]=%d", *nums, nums[numsSize]);
     *nums ^= nums[numsSize];
+    debug("*nums=%d", *nums);
+  }
   return *nums;
 }
 
@@ -55,7 +61,8 @@ int singleNumber2(int* nums, int numsSize){
 }
 
 int main () {
-  int nums[] = {4, 1, 2, 1, 2};
+  int nums2[] = {4, 1, 2, 1, 2};
+  int nums[] = {2, 1,1};
   int numsSize = sizeof(nums) / sizeof(nums[0]);
 
   int op =  singleNumber(nums, numsSize);
@@ -78,3 +85,10 @@ int main () {
    a ⊕ b ⊕ a = (a ⊕ a) ⊕ b = 0 ⊕ b = b
    So we can XOR all bits together to find the unique number
 **/
+
+/**
+  Complexity Analysis
+  Time complexity : O(n). We only iterate throughnums,
+  so the time complexity is the number of elements in \text{nums}nums.
+  Space complexity : O(1).
+*/
