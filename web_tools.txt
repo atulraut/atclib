@@ -5,3 +5,7 @@ https://www.geogebra.org/notes
 
 Screen Recording App :
 https://scre.io/https://scre.io/
+
+JPEG TO PDF Converter Locally
+Install : sudo apt-get install imagemagick
+convert atul.jpeg atul.pdf
