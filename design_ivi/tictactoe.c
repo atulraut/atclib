@@ -226,3 +226,40 @@ int main (int argc, char **argv) {
    [test] L=208 :Output = 0
    [test] L=210 :Output = 1
 **/
+
+
+/**
+   Algorithm:
+
+   1] For a given n, initialize a 2-dimensional array board of
+   size n * n with the values of all elements set to 0.
+
+   2] Every move, mark the row and col on the board with the current
+   player's id player.
+
+   3] Now, we will check the following conditions to see if the
+   current player has won.
+
+     a] Check if all of the cells for the given row are marked by the
+        current player. To do so, we must iterate over all the columns
+         ranging from index 0 to n - 1, keeping the row index constant.
+
+     b] Check if all of the positions for the given col are marked by
+        the current player. To do so, we must iterate over all the rows
+        ranging from index 0 to n - 1, keeping the col index constant.
+
+     c] Check if the main diagonal is completely marked by the current player.
+
+     d] From the above intuition, we know that for each cell on the
+        main diagonal, the row and col indices are equal. Thus, every
+        cell on the diagonal can be given by board[row][row].
+
+     e] Check if the anti-diagonal is completely marked by the current player.
+
+     f] From the above intuition for each cell in the anti-diagonal,
+        the value of the col index is equal to n - row - 1. Thus, every
+        cell in the anti-diagonal could be given by board[row][n - row - 1].
+
+   4] If the current player wins the game, then return player.
+   Otherwise, return 0 indicating that no one has won the game.
+**/
