@@ -13,6 +13,28 @@ Date :2011-09-30 21:10:25 +0530 	d72e1a22388f 	initial commit
 About :
     You will find C program from basics to very advanced.`
 
+-------------------------------------------------------------------------------
+Total program available to study:
+atul@Raigad:~/dev/c/to_push/atclib
+=> cloc *.c *
+     893 text files.
+     871 unique files.
+      80 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=7.21 s (112.6 files/s, 12013.6 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+C                              728          12160          23296          45419
+C++                             21            137            154           2144
+Bourne Shell                     1              0            128           1437
+C/C++ Header                    39            266            218           1083
+make                            23             42              2            129
+-------------------------------------------------------------------------------
+SUM:                           812          12605          23798          50212
+-------------------------------------------------------------------------------
+
+
 Build Macros and functions
     - croot: 	change directory to the top of the tree
     - m: 	execute 'make' from the top of the tree (even if your current directory is somewhere else)
