@@ -224,14 +224,16 @@ int main (int argc, char **argv) {
   struct node* head = NULL;
 
   push(&head, 1);
-  push(&head, 1);
+  //  push(&head, 1);
   push(&head, 2);
+  push(&head, 3);
+  push(&head, 3);
   push(&head, 4);
   push(&head, 4);
-  push(&head, 4);
-  push(&head, 4);
-  push(&head, 2);
-  push(&head, 2);
+  //  push(&head, 4);
+  push(&head, 5);
+  //  push(&head, 2);
+  //push(&head, 2);
 
   debug("Given linked list\n");
   printList(head);

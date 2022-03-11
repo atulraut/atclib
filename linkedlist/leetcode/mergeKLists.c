@@ -73,15 +73,17 @@ struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2) {
   } else if (l2 == NULL) {
     return l1;
   } else if (l1->val < l2->val) {
+    debug ("l1-val=%d l2-val=%d l1 = %pK l2=%pK", l1->val, l2->val, l1, l2);
     l1->next = mergeTwoLists(l1->next, l2);
     return l1;
   } else {
+    debug ("l1-val=%d l2-val=%d l1 = %pK l2=%pK", l1->val, l2->val, l1, l2);
     l2->next = mergeTwoLists(l1, l2->next);
     return l2;
   }
 }
 
-struct ListNode* mergeKLists(struct ListNode** lists, int listsSize){
+struct ListNode* mergeKLists(struct ListNode** lists, int listsSize) {
   if (listsSize == 0) {
     return NULL;
   }
