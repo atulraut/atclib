@@ -41,6 +41,11 @@ struct ll_func function_table[] = {
     .name = "Copy List with Random Pointer",
   },
   {
+    .compute = test,
+    .key = '4',
+    .name = "Test Copy List with Randon Ptr"
+  },
+  {
     .compute = m_Display,
     .key = '7',
     .name = "Show"

@@ -59,11 +59,11 @@ struct ListNode {
 /**
    Algorithm:
    The algorithm is quite straightforward :
-   Find the old tail and connect it with the
+   1] Find the old tail and connect it with the
    head old_tail.next = head to close the ring.
    Compute the length of the list n at the same time.
 
-   Find the new tail, which is (n - k % n - 1)th
+   2] Find the new tail, which is (n - k % n - 1)th
    node from the head and the new head, which is (n - k % n)th node.
 
    Break the ring new_tail.next = None and return new_head.
@@ -79,20 +79,22 @@ struct ListNode* rotateRight(struct ListNode* head, int k) {
     lastNode = lastNode->next;
     n++;
   }
-
+  debug ("n = %d", n);
   k = k%n;
+  debug ("k = %d", k);
   if (k == 0)
     return head;
   k = n - k;
+  debug ("k = %d", k);
 
-  lastNode->next = head;
+  lastNode->next = head; // A1 Ring complete
   struct ListNode *newHead = head;
 
-  for (int i = 0; i < k - 1; i++)
+  for (int i=0; i<k-1; i++)
     newHead = newHead->next;
 
-  head = newHead->next;
-  newHead->next = NULL;
+  head = newHead->next; // new head is 4 now
+  newHead->next = NULL; // NULL after element 3
 
   return head;
 }
@@ -148,6 +150,9 @@ int main (int argc, char **argv) {
    [printList] L=98 :4
    [printList] L=98 :5
    [test] L=119 :Sort LinkedList!
+   [rotateRight] L=82 :n = 5
+   [rotateRight] L=84 :k = 2
+   [rotateRight] L=88 :k = 3
    [printList] L=98 :4
    [printList] L=98 :5
    [printList] L=98 :1

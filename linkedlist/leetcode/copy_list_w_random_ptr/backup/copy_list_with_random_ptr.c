@@ -80,7 +80,7 @@ void m_set_random_ptr (void *ptr) {
   struct node *temp = head;
   if(head == NULL) {
     printf ("Call Once m_Addfirst !\n");
-    return head;
+    return;
   }
 
   struct node *old;
@@ -94,12 +94,20 @@ void m_set_random_ptr (void *ptr) {
   temp->random = NULL;
  }
 
+/**
+   Algo:
+   I]  Crate new linkedlist copy of original linked list, set ramond ptr to NULL.
+   II] Point Orignal linked list next pointer to Copied/clone linked list next ptr
+   III] Point Copied/Clone linked list random ptr to Original linked list ramond ptr.
+   IV] Now do this step wrt Clone linked : clone->r = clone->r->r->next this step
+       takes care of copy ramdon pointer of clone linkedlist.
+**/
 //struct node* m_copyRandomList(void* ptr) {
 void m_copyRandomList(void* ptr) {
   head = (struct node*)(ptr);
   struct node* nn, *p;
   if(head == NULL)
-    return head;
+    return;
 
   /***
    * Traverse entire list and make copies of each node, and make each
@@ -113,6 +121,7 @@ void m_copyRandomList(void* ptr) {
   }
 
   /***
+   * A & B:
    * Traverse entire list again. If there is an original node whose random
    * pointer has value, set its copy node which is in the next field to be
    * its random pointer’s next field, which is
@@ -127,6 +136,8 @@ void m_copyRandomList(void* ptr) {
   }
 
   /***
+   * C: 2nd Page :
+   * Dis-assembled Org & New linked list.
    * Traverse entire list last time and use strategy for solving #328 to reattach
    * link between odd and even position.
    */
@@ -142,10 +153,42 @@ void m_copyRandomList(void* ptr) {
     temp = nn;
     nn->next = NULL;
   }
-
+  return dummy.next;
   printf( "[%s] Done Deep Copy! %d \n", __func__, __LINE__);
   m_Display(dummy.next);
   //  return dummy.next;
+}
+
+void push(struct node** head_ref, int val) {
+  struct node* nn = (struct node*)malloc(sizeof(struct node));
+  nn->random = NULL;
+  nn->val = val;
+  nn->next = (*head_ref);
+  (*head_ref) = nn;
+}
+
+void printList(struct node* head) {
+  struct node* trav = head;
+  while (trav != NULL) {
+    debug("val = %d   trav = %pK trav->next = %pK trav->random = %pK", trav->val, trav, trav->next, trav->random);
+    trav = trav->next;
+  }
+}
+
+void test(void *ptr) {
+  struct node* head = NULL;
+  push(&head, 5);
+  push(&head, 4);
+  push(&head, 3);
+  push(&head, 2);
+  push(&head, 1);
+  m_set_random_ptr(head);
+  debug("Given linked list\n");
+  printList(head);
+
+  debug("Sort LinkedList!");
+  m_copyRandomList(head);// copyRandomList(head);
+  printList(head);
 }
 
 void m_Display(void *ptr){
