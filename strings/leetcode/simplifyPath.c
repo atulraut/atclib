@@ -81,7 +81,7 @@ struct node {
   struct node *next;
 };
 
-char* simplifyPath(char * path) {
+char* simplifyPath(char* path) {
   char *newpath = malloc(sizeof(char) * 3001);
   int len = strlen(path);
   struct node *stack = NULL;
@@ -119,7 +119,6 @@ char* simplifyPath(char * path) {
 	  curr->next = stack;
 	  stack = curr;
 	}
-
 	curr = NULL;
 	n = 0;
       }
@@ -130,10 +129,9 @@ char* simplifyPath(char * path) {
 	curr->prev = NULL;
 	curr->next = NULL;
       }
-
       n++;
     }
-  }
+  } // For Loop Ends
   curr = tail;
 
   if (!curr) {
