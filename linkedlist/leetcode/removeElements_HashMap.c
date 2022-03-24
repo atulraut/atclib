@@ -239,8 +239,8 @@ int main (int argc, char **argv) {
   printList(head);
 
   debug("Remove Duplicates from LinkedList!");
-  //  head = test1(head);
-  head = test2(head);
+  head = test1(head);
+  //head = test2(head);
   printList(head);
 
   return 0;

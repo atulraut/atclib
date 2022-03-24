@@ -58,8 +58,10 @@ struct hashmap {
   int key;
   int val;
   int size;
-  struct hashmap **buf;
+  //  struct hashmap **buf;
 };
+
+struct hashmap* systab[NASH];
 
 enum hash_ops_type {
   HASH_SEARCH = 1,
@@ -68,8 +70,8 @@ enum hash_ops_type {
 
 struct hashmap* m_init(struct hashmap* obj, int size) {
   memset((void *)obj, 0, sizeof(struct hashmap));
-  obj->buf = (struct hashmap *)malloc(sizeof(struct hashmap) * size);
-  memset(obj, 0, sizeof(struct hashmap));
+  // obj->buf = (struct hashmap *)malloc(sizeof(struct hashmap) * size);
+  // memset(obj, 0, sizeof(struct hashmap));
   obj->size = size;
   return obj;
 }
@@ -82,14 +84,15 @@ struct hashmap* lookup(struct hashmap* obj, int val, int isCreate) {
   struct hashmap* thisObj =  NULL;
   int key = (obj, val);
   // first lookup
-  thisObj = obj->buf[key];
-  if (NULL != thisObj) {
-    thisObj->val += 1;
-  } else {
+  thisObj = systab[key];
+  if (NULL == thisObj) {
     thisObj = (struct hashmap*)malloc(sizeof(struct hashmap));
     thisObj->key = key;
     thisObj->val = 1;
-    obj->buf[key] = thisObj;
+    systab[key] = thisObj;
+  } else {
+    thisObj = systab[key];
+    thisObj->val += 1;
   }
   return thisObj;
 }
@@ -109,10 +112,10 @@ int* topKFrequent(int* nums, int numsSize, int k, int* returnSize) {
   int *result = NULL;
   struct hashmap obj;
   /* 1. Build HashMap: "Element --> its Frequency " */
-  struct hashmap* thisObj = m_init(obj, numsSize);
+  struct hashmap* thisObj = m_init(&obj, numsSize);
   for (int i=0; i<numsSize; ++i) {
     thisObj = lookup(thisObj, nums[i], 0);
-    debug("val = %d Freq :thisObj = %d", nums[i], thisObj->val);
+   debug("val = %d Freq :thisObj = %d", nums[i], thisObj->val);
   }
   /* 2. Build Heap of K most frequest elements */
 
