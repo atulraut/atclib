@@ -3,6 +3,9 @@
     Min Heap implementation in c
     https://www.youtube.com/results?search_query=heap++techdose
     https://www.youtube.com/watch?v=qQkfUKer3LU
+
+    Date: 2021-01-20 12:44:06 -0800
+    San Diego, CA
 */
 #include<stdio.h>
 #include<stdlib.h>
@@ -121,7 +124,7 @@ int main() {
     return -1;
   }
 
-  for(i = 1; i<7; i++)
+  for(i = 1; i<=7; i++)
       m_insert(heap, i);
   /* m_insert(heap, 100);
   m_insert(heap, 10);
