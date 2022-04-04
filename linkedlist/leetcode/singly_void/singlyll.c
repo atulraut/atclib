@@ -233,6 +233,7 @@ void m_DelNode(void *_list, struct list_node *_node) {
 //struct ListNode *middleNode(struct ListNode *head) {
 void m_Middlenode(void *ptr) {
   struct list *ll = (struct list *)ptr;
+  struct list_node *head = (struct list_node*)ll->head;
   if (head->next == NULL) {
     return head;
   }
@@ -465,6 +466,7 @@ void m_Display(void *ptr){
 }
 
 void quit(void *_ptr) {
+  m_Freelist(_ptr);
   printf ("Good Bye! \n");
   exit(0);
 }
