@@ -39,7 +39,7 @@
 /***
     0ms:
 */
-int minimumTotal1(int** triangle, int triangleSize, int* triangleColSize) {
+int minimumTotal(int** triangle, int triangleSize, int* triangleColSize) {
   int* dp = malloc(sizeof(int) * triangleSize);
   int i = 0;
   int j = 0;
@@ -58,17 +58,20 @@ int minimumTotal1(int** triangle, int triangleSize, int* triangleColSize) {
 /***
     8ms:
  */
-int minimumTotal(int** triangle, int triangleSize, int* triangleColSize) {
+int minimumTotal1(int** triangle, int triangleSize, int* triangleColSize) {
   debug ("triangleSize = %d", triangleSize);
 
   for (int i = 1; i < triangleSize; ++i) {
+    debug ("Reached!");
     triangle[i][0] += triangle[i - 1][0];
+    debug ("Reached!");
     triangle[i][i] += triangle[i - 1][i - 1];
+    debug ("Reached!");
     for (int j = 1; j < i; ++j) {
       triangle[i][j] += min(triangle[i - 1][j - 1], triangle[i - 1][j]);
     }
   }
-
+  debug ("Reached!");
   int minimum = triangle[triangleSize - 1][0];
   for (int i = 0; i < triangleSize; ++i) {
     minimum = min(minimum, triangle[triangleSize - 1][i]);
@@ -76,18 +79,48 @@ int minimumTotal(int** triangle, int triangleSize, int* triangleColSize) {
   return minimum;
 }
 
+int** create_matrix(int rows, int cols) {
+  int** max = (int**)calloc(sizeof(int *), rows);
+  for (int i=0; i<rows; ++i) {
+    max[i] = (int*)calloc(sizeof(int),  cols);
+  }
+  return max;
+}
+
 int main() {
-  int triangle[][4] = {
-    {2},
-    {3,4},
-    {6,5,7},
-    {4,1,8,3},
+  static int triangle[][4] = {
+    {2, 0, 0, 0},
+    {3, 4, 0, 0},
+    {6, 5, 7, 0},
+    {4, 1, 8, 3},
   };
 
   int row = sizeof(triangle) / sizeof(triangle[0]);
   int col = sizeof(triangle[0]) / sizeof(triangle[0][0]);
   int triangleSize = sizeof(triangle) / sizeof(triangle[0]);
   int triangleColSize;
+
+  int **grid = create_matrix(row, col);
+  *(*(grid + 0) + 0) = 2;
+  *(*(grid + 0) + 1) = 0;
+  *(*(grid + 0) + 2) = 0;
+  *(*(grid + 0) + 3) = 0;
+
+  *(*(grid + 1) + 0) = 3;
+  *(*(grid + 1) + 1) = 4;
+  *(*(grid + 1) + 2) = 0;
+  *(*(grid + 1) + 3) = 0;
+
+  *(*(grid + 2) + 0) = 6;
+  *(*(grid + 2) + 1) = 7;
+  *(*(grid + 2) + 2) = 5;
+  *(*(grid + 2) + 3) = 0;
+
+  *(*(grid + 3) + 0) = 4;
+  *(*(grid + 3) + 1) = 1;
+  *(*(grid + 3) + 2) = 8;
+  *(*(grid + 3) + 3) = 3;
+
   debug ("TriangleSize = %d", triangleSize);
   debug("row = %d, col = %d", row, col);
 
