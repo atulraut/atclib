@@ -68,8 +68,7 @@ Follow steps :
 3] raigad access token found below.
 Token for this repo :
 Username - You Knew It
-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2137
-
+Token: rauji.raut@gmial.com->drive->GIT
 
 Details : https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token
 -----------------------------------------------------------------------------------
