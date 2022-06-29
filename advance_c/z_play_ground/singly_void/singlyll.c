@@ -183,6 +183,38 @@ void m_RevlistKthNode(void *ptr) {
   printf ("Reverse the kth Node! k = %d cnt =%d \n", k, cnt);
 }
 
+//void (*visit) (struct list *ll);
+//void m_traverseR(struct list *l, void (*visit)(struct list *ll));
+
+void m_traverseR(struct list_node *this_head, void (*visit)(struct list_node *this_head)) {
+  debug ("Enter");
+  if (this_head == NULL)
+    return;
+  m_traverseR(this_head->next, visit);
+  (*visit)(this_head);
+}
+
+void m_traverseL(struct list_node *this_head, void (*visit)(struct list_node *this_head)) {
+  debug ("Enter");
+  if (this_head == NULL)
+    return;
+  (*visit)(this_head);
+  m_traverseL(this_head->next, visit);
+}
+
+void visit (struct list_node *this_head) {
+  printf ("\n----------:: Output ::-----------\n");
+  struct list_node *temp = this_head;
+  printf ("->[%d]", temp->data);
+  printf ("\n----------:: End ::-----------\n");
+}
+
+void m_traverse(void *ptr) {
+  struct list *ll = (struct list*)ptr;
+  //  m_traverseR(ll->head, visit);
+  m_traverseL(ll->head, visit);
+}
+
 /*
 void m_RevRec(NODE **head_ref) {
   NODE *first;
