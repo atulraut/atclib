@@ -38,9 +38,12 @@
 unsigned long long fib(int n, unsigned long long *memo) {
   if (memo[n])
     return memo[n];
+
   if (n <= 2)
     return 1;
+
   memo[n] = fib(n-1, memo) + fib(n-2, memo);
+  return memo[n];
 }
 
 /**
@@ -52,6 +55,17 @@ unsigned long long int fib_50(unsigned n) {
   if (n <= 2)
     return 1;
   return fib_50(n-1) + fib_50(n-2);
+}
+
+
+int fib_leetcode(int n) {
+  if (n == 0)
+    return 0;
+
+  if(n == 1 || n == 2)
+    return 1;
+
+  return fib_leetcode(n-1) + fib_leetcode(n-2);
 }
 
 void test() {
@@ -69,9 +83,15 @@ void test2() {
   debug("Output = %llu ", ret);
 }
 
+void test3() {
+  int ret = fib_leetcode(2);
+  debug("Output = %d ", ret);
+}
+
 int main (int argc, char **argv) {
   //  test();
   test2();
+  test3();
   return 0;
 }
 
