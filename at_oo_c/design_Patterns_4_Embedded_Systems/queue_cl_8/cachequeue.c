@@ -86,13 +86,16 @@ void CachedQueue_insertFunction(struct CachedQueue* const me, int k) {
  *    (if there is not data to remove then return sentinel value)
  */
 int CachedQueue_removeFunction(struct CachedQueue* const me) {
-  if (!me->outputQueue->isEmpty(me->outputQueue))
+  if (!me->outputQueue->isEmpty(me->outputQueue)) {
     return me->outputQueue->remove(me->outputQueue);
-  else if(me->numberElementsOnDisk > 0) {
-    me->load(me);
+  } else if(me->numberElementsOnDisk > 0) {
+    debug ("Enter:");
+             me->load(me);
+             return me->baseQueue->remove(me->baseQueue);
+  } else {
+    debug ("HERE!");
     return me->baseQueue->remove(me->baseQueue);
-  } else
-    return me->baseQueue->remove(me->baseQueue);
+  }
 }
 
 /***
@@ -108,12 +111,26 @@ int CachedQueue_removeFunction(struct CachedQueue* const me) {
  * end While
  */
 void CachedQueue_flush(struct CachedQueue* const me) {
+  int val = 0;
+  char str[5] = {'\0'};
+  FILE* fw = fopen ("CachedInDiskCopy.txt", "a+");
   // wite file I/O statements here ..
+  if (!me->outputQueue->isEmpty(me->outputQueue)) {
+    val = me->outputQueue->remove(me->outputQueue);
+    debug ("val = %d",val);
+  } else {
+    val =  me->baseQueue->remove(me->baseQueue);
+    sprintf(str, "%d", val);
+    debug ("HERE! val = %d str = %s", val, str);
+    fputs(str, fw);
+    fputs("\n", fw);
+  }
+  fclose (fw);
 }
 
 /***
  * Operation load:
- * Precondidtion: this is called only when outputQueueis Empty
+ * Precondidtion: this is called only when outputQueue is Empty
  * and fileName is valid
  * load Algo:
  * while (!outputQueue->isFull() && (nuumberElementsOndisk > 0))
