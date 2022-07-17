@@ -1,0 +1,6 @@
+Doubly linked lists Explain :
+
+https://www.halolinux.us/kernel-reference/doubly-linked-lists.html
+https://learning.oreilly.com/library/view/linux-device-drivers/0596000081/ch10s05.html
+https://stackoverflow.com/questions/10262017/difference-between-list-head-init-and-init-list-head
+

@@ -20,6 +20,7 @@
 #include <assert.h>
 #include <stdint.h> /* uint32_t */
 #include <unistd.h> /* sleep */
+#include <time.h>
 
 /*----------------------------------- Micro --------------------------------------*/
 #define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
@@ -35,12 +36,62 @@
     _a < _b ? _a : _b; })
 /*----------------------------------- Micro --------------------------------------*/
 
-#define N 10
-int id[N];
+static int _localtime_() {
+  time_t rawtime;
+  struct tm * timeinfo;
+
+  time ( &rawtime );
+  timeinfo = localtime ( &rawtime );
+  debug ( "Current local time and date: %s", asctime (timeinfo) );
+
+  return 0;
+}
+
+void quit() {
+  debug ("Exiting Bbye!");
+  exit(0);
+}
+
+void display() {
+
+}
+
+void test6() {
+
+}
+
+void test5() {
+
+}
+
+void test4() {
+
+}
+
+
+/***
+ * Excercises 2.2
+ */
+void test3() {
+  long int N = 123456789;
+  int i, j, k, count = 0;
+  debug("Enter - ");
+  _localtime_();
+  //  for (i=0; i<N; ++i)
+    for (j=0; j<N; ++j)
+      for (k=0; k<N; ++k)
+	++count;
+  debug ("--> %d", count);
+  _localtime_();
+}
+
 /**
     Progam 1.3
     Weighted version fo Quick Union
 */
+#define N 10
+int id[N];
+
 void test2() {
   int ret = 0;
   int i=0, j=0, p=0, q=0, t=0;
@@ -91,14 +142,14 @@ void test() {
 }
 
 void QuickFindU() {
-  id[N] = {0, 1, 2, 3, 8, 0, 5, 7 ,3, 8};
+  //  id[N] = {0, 1, 2, 3, 8, 0, 5, 7 ,3, 8};
 }
 
 int connected (int p, int q) {
   return (id[p] == id[q]);
 }
 
-void union (int p, int q) {
+void union2 (int p, int q) {
   int pid = id[p];
   int qid = id[q];
 
@@ -108,9 +159,86 @@ void union (int p, int q) {
       id[i] = qid;
 }
 
+struct func_compute {
+  char key;
+  char* name;
+  void (*compute) ();
+};
+
+struct func_compute comp[] = {
+  {
+    .key = '1',
+    .name= "test-1",
+    .compute = test
+  },
+  {
+    .key = '2',
+    .name= "test-2",
+    .compute = test2
+  },
+  {
+    .key = '3',
+    .name= "test-3",
+    .compute = test3
+  },
+  {
+    .key = '4',
+    .name= "test-4",
+    .compute = test4
+  },
+  {
+    .key = '5',
+    .name= "test-5",
+    .compute = test5
+  },
+  {
+    .key = '6',
+    .name= "test-6",
+    .compute = test6
+  },
+  {
+    .key = '7',
+    .name= "Display",
+    .compute = display
+  },
+  {
+    .key = '9',
+    .name= "Quit",
+    .compute = quit
+  }
+};
+
+#define NB_FUNCS (sizeof(comp)/sizeof(struct func_compute))
+
+void printf_all_functions() {
+  debug ("Enter!\n");
+  for(int i=0; i<NB_FUNCS; i++)
+    printf ("--> Press key %c for %s \n", comp[i].key, comp[i].name);
+}
+
 int main (int argc, char **argv) {
-  test();
-  return 0;
+  int i = 0;
+  char cmd[20];
+  printf ("Avaiable Routines = %ld\n", NB_FUNCS);
+  printf ("Welcome to Simple Unix Buffer Cache Using C! \n");
+  printf ("===================================");
+  printf_all_functions();
+  printf ("===================================\n");
+  while(1) {
+    debug("Enter an Command!");
+    fgets(cmd, 20, stdin);
+
+    for (i=0; i<NB_FUNCS; ++i) {
+      if (comp[i].key ==  cmd[0]) {
+	debug ("Calling Command: %s ", comp[i].name);
+	comp[i].compute();
+	break;
+      }
+    }
+  }
+  debug ("End!");
+
+  return EXIT_SUCCESS;
 }
 
 /**
