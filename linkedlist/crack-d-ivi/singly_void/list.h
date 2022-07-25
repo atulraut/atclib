@@ -10,7 +10,7 @@ struct list {
   struct list_node *head;
 };
 
-int counter;
+//int counter;
 struct list * m_Init (struct list *);
 void m_Addfirst(void*);
 void m_Addlast(void *);

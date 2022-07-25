@@ -1,8 +1,21 @@
-CC=gcc
-CFLAGS=-Wall
-main: main.o queue.o cachequeue.o
+PROJECT = main
+GCCFLAGS = -lpthread -I./
 
-clean :
-	rm -rf *.o *~ *.swp  main
+SOURCES = $(wildcard *.c)
+OBJECTS = $(SOURCES:.c=.o)
 
+run: $(PROJECT)
+	clear
+	@./$(PROJECT)
 
+$(PROJECT): $(OBJECTS)
+	gcc $(OBJECTS) $(GCCFLAGS) -o $(PROJECT)
+	@rm $(OBJECTS)
+
+%.o: %.c %.h
+	gcc -c $< $(GCCFLAGS)
+
+.PHONY: clean
+
+clean:
+	@rm $(PROJECT)
