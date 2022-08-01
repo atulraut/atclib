@@ -7,11 +7,18 @@
 #include <stdlib.h>
 #include <string.h>
 
+/***
+ * Algorithm : The Bubble Sort
+ * for i:= 1 to n-1
+ *     for j:= 1 to n-1
+ *         if aj > aj+1 then interchange(swap) aj and aj+1
+ * {a1,.....,an is in increasing order}
+ */
 void bubble_sort (int arr[], int sz) {
   int i = 0, j = 0;
   int temp = 0;
   int flag = 0; // if sorted array dont do computing.
-  
+
   for (i=0; i<sz-1; i++) {
     flag = 0;
     for (j=0; j<sz-1; j++) {
