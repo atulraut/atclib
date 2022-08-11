@@ -3,6 +3,7 @@
 
     #algoinc
 
+    gcc -pthread -o algo algoinc1.1.c -lm
     gcc -g -o main -Wall -Wextra -pedantic -Wwrite-strings -fsanitize=address *.c -lm
 
     Date: Fri Jul  1 09:36:33 AM PDT 2022
@@ -64,8 +65,25 @@ void test5() {
 
 }
 
-void test4() {
+typedef int Number;
+/* Program 3.2 Types of Numbers */
+Number randNum() {
+  return rand();
+}
 
+void numTypes1() {
+  char str[] = "123";
+  int i, N = atoi(str);
+  float m1 = 0.0;
+  float m2 = 0.0;
+  Number x;
+  for (int i=0; i<N; ++i) {
+    x = randNum();
+    m1 += ((float) x ) / N;
+    m2 += ((float) x * x ) / N;
+  }
+  debug ("      Average: %f", m1);
+  debug ("Std deviation: %f", sqrt(m2-m1*m1));
 }
 
 
@@ -183,8 +201,8 @@ struct func_compute comp[] = {
   },
   {
     .key = '4',
-    .name= "test-4",
-    .compute = test4
+    .name= "numTypes1",
+    .compute = numTypes1
   },
   {
     .key = '5',

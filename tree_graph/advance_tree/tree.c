@@ -3,9 +3,9 @@
 #include <string.h>
 
 struct node {
-	int data;
-	struct node *left;
-	struct node *right;
+  int data;
+  struct node *left;
+  struct node *right;
 };
 
 struct node* m_Init (struct node *ll){
@@ -103,17 +103,17 @@ void m_Postorder(void *ptr) {
 // Function to Insert Node in a Binary Search Tree
 struct node* m_Insert(void *ptr, int data) {
   struct node* root = (struct node*)ptr;
-re
-  if(root == NULL) {
-    root = (struct node *)malloc(sizeof(struct node));
-    root->data = data;
-    root->left = root->right = NULL;
-    printf("[%s] ->[%d]\n", __func__, root->data);
-  }
-  else if(data <= root->data)
-    root->left = m_Insert(root->left,data);
-  else
-    root->right = m_Insert(root->right,data);
+  re
+    if(root == NULL) {
+      root = (struct node *)malloc(sizeof(struct node));
+      root->data = data;
+      root->left = root->right = NULL;
+      printf("[%s] ->[%d]\n", __func__, root->data);
+    }
+    else if(data <= root->data)
+      root->left = m_Insert(root->left,data);
+    else
+      root->right = m_Insert(root->right,data);
   return root;
 }
 
