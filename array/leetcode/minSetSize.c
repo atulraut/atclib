@@ -3,24 +3,22 @@
 
     Reduce Array Size to The Half
 
-    You are given an integer array arr. You can choose a set of
-    integers and remove all the occurrences of these integers in the array.
-    Return the minimum size of the set so that at least half
-    of the integers of the array are removed.
+    You are given an integer array arr. You can choose a
+    set of integers and remove all the occurrences of these
+    integers in the array.
+
+    Return the minimum size of the set so that at least
+    half of the integers of the array are removed.
 
     Input: arr = [3,3,3,3,5,5,5,2,2,7]
     Output: 2
-    Explanation: Choosing {3,7} will make the new array [5,5,5,2,2]
-    which has size 5 (i.e equal to half of the size of the old array).
+    Explanation: Choosing {3,7} will make the new array [5,5,5,2,2] which has size 5 (i.e equal to half of the size of the old array).
     Possible sets of size 2 are {3,5},{3,2},{5,2}.
-    Choosing set {2,7} is not possible as it will make the new
-    array [3,3,3,3,5,5,5] which has a size greater than half of the
-    size of the old array.
+    Choosing set {2,7} is not possible as it will make the new array [3,3,3,3,5,5,5] which has a size greater than half of the size of the old array.
 
     Input: arr = [7,7,7,7,7,7]
     Output: 1
-    Explanation: The only possible set you can choose is {7}. This
-    will make the new array empty.
+    Explanation: The only possible set you can choose is {7}. This will make the new array empty.
 
     Constraints:
     2 <= arr.length <= 105
@@ -58,32 +56,20 @@
     __typeof__ (b) _b = (b);			\
     _a < _b ? _a : _b; })
 /*----------------------------------- Micro --------------------------------------*/
-
-struct am {
-  int i;
-  uint16_t o;
-};
+struct am { int i; uint16_t o; };
 
 int cmp(const void *x, const void *y) {
-  return ((const struct am *)y)->o - ((const struct am *)x)->o;
+    return ((const struct am *)y)->o - ((const struct am *)x)->o;
 }
 
 int minSetSize(int* arr, int arrSize) {
-  int i, sz = arrSize, n = 100001;
-  struct am *mPtr = calloc(1, sizeof(struct am[n]));
-
-  for (int i=0 ; i<sz ; mPtr[arr[i]].i = arr[i], mPtr[arr[i++]].o++)
-    ;
-
-  qsort(mPtr, n, sizeof(struct am), cmp);
-
-  for (int c=i = 0 ; i<n / 2 && sz - c>sz/2 ; c += mPtr[i++].o)
-    ;
-
-  free(mPtr);
-  return i;i;
+    int i, sz = arrSize, n = 100001;
+    struct am *m = calloc(1, sizeof(struct am[n]));
+    for (int i = 0 ; i < sz ; m[arr[i]].i = arr[i], m[arr[i++]].o++);
+    qsort(m, n, sizeof(struct am), cmp);
+    for (int c = i = 0 ; i < n / 2 && sz - c > sz / 2 ; c += m[i++].o);
+    return free(m), i;
 }
-
 void test() {
   int ret = 0;
   int arr[] = {3,3,3,3,5,5,5,2,2,7};

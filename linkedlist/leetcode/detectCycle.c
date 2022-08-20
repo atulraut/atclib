@@ -89,6 +89,7 @@ struct ListNode *detectCycle(struct ListNode *head) {
   }
   debug ("is_loop = %d", is_loop);
   if(!is_loop) {
+    debug ("Returning NULL!");
     return NULL;
   } else {
     slow = head;
@@ -96,6 +97,7 @@ struct ListNode *detectCycle(struct ListNode *head) {
       slow = slow->next;
       fast = fast->next;
     }
+    debug ("slow->%pK", slow);
     return slow;
   }
 }
