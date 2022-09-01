@@ -11,12 +11,22 @@
 
 #include <stdio.h>
 
+void show_mem_rep(char *start, int n) {
+  int i;
+  for (i = 0; i < n; i++)
+    printf(" %.2x", start[i]);
+  printf("\n");
+}
+
 int main() {
-  unsigned int i = 1;
+  unsigned int i = 0x01234567;
   char *c = (char*)&i;
   if (*c)
-    printf ("Little endian \n");
+    printf ("Little endian = %c \n", *c);
   else
     printf("Big endian \n");
+
+  show_mem_rep(c, sizeof(i));
+  //  show_mem_rep((char *)&i, sizeof(i));
   return 0;
 }

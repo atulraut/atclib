@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../../at_lib.h"
+
+#define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
 
 int detect_sign() {
   int x = -1;
@@ -14,12 +15,21 @@ int detect_sign() {
   return ret;
 }
 
-int main() {
-
+void test () {
   if(detect_sign())
     debug ("Signs are opposite's! \n");
   else
     debug ("Same Sign! \n");
+}
+
+void test1() {
+  debug ("ret = %d", ((-1^1)));
+  debug ("ret = %d", ((-1^1) < 0));
+}
+
+int main() {
+  test();
+  test1();
   return 0;
 }
 

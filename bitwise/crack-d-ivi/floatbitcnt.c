@@ -4,7 +4,7 @@
 
     Date: 27 Sept 2021
     Fair Oaks, CA.
- */
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -32,6 +32,7 @@ unsigned int countSetBitsChar(char n) {
 unsigned int countSetBitsFloat(float x) {
   // Count number of chars (or bytes) in binary representation of float
   unsigned int n = sizeof(float)/sizeof(char);
+  debug ("n = %d floatSZ = %ld", n, sizeof(float));
 
   // typecast address of x to a char pointer
   char *ptr = (char *)&x;
@@ -46,7 +47,7 @@ unsigned int countSetBitsFloat(float x) {
 
 int main() {
   float x1 = 0.15625;
-  float x = 0.234;
+  float x = 23.234;
 
   debug ("Binary representation of %f has %u set bits ", x,
 	 countSetBitsFloat(x));
