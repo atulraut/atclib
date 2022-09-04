@@ -27,6 +27,6 @@ int main() {
     printf("Big endian \n");
 
   show_mem_rep(c, sizeof(i));
-  //  show_mem_rep((char *)&i, sizeof(i));
+  show_mem_rep((char *)&i, sizeof(i));
   return 0;
 }
