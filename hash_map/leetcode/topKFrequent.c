@@ -61,6 +61,7 @@ struct hashmap {
   //  struct hashmap **buf;
 };
 
+#define NASH 10
 struct hashmap* systab[NASH];
 
 enum hash_ops_type {
