@@ -1,0 +1,16 @@
+Math :
+
+1] Floor and Ceil Function
+Ref: https://www.geeksforgeeks.org/difference-between-the-floor-and-ceil-function/
+
+A] Ceil Function
+Ceil means ceiling of our home. So, we can pick out some similarities from here.
+That is ceil function returns an integer that is just greater than a certain
+rational value.
+e.g. For example, ceil value of 3.138 is 4.
+
+B] Floor function
+Floor means the floor of our home. So, we can pick out some similarities from here.
+That is floor function returns an integer that is just lesser than a
+certain rational value.
+For example, ceil value of 3.883 is 3.
