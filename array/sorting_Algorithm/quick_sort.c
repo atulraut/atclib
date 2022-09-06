@@ -3,6 +3,7 @@
 */
 
 #include <stdio.h>
+#define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
 
 void swap(int *i, int *j) {
   int temp = *i;
@@ -11,9 +12,10 @@ void swap(int *i, int *j) {
 }
 
 int partition(int *a, int start, int end) {
+  int i=0;
   int pivot = a[end];
   int partitionIndex = start; // set partition index as start initially
-  for (int i=start; i<end; i++) {
+  for (i=start; i<end; i++) {
     if (a[i] <= pivot) {
       swap(&a[i], &a[partitionIndex]);
       partitionIndex++;
