@@ -6,3 +6,6 @@ The order may be LIFO(Last In First Out) or FILO(First In Last Out).
 
 Ref :
 https://leetcode.com/explore/learn/card/queue-stack/230/usage-stack/1369/
+
+Dijkstra's Two-stack Algorithm :
+https://algs4.cs.princeton.edu/lectures/demo/13DemoDijkstraTwoStack.mov
