@@ -1,3 +1,15 @@
+/**
+   Advanced stack implementation
+   We can create number of stack using same code & track each stack
+   indepedently.
+   To get new stack call - m_init_s
+   whatever stack we want to work on(push/pop ops) we can called.
+
+   Author : Atul Raut
+   Date : Sun Sep 22 22:59:28 2019 -0700
+   Place: San Diego, CA
+
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

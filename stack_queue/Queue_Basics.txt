@@ -6,7 +6,7 @@ Q --> IR++ RF++
 	Insert --> Tail++ | Rear++  {Key:: ITR}
 	Remove --> Head++ | Front++
 
-Insert --> if (read == MAX-1) --> Overflow
+Insert --> if (rear == MAX-1) --> Overflow
 Remove --> if (front > rear)  --> Underflow
 
 
@@ -20,5 +20,6 @@ Remove --> if (front > rear)  --> Underflow
 
 
 Ref:
+Diagram : http://www.studytonight.com/data-structures/queue-data-structure
 http://www.studytonight.com/data-structures/queue-data-structure
 https://leetcode.com/explore/learn/card/queue-stack/228/first-in-first-out-data-structure/1396/

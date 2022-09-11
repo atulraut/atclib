@@ -11,10 +11,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct Node{
+typedef struct Node {
   int data;
   struct Node *next;
-}Node;
+} Node;
 
 typedef struct {
   Node *front;//From the front when decreasing
@@ -23,53 +23,60 @@ typedef struct {
   int count;
 } MyCircularQueue;
 
-/** Initialize your data structure here. Set the size of the queue to be k. */
-
+/**
+    Initialize your data structure here. Set the size of the queue to be k.
+*/
 MyCircularQueue* myCircularQueueCreate(int k) {
-  MyCircularQueue *obj=(MyCircularQueue*)malloc(sizeof(MyCircularQueue));
-  obj->rear=NULL;
-  obj->front=NULL;
-  obj->size=k;
-  obj->count=0;
+  MyCircularQueue *obj = (MyCircularQueue*)malloc(sizeof(MyCircularQueue));
+  obj->rear = NULL;
+  obj->front = NULL;
+  obj->size = k;
+  obj->count = 0;
   return obj;
 }
 
-/** Checks whether the circular queue is empty or not. */
+/**
+    Checks whether the circular queue is empty or not.
+*/
 int myCircularQueueIsEmpty(MyCircularQueue* obj) {
-  if(obj->count==0)
+  if(obj->count == 0)
     return 1;
   else
     return -1;
 }
 
-/** Checks whether the circular queue is full or not. */
-int myCircularQueueIsFull1(MyCircularQueue* obj) {
-  if(obj->size==obj->count)
+/**
+    Checks whether the circular queue is full or not.
+*/
+int myCircularQueueIsFull(MyCircularQueue* obj) {
+  if(obj->size == obj->count)
     return 1;
   else
     return -1;
 }
 
-/** Insert an element into the circular queue. Return true if the operation is successful. */
+/**
+    Insert an element into the circular queue.
+    Return true if the operation is successful.
+*/
 int myCircularQueueEnQueue(MyCircularQueue* obj, int value) {
-  if(obj -> size == obj -> count){
+  if(obj -> size == obj -> count) {
     return -1;
-  } else{
-    if(obj->front == NULL){
+  } else {
+    if(obj->front == NULL) {
       Node *en = (Node*)malloc(sizeof(Node));//define en
-      en -> next = NULL;
-      en -> data = value;
-      obj -> front = en;//There is only one node en
-      obj->rear = en; //rear and front at the same time
+      en->next = NULL;
+      en->data = value;
+      obj->front = en;//There is only one node en
+      obj->rear  = en; //rear and front at the same time
       (obj->count)++;//Each additional node increases a count
       //obj -> front = obj -> front -> next;
-    }
-    else{
+    } else {
       Node *en = (Node*)malloc(sizeof(Node));//define en
-      en -> next = NULL;
-      en -> data = value;
-      obj -> rear->next = en;//The last one is en
-      obj -> rear = obj -> rear -> next;
+      en->next = NULL;
+      en->data = value;
+      obj->rear->next = en;//The last one is en
+      obj->rear = obj->rear->next;
       //obj->rear->next;//Move the rear of obj to the next of rear, which is the last one
       (obj->count)++;//Each additional node increases a count
     }
@@ -77,21 +84,22 @@ int myCircularQueueEnQueue(MyCircularQueue* obj, int value) {
   return 1;
 }
 
-/** Delete an element from the circular queue. Return true if the operation is successful. */
+/**
+    Delete an element from the circular queue. Return true
+    if the operation is successful.
+*/
 int myCircularQueueDeQueue(MyCircularQueue* obj) {
-  if (obj -> count == 0){//When obj is empty
+  if (obj -> count == 0) {//When obj is empty
     return -1;
-  }
-  else{
-    if(obj -> count == 1){//When there is only one obj
+  } else {
+    if(obj -> count == 1) {//When there is only one obj
       Node *temp = (Node*)malloc(sizeof(Node));//Create a temp ready to free
       temp = obj->front;//temp is set to the front of obj
       free(temp);//free off temp
       obj->front = NULL;
       obj->rear = NULL;
       (obj->count)--;//Every reduction of a node will reduce a count
-    }
-    else{
+    } else {
       Node *temp = NULL;
       temp = obj -> front;//Turn temp into the front of obj
       obj -> front = obj -> front -> next;//Turn the original first into temp
@@ -104,7 +112,7 @@ int myCircularQueueDeQueue(MyCircularQueue* obj) {
 
 /** Get the front item from the queue. */
 int myCircularQueueFront(MyCircularQueue* obj) {
-  if(obj->front==NULL){
+  if(obj->front == NULL){
     return -1;
   } else
     return obj->front->data;
@@ -112,7 +120,7 @@ int myCircularQueueFront(MyCircularQueue* obj) {
 
 /** Get the last item from the queue. */
 int myCircularQueueRear(MyCircularQueue* obj) {
-  if(obj->rear==NULL){
+  if(obj->rear == NULL){
     return -1;
   }
   else return obj->rear->data;

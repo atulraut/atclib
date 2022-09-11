@@ -19,7 +19,7 @@ int push(int val) {
   struct stack *nn = NULL;
 
   nn = (struct stack *)malloc(sizeof(struct stack));
-  if (NULL ==nn)
+  if (NULL == nn)
     return -1;
   nn->data = val;
   nn->next = this_stack;

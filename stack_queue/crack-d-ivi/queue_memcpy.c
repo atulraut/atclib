@@ -1,10 +1,37 @@
-/*
+/**
  * Aim : Queue
  * Date : Saturday, Oct 22 2016
  * San Diego, CA
  * By : Atul R. Raut
  * Q->[FIFO] : First In First Out
  * rear -> front = -1
+
+ Queue Basics :
+
+ Q->[FIFO] : First In First Out
+
+ Q --> IR++ RF++
+	Insert --> Tail++ | Rear++  {Key:: ITR}
+	Remove --> Head++ | Front++
+
+	Insert --> if (rear == MAX-1) --> Overflow
+	Remove --> if (front > rear)  --> Underflow
+
+      [Remove]
+       Head
+	-------------------------------------------------
+	|    2	|   3	|   5	|   6	|   7	|   8	|
+	-------------------------------------------------
+	0	1	2	3	4	5
+							Tail[Insert]
+ */
+/**
+   memcpy: https://man7.org/linux/man-pages/man3/memcpy.3.html
+   void *memcpy(void *restrict dest, const void *restrict src, size_t n);
+   DESCRIPTION
+       The memcpy() function copies n bytes from memory area src to
+       memory area dest.  The memory areas must not overlap.  Use
+       memmove(3) if the memory areas do overlap.
  */
 
 #include <stdio.h>

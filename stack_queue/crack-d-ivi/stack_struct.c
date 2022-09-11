@@ -24,8 +24,8 @@ int isEmpty(void *_ptr);
 stack *m_init(void  *_ptr, int sz) {
   stack *s = (stack *)_ptr;
   if(NULL == s) {
-	printf ("memset needs valid pointer \n");
-	exit(1);
+    printf ("memset needs valid pointer \n");
+    exit(1);
   }
   memset((void *)s, 0, sizeof(stack));
   s->top = -1;
@@ -35,6 +35,7 @@ stack *m_init(void  *_ptr, int sz) {
   else
     return s;
 }
+
 int push(void *_ptr, int val) {
   stack *s = (stack *)_ptr;
   if (s->top == STACK_SZ-1)

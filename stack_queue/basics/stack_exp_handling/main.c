@@ -11,17 +11,17 @@ typedef struct stack {
 } STACK;
 
 void push(STACK *p, int val) {
-  if(p->top==MAX-1) 	{
+  if(p->top == MAX-1) 	{
     printf("\nStack is full");
   } else {
     p->top++;
-    p->arr[p->top]=val;
+    p->arr[p->top] = val;
   }
 }
 
 int pop(STACK *p) {
-  int val=0;
-  if(p->top==-1) {
+  int val = 0;
+  if(p->top == -1) {
     longjmp(buf, 1);
   } else {
     val = p->arr[p->top];
@@ -35,14 +35,14 @@ int topele(STACK *p) {
 }
 
 int isEmpty(STACK *p) {
-  if(p->top==-1)
+  if(p->top == -1)
     return 1;
   else
     return 0;
 }
 
 int isFull(STACK *p) {
-  if(p->top==MAX-1)
+  if(p->top == MAX-1)
     return 1;
   else
     return 0;
@@ -61,7 +61,7 @@ void main() {
   push(&s, 20);
   printf("\nValue inserted = 20\n");
 
-  if(setjmp(buf)==0) {
+  if(setjmp(buf) == 0) {
     val = pop(&s);
     printf("\nValue Removed = %d\n", val);
     val = pop(&s);
