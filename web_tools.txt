@@ -1,6 +1,9 @@
 Web Based Tools :
 
 White board Notes/Pix Making app:
+https://excalidraw.com/
+https://app.diagrams.net/
+https://explaineverything.com
 https://www.geogebra.org/notes
 
 Screen Recording App :

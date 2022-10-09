@@ -81,7 +81,6 @@ struct node* findPrev(struct node* n) {
 // 30, 25, 23, 21, 17, 12, 11, 9, 7, 6, 4, 2
 void printReverse(struct node* r) {
   // Your code here
-  printf ("\n");
   if (!r)
     return;
   // findMax => 30 ->print,
@@ -93,7 +92,6 @@ void printReverse(struct node* r) {
     printf ("->%d", curr->value);
     curr = findPrev(curr);
   }
-  printf ("\n");
 }
 
 void test() {
