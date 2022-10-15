@@ -16,7 +16,7 @@ current combination as arguments backtrack(first, curr).
 
 2] Iterate over the integers from first to n.
 
-	2.1] Add integer i into the current combination curr.	
+	2.1] Add integer i into the current combination curr.
 	2.2] Proceed to add more integers into the combination : backtrack(i + 1, curr).
 	2.3] Backtrack by removing i from curr.
 
