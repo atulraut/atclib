@@ -22,10 +22,10 @@ void m_insert (void *_root, int val) {
   nn = create_node (val);
   nn->data = val;
   printf ("ATUL trav=%p, val=[%d] \n", nn, val);
-  if (NULL == rt) {
-    rt = nn;
-    rt->left = NULL;
-    rt->right= NULL;
+  if (NULL == root) {
+    root = nn;
+    root->left = NULL;
+    root->right= NULL;
   } else {
     parent_trav = NULL;
     trav = rt;
