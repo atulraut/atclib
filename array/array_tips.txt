@@ -89,6 +89,12 @@ int **grid = create_matrix(rows, cols);
   *(*(grid + 2) + 1) = 1;
   *(*(grid + 2) + 2) = 1;
 
+Getting Row & Column 2D array :
+int row = sizeof(grid) / sizeof(grid[0]);
+int column = sizeof(grid[0])/row;
+
+printf("Number of rows: %d\n", row);
+printf("Number of columns: %d\n", column);
 void freeMatrix(int **matrix ,int row) {
     for(int i=0;i<row;i++)
         free(matrix[i]);
