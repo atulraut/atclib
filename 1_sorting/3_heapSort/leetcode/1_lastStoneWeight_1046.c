@@ -88,7 +88,7 @@ void max_heapify(max_heap* thisHeap, int root_index, int sz) {
     Insert Element: In a complete binary tree insert Elements
     at last level from left to right.
     Algo:
-    1] Insert Node at end of heap (Left to Right)
+    1] Insert Node at end of heap (Left to Right), increase heap Size.
     2] Percolate up till -
     a] Parent > Current Node             - Other cond in while loop
     b] Current Node is root of the tree. - i != 0 (condtion)
