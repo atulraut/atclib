@@ -1,8 +1,8 @@
 /*
   WAP : Sort Array By Parity.
-        Given an array A of non-negative integers, return an array
-	consisting of all the even elements of A, followed by all
-	the odd elements of A.
+  Given an array A of non-negative integers, return an array
+  consisting of all the even elements of A, followed by all
+  the odd elements of A.
 */
 
 #include <stdio.h>
@@ -11,17 +11,17 @@
 
 int* sortArrayByParity(int* A, const int ASize, int* returnSize) {
   int *newArr = (int*)malloc(ASize * sizeof(int));
-    int beg = 0, end = ASize-1;
-    *returnSize = ASize;
+  int beg = 0, end = ASize-1;
+  *returnSize = ASize;
 
-    for (int i = 0; i < ASize; i++) {
-        if (A[i] % 2 == 0)
-            newArr[beg++] = A[i];
-        else
-            newArr[end--] = A[i];
-    }
+  for (int i = 0; i < ASize; i++) {
+    if (A[i] % 2 == 0)
+      newArr[beg++] = A[i];
+    else
+      newArr[end--] = A[i];
+  }
 
-    return newArr;
+  return newArr;
 }
 
 /* Not good one */
