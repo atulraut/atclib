@@ -1,6 +1,8 @@
-/*
-* atclib Implementation of Queue LinkList.
-*/
+/***
+ * atclib Implementation of Queue LinkList.
+ */
+#define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -29,7 +31,7 @@ struct queue* m_init_Q(void *_ptr) {
   }
 }
 
-int empty (void *_ptr) {
+int is_empty (void *_ptr) {
   struct queue *thisQ = (struct queue *)(_ptr);
   if(thisQ->head == NULL)
     return 1;
@@ -39,13 +41,13 @@ int empty (void *_ptr) {
 
 void enque(void *_ptr, int val) {
   struct queue *thisQ = (struct queue *)(_ptr);
-  
+
   struct qnode *nn = (struct qnode *)malloc(sizeof(struct qnode));
   if(nn == NULL)
     return;
   nn->data = val;
-  
-  if(empty(thisQ)) {
+
+  if(is_empty(thisQ)) {
     nn->next = thisQ->tail;
     thisQ->tail = nn;
     thisQ->head = nn;
@@ -55,24 +57,24 @@ void enque(void *_ptr, int val) {
   }
 }
 
-void deque(void *_ptr) {
+int deque(void *_ptr) {
   int data;
   struct queue *thisQ = (struct queue *)(_ptr);
   struct qnode *temp = NULL;
-  
+
   if(thisQ->head == NULL) {
     printf ("Queue is NULL, returning!");
     return;
   } else {
     temp = (struct qnode*)thisQ->head;
     data = temp->data;
-    printf("::-->[%d]", data);    
     thisQ->head = thisQ->head->next;
     if(thisQ->head == NULL)
       thisQ->tail = NULL;
     free(temp);
     temp = NULL;
   }
+  return data;
 }
 
 int main () {
@@ -84,16 +86,18 @@ int main () {
     return -1;
   printf ("Enter positive integer! \n");
   scanf("%d", &n);
- 
+
   while (n>0) {
     temp.data = n%10;
+    debug ("enque->[%d]", temp.data);
     enque(qptr, temp.data);
     n = n/10;
+    debug ("n = %d", n);
   }
   printf ("Printing Queues in reverse order! \n");
-  while(!empty(qptr)) {
-      deque(qptr);
-      //printf(":::->[%d]", temp.data);
+  while(!is_empty(qptr)) {
+      int data = deque(qptr);
+      printf("->[%d]", data);
   }
   printf ("\n");
   return 0;
