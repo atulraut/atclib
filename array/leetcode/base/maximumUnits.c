@@ -1,7 +1,8 @@
 /***
     https://leetcode.com/problems/maximum-units-on-a-truck/
-    Maximum Units on a Truck
+    1710. Maximum Units on a Truck
 
+    Also covered  : 13_BitWise/4_greedy_algorithms/1_Part_I/5_maximumUnits_LC_1710.c
     You are assigned to put some amount of boxes onto one truck.
     You are given a 2D array boxTypes,
     where boxTypes[i] = [numberOfBoxesi, numberOfUnitsPerBoxi]:
