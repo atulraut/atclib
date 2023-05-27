@@ -1,5 +1,17 @@
 Web Based Tools :
 
+C to Assembly Code Converter:
+https://godbolt.org/
+https://www.ime.usp.br/~pf/algorithms/chapters/queues.html
+https://github.com/EbookFoundation/free-programming-books/blob/main/books/free-programming-books-langs.md#c
+https://www.cs.princeton.edu/~bwk/tpop.webpage/debugging.html
+https://www.cs.princeton.edu/~bwk/tpop.webpage/code.html
+https://dn790002.ca.archive.org/0/items/let-us-c/LET%20US%20C.pdf
+http://littleosbook.github.io/#segmentation
+
+Emacs Tool -
+http://xahlee.info/emacs/emacs/emacs_package_system.html
+
 White board Notes/Pix Making app:
 https://excalidraw.com/
 https://app.diagrams.net/
@@ -12,3 +24,9 @@ https://scre.io/https://scre.io/
 JPEG TO PDF Converter Locally
 Install : sudo apt-get install imagemagick
 convert atul.jpeg atul.pdf
+
+Github - Markdown doc math symbols cheatsheet
+https://kapeli.com/cheat_sheets/LaTeX_Math_Symbols.docset/Contents/Resources/Documents/index
+
+YT :
+https://www.y2mate.com/youtube/sczuSL0CRmM

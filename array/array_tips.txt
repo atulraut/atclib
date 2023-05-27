@@ -188,3 +188,20 @@ Find how many positive numbers are missingbetween two array elements:
 Formula : arr[i + 1] - arr[i] - 1
 |4|7| - 2 numbers missing between 4 & 7, i.e. 5,6
 -----------------------------------------------------------------------
+
+Q] // Array Reszie
+void resize (int* qu, int N) {
+   qu = realloc (qu, N * sizeof (int));
+}
+
+Q] // Queue Resize
+void resize (int* qu, int N) {
+   int *new;
+   new = malloc (N * sizeof (int));
+   for (int i = p; i < r; i++)
+      new[i] = qu[i];
+   free (qu);
+   qu = new;
+}
+
+-----------------------------------------------------------------------

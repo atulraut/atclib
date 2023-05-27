@@ -1,5 +1,7 @@
 /***
-    LeetCode : Edit Distance
+    72 LeetCode : Edit Distance
+
+    https://leetcode.com/problems/edit-distance/
 
     Given two strings word1 and word2, return the minimum number of
     operations required to convert word1 to word2.
@@ -41,9 +43,31 @@
     https://www.youtube.com/watch?v=AuYujVj646Q
     https://www.youtube.com/watch?v=We3YDTzNXEk&t=323s
 */
-
+/*----------------------------------- Header --------------------------------------*/
 #include <stdio.h>
-#include "../../at_lib.h"
+#include <stdlib.h>
+#include <ctype.h>
+#include <limits.h>
+#include <string.h>  /* malloc */
+#include <stdbool.h>
+#include <math.h>
+#include <assert.h>
+#include <stdint.h> /* uint32_t */
+#include <unistd.h> /* sleep */
+
+/*----------------------------------- Micro --------------------------------------*/
+#define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
+#define atsizeof(object) (char *)(&object+1) - (char*)(&object)
+#define arrsz(x)  (sizeof(x) / sizeof((x)[0]))
+#define max(a,b)		\
+  ({ __typeof__ (a) _a = (a);	\
+    __typeof__ (b) _b = (b);	\
+    _a > _b ? _a : _b; })
+#define min(a,b)		\
+  ({ __typeof__ (a) _a = (a);	\
+    __typeof__ (b) _b = (b);	\
+    _a < _b ? _a : _b; })
+/*----------------------------------- Micro --------------------------------------*/
 
 /***
     8MS
