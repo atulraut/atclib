@@ -1,8 +1,8 @@
-/*
-  Packing and unpacking two 32-bit integers into an unsigned 64-bit integer
-  https://stackoverflow.com/questions/3133376/implicit-typecasting-in-c-converting-32-bit-unsigned-in-to-8-bit-u-int
-  https://codereview.stackexchange.com/questions/80386/packing-and-unpacking-two-32-bit-integers-into-an-unsigned-64-bit-integer
-*/
+`/*
+   Packing and unpacking two 32-bit integers into an unsigned 64-bit integer
+   https://stackoverflow.com/questions/3133376/implicit-typecasting-in-c-converting-32-bit-unsigned-in-to-8-bit-u-int
+   https://codereview.stackexchange.com/questions/80386/packing-and-unpacking-two-32-bit-integers-into-an-unsigned-64-bit-integer
+ */
 #include <stdio.h>
 #include <stdint.h> // uint8_t
 #include <stdlib.h>
@@ -57,7 +57,7 @@ void recv(uint32_t lsb, uint32_t msb, uint32_t cm, struct ntb_msg rmsg[], uint32
     m = &msb;
     c = &cm;
   } else
-      return;
+    return;
 
   uint8_t i1[4] = {0};
   uint8_t i2[4] = {0};
@@ -85,7 +85,7 @@ void recv(uint32_t lsb, uint32_t msb, uint32_t cm, struct ntb_msg rmsg[], uint32
   }
 }
 
-int main() {
+void test () {
   uint64_t data = 0xffffffc0f882fcc0;
   uint32_t cm, flag = 0;
 
@@ -183,7 +183,7 @@ int main() {
   cmd = rmsg[2].buf[0];
   wid = rmsg[2].buf[1];
   printf ("[%s]_Recv: ATUL Unpack cid=%d cmd=%d wid=%d L=%d \n", __func__, cm, cmd, wid,__LINE__);
-  /****************************************************PACK*******************************************************/ 
+  /****************************************************PACK*******************************************************/
   flag = 0;
   /* Recieve Message */
   recv(lsb, msb, cmd, rmsg, flag);
@@ -197,5 +197,9 @@ int main() {
   cmd = rmsg[2].buf[0];
   wid = rmsg[2].buf[1];
   printf ("[%s]_Recv: data_back=0x%lx cmd=%d wid=%d L=%d \n\n", __func__, data, cmd, wid, __LINE__);
+}
+
+int main() {
+  test();
 }
 

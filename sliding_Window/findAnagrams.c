@@ -81,14 +81,20 @@ int* findAnagrams(char* s, char* p, int* returnSize) {
 
   ret_array = malloc(sizeof(int) * s_len);
 
+   // build reference array using string p
   for (i = 0; i < p_len; i++)
     p_hash[p[i] - 'a']++;
 
   /* loop through the whole string with a sliding window */
+  // sliding window on the string s
   for (i = 0; i < s_len; i++) {
+    // add one more letter
+    // on the right side of the window
     cnt_hash[s[i] -'a']++;
     debug ("i=%d cnt_hash[%d]=%d", i, (s[i] -'a'), cnt_hash[s[i] -'a']);
 
+    // remove one letter
+    // from the left side of the window
     if (i >= p_len) {
       debug ("i-p_len = %d s[i - p_len]=%d 'a' = %d stat=%d", (i-p_len), s[i - p_len], 'a', (s[i - p_len] - 'a'));
       cnt_hash[s[i - p_len] - 'a']--;

@@ -39,8 +39,8 @@ typedef struct _Q {
 Queue_Desc *Q_Init(void *_ptr, const int QSz, int DatabitSz) {
   Queue_Desc *Q = (Queue_Desc *)_ptr;
   if(NULL == Q) {
-	printf ("memset needs valid pointer \n");
-	exit(1);
+    printf ("memset needs valid pointer \n");
+    exit(1);
   }
   memset((void *)Q, 0, sizeof(Queue_Desc));
   Q->Head = Q->Tail = -1;
@@ -61,7 +61,7 @@ int is_Empty(void *_ptr) {
     printf ("[m_remove] Empty \n");
     return 1;
   } else
-      return -1;
+    return -1;
 }
 
 int is_Full(void *_ptr) {

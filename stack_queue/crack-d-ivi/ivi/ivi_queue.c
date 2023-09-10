@@ -54,7 +54,7 @@ int m_IsEmpty(void *_ptr) {
     return -1;
 }
 
-void m_Insert(void *_ptr, int val) {
+void m_enqueue(void *_ptr, int val) {
   struct q_Desc *q = (struct q_Desc*)_ptr;
   if (q->cnt == q->sz-1)
     q->cnt = 0;
@@ -92,12 +92,12 @@ int main () {
 
   /* Insert Elements */
   for (i=0; i < Q_SIZE; i++) {
-    m_Insert(qptr, i+1);
+    m_enqueue(qptr, i+1);
   }
   m_Display(qptr);
   /* Overflow Test */
-  m_Insert(qptr, i+0);
-  m_Insert(qptr, i+1);
+  m_enqueue(qptr, i+0);
+  m_enqueue(qptr, i+1);
 
   /* Remove Elements */
   for (i=0; i <qptr->cnt; i++) {
@@ -105,11 +105,11 @@ int main () {
   }
   m_Display(qptr);
 
-  m_Insert(qptr, i+2);
-  m_Insert(qptr, i+3);
-  m_Insert(qptr, i+4);
-  m_Insert(qptr, i+5);
-  m_Insert(qptr, i+6);
+  m_enqueue(qptr, i+2);
+  m_enqueue(qptr, i+3);
+  m_enqueue(qptr, i+4);
+  m_enqueue(qptr, i+5);
+  m_enqueue(qptr, i+6);
   m_Display(qptr);
 
   return 0;
