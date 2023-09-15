@@ -36,11 +36,19 @@ int push(void *_ptr, int val) {
   struct stack_type *s = (struct stack_type *)_ptr;
   struct stack_node *nn = (struct stack_node *)malloc(sizeof(struct stack_node));
   if (NULL == nn)
-    return NULL;
+    return -1;
   nn->num = val;
   nn->next = s->top;
   s->top = nn;
   printf ("Added ->%d, addr=%p", nn->num, (s->top));
+}
+
+int empty(void *_ptr) {
+  struct stack_type *st = (struct stack_type*)_ptr;
+  if (st->top == NULL)
+    return 1;
+  else
+    return 0;
 }
 
 int pop (void *_ptr) {
@@ -58,15 +66,7 @@ int pop (void *_ptr) {
   return hold;
 }
 
-int empty(void *_ptr) {
-  struct stack_type *st = (struct stack_type*)_ptr;
-  if (st->top == NULL)
-    return 1;
-  else
-    return 0;
-}
-
-int main () {
+void test () {
   printf("Stack Using Linked List! \n");
   int n;
   struct stack_type *st, s;
@@ -81,6 +81,10 @@ int main () {
   while (!empty(st))
     printf("-->[%d] ", pop(st));
   printf("\n");
+}
+
+int main () {
+  test ();
 }
 
 /**

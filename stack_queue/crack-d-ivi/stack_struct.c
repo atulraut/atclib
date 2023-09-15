@@ -74,7 +74,7 @@ int isEmpty(void *_ptr) {
   }
 }
 
-int main () {
+void test () {
   int a;
   stack *sptr = NULL;
   stack s;
@@ -97,4 +97,7 @@ int main () {
   isEmpty(sptr);
   a = pop(sptr);
   printf("\nThe poped element is %d \n",a);
+}
+int main () {
+  test ();
 }

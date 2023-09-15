@@ -55,7 +55,7 @@ Queue_Desc *Q_Init(void *_ptr, const int QSz, int DatabitSz) {
   }
 }
 
-int is_Empty(void *_ptr) {
+bool is_Empty(void *_ptr) {
   Queue_Desc *q = (Queue_Desc *)_ptr;
   if (q->Head == -1) {
     printf ("[m_remove] Empty \n");

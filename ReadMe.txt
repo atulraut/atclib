@@ -14,26 +14,27 @@ About :
     You will find C program from basics to very advanced.`
 
 -------------------------------------------------------------------------------
-Total program available to study:
-atul@Raigad:~/dev/c/to_push/atclib
-=> cloc *.c *
-     893 text files.
-     871 unique files.
-      80 files ignored.
+Total program available to study: Mon Sep 11 12:12:02 PM PDT 2023
+>> cloc *.c *
+     977 text files.
+     951 unique files.
+     134 files ignored.
 
-http://cloc.sourceforge.net v 1.60  T=7.21 s (112.6 files/s, 12013.6 lines/s)
+github.com/AlDanial/cloc v 1.98  T=0.79 s (1202.7 files/s, 155722.8 lines/s)
 -------------------------------------------------------------------------------
 Language                     files          blank        comment           code
 -------------------------------------------------------------------------------
-C                              728          12160          23296          45419
+C                              789          13479          25672          50457
+SVG                              4              0              0          23258
+C/C++ Header                    47            422            486           2278
 C++                             21            137            154           2144
+Text                            56            331              0           1653
 Bourne Shell                     1              0            128           1437
-C/C++ Header                    39            266            218           1083
-make                            23             42              2            129
+make                            32             55            109            928
+Markdown                         1              4              0              5
 -------------------------------------------------------------------------------
-SUM:                           812          12605          23798          50212
+SUM:                           951          14428          26549          82160
 -------------------------------------------------------------------------------
-
 
 Build Macros and functions
     - croot: 	change directory to the top of the tree

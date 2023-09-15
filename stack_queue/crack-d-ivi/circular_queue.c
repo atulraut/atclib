@@ -8,6 +8,7 @@
  * Insert --> if (rear == MAX-1) --> Overflow
  * Remove --> if (front > rear)  --> Underflow
  * Diagram Ref: http://www.studytonight.com/data-structures/queue-data-structure
+ Date : Sun Sep 10 03:07:04 PM PDT 2023
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -36,8 +37,8 @@
 /*----------------------------------- Micro --------------------------------------*/
 
 struct queue {
-  int front; // head - Remove
-  int rear;  // tail - Insert
+  int head; // front - Remove
+  int tail;  // rear - Insert
   int *buf;
   int qsize;
 };
@@ -49,8 +50,8 @@ struct queue *m_init (void *_ptr, int sz) {
     exit(1);
   }
   memset ((void *)q, 0, sizeof(struct queue));
-  q->front = -1;
-  q->rear  = -1;
+  q->head = -1;
+  q->tail  = -1;
   q->qsize = sz;
 
   if(NULL == (q->buf = (int *)calloc(sz, sizeof(int))))
@@ -61,9 +62,9 @@ struct queue *m_init (void *_ptr, int sz) {
 
 bool is_Empty(void *_ptr) {
   struct queue *q = (struct queue *)_ptr;
-  return (q->front == -1);
+  return (q->head == -1);
 
-  if (q->front == -1) {
+  if (q->head == -1) {
     debug ("[m_remove] Empty");
     return true;
   } else
@@ -72,48 +73,48 @@ bool is_Empty(void *_ptr) {
 
 bool is_Full(void *_ptr) {
   struct queue *q = (struct queue *)_ptr;
-  //  debug ("((q->rear + 1) % q->qsize)=%d q->front=%d ", ((q->rear + 1) % q->qsize), q->front);
-  return ((q->rear + 1) % q->qsize) == q->front;
+  //  debug ("((q->tail + 1) % q->qsize)=%d q->head=%d ", ((q->tail + 1) % q->qsize), q->head);
+  return ((q->tail + 1) % q->qsize) == q->head;
 
-  if (q->rear == q->qsize-1)
+  if (q->tail == q->qsize-1)
     return true;
   else
     return false;
 }
 
-/** Get the front item from the queue. */
-int Front(void *_ptr) {
+/** Get the head item from the queue. */
+int Head(void *_ptr) {
   struct queue *thisQ = (struct queue *)_ptr;
   if (is_Empty(thisQ)) {
     return -1;
   }
-  return thisQ->buf[thisQ->front];
+  return thisQ->buf[thisQ->head];
 }
 
 /** Get the last item from the queue. */
-int Rear(void *_ptr) {
+int Tail(void *_ptr) {
   struct queue *thisQ = (struct queue *)_ptr;
   if (is_Empty(thisQ)) {
     return -1;
   }
-  return thisQ->buf[thisQ->rear];
+  return thisQ->buf[thisQ->tail];
 }
 
 int m_enqueue (void *_ptr, int data) {
   struct queue *q = (struct queue *)_ptr;
   //debug (" is_Full(q) = %d", is_Full(q));
-  if (is_Full(q) && q->front == 0) {
-    debug ("Q is Full, Reseting q->rear=%d q->front=%d Q=%d", q->rear, q->front, data);
-    q->rear = 0;
-  } else if (q->rear == -1 || q->front == -1) {
-    q->rear = q->front = 0;
-  } else if (q->rear == q->qsize-1 && q->front != 0) {
-    q->rear = 0;
+  if (is_Full(q) && q->head == 0) {
+    debug ("Q is Full, Reseting q->tail=%d q->head=%d Q=%d", q->tail, q->head, data);
+    q->tail = 0;
+  } else if (q->tail == -1 || q->head == -1) {
+    q->tail = q->head = 0;
+  } else if (q->tail == q->qsize-1 && q->head != 0) {
+    q->tail = 0;
   } else {
-    q->rear = q->rear+1;
+    q->tail = q->tail+1;
   }
-  debug ("rear=%d, front=%d data=%d", q->rear, q->front, data);
-  q->buf[q->rear] = data;
+  debug ("tail=%d, head=%d data=%d", q->tail, q->head, data);
+  q->buf[q->tail] = data;
 }
 
 int m_dequeue (void *_ptr) {
@@ -124,14 +125,14 @@ int m_dequeue (void *_ptr) {
     val = -1;
     return val;
   }
-  val = q->buf[q->front];
-  if (q->front == q->rear ) {
-    q->front = q->rear = -1;
-  } else if (q->front == q->qsize-1 ) {
-    q->front = 0;
+  val = q->buf[q->head];
+  if (q->head == q->tail ) {
+    q->head = q->tail = -1;
+  } else if (q->head == q->qsize-1 ) {
+    q->head = 0;
   }
   else
-    q->front = q->front+1;
+    q->head = q->head+1;
   debug ("DeQueue = %d", val);
   return val;
 }
@@ -139,8 +140,8 @@ int m_dequeue (void *_ptr) {
 void m_display (void *_ptr) {
   int i;
   struct queue *q = (struct queue *)_ptr;
-  printf ("[m_display] Inside q->front=%d q->rear=%d\n", q->front, q->rear);
-  for (i=q->front; i<=q->rear; i++) {
+  printf ("[m_display] Inside q->head=%d q->tail=%d\n", q->head, q->tail);
+  for (i=q->head; i<=q->tail; i++) {
     printf ("[m_display] = [%d]\n", q->buf[i]);
   }
 }
@@ -169,3 +170,24 @@ void test () {
 int main () {
   test ();
 }
+
+/**
+   >> ./a.out
+   [m_enqueue] L=116 :tail=0, head=0 data=5
+   [m_enqueue] L=116 :tail=1, head=0 data=10
+   [m_enqueue] L=116 :tail=2, head=0 data=15
+   [m_enqueue] L=116 :tail=3, head=0 data=20
+   [m_enqueue] L=116 :tail=4, head=0 data=25
+   [m_dequeue] L=136 :DeQueue = 5
+   [m_enqueue] L=116 :tail=0, head=1 data=30
+   [m_dequeue] L=136 :DeQueue = 10
+   [test] L=166 :->[10]
+   [m_dequeue] L=136 :DeQueue = 15
+   [test] L=166 :->[15]
+   [m_dequeue] L=136 :DeQueue = 20
+   [test] L=166 :->[20]
+   [m_dequeue] L=136 :DeQueue = 25
+   [test] L=166 :->[25]
+   [m_dequeue] L=136 :DeQueue = 30
+   [test] L=166 :->[30]
+*/
