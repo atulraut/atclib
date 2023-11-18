@@ -34,13 +34,13 @@ void quick_sort(int *a, int start, int end) {
 }
 
 int arrayPairSum(int* nums, int numsSize) {
-   quick_sort(nums,0, numsSize-1);
-    int sum = 0;
-    for(int i = 0; i < numsSize; i = i + 2) {
-            printf ("==> i=%d, val=%d \n", i, nums[i]);
-        sum = sum + nums[i];
-    }
-    return sum;
+  quick_sort(nums,0, numsSize-1);
+  int sum = 0;
+  for(int i = 0; i < numsSize; i = i + 2) {
+    printf ("==> i=%d, val=%d \n", i, nums[i]);
+    sum = sum + nums[i];
+  }
+  return sum;
 }
 
 int main() {

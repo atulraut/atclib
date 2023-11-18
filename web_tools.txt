@@ -9,6 +9,8 @@ https://www.cs.princeton.edu/~bwk/tpop.webpage/code.html
 https://dn790002.ca.archive.org/0/items/let-us-c/LET%20US%20C.pdf
 http://littleosbook.github.io/#segmentation
 
+Complex C Declaration - https://cdecl.org/
+
 Emacs Tool -
 http://xahlee.info/emacs/emacs/emacs_package_system.html
 

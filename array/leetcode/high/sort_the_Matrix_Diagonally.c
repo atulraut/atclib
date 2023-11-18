@@ -53,11 +53,12 @@ int cmp(void *a, void *b){
 }
 
 int** diagonalSort(int** mat, int matSize, int* matColSize, int* returnSize, int** returnColumnSizes) {
-  int *dp=malloc(matSize*sizeof(int));
+  int *dp = malloc(matSize*sizeof(int));
   int h=0, x, y;
   *returnColumnSizes=malloc(matSize*sizeof(int));
   debug ("Enter!");
 
+  // row diagonal
   for(int i=0; i<matSize; i++) {
     (*returnColumnSizes)[i] = matColSize[0];
     x=i, y=0, h=0;
@@ -71,6 +72,7 @@ int** diagonalSort(int** mat, int matSize, int* matColSize, int* returnSize, int
       mat[x++][y++]=dp[h++];
   }
 
+  // col diagonal
   for(int i=0; i<matColSize[0]; i++) {
     x=0, y=i, h=0;
     while(x<matSize && y<matColSize[0])
@@ -161,7 +163,7 @@ int main (int argc, char **argv) {
   test();
   return 0;
 }
-q
+
 /**
    => ./a.out
    grid[0][0] = 3 	grid[0][1] = 3 	grid[0][2] = 1 	grid[0][3] = 1

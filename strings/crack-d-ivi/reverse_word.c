@@ -68,31 +68,44 @@ void reverseString(char* start, char* end) {
     }
 }
 
+/**
+   Algo -
+   I - Each word reverse
+   II - Reverse Entire Sentence
+*/
 char* reverseWords_LeetCode(char* s) {
-    char *w = s;
-    char *s_ptr = s;
-    char *w_ptr = s;
-    bool space = true;
-    while ((*w_ptr = *s_ptr++) != 0) {
-        if (*w_ptr != ' ') {
-            space = false;
-            w_ptr++;
-        }
-        else if (!space) {
-            space = true;
-            reverseString(w, w_ptr++);
-            w = w_ptr;
-        }
-    }
-    if (w_ptr == s)
-      return s;
-    if (space)
-      *--w_ptr = 0;
-    else
-      reverseString(w, w_ptr);
+  char *save = s;
+  char *s_ptr = s;
+  char *e_ptr = s;
+  bool space = true;
 
-    reverseString(s, w_ptr);
+  while ((*e_ptr = *s_ptr++) != 0) {
+    if (*e_ptr != ' ') {
+      space = false;
+      e_ptr++;
+    }
+    else if (!space) {
+      space = true;
+      reverseString(save, e_ptr++);
+      debug ("save=%s e_ptr=%s", save, e_ptr);
+      save = e_ptr;
+    }
+  }
+
+  if (e_ptr == s)
     return s;
+  if (space)
+    *--e_ptr = 0;
+  else {
+    debug ("save=%s e_ptr=%s", save, e_ptr);
+    reverseString(save, e_ptr);
+  }
+  debug ("s=%s e_ptr=%s", s, e_ptr);
+
+  // Individual works are reverse now, reverse entire string
+  reverseString(s, e_ptr);
+  debug ("save=%s e_ptr=%s", s, e_ptr);
+  return s;
 }
 
 /* Runtime Error */
@@ -112,7 +125,7 @@ void reverse_word () {
 
   // Reverse the whole sentence first..
   for(end=buf; *end; end++)
-            ;
+    ;
   rev(buf, end-1);
 
   printf("[%s] %s L=%d \n",__func__, buf, __LINE__);
@@ -131,19 +144,34 @@ void reverse_word () {
   printf("[%s] %s L=%d \n",__func__, buf, __LINE__);
 }
 
+void test () {
+  char str1[] = "the sky is blue";
+  char str[] = "Atul Raut";
+  debug("Output = %s", reverseWords_LeetCode(str1));	
+}
+
 int main(int argc, char *argv[]) {
-  reverse_word();
+  test();
   return(0);
 }
 
 /**
-   => ./a.out
-   [rev] l=I r=y L=30
-   [reverse_word] yob doog a ma I L=46
-   [rev] l=y r=b L=30
-   [rev] l=d r=g L=30
-   [rev] l=a r=a L=30
-   [rev] l=m r=a L=30
-   [rev] l=I r=I L=30
-   [reverse_word] boy good a am I L=59
+   >> ./a.out
+   [reverseWords_LeetCode] L=90 :save=eht sky is blue e_ptr=sky is blue
+   [reverseWords_LeetCode] L=90 :save=yks is blue e_ptr=is blue
+   [reverseWords_LeetCode] L=90 :save=si blue e_ptr=blue
+   [reverseWords_LeetCode] L=100 :save=blue e_ptr=
+   [reverseWords_LeetCode] L=103 :s=eht yks si eulb e_ptr=
+   [reverseWords_LeetCode] L=107 :save=blue is sky the e_ptr=
+   [test] L=150 :Output = blue is sky the
+
+   >> ./a.out
+   [rev] l=I r=y L=114
+   [reverse_word] yob doog a ma I L=131
+   [rev] l=y r=b L=114
+   [rev] l=d r=g L=114
+   [rev] l=a r=a L=114
+   [rev] l=m r=a L=114
+   [rev] l=I r=I L=114
+   [reverse_word] boy good a am I L=144
 **/
