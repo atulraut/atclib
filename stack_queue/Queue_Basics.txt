@@ -6,8 +6,8 @@ Q --> IR++ RF++
 	Insert --> Tail++ | Rear++  {Key:: ITR}
 	Remove --> Head++ | Front++
 
-Insert --> if (rear == MAX-1) --> Overflow
-Remove --> if (front > rear)  --> Underflow
+Insert --> if (Tail == MAX-1) --> Overflow
+Remove --> if (Head > Tail)  --> Underflow
 
 
       [Remove]

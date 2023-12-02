@@ -1,116 +1,238 @@
-/*
-	Quick way to implement Circular Queue
-*/
+/**
+ * Aim : Queue Implementation for IVI
+ * Date : Sat Dec  2 08:35:13 AM PST 2023
+ * San Diego, CA
+ * By : Atul R. Raut
+ * Q->[FIFO] : First In First Out
+ * Insert --> Rear++ - Tail++
+ * Remove --> Front++ - Head++
+ * rear -> front = -1
+ Ref: https://www.scaler.com/topics/queue-in-c/
+ */
+/* -------------------------------------- */
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
+#include <stdlib.h>
+#include <stdbool.h>
 
-/*
- * Q --> IR++ RF++
- Insert --> Rear++, Tail
- Remove --> Front++ Head
+#define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
 
- * Insert --> if (read == MAX-1) --> Overflow
- * Remove --> if (front > rear)  --> Underflow
- */
-
-#define Q_SIZE 5
-
-struct q_Desc {
-  int sz;
-  int cnt;
-  int *buf;
+struct queue_desc {
+  int *queue;
+  int size;
+  int head;
+  int tail;
 };
 
-struct q_Desc* m_Init (void *_ptr, int size) {
-  struct q_Desc *q = (struct q_Desc*)_ptr;
+/**
+   Queue Init - Memory Failure NOT Handled
+*/
+struct queue_desc *
+q_Init(struct queue_desc* obj, const int QSz) {
 
-  memset((void *)q, 0, sizeof(struct q_Desc));
+  obj = (struct queue_desc*)malloc(sizeof(struct queue_desc));
+  memset((void *)obj, 0, sizeof(struct queue_desc));
+  //  obj->queue = (int *)malloc(sizeof(int) * QSz);
+  obj->queue = (int *)calloc(QSz, sizeof(int));
+  obj->head = -1;
+  obj->tail = -1;
+  obj->size = QSz;
 
-  if(NULL == (q->buf = (int *)calloc(size, sizeof(int))))
-  if (NULL == q->buf)
-    return NULL;
-
-  q->cnt = -1;
-  q->sz = size;
-
-  return q;
+  return obj;
 }
 
-int m_IsFull(void *_ptr) {
-  struct q_Desc *q = (struct q_Desc*)_ptr;
-  if (q->cnt == q->sz)
-    return 1;
-  else
+/**
+   Print/Return the Element in the head of the queue
+*/
+int
+Peek(struct queue_desc* qPtr) {
+
+  /* If the queue is empty */
+  if (qPtr->head == -1) {
+    debug("The Queue doesn't have any Elements!");
     return -1;
+  } else {
+    /* Printing the element in the head of the queue */
+    debug("Head of queue -> [%d] ", qPtr->queue[qPtr->head]);
+    return qPtr->queue[qPtr->head];
+  }
 }
 
-int m_IsEmpty(void *_ptr) {
-  struct q_Desc *q = (struct q_Desc*)_ptr;
-  if (q->cnt <= 0)
-    return 1;
+/**
+   Check if the queue is empty
+*/
+bool
+isEmpty(struct queue_desc* qPtr) {
+
+  /* If both head and tail are -1 then the queue is empty */
+  if (qPtr->head == -1 && qPtr->tail ==-1)
+    return true;
   else
-    return -1;
+    return false;
 }
 
-void m_enqueue(void *_ptr, int val) {
-  struct q_Desc *q = (struct q_Desc*)_ptr;
-  if (q->cnt == q->sz-1)
-    q->cnt = 0;
-  else if (q->cnt == -1)
-    q->cnt++;
+/**
+   Check if the queue is full
+*/
+bool
+isFull(struct queue_desc* qPtr) {
+
+  /* If the tail variable is equal to (SIZE - 1) then the queue is full */
+  if (qPtr->tail == qPtr->size - 1)
+    return true;
   else
-    q->cnt++;
-  printf ("[%s] cnt=%d val=%d \n", __func__, q->cnt, val);
-  q->buf[q->cnt] = val;
+    return false;
 }
 
-int m_Remove(void *_ptr) {
-  int val = 0;
-  struct q_Desc *q = (struct q_Desc*)_ptr;
-  if (m_IsEmpty(q))
-    return 1;
-  val = q->buf[q->cnt];
-  q->cnt--;
+/**
+   Get the number of items in the queue
+*/
+int
+q_Size(struct queue_desc* qPtr) {
+
+  /* If the queue is empty, return 0 */
+  if(isEmpty(qPtr) == true) {
+    return 0;
+  }
+  /* The number of items in the queue is the difference between head and tail */
+  return (qPtr->tail - qPtr->head + 1);
+}
+
+/**
+   Enqueue or push an element in the queue
+*/
+void
+Enqueue(struct queue_desc* qPtr, int val) {
+
+  /* If the queue is full, return overflow */
+  if (isFull(qPtr) == true) {
+    debug(" Overflow Condition Encountered! ");
+  } else {
+    /* If the queue was initally empty
+       We add the first element in the queue and update head */
+    if (qPtr->head == -1) {
+      qPtr->head = 0;
+    }
+
+    /* We update the tail pointing to the last element of the queue */
+    qPtr->tail++;
+    /* Insert the element in the tail position */
+    qPtr->queue[qPtr->tail] = val;
+    debug("Enque -> [%d] ", val);
+  }
+}
+
+/**
+   Dequeue or pop an element from the queue
+*/
+int Dequeue(struct queue_desc* qPtr) {
+  int val = -1;
+  /* If the queue was empty return underflow condition */
+  if (isEmpty(qPtr) == true) {
+    debug(" Underflow Condition Encountered ");
+  } else {   /* Otherwise we pop the element in the head */
+    /* Print the popped element */
+    val = qPtr->queue[qPtr->head];
+    debug(" Dequeue -> [%d] ", qPtr->queue[qPtr->head]);
+    /* Increase the index of the head */
+    qPtr->head++;
+    /* Resetting the queue when the last item is popped from the Queue */
+    if (qPtr->head > qPtr->tail) {
+      /* Assigning both the head and the tail -1 */
+      qPtr->head = qPtr->tail = -1;
+    }
+  }
   return val;
 }
 
-int m_Display(void *_ptr) {
-  struct q_Desc *q = (struct q_Desc*)_ptr;
-  int i;
-  if (m_IsEmpty(q))
-    return 1;
-  for (i=0; i <= q->cnt; i++)
-    printf ("[%s] i=%d \n", __func__, q->buf[i]);
+/**
+   Print the Queue
+*/
+void Display(struct queue_desc* qPtr) {
+
+  /* Check If Queue is already Empty */
+  if (qPtr->tail == -1) {
+    debug("Queue is empty\n");
+  } else {
+    /* A variable to help in iteration through the queue. */
+    int i;
+    debug ("Printing the Queue : ");
+
+    /* Printing all the elements of the queue */
+    for (i = qPtr->head; i <= qPtr->tail; i++)
+      printf("[%s] Element -> [%d] \n", __func__,qPtr->queue[i]);
+  }
 }
 
-int main () {
-  int i = 0, j = 0;
-  struct q_Desc qe, *qptr;
-  qptr = m_Init(&qe, Q_SIZE);
+void
+test () {
+  struct queue_desc *obj, qPtr;
+  int QSz = 5;
+  obj = q_Init(&qPtr, QSz);
 
-  /* Insert Elements */
-  for (i=0; i < Q_SIZE; i++) {
-    m_enqueue(qptr, i+1);
-  }
-  m_Display(qptr);
-  /* Overflow Test */
-  m_enqueue(qptr, i+0);
-  m_enqueue(qptr, i+1);
+  /* Checking if the queue is empty */
+  if (isEmpty(obj))
+    printf("The queue is empty\n");
 
-  /* Remove Elements */
-  for (i=0; i <qptr->cnt; i++) {
-    m_Remove(qptr);
-  }
-  m_Display(qptr);
+  /* Assigning elements to the queue */
+  Enqueue(obj, 4);
+  Enqueue(obj, 3);
+  Enqueue(obj, 2);
+  Enqueue(obj, 1);
+  //Enqueue(obj, 5);
+  //Enqueue(obj, 6);
 
-  m_enqueue(qptr, i+2);
-  m_enqueue(qptr, i+3);
-  m_enqueue(qptr, i+4);
-  m_enqueue(qptr, i+5);
-  m_enqueue(qptr, i+6);
-  m_Display(qptr);
+  /* Printing the first element of the queue */
+  Peek(obj);
 
+  /* Printing the size of the queue */
+  printf("[Size] Queue size is -> %d\n", q_Size(obj));
+
+  /* Printing the queue */
+  Display(obj);
+
+  /* Popping the elements from the queue */
+  Dequeue(obj);
+  Dequeue(obj);
+  Dequeue(obj);
+  Dequeue(obj);
+  //Dequeue(obj);
+  //Dequeue(obj);
+  Enqueue(obj, 5);
+  /* Printing the size of the queue */
+  printf("[Size] The size of the queue is %d\n", q_Size(obj));
+
+  /* Printing the queue */
+  Display(obj);
+}
+
+int
+main() {
+  test ();
   return 0;
 }
+
+/**
+   >> ./a.out
+   The queue is empty
+   [Enqueue] L=122 :Enque -> [4]
+   [Enqueue] L=122 :Enque -> [3]
+   [Enqueue] L=122 :Enque -> [2]
+   [Enqueue] L=122 :Enque -> [1]
+   [Peek] L=57 :Head of queue -> [4]
+   [Size] Queue size is -> 4
+   [Display] L=160 :Printing the Queue :
+   [Display] Element -> [4]
+   [Display] Element -> [3]
+   [Display] Element -> [2]
+   [Display] Element -> [1]
+   [Dequeue] L=137 : Dequeue -> [4]
+   [Dequeue] L=137 : Dequeue -> [3]
+   [Dequeue] L=137 : Dequeue -> [2]
+   [Dequeue] L=137 : Dequeue -> [1]
+   [Enqueue] L=122 :Enque -> [5]
+   [Size] The size of the queue is 1
+   [Display] L=160 :Printing the Queue :
+   [Display] Element -> [5]
+*/
