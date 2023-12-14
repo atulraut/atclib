@@ -7,9 +7,10 @@
 
     If the town judge exists, then:
 
-    The town judge trusts nobody.
-    Everybody (except for the town judge) trusts the town judge.
-    There is exactly one person that satisfies properties 1 and 2.
+    1. The town judge trusts nobody.
+    2. Everybody (except for the town judge) trusts the town judge.
+    3. There is exactly one person that satisfies properties 1 and 2.
+
     You are given an array trust where trust[i] = [ai, bi]
     representing that the person labeled ai trusts the person labeled bi.
 
@@ -18,12 +19,15 @@
 
     Input: n = 2, trust = [[1,2]]
     Output: 2
+    Explaination - 1 trust 2, but 2 wont trust anybody.
 
     Input: n = 3, trust = [[1,3],[2,3]]
     Output: 3
+    Explaination - 1 strust 3, & 2 trust 3, but 3 wont trust anybody.
 
     Input: n = 3, trust = [[1,3],[2,3],[3,1]]
     Output: -1
+    Explaination - 1 trust 3, 2 trust 3, but 3 trust 1 so no one is judge.
 
     Constraints:
     1 <= n <= 1000
@@ -65,18 +69,28 @@
     _a < _b ? _a : _b; })
 /*----------------------------------- Micro --------------------------------------*/
 
+/**
+   for i=0:
+     hash[3] = 1
+     hash[1] = -1
+   for i=1:
+     hash[3] = 2
+     hash[2] = -2
+   hash array -
+   [-1] [-1] [2]
+   0    1    2
+ */
 int findJudge(int n, int** trust, int trustSize, int* trustColSize) {
   int hash[1005]={0};
   int townJudge=-1;
 
-  for( int i=0;i<trustSize;i++) {
-
+  for(int i=0; i<trustSize; i++) {
     hash[trust[i][1]]++;
     hash[trust[i][0]]--;
-
   }
-  for(int i=1;i<=n;i++) {
-    if(hash[i]==n-1) {
+
+  for(int i=1; i<=n; i++) {
+    if(hash[i] == n-1) {
       townJudge=i;
       break;
     }

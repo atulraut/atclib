@@ -18,7 +18,7 @@
  * Index == Value
  * 0 1 2 3 4 5   --> Index
  * [ 1 1 0 0 1 1]
- * Sum  Index
+ * Sum  MapIndex
  * Key  Value
  * | 1| --> 0
  * | 2| --> 1
@@ -98,15 +98,16 @@ int findMaxLength(int* nums, int numsSize){
   int i;
 
   struct table *t = createTable((numsSize+1));
-  int sum=0, longest_sub_array=0, max_index;
+  int sum=0, longest_sub_array=0, map_index;
 
   insert(t,0,-1);
 
   for(i=0; i<numsSize; i++) {
     sum += (nums[i] == 1) ? 1 : -1; /* Calculate Current Sum Value */
     printf ("[%s] sum=%d i=%d L=%d \n", __func__, sum, i,  __LINE__);
-    if((max_index = lookup(t, sum)) != -2) {
-      longest_sub_array = longest_sub_array > i-max_index ? longest_sub_array : i-max_index;
+    if((map_index = lookup(t, sum)) != -2) {
+      // Found maximum length of a contiguous subarray update it.
+      longest_sub_array = longest_sub_array > i-map_index ? longest_sub_array : i-map_index;
       printf ("[%s] longest_sub_array=%d sum=%d i=%d L=%d \n", __func__, longest_sub_array, sum, i,  __LINE__);
     } else {
       printf ("[%s] sum=%d i=%d L=%d \n", __func__, sum, i,  __LINE__);
