@@ -18,19 +18,7 @@
 #include <stdint.h> /* uint32_t */
 #include <unistd.h> /* sleep */
 
-/*----------------------------------- Micro --------------------------------------*/
-#define debug(str,args...) printf("[%s] L=%d :"str"\n", __func__, __LINE__, ##args)
-#define atsizeof(object) (char *)(&object+1) - (char*)(&object)
-#define arrsz(x)  (sizeof(x) / sizeof((x)[0]))
-#define max(a,b)		\
-  ({ __typeof__ (a) _a = (a);	\
-    __typeof__ (b) _b = (b);	\
-    _a > _b ? _a : _b; })
-#define min(a,b)		\
-  ({ __typeof__ (a) _a = (a);	\
-    __typeof__ (b) _b = (b);	\
-    _a < _b ? _a : _b; })
-/*----------------------------------- Micro --------------------------------------*/
+#define debug(str,args...) printf("L=[%d] [%s] :| "str"\n", __LINE__, __func__, ##args)
 
 void test() {
   int ret = 0;

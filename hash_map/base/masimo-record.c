@@ -145,6 +145,7 @@ struct record* m_insert (char *str, int val) {
     sysNew->next = sys;
     systab[h] = sysNew;
     /* Sort List in Ascending Order! */
+    debug ("Sort List in Ascending Order!");
     m_sort_Record(h);
     return sysNew;
   }
@@ -236,7 +237,7 @@ void test_record() {
   for (i=0; i<col; i++) {
     struct record* sym = result[i];
     while (sym != NULL) {
-      printf ("i=[%d] %s %d cnt = %d\t",i, sym->name, sym->value, sym->count);
+      printf ("[ATUL] i=[%d] %s %d cnt = %d\t",i, sym->name, sym->value, sym->count);
       sym = sym->next;
     }
     printf("\n");

@@ -23,7 +23,10 @@ Step 2: 3 Columsn
 Q] Fastest way to zero out a 2D array in C ?
 memset(array, 0, sizeof(array))
 
+Q] Fastest way to copy array
+memcpy ((void*)&heapObj->buf, (void*)&a, sz);
 -----------------------------------------------------------------------
+
 Q] How to Return 2D array from function :
 ==>
 int (*generate())[4] {
