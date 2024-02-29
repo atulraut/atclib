@@ -1,5 +1,8 @@
 Ref :
 https://seanprashad.com/leetcode-patterns/
+https://media.licdn.com/dms/document/media/D561FAQH-8TNXkzW08w/feedshare-document-pdf-analyzed/0/1707977036402?e=1709769600&v=beta&t=t-YyDE8bGXACpx_dLw5v7cEAubIglVDVZESNP9IvELo
+
+https://www.designgurus.io/course/grokking-the-coding-interview
 
 If input array is sorted then
 - Binary search
