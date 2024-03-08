@@ -14,3 +14,17 @@ Floor means the floor of our home. So, we can pick out some similarities from he
 That is floor function returns an integer that is just lesser than a
 certain rational value.
 For example, ceil value of 3.883 is 3.
+
+Cobinations :
+int c_nk(int n, int k) {
+  // c(n,k) = n! / (k! * (n-k)!) = (n-k+1) * (n-k+2) * .. * n / k! = (n-(k-1)) * (n-(k-2)) * .. * n / k!
+  int value = 1;
+  if (k < n - k) {
+    k = n - k;  // faster calculation in numerator
+  }
+  for (int i = 1; i <= k; i++) {
+    value *= (n - (k - i));    // numerator term
+    value /= i;   // denominator term
+  }
+  return value;
+}

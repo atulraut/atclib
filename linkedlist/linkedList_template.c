@@ -43,14 +43,13 @@ void push(struct ListNode** head_ref, int val) {
 }
 
 void pop(struct ListNode** head_ref) {
-  struct ListNode* temp = (*head_ref);
+   struct ListNode* temp = (*head_ref);
   int val = temp->val;
   (*head_ref) = (*head_ref)->next;
   temp->next = NULL;
   free(temp);
   temp = NULL;
 }
-
 void printList(struct ListNode* head) {
   struct ListNode* trav = head;
   while (trav != NULL) {
