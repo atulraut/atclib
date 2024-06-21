@@ -1,3 +1,7 @@
+DFS :
+
+Simply checking is there a path.
+
 Approach 1: Graph Theory + Iterative Depth-First Search
 Ref: https://leetcode.com/problems/graph-valid-tree/solution/
 

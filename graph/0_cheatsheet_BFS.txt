@@ -1,0 +1,5 @@
+BFS : Gives shortest Path + simply checking is there a path
+
+Minimum path to reach/steps/solve kind of problme solves using Graphs
+
+https://leetcode.com/explore/learn/card/queue-stack/231/practical-application-queue/1376/
