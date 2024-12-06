@@ -1,0 +1,21 @@
+Interview Process :
+Round 1: Online Round : 2 Competitive Prog. + DSA + Aptitude Based Questions
+Round 2: First Technical Round : Expected 1 hour : Basic DSA
+Round 3: Second Technical Round : Expected 1 hour : Advances DSA + System Design
+Round 4 : HR : Bascially hows your family ?
+Round 5 : Search in Rotated Sorted Array
+Round 6 : Rectangle Area
+Round 7 : LRU Cache
+Round 8 : Rotate Image
+Round 9 : Number of Islands
+Round 10 : Minimum Area Rectangle
+Round 11 : Binary Tree Right Side View
+Round 12 : Minimum Path Sum
+Round 13 : Add Two Numbers
+Round 14 : Generate Parentheses
+Round 15 : Flatten Binary Tree to Linked List
+Round 16 : String to Integer (atoi)
+Round 17 : Reverse Words in a String
+Round 18 : Daily Temperatures
+Round 19 : Interleaving String
+Round 20 : Merge k Sorted Lists
