@@ -1,5 +1,8 @@
 /***
     Parser for Compiler Using Stack
+
+    Ref : https://www.cquestions.com/2010/10/c-interview-questions-and-answers.html
+
     gcc -g -o main -Wall -Wextra -pedantic -Wwrite-strings -fsanitize=address *.c -lm
 
     Date: Sun 15 Sep 2024 11:47:44 AM PDT

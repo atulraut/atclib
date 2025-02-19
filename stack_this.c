@@ -1,5 +1,14 @@
 Backup Date : 9/26 :
 
+https://www.ime.usp.br/~pf/algorithms/chapters/queues.html
+https://github.com/EbookFoundation/free-programming-books/blob/main/books/free-programming-books-langs.md#c
+https://www.cs.princeton.edu/~bwk/tpop.webpage/debugging.html
+https://www.cs.princeton.edu/~bwk/tpop.webpage/code.html
+https://dn790002.ca.archive.org/0/items/let-us-c/LET%20US%20C.pdf
+http://littleosbook.github.io/#segmentation
+
+Complex C Declaration - https://cdecl.org/
+
 IK
 https://github.com/atulraut/interviewKickstart/tree/main/4_recurssion/8_Coding_Week_5_Practice_Problems
 https://www.youtube.com/watch?v=S83ik4qZy9Q&list=PLQYsOQRdbJZ3He-suur-ehgDmpeTKa2DH&index=3
@@ -41,3 +50,17 @@ outflux.net/slides/2019/
 
 Kernel Self Protection Project
 https://kspp.github.io/Get_Involved
+
+C IVI
+https://github.com/DopplerHQ/awesome-interview-questions?tab=readme-ov-file#c-1
+
+
+NVIDIA IVI:
+
+https://github.com/krishnadey30/LeetCode-Questions-CompanyWise/blob/master/nvidia_alltime.csv
+https://leetcode.com/discuss/interview-question/4837287/NVIDIA-OA-or-Questions/
+https://leetcode.com/company/nvidia/?favoriteSlug=nvidia-thirty-days
+https://www.geeksforgeeks.org/nvidia-interview-questions-and-answers-for-technical-profiles/
+https://www.glassdoor.com/Interview/NVIDIA-Interview-Questions-E7633.htm
+https://leetcode.com/problems/print-in-order/description/?source=submission-ac
+https://github.com/atulraut/atclib/blob/master/thread/leetcode/print_in_order.c
