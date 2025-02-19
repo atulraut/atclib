@@ -1,7 +1,8 @@
 Web Based Tools :
 
 C Algorithms
-https://thealgorithms.github.io/C)
+https://github.com/TheAlgorithms/C
+https://thealgorithms.github.io/C
 
 C to Assembly Code Converter:
 https://godbolt.org/
