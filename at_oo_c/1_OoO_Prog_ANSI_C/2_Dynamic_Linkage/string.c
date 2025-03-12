@@ -1,15 +1,14 @@
 /***
-
+    Ch-02 : Dynamic Linkage
     gcc -g -o main -Wall -Wextra -pedantic -Wwrite-strings -fsanitize=address *.c -lm
 
-    Date:
+    Date: Wed 19 Feb 2025 03:36:51 PM PST
     Folsom, CA.
  */
 
 /*----------------------------------- Header --------------------------------------*/
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdarg.h> // va_arg
 #include <ctype.h>
 #include <limits.h>
 #include <string.h>  /* malloc */
@@ -19,7 +18,7 @@
 #include <stdint.h> /* uint32_t */
 #include <unistd.h> /* sleep */
 
-#define debug(str,args...) printf("L=[%d][%s]->[%s] :| "str"\n",__LINE__,__FILE__, __func__, ##args)
+#define debug(str,args...) printf("L=[%d] [%s] :| "str"\n", __LINE__, __func__, ##args)
 
 void test() {
   int ret = 0;
