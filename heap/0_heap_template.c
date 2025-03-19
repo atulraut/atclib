@@ -195,6 +195,13 @@ void show_heap(struct heap *heap_Obj) {
   printf("\n");
 }
 
+void heap_free(struct heap* heap_Obj) {
+  if(heap_Obj) {
+    free(heap_Obj->buf);
+    free(heap_Obj);
+  }
+}
+
 /***** Logic To Test Code *****/
 void test() {
   int k = 2;
@@ -215,6 +222,7 @@ void test() {
     }
   }
   debug("heap_Obj->hSize = %d Output = %d", heap_Obj->hSize, top(heap_Obj));
+  heap_free(heap_Obj);
 }
 
 int main (int argc, char **argv) {
