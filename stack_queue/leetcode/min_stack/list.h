@@ -12,10 +12,10 @@ typedef struct _stack {
 
 stack *m_init(void  *_ptr, int sz);
 int push(void *_ptr, int val);
-int pop (void *_ptr);
-int topElement(void *_ptr);
-int isEmpty(void *_ptr);
-int getMin(void *_ptr);
-int m_Display(void *_ptr);
-int m_DisplayMin(void *_ptr);
-int quit(void *_ptr);
+int pop (void *_ptr, int);
+int topElement(void *_ptr, int);
+int isEmpty(void *_ptr, int);
+int getMin(void *_ptr, int);
+int m_Display(void *_ptr, int);
+int m_DisplayMin(void *_ptr, int);
+int quit(void *_ptr, int);

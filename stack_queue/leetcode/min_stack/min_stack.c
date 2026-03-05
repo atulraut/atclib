@@ -80,7 +80,7 @@ int push(void *_ptr, int val) {
   return 0;
 }
 
-int pop (void *_ptr) {
+int pop (void *_ptr, int dummy) {
   int val;
   stack *s = (stack *)_ptr;
   if (s->top < 0)
@@ -94,14 +94,14 @@ int pop (void *_ptr) {
   return val;
 }
 
-int topElement(void *_ptr) {
+int topElement(void *_ptr, int dummy) {
   stack *s = (stack *)_ptr;
   if (s->top < 0)
     return -1;
   return s->stabuf[s->top];
 }
 
-int getMin(void *_ptr) {
+int getMin(void *_ptr, int dummy) {
   stack *s = (stack *)_ptr;
   if (s->top < 0)
     return -1;
@@ -109,7 +109,7 @@ int getMin(void *_ptr) {
 }
 
 
-int isEmpty(void *_ptr) {
+int isEmpty(void *_ptr, int dummy) {
   stack *s = (stack *)_ptr;
   if(s->top < 0) {
     printf ("[%s] Empty S - top=%d", __func__, s->top);
@@ -120,7 +120,7 @@ int isEmpty(void *_ptr) {
   }
 }
 
-int m_DisplayMin(void *_ptr) {
+int m_DisplayMin(void *_ptr, int dummy) {
   stack *s = (stack *)_ptr;
   if(s->top < 0) {
     printf ("[%s] Empty S - top=%d" ,__func__ ,s->top);
@@ -132,7 +132,7 @@ int m_DisplayMin(void *_ptr) {
   }
 }
 
-int m_Display(void *_ptr) {
+int m_Display(void *_ptr, int dummy) {
   stack *s = (stack *)_ptr;
   if(s->top < 0) {
     printf ("[%s] Empty S - top=%d" ,__func__ ,s->top);
@@ -146,7 +146,7 @@ int m_Display(void *_ptr) {
   }
 }
 
-int quit(void *_ptr) {
+int quit(void *_ptr, int dummy) {
   printf ("Good Bye! \n");
   exit(0);
 }

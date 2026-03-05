@@ -17,7 +17,7 @@ struct ll_func {
   char *name;
 };
 
-static int print_all_functions(void *_ptr);
+static int print_all_functions(void *_ptr, int);
 
 struct ll_func function_table[] = {
   {
@@ -69,7 +69,7 @@ struct ll_func function_table[] = {
 
 #define NUM_FUNCS (sizeof(function_table)/sizeof(struct ll_func))
 
-static int print_all_functions(void *_ptr) {
+static int print_all_functions(void *_ptr, int dummy) {
   int i;
   for(i=0; i<NUM_FUNCS; i++) {
     printf ("--> Press key %c for %s\n", function_table[i].key, function_table[i].name);
@@ -83,12 +83,13 @@ int main () {
   int i = 0;
   char cmd[20];
   static int j = 1;
+  int dummy=0;
 
   sptr = m_init(&s, STACK_SZ);
 
   printf ("Welcome to simple LinkList 2.0 \n");
   printf ("===================================\n");
-  print_all_functions(sptr);
+  print_all_functions(sptr, dummy);
   printf ("===================================\n");
 
   while(1) {
