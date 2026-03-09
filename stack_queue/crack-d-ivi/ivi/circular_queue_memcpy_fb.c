@@ -7,7 +7,7 @@
     max available),
     writes can be of arbitrary length (but should return the
     bytes actually written).
-	
+
     gcc -g -o main -Wall -Wextra -pedantic -Wwrite-strings -fsanitize=address *.c -lm
 
     Date: Mon Dec  4 07:12:45 PM PST 2023
