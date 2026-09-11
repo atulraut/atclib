@@ -23,6 +23,7 @@ void m_RevlistKthNode(void *);
 void m_Sortlist(void *);
 void m_DelNode(void *, struct list_node *);
 void m_ReturnNthNode_From_End(void *);
+void remove_duplicates(void *ptr);
 void m_RemoveDuplicateNodes(void *ptr);
 void m_SearchData(void *ptr);
 void m_detect_loop (void *ptr);

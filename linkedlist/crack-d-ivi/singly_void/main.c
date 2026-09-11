@@ -73,11 +73,16 @@ struct ll_func function_table[] = {
   {
     .compute = m_RemoveDuplicateNodes,
     .key = 'b',
-    .name = "Remove Duplicate Nodes",
+    .name = "Remove Duplicate Nodes Unsorted",
   },
+   {
+     .compute = remove_duplicates,
+     .key = 'c',
+    .name = "Remove Duplicate Nodes Sorted",
+   },
   {
     .compute = m_SearchData,
-    .key = 'c',
+    .key = 'd',
     .name = "Search Data in Link List",
   },
   {

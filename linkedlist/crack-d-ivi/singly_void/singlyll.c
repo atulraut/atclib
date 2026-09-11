@@ -150,6 +150,23 @@ void m_Revlist(void *ptr) {
   }
 }
 
+void remove_duplicates(void *ptr) {
+  struct list *ll = ptr;
+  struct list_node *head = (struct list_node *)ll->head;
+
+  struct list_node *temp;
+
+  while (head != NULL && head->next != NULL) {
+    if (head->data == head->next->data) {
+      temp = head->next;
+      head->next = temp->next;
+      free(temp);
+    } else {
+      head = head->next;
+    }
+  }
+}
+
 void m_RevlistKthNode(void *ptr) {
   struct list *ll = ptr;
   struct list_node *head = (struct list_node *)ll->head;
@@ -329,20 +346,22 @@ void m_RemoveDuplicateNodes(void *ptr) {
   debug ("prev = %p curr= %p ", prev, current);
 
   while (current != NULL) {
-    struct list_node *runner = (struct list_node *)ll->head;
-    while (runner != current) {
-      if(runner->data == current->data) {
+    struct list_node *trav = (struct list_node *)ll->head;
+    debug("trav 1= %pK", trav);
+    while (trav != current) {
+      if(trav->data == current->data) {
 	struct list_node *temp = current->next; // remove current
 	prev->next = temp;
 	current = temp; // update current to next node
 	break; // all other dups have removed
       }
-      runner = runner->next;
+      trav = trav->next;
     } // Inner While Ends
-    if (runner == current) { // current not update, update now
+    if (trav == current) { // current not update, update now
       prev = current;
       current = current->next;
     } // if Ends
+    debug("trav 2=%pK", trav);
   } // 1st while Ends.
 }
 
