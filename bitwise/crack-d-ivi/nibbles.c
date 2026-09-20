@@ -8,12 +8,40 @@
   How to swap the two nibbles in a byte
 
   Logic explain : http://www.geeksforgeeks.org/swap-two-nibbles-byte/
+
+  1)
+  y = ((x >> 4) & 0x0f) | ((x << 4) & 0xf0);
+
+  2)
+  unsigned char swap_nibbles(unsigned char c) {
+   unsigned char temp1, temp2;
+
+   temp1 = c & 0x0F;
+   temp2 = c & 0xF0;
+   temp1=temp1 << 4;
+   temp2=temp2 >> 4;
+
+   return(temp2|temp1); //adding the bits
+  }
+
+  3)
+  unsigned char nibbleSwap(unsigned char a) {
+   return (a<<4) | (a>>4);
+  }
 */
+
 #include <stdio.h>
 
 #define HI_NIBBLE(b) (((b) >> 4) & 0x0F)
 #define LO_NIBBLE(b) ((b) & 0x0F)
 
+/**
+   I mask the lower nibble with 0x0F and shift it left by 4,
+   mask the upper nibble with 0xF0 and shift it right by 4,
+   then OR the two results together.
+   0x0F in binary: 0000 1111
+   0xF0 in binary: 1111 0000
+**/
 unsigned char swapNibbles(unsigned char x) {
   return ( (x & 0x0F) << 4 | (x & 0xF0) >> 4 );
 }

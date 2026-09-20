@@ -1,5 +1,5 @@
 /***
-    http://www.mathcs.emory.edu/~cheung/Courses/255/Syllabus/1-C-intro/bit-array.html
+    https://www.cs.emory.edu/~cheung/Courses/255/Syllabus/1-C-intro/bit-array.html
 
     The C programming language does not provide support for array of bits.
 
@@ -12,8 +12,8 @@
       flag = flag << pos;      // flag = 0000...010...000   (shifted k positions)
       A[i] = A[i] | flag;      // Set the bit at the k-th position in A[i]
 
-      Date : 15 March 2021
-      San Diego, CA
+      Date : 15 March 2021, Sat Sep 19 17:17:22 PDT 2026
+      San Diego, Folsom, CA
 */
 /* ========================================
    Bit Operations as macros
@@ -107,7 +107,6 @@ int main( int argc, char* argv[] ) {
 
 
 /**
-   => ./a.out 
    [int_set_bit_array] L=41 :Size of Array = 10
    [int_set_bit_array] L=50 :Set bit poistions 100, 200 and 300
    [int_set_bit_array] L=52 :arr[3] =16
@@ -115,7 +114,7 @@ int main( int argc, char* argv[] ) {
    [int_set_bit_array] L=65 :Bit 200 was set !
    [int_set_bit_array] L=65 :Bit 300 was set !
    [int_set_bit_array] L=67 :
-   Clear bit poistions 200 
+   Clear bit poistions 200
    [int_set_bit_array] L=74 :Bit 100 was set !
    [int_set_bit_array] L=74 :Bit 300 was set !
    [int_set_bit_array] L=77 :Bit 0  set to = 0

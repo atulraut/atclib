@@ -1,5 +1,8 @@
 Array Tips :
 
+Ref : Pointers Basics
+https://github.com/atulraut/Advanced-Pointers-in-C/blob/master/0_Pointers_Basics.txt
+
 Q] How to convert array to readable format.
 ==> if we have array of 2 rows & 3 columens --> arr[2][3]
 Note - Scan factor very Important, here for Int its 4.
