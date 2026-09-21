@@ -1,19 +1,29 @@
 /*
+  Swap Adjacent Bits :
   Write a program to swap odd and even bits in an integer with as
   few instructions as possible (e.g., bit 0 and bit 1 are swapped,
   bit 2 and bit 3 are swapped, etc).
+
+
+      EVEN bits              ODD bits
+           ↓                      ↓
+x & 0xAAAAAAAA          x & 0x55555555
+           ↓                      ↓
+         >> 1                    << 1
+           ↓                      ↓
+           └──────── OR ──────────┘
 */
 #include <stdio.h>
 #include <stdlib.h>
 
 /*
   SOLUTION
-  Mask all odd bits with 10101010 in binary (which is 0xAA), then shift them
-  left to put them in the even bits. Then, perform a similar operation for
-  even bits. This takes a total 5 instructions.
+  Mask all Even bits with 10101010 in binary (which is 0xAA), then shift them
+  right to put them in the even bits. Then, perform a similar operation for
+  odd bits. This takes a total 5 instructions.
 
-  Using 0x55 : As mask clears bits in position 1/3/5/ etc.
-  Using 0xaa : As mask clears bits in position 0/2/4/6 etc.
+  Using 0x55 : As mask clears even bits in position 1/3/5/7 etc.
+  Using 0xaa : As mask clears odd  bits in position 0/2/4/6 etc.
   https://web.stanford.edu/class/archive/cs/cs107/cs107.1194/lab1/practice.html
 */	
 int swapOddEvenBits(int x) {
@@ -39,6 +49,23 @@ unsigned char swapOddEvenBits2(unsigned char num) {
 
   /* Union(merge) Odd_bits with Even_bits */
   return (odd_bits | even_bits);
+}
+
+/**
+   No masks at all or without using hardcoded bits
+ */
+uint32_t swap_adjacent(uint32_t x) {
+  uint32_t result = 0;
+
+  for (int i = 0; i < 32; i += 2) {
+    uint32_t bit1 = (x >> i) & 1;
+    uint32_t bit2 = (x >> (i + 1)) & 1;
+
+    result |= bit1 << (i + 1);
+    result |= bit2 << i;
+  }
+
+  return result;
 }
 
 int main() {
