@@ -76,7 +76,50 @@ struct Node {
   struct Node *next;
 };
 
-struct Node* insert(struct Node* head, int insertVal) {
+struct Node* insert(struct Node* head, int insertVal)
+{
+  struct Node* node = malloc(sizeof(struct Node));
+  node->val = insertVal;
+
+  if (head == NULL) {
+    node->next = node;
+    return node;
+  }
+
+  struct Node* pre = head;
+  struct Node* cur = head->next;
+
+  while (1) {
+
+    // Case 1: normal ascending region
+    if (pre->val <= insertVal &&
+	insertVal <= cur->val) {
+      break;
+    }
+
+    // Case 2: max -> min turning point
+    if (pre->val > cur->val &&
+	(insertVal >= pre->val ||
+	 insertVal <= cur->val)) {
+      break;
+    }
+
+    pre = cur;
+    cur = cur->next;
+
+    // Finished one complete cycle
+    if (pre == head) {
+      break;
+    }
+  }
+
+  node->next = cur;
+  pre->next = node;
+
+  return head;
+}
+
+struct Node* insert_org(struct Node* head, int insertVal) {
   if (!head) {
     struct Node* head = (struct Node*)malloc(sizeof(struct Node));
     head->next = head;
@@ -104,70 +147,6 @@ struct Node* insert(struct Node* head, int insertVal) {
   curr->next = nNode;
 
   return ret;
-}
-
-struct Node* insert2(struct Node* head, int insertVal) {
-  int min = INT_MAX, max = INT_MIN;
-  struct Node* minNode, *maxNode, *prev, *newNode, *start = NULL;
-  int seeSmall = 0;
-
-  newNode = (struct Node*)malloc(sizeof(struct Node));
-  newNode->val = insertVal;
-  if(head==NULL)
-    {
-      newNode->next = newNode;
-      return newNode;
-    }
-  else
-    {
-      while(1)
-        {
-	  if(head==start)
-            {
-	      if((insertVal >= max) || (insertVal <= min))
-		break;
-            }
-	  if(start==NULL)
-	    start = head;
-	  if(head->val >= max)
-            {
-	      max = head->val;
-	      maxNode = head;
-            }
-	  if(head->val < min)
-            {
-	      min = head->val;
-	      minNode = head;
-            }
-
-	  if(insertVal == head->val)
-            {
-	      newNode->next = head->next;
-	      head->next = newNode;
-	      return head;
-            }
-	  else if(insertVal > head->val)
-            {
-	      seeSmall = 1;
-	      prev = head;
-            }
-	  else if(insertVal < head->val)
-            {
-	      if(seeSmall == 1)
-                {
-		  newNode->next = head;
-		  prev->next = newNode;
-		  return head;
-                }
-            }
-	  head = head->next;
-        }
-
-      maxNode->next = newNode;
-      newNode->next = minNode;
-    }
-
-  return head;
 }
 
 void push(struct Node** thisHead, int insertVal) {
@@ -210,7 +189,7 @@ int main (int argc, char **argv) {
   debug("Given linked list\n");
   printList(head);
 
-  struct Node* result = insert2(head, insertVal);
+  struct Node* result = insert(head, insertVal);
   debug("Output = %d", ret);
   printList(result);
   return 0;

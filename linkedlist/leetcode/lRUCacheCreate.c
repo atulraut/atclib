@@ -108,8 +108,7 @@ LRUCache* lRUCacheCreate(int capacity) {
   return obj;                                                         // return allocated object
 }
 
-void list_add(LRUCache* obj, node_t *node)
-{
+void list_add(LRUCache* obj, node_t *node) {
   node->next = obj->head;                                             // node's next points to head node
   node->prev = NULL;                                                  // node's prev points to NULL
   if (obj->head == NULL) {                                            // if DLL is emtpy
@@ -120,8 +119,7 @@ void list_add(LRUCache* obj, node_t *node)
   obj->head = node;                                                   // and head now points to node
 }
 
-void list_remove(LRUCache* obj, node_t *node)
-{
+void list_remove(LRUCache* obj, node_t *node) {
   if (node == obj->tail) {                                            // if we are removing tail node
     obj->tail = node->prev;                                         // tail now points to node's prev
   } else {
@@ -147,19 +145,23 @@ int lRUCacheGet(LRUCache* obj, int key) {
 void lRUCachePut(LRUCache* obj, int key, int value) {
   node_t* node = obj->node[key];                                      // get node from direct table
   if (node == NULL) {                                                 // key is not in LRU
+    // CASE 1: new key + cache full
     if (obj->size == obj->capacity) {                               // and LRU is full
       node = obj->node[obj->tail->key];                           // recycle oldest entry
       obj->node[obj->tail->key] = NULL;                           // remove key from cache
       list_remove(obj, obj->tail);                                // remove tail node
     } else {
+      // CASE 2: new key + space available
       node = &obj->nodes[obj->size++];                            // allocate a new entry
     }
     obj->node[key] = node;                                          // add key to cache
   } else {
+    // CASE 3: key already exists
     list_remove(obj, node);                                     // remove node from list
   }
   node->key = key;                                                // set node key
   node->value = value;                                            // set node value
+  // becomes MRU
   list_add(obj, node);                                            // add node back at the head
 }
 

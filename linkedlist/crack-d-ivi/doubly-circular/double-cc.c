@@ -19,14 +19,14 @@ NODE *create_node (int _data) {
   nn->next = NULL;
   nn->prev = NULL;
   return nn;
-} 
+}
 
 void m_add (void *_list, int _data) {
   LIST *list = (LIST *) _list;
   NODE *trav = list->head;
   NODE *nn = create_node (_data);
   if (NULL == list->head) {
-    list->head = nn;  
+    list->head = nn;
     nn->prev = list->head;
     nn->next = list->head;
   } else {
@@ -38,15 +38,15 @@ void m_add (void *_list, int _data) {
   }
   printf ("list->head = %p \n", list->head);
   printf ("trav= %p \n", trav);
-} 
+}
 
 void m_display (void *_list) {
   LIST *list = (LIST *) _list;
   NODE *trav = list->head;
   if (NULL == list->head) {
     printf ("Empty ! \n");
-    return; 
-  }  
+    return;
+  }
   while (trav->next != list->head) {
     printf ("->[%d]", trav->data);
     trav = trav->next;
@@ -60,8 +60,8 @@ void m_free (void *_list) {
   NODE *temp;
   if (NULL == list->head) {
     printf ("Empty ! \n");
-    return; 
-  } 
+    return;
+  }
   while (trav != NULL) {
     printf ("data->[%p], head->[%p]", trav, list->head);
     if (trav->next == list->head) {
@@ -80,6 +80,8 @@ void m_free (void *_list) {
     }
   }
   list->head = NULL;
+  free(list);
+  list = NULL;
 }
 
 void m_Printrev(void *_list) {
@@ -89,18 +91,18 @@ void m_Printrev(void *_list) {
   NODE *trav = list->head;
   if (NULL == list->head) {
     printf ("Empty ! \n");
-    return; 
-  } 
+    return;
+  }
   printf ("head = %p\n", list->head);
   while (trav->next != list->head) {
     trav = trav->next;
   }
   list->head = trav;
-  while (trav != save) {  
+  while (trav != save) {
     trav = temp->next;
     temp->next = list->head;
     temp->prev = trav;
     list->head = temp;
     temp = trav;
   }
-} 
+}
