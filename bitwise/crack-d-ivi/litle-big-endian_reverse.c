@@ -16,13 +16,15 @@
  * Reverse Endianness :
  */
 int reverse(int a) {
+
   int x = a;
-  char *p = (char *) &x;
-  char *q = p + sizeof(a) - 1;
+  unsigned char *p = (unsigned char *)&x;
+  unsigned char *q = p + sizeof(x) - 1;
+
   while (p < q) {
-    char t = *p;
+    unsigned char temp = *p;
     *p = *q;
-    *q = t;
+    *q = temp;
     p++;
     q--;
   }
