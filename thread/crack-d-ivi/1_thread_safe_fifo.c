@@ -21,6 +21,30 @@
 	0	1	2	3	4	5
 							Tail[Insert]
 
+-----------------------------------------------------------------------
+Producer                           Consumer
+-----------------------------------------------------------------------
+malloc node
+    |
+    v
+pthread_mutex_lock()               pthread_mutex_lock()
+    |                                  |
+    v                                  v
+modify tail/head                    check head
+    |                                  |
+    v                                  +--- empty?
+signal condition                        |
+    |                                  v
+    v                             pthread_cond_wait()
+pthread_mutex_unlock()                  |
+                                       | wakes when producer pushes
+                                       v
+                                  remove head
+                                       |
+                                       v
+                                  pthread_mutex_unlock()
+-----------------------------------------------------------------------
+
    Date : Sun Sep 27 21:53:30 PDT 2026
    Folsom, CA.
  **/
