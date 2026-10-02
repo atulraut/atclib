@@ -1,5 +1,7 @@
 Hash Tables : Try to use Prime Number for efficient Hash Function e.g. 11, 97
 
+Ref diagram - https://github.com/atulraut/interviewKickstart/blob/main/1_sorting/910_coding_sorting_live_omkar_part_1/1_2_Sum/0_ivi-two-sum_LC-1.c
+
 Basics : Resources :
 0] Thareja DS, Kernighan - The Practice of C Programming.
 1] https://www.youtube.com/watch?v=vmGASZxeGVQ
