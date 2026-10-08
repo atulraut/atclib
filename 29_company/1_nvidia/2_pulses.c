@@ -178,13 +178,13 @@ reset_count()
     rise_seen was true
     pulse_count++
     rise_seen = false
-	
+
 Now get_count() returns 1.
 After another pair:
-	
+
 0 → 1
 1 → 0
-	
+
 it returns 2.
 Important concurrency issue
 The above is good for explaining the state machine, but there is one deeper interview issue: reset_count() and edge_callback() must be synchronized as one logical state.
@@ -192,7 +192,7 @@ Separate atomic variables prevent data races, but they don't make this entire op
 	reset:
     count = 0;
     rise_seen = false;
-	
+
 	For example, an edge callback could run between those two operations.
 	In production code, if reset_count() can race with the callback,
 	I'd protect the complete state with a lock/critical section
@@ -212,5 +212,4 @@ Separate atomic variables prevent data races, but they don't make this entire op
 	reset_count() always moves the machine to WAIT_FOR_RISE and sets the count to zero.
 	For an embedded/kernel interview, this last concurrency point is likely the most interesting follow-up: what happens if reset_count() occurs exactly while an edge callback is executing?
 
-	
 **/

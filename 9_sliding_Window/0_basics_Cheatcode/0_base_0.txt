@@ -1,0 +1,10 @@
+Sliding Window
+
+Ref :
+https://www.youtube.com/watch?v=tLsoelNl3To&t=428s
+
+92126a@gmail.com:
+https://chatgpt.com/c/6ac2d6a5-2a28-83e8-9105-6c5e4e433f4d
+
+Memorize: sum = sum + incoming - outgoing
+Time: O(n), Extra space: O(1). The example assumes sums fit in int.

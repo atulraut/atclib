@@ -149,7 +149,7 @@ int main(void)
 
 /**
 	Starting button debounce test
-	
+
 	time=0 ms gpio=0
 	time=10 ms gpio=1
 	  Raw change -> 1 at 10 ms
@@ -184,7 +184,7 @@ Actual interpretation:
 
 	The important idea is that you don't delay for 20 ms and block the CPU.
 	Instead, whenever the raw GPIO changes, restart the debounce timer.
-	
+
 	timestamp     GPIO
 	---------     ----
 	0 ms           0
@@ -203,9 +203,9 @@ Actual interpretation:
 	At 10 ms we do not immediately report a button press.
 	Every bounce restarts the timer. The final transition happens at 18 ms, so:
 	18 + 20 = 38 ms
-	
+
 	At 38 ms:
-	
+
 	raw_state    = 1
 	stable_state = 0
 

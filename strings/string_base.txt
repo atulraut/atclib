@@ -13,17 +13,25 @@ Char | Dec
 
 65 + 32 = 97 :
 { 0x20(HX) == 32 (DECIBLE) }
+
 Note : Each lowercase letter is 32 + uppercase equivalent.
 This means simply flipping the bit at position 5 (counting from least
 significant bit at position 0) inverts the case of a letter.
+
 A --> 65 | 65 + 32 = 97 <-- a
 S C T
 O A X
 SOCATX - To Remember
 -------------------------------------------------------------------------
-int[26] for Letters 'a' - 'z' or 'A' - 'Z'
-int[128] for ASCII
-int[256] for Extended ASCII
+int freq[26]  for Letters 'a' - 'z' or 'A' - 'Z'
+int freq[128] for ASCII (below)
+int freq[256] for Extended ASCII
+
+Character type	ASCII range
+Digits    0-9	48–57
+Uppercase A-Z	65–90
+Lowercase a-z	97–122
+Symbols	        ! = 33, @ = 64
 -------------------------------------------------------------------------
 
 ASCII Table
