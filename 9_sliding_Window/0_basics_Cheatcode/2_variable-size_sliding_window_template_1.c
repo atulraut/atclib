@@ -1,6 +1,8 @@
 /***
 
-    Variable-size sliding window
+    longest k unique character.
+
+    2 - Variable-size sliding window
 
     gcc -g -o main -Wall -Wextra -pedantic -Wwrite-strings -fsanitize=address *.c -lm
 
@@ -23,22 +25,53 @@
 
 #define debug(str,args...) printf("L=[%d][%s]->[%s] :| "str"\n",__LINE__,__FILE__, __func__, ##args)
 
-void test() {
+int longestKUnique(const char *s, int k) {
+  int freq[256] = {0};
+  int left = 0, unique = 0;
+  int maxLen = -1;
 
-  int left = 0;
+  if (k <= 0)
+    return -1;
 
-  for (int right = 0; right < n; right++) {
+  for (int right = 0; s[right]; right++) {
 
-    // 1. EXPAND: add arr[right]
+    unsigned char c = (unsigned char)s[right];
 
-    while (/* window invalid */) {
+    // EXPAND
+    if (freq[c] == 0)
+      unique++;
 
-      // 2. SHRINK: remove arr[left]
+    freq[c]++;
+
+    // SHRINK if invalid
+    while (unique > k) {
+      unsigned char ch =
+	(unsigned char)s[left];
+
+      freq[ch]--;
+
+      if (freq[ch] == 0)
+	unique--;
+
       left++;
     }
 
-    // 3. UPDATE answer for valid window
+    // UPDATE if exactly K unique
+    if (unique == k) {
+      int len = right - left + 1;
+
+      if (len > maxLen)
+	maxLen = len;
+    }
   }
+
+  return maxLen;
+}
+
+int test(void) {
+  const char *s = "aabacbebebe";
+  debug("Length = %d\n", longestKUnique(s, 3));
+  return 0;
 }
 
 int main (int argc, char **argv) {

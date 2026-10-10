@@ -8,3 +8,17 @@ https://chatgpt.com/c/6ac2d6a5-2a28-83e8-9105-6c5e4e433f4d
 
 Memorize: sum = sum + incoming - outgoing
 Time: O(n), Extra space: O(1). The example assumes sums fit in int.
+
+Algorithm for Sliding Window with Fixed Size K :
+1. Process first K elements into some "Collection"
+2. Move window to the right
+   2.1 remove "trailing" element from "Collction"
+   2.2 add "leading" element to "Collection"
+3. do the buisness logic (max, min, product)
+
+1. Fixed length - K
+2. Variable length -
+
+      	    i+1                i+k
+--------|---|--------------|---|----------
+	i               i+k-1

@@ -1,8 +1,21 @@
 /***
 
+    https://leetcode.com/problems/maximum-average-subarray-i/description/
+
     643. Maximum Average Subarray I
 
-    https://leetcode.com/problems/maximum-average-subarray-i/description/
+    You are given an integer array nums consisting of n elements, and an integer k.
+
+    Find a contiguous subarray whose length is equal to k that has the maximum
+    average value and return this value. Any answer with a calculation error
+    less than 10-5 will be accepted.
+
+    Input: nums = [1,12,-5,-6,50,3], k = 4
+    Output: 12.75000
+    Explanation: Maximum average is (12 - 5 - 6 + 50) / 4 = 51 / 4 = 12.75
+
+    Input: nums = [5], k = 1
+    Output: 5.00000
 
     gcc -g -o main -Wall -Wextra -pedantic -Wwrite-strings -fsanitize=address *.c -lm
 
@@ -36,18 +49,18 @@ double findMaxAverage(int* nums, int n, int k) {
   if(k <=0 || k>n)
     return INT_MIN;
 
-  double sum = 0;
+  double current_sum = 0;
   // Step 1: Calculate first windows
   for (int i=0; i<k; ++i)
-    sum += nums[i];
+    current_sum += nums[i];
 
-  double maxSum = sum;
+  double maxSum = current_sum;
   // Step 2: Slide the window
   for (int i=k; i<n; ++i) {
-    sum += nums[i];   // Add incoming/current element
-    sum -= nums[i-k]; // Remove outgoing/first element i.e.when i=4,k=4:  4=4 == 0 i.e. nums[0]
-    if(sum > maxSum)
-      maxSum = sum;
+    current_sum += nums[i];   // Add incoming/current element
+    current_sum -= nums[i-k]; // Remove outgoing/first element i.e.when i=4,k=4:  4=4 == 0 i.e. nums[0]
+    if(current_sum > maxSum)
+      maxSum = current_sum;
   }
 
   return ((double)maxSum/(double)k);
