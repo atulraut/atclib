@@ -63,6 +63,7 @@ int lengthOfLongestSubstring(char* s) {
       unsigned char outgoing = s[left];
 
       freq[outgoing]--;
+
       left++;
     }
 
@@ -90,6 +91,7 @@ int main (int argc, char **argv) {
 /**
    L=[81][1_1_lengthOfLongestSubstring_LC-3.c]->[test] :| Output = 3
 **/
+
 /**
    Four lines to memorize :
    freq[(unsigned char)s[right]]++;   // Incoming
