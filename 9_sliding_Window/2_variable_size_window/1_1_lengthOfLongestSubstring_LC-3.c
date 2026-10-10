@@ -10,16 +10,16 @@
     Input: s = "abcabcbb"
     Output: 3
     Explanation: The answer is "abc", with the length of 3. Note that "bca" and "cab" are also correct answers.
- 
+
     Input: s = "bbbbb"
     Output: 1
     Explanation: The answer is "b", with the length of 1.
- 
+
     Input: s = "pwwkew"
     Output: 3
     Explanation: The answer is "wke", with the length of 3.
     Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
- 
+
     Constraints:
     0 <= s.length <= 105
     s consists of English letters, digits, symbols and spaces
@@ -65,7 +65,7 @@ int lengthOfLongestSubstring(char* s) {
       freq[outgoing]--;
       left++;
     }
-    
+
     // Step 3: Update maximum length
     int len = right - left + 1;
 
@@ -89,4 +89,20 @@ int main (int argc, char **argv) {
 
 /**
    L=[81][1_1_lengthOfLongestSubstring_LC-3.c]->[test] :| Output = 3
+**/
+/**
+   Four lines to memorize :
+   freq[(unsigned char)s[right]]++;   // Incoming
+
+   while (freq[(unsigned char)s[right]] > 1) {
+   freq[(unsigned char)s[left]]--; // Outgoing
+   left++;
+   }
+
+   maxLen = max(maxLen, right - left + 1);
+
+   For longest unique substring, keep expanding the right pointer.
+   Whenever a duplicate appears, shrink from the left until every
+   character is unique again.
+   Update the maximum length after the window becomes valid.
 **/

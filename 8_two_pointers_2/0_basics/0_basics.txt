@@ -1,0 +1,12 @@
+Two pointers :
+
+How to identify the approach
+We need to read characters, count consecutive duplicates, and
+overwrite the original array.
+
+Use two pointers:
+- read: scans the input array.
+- write: points to the next position where compressed output should be written.
+
+For each group, count its occurrences, write the character, and
+then write the count if greater than 1.
