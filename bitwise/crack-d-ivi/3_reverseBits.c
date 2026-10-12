@@ -16,11 +16,34 @@
   Let num is stored using 8 bits and num be 00000110. After the loop
   you will get reverse_num as 00000011. Now you need to left shift
   reverse_num 5 more times and you get the exact reverse 01100000.
+
+  Mon Oct 12 16:55:30 PDT 2026
 */
+
 #include <stdio.h>
 #include <stdint.h>
-
+#include <inttypes.h>
 #define debug(str,args...) printf("L=[%d][%s]->[%s] :| "str"\n",__LINE__,__FILE__, __func__, ##args)
+
+uint32_t reverse_bits_a(uint32_t num, int start, int end) {
+  if (start < 0 || end > 31 || start > end)
+    return num;
+
+  while (start < end) {
+    uint32_t left  = (num >> start) & 1U;
+    uint32_t right = (num >> end) & 1U;
+
+    if (left != right) {
+      num ^= (1U << start);
+      num ^= (1U << end);
+    }
+
+    start++;
+    end--;
+  }
+
+  return num;
+}
 
 uint32_t reverse_bits(uint32_t n) {
 
@@ -66,8 +89,22 @@ void test_2 () {
   printf ("num = %d res = %d\n", num, res);
 }
 
+// Amazon
+int test_3(void) {
+  uint32_t num = 0xB2;  // Hex input
+  int start = 1, end = 5;
+
+  uint32_t result = reverse_bits_a(num, start, end);
+
+  printf("Input : 0x%08" PRIX32 "\n", num);
+  printf("Output: 0x%08" PRIX32 "\n", result);
+
+  return 0;
+}
+
 int main () {
   test_1();
+  test_3();
   return 0;
 }
 
@@ -129,4 +166,9 @@ int main () {
    }
 
    because leading zeros in the original number must become trailing zeros in the reversed 32-bit result.
+**/
+
+/**
+   Input : 0x000000B2
+   Output: 0x000000A6
 **/
