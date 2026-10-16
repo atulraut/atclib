@@ -1,0 +1,30 @@
+
+
+
+   [left Zone | right zone]
+   [<= target | >= target]
+
+
+Unsucessful Binary Search :
+
+          Boundary
+  [<= target | >= target]
+            | |
+         end  start (= end+1)
+
+
+Most of Binary Search variant Problem's are :
+     	       |
+	       ^
+  Boundary Search Problems :
+
+
+Topic : Binary Search for optimization problems :-
+
+1. Focus on the variable/quantity you are trying to optimize(k-banana-speed)
+2. Look at all the range of values it van take
+  [....................]
+smallest           largest
+Map the constraint to a boundary in this range
+3. Do a boundary search to find the max/min value.
+   - At any given mid value, we should be able to identify which zone we are in.
