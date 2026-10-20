@@ -72,15 +72,9 @@ unsigned int rang_toggling(unsigned int N, unsigned int k , unsigned int l)
 */
 
 #include <stdio.h>
-
-int setbit (int num, int bit);
-int clearbit (int num, int bit);
-int toggle (int num, int bit);
-unsigned int range_toggling(unsigned int N,
-				unsigned int start, unsigned int end);
-int setallbits (int num);
-unsigned int reverseBits(unsigned int num);
-
+#include <limits.h> // CHAR_BIT
+#include <inttypes.h>
+#include <stdbool.h>
 
 int setbit (int num, int bit) {
 
@@ -98,10 +92,25 @@ int toggle (int num, int bit) {
   return num;
 }
 
+/**
+   CHAR_BIT = 8
+   1u avoids signed left-shift problems at the highest bit.
+**/
+bool is_bit_set(unsigned int num, unsigned int bit) {
+  if (bit >= sizeof(num) * CHAR_BIT)
+    return false;
+
+  return (num & (1u << bit)) != 0;
+}
+
+/**
+   https://www.teksmart.in/2018/09/toggle-given-range-of-bits-of-unsigned.html
+   https://chatgpt.com/g/g-p-6ac99359a0508191af8c8805738c4cc8-0-bitwise/c/6ad6a4d1-a8ec-83e8-9335-4facfe06a2f6
+**/
 unsigned int range_toggling(unsigned int N,
-				unsigned int start, unsigned int end) {
- //Here end > start
-  return N ^ ((1<<(end-start)+1)-1)<<start;
+			unsigned int start, unsigned int end) {
+  //Here end > start
+  return N ^ ( ( 1<<(end-start)+1) - 1) << start;
 }
 
 /*
@@ -114,29 +123,22 @@ int setallbits (int num) {
   return num;
 }
 
-/* Key: R-LXR */
-unsigned int reverseBits(unsigned int n) {
-  unsigned int rev = 0;
+/**
+   Expression	Purpose
+   result << 1	Make room for the next bit
+   num & 1u	Extract the input’s rightmost bit
+   `	`
+   num >>= 1	Move the next input bit into position
+**/
+uint32_t reverseBits(uint32_t num) {
+  uint32_t result = 0;
 
-  // traversing bits of 'n' from the right
-  while (n > 0)
-    {
-      // bitwise left shift
-      // 'rev' by 1
-      rev <<= 1;
+  for (unsigned int i = 0; i < 32; i++) {
+    result = (result << 1) | (num & 1u);
+    num >>= 1;
+  }
 
-      // if current bit is '1
-      if (n & 1 == 1)
-	rev ^= 1;
-
-      // bitwise right shift
-      // 'n' by 1
-      n >>= 1;
-
-    }
-
-  // required number
-  return rev;
+  return result;
 }
 
 int main () {
@@ -148,6 +150,8 @@ int main () {
   res = clearbit (num, bit);
   printf ("num = %d, bit = %d res = %d\n", num, bit, res);
   res = toggle (num, bit);
+  printf ("num = %d, bit = %d res = %d\n", num, bit, res);
+  res = is_bit_set (num, bit);
   printf ("num = %d, bit = %d res = %d\n", num, bit, res);
   res = setallbits (num);
   printf ("num = %d, bit = %d res = %d\n", num, bit, res);
