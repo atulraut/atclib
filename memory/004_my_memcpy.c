@@ -6,6 +6,7 @@
 #include <string.h>
 #include <stdint.h> // 'uint8_t
 #include <inttypes.h>
+#include <errno.h>
 
 // void * memcpy ( void * destination, const void * source, size_t num );
 void* mymemcpy(void* dest, const void* src, size_t count);
@@ -33,29 +34,44 @@ void* mymemcpy(void* dest, const void* src, size_t count) {
 /*
  * Ref: http://c-faq.com/ansi/memmove.html
  ***/
-void *mymemmove(void *dest, void const *src, size_t n) {
-    register char *dp = dest;
-	register char const *sp = src;
-	if(dp < sp) {
-		while(n-- > 0)
-			*dp++ = *sp++;
-	} else {
-		dp += n;
-		sp += n;
-		while(n-- > 0)
-			*--dp = *--sp;
-	}
+void *mymemmove(void *dest, const void *src, size_t n) {
+    if (n == 0 || dest == src)
+        return dest;                 // nothing to do
 
-	return dest;
+    if (dest == NULL || src == NULL) {
+        errno = EINVAL;
+        return NULL;
+    }
+
+    if (n > (size_t)PTRDIFF_MAX) {   // would overflow pointer arithmetic
+        errno = EOVERFLOW;
+        return NULL;
+    }
+
+    unsigned char *dp = dest;
+    const unsigned char *sp = src;
+
+    // uintptr_t comparison avoids UB for unrelated objects
+    if ((uintptr_t)dp < (uintptr_t)sp) {
+        while (n--)
+            *dp++ = *sp++;
+    } else {
+        dp += n;
+        sp += n;
+        while (n--)
+            *--dp = *--sp;
+    }
+
+    return dest;
 }
 
 int main () {
   char myname[] = "Atul R Raut";
 
-  printf("Size of char : %d\n",sizeof(char));
-  printf("Size of char : %d\n",sizeof(person.name));
-  printf("Size of int  : %d\n",sizeof(int));
-  printf("Size of stuct: %d\n",sizeof(person));
+  printf("Size of char : %ld\n",sizeof(char));
+  printf("Size of char : %ld\n",sizeof(person.name));
+  printf("Size of int  : %ld\n",sizeof(int));
+  printf("Size of stuct: %ld\n",sizeof(person));
 
   /* using memcpy to copy string: */
   mymemcpy ( person.name, myname, strlen(myname)+1 );
