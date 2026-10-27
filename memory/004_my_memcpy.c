@@ -19,50 +19,50 @@ struct {
 
 /*
  * Ref: http://www.danielvik.com/2010/02/fast-memcpy-in-c.html
-***/
+ ***/
 void* mymemcpy(void* dest, const void* src, size_t count) {
-        char* dst8 = (char*)dest;
-        char* src8 = (char*)src;
-        //printf ("InSide mymemcpy:: src = %s, cnt = %d \n", src, count);
-        while (count--) {
-            *dst8++ = *src8++;
-        }
-        //printf ("InSide mymemcpy:: dest = %s \n", dest);
-        return dest;
+  char* dst8 = (char*)dest;
+  char* src8 = (char*)src;
+  //printf ("InSide mymemcpy:: src = %s, cnt = %d \n", src, count);
+  while (count--) {
+    *dst8++ = *src8++;
+  }
+  //printf ("InSide mymemcpy:: dest = %s \n", dest);
+  return dest;
 }
 
 /*
  * Ref: http://c-faq.com/ansi/memmove.html
  ***/
 void *mymemmove(void *dest, const void *src, size_t n) {
-    if (n == 0 || dest == src)
-        return dest;                 // nothing to do
+  if (n == 0 || dest == src)
+    return dest;                 // nothing to do
 
-    if (dest == NULL || src == NULL) {
-        errno = EINVAL;
-        return NULL;
-    }
+  if (dest == NULL || src == NULL) {
+    errno = EINVAL;
+    return NULL;
+  }
 
-    if (n > (size_t)PTRDIFF_MAX) {   // would overflow pointer arithmetic
-        errno = EOVERFLOW;
-        return NULL;
-    }
+  if (n > (size_t)PTRDIFF_MAX) {   // would overflow pointer arithmetic
+    errno = EOVERFLOW;
+    return NULL;
+  }
 
-    unsigned char *dp = dest;
-    const unsigned char *sp = src;
+  unsigned char *dp = dest;
+  const unsigned char *sp = src;
 
-    // uintptr_t comparison avoids UB for unrelated objects
-    if ((uintptr_t)dp < (uintptr_t)sp) {
-        while (n--)
-            *dp++ = *sp++;
-    } else {
-        dp += n;
-        sp += n;
-        while (n--)
-            *--dp = *--sp;
-    }
+  // uintptr_t comparison avoids UB for unrelated objects
+  if ((uintptr_t)dp < (uintptr_t)sp) {
+    while (n--)
+      *dp++ = *sp++;
+  } else {
+    dp += n;
+    sp += n;
+    while (n--)
+      *--dp = *--sp;
+  }
 
-    return dest;
+  return dest;
 }
 
 int main () {
