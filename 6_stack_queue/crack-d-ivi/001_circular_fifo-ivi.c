@@ -154,16 +154,75 @@ int test(void) {
   return 0;
 }
 
+void test2() {
+  uint8_t storage[8] = {0};
+
+  RingBuffer rb = {
+    .data = storage,
+    .capacity = sizeof(storage),
+    .head = 0,
+    .tail = 0,
+    .count = 0
+  };
+
+  uint8_t input1[] = {'A', 'B', 'C'};
+
+  //  static uint8_t output[8] = {0};
+  uint8_t *output =  malloc(8 *sizeof(uint8_t));
+  size_t written = ring_write(&rb, input1, 3);
+
+  printf("Bytes written: %zu\n", written);
+
+  size_t read = ring_read(&rb, output, 3);
+
+  printf("Bytes read: %zu\n", read);
+
+  for (size_t i = 0; i < read; i++)
+    printf("%c ", output[i]);
+
+  printf("\n");
+
+  uint8_t input2[] = {'D', 'E', 'F', 'G', 'H', 'I'};
+
+  written = ring_write(&rb, input2, 6);
+
+  printf("Bytes written: %zu\n", written);
+
+  read = ring_read(&rb, output, 8);
+
+  printf("AR Bytes read: %zu\n", read);
+
+  for (size_t i = 0; i < 8; i++)
+    printf("%c ", output[i]);
+
+  printf("\n");
+  printf("rb.data->");
+  for (size_t i = 0; i < 8; i++)
+    printf("->[%c]", rb.data[i]);
+
+}
+
 int main (int argc, char **argv) {
   test();
+  test2();
   return 0;
 }
 
 /**
+   test :
    Bytes written: 6
    Bytes read: 4
    10 20 30 40
    Bytes written: 6
    Bytes read: 8
    50 60 70 80 90 100 110 120
+
+   test2 :
+   Bytes written: 3
+   Bytes read: 3
+   A B C
+   Bytes written: 6
+   AR Bytes read: 6
+   D E F G H I
+   rb.data -? [I]->[B]->[C]->[D]->[E]->[F]->[G]->[H]
 **/
