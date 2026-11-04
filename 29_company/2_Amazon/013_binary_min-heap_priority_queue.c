@@ -180,7 +180,7 @@ bool heap_push(struct heap *heapObj, int task_id, int priority) {
   }
 
   return true;
-
+}
 
 /*
  * REMOVE MINIMUM - SIFT DOWN
@@ -229,7 +229,13 @@ bool heap_is_full(struct heap *heapObj) {
 
 /*
  * BUILD MIN HEAP FROM ARRAY
- *
+ * 0  1  2  3      4  5  6  7
+ * [3][6][5][0]    [8][2][1][9]
+ * |Internal Notes||  Leaves  |
+
+  Range of Leaves --> |N/2|(floor) + 1 to N.    --> [n/2+1]
+  Range of internal Nodes -> 1 to |N/2|(floor). --> [n/2-1]
+
  * Start at the last internal node: n/2 - 1.
  * Leaves already satisfy the heap property.
  *
